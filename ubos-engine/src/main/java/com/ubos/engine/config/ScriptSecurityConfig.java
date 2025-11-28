@@ -1,7 +1,12 @@
 package com.ubos.engine.config;
 
+// 👇 必须要有这几个 Groovy 的 import
+import groovy.transform.ThreadInterrupt;
 import org.codehaus.groovy.control.CompilerConfiguration;
+import org.codehaus.groovy.control.customizers.ASTTransformationCustomizer;
 import org.codehaus.groovy.control.customizers.SecureASTCustomizer;
+// 👆 缺的就是上面这几行
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -15,7 +20,7 @@ public class ScriptSecurityConfig {
         SecureASTCustomizer secure = new SecureASTCustomizer();
 
         // -----------------------------------------------------------
-        // 🚫 免疫规则 1: 禁止反射 (防止绕过沙箱)
+        // 🚫 免疫规则 1: 禁止反射
         // -----------------------------------------------------------
         secure.setDisallowedReceivers(List.of(
             "java.lang.System",
@@ -45,17 +50,17 @@ public class ScriptSecurityConfig {
         // -----------------------------------------------------------
         // 🚫 免疫规则 3: 语法限制
         // -----------------------------------------------------------
-        // 禁止定义新方法 (防止脚本变得过于复杂)
         secure.setMethodDefinitionAllowed(false);
 
-        // 注意：标准 Groovy SecureASTCustomizer 不支持 setTypeDefinitionAllowed
-        // 我们主要靠禁止 ClassLoader 和反射来防止类定义带来的危害
-
         // -----------------------------------------------------------
-        // 💉 注入配置
+        // 💉 注入配置 (含超时熔断机制)
         // -----------------------------------------------------------
         CompilerConfiguration config = new CompilerConfiguration();
         config.addCompilationCustomizers(secure);
+
+        // 【关键】注入中断检查，配合 Future.cancel() 实现超时杀线程
+        config.addCompilationCustomizers(new ASTTransformationCustomizer(ThreadInterrupt.class));
+
         return config;
     }
 }

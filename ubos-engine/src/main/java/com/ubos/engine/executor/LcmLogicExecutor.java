@@ -22,19 +22,17 @@ public class LcmLogicExecutor {
     private final ObjectMapper objectMapper;
     private final CompilerConfiguration compilerConfig;
 
-    // 【新增】免疫系统的独立线程池 (隔离业务逻辑，防止阻塞主线程)
+    // 使用 CachedThreadPool，但建议生产环境限制最大线程数，防止线程爆炸
     private final ExecutorService sandboxPool = Executors.newCachedThreadPool();
 
-    // 编译缓存
     private final Map<String, Class<?>> scriptCache = new ConcurrentHashMap<>();
 
-    // 【新增】最大执行时间 (毫秒) -> 超过这个时间直接杀掉
+    // 3秒熔断
     private static final long MAX_EXECUTION_TIME_MS = 3000;
 
     public Mono<Object> execute(String snapshotJson, Map<String, Object> contextParams) {
         return Mono.create(sink -> {
             try {
-                // 1. 解析与编译 (这一步很快，在主线程做)
                 JsonNode root = objectMapper.readTree(snapshotJson);
                 String scriptContent = root.path("content").asText();
                 if (scriptContent == null || scriptContent.isBlank()) {
@@ -48,37 +46,43 @@ public class LcmLogicExecutor {
                     return shell.getClassLoader().parseClass(scriptContent);
                 });
 
-                // 2. 准备环境
                 Binding binding = new Binding();
                 binding.setVariable("ctx", contextParams);
                 binding.setVariable("log", log);
-
                 Script script = (Script) scriptClass.getDeclaredConstructor().newInstance();
                 script.setBinding(binding);
 
-                // 3. 【核心升级】在沙箱线程池中执行，并设置超时熔断
-                CompletableFuture.supplyAsync(() -> {
-                        try {
-                            return script.run();
-                        } catch (Exception e) {
-                            throw new CompletionException(e);
-                        }
-                    }, sandboxPool)
-                    .orTimeout(MAX_EXECUTION_TIME_MS, TimeUnit.MILLISECONDS) // JDK 9+ 特性：超时机制
-                    .whenComplete((result, ex) -> {
-                        if (ex != null) {
-                            // 4. 处理异常
-                            if (ex instanceof TimeoutException) {
-                                log.error("⚔️ [Immune System] Logic execution timed out! Killing process...");
-                                sink.error(new RuntimeException("Security Alert: Logic execution time exceeded limit (3000ms)."));
-                            } else {
-                                sink.error(ex.getCause() != null ? ex.getCause() : ex);
-                            }
-                        } else {
-                            // 5. 执行成功
-                            sink.success(result);
-                        }
-                    });
+                // 【核心修复：使用 Future 并在超时时强制中断】
+                Future<Object> future = sandboxPool.submit(() -> {
+                    try {
+                        return script.run();
+                    } catch (Exception e) {
+                        // 脚本内部抛出的异常（包括被中断后的异常）
+                        throw new CompletionException(e);
+                    }
+                });
+
+                // 启动一个监视器来处理超时 (异步非阻塞)
+                CompletableFuture.runAsync(() -> {
+                    try {
+                        // 等待结果
+                        Object result = future.get(MAX_EXECUTION_TIME_MS, TimeUnit.MILLISECONDS);
+                        sink.success(result);
+                    } catch (TimeoutException e) {
+                        // 1. 超时发生！
+                        log.error("⚔️ [Immune System] Logic timeout! Sending INTERRUPT signal...");
+
+                        // 2. 关键动作：发送中断信号！
+                        // 配合 ScriptSecurityConfig 里的 ThreadInterrupt，这会让 while(true) 瞬间崩溃
+                        future.cancel(true);
+
+                        sink.error(new RuntimeException("Security Alert: Logic killed by Immune System (Timeout)."));
+                    } catch (Exception e) {
+                        // 其他执行错误
+                        Throwable cause = e.getCause() != null ? e.getCause() : e;
+                        sink.error(cause);
+                    }
+                });
 
             } catch (Exception e) {
                 sink.error(e);
