@@ -70,12 +70,15 @@ project(':ubos-engine') {
     tasks.named('jar') { enabled = true }
 
     dependencies {
+        // [FIX 1] Need AuthContext DTO
+        implementation project(':ubos-common')
+        // Core dependencies
         implementation project(':ubos-kernel')
 
         // ✅ ADD THIS LINE: This provides @Service, @Configuration, @Bean, and @Slf4j
         implementation 'org.springframework.boot:spring-boot-starter'
 
-// 【新增】R2DBC 依赖，用于 LcmSchedulerService 直接查库
+        // 【新增】R2DBC 依赖，用于 LcmSchedulerService 直接查库
         implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
         runtimeOnly 'org.postgresql:r2dbc-postgresql'
 
@@ -88,6 +91,10 @@ project(':ubos-engine') {
 
 project(':ubos-server') {
     dependencies {
+
+        // [FIX 1] Need AuthContext DTO
+        implementation project(':ubos-common')
+
         // 1. 引用 Engine (执行逻辑)
         implementation project(':ubos-engine')
 
