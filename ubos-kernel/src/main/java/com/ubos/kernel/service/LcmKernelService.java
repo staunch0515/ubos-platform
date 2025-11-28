@@ -116,6 +116,11 @@ public class LcmKernelService {
             .all();
     }
 
+    // 兼容旧脚本的重载方法
+    public Mono<Long> commit(String type, String slug, String branch, String jsonContent, String author, String msg) {
+        return commit(type, slug, branch, jsonContent, author, msg, null);
+    }
+
     /**
      * 【写】提交变更 (Commit)
      */
