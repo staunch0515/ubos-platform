@@ -75,6 +75,10 @@ project(':ubos-engine') {
         // ✅ ADD THIS LINE: This provides @Service, @Configuration, @Bean, and @Slf4j
         implementation 'org.springframework.boot:spring-boot-starter'
 
+// 【新增】R2DBC 依赖，用于 LcmSchedulerService 直接查库
+        implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
+        runtimeOnly 'org.postgresql:r2dbc-postgresql'
+
         // Groovy dependencies (keep these)
         implementation "org.apache.groovy:groovy:4.0.15"
         implementation "org.apache.groovy:groovy-json:4.0.15"

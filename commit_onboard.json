@@ -1,0 +1,7 @@
+{
+  "type": "LOGIC",
+  "slug": "logic.hr.onboard",
+  "branch": "master",
+  "message": "Orchestrate employee onboarding process",
+  "code": "import com.fasterxml.jackson.databind.ObjectMapper\n\n// 1. 获取输入参数\ndef empId = ctx.empId\ndef name = ctx.name\ndef salary = ctx.salary\n\n// 2. 【核心】开启一个业务过程 (Process)\n// 这会在 lcm_process_commit_log 表里插一条记录\ndef procId = kernel.startProcess(\"Employee Onboarding\", \"sys_admin\").block()\n\n// 3. 步骤一：创建用户档案\ndef userJson = jsonUtils.writeValueAsString([\"name\": name, \"role\": \"staff\"])\nkernel.commit(\n    \"DATA_USER\", \n    \"user.\" + empId, \n    \"master\", \n    userJson, \n    \"sys_admin\", \n    \"Create Profile\", \n    procId // <--- 关键：传入 ProcessID 进行挂载\n).block()\n\n// 4. 步骤二：创建薪资记录\ndef salaryJson = jsonUtils.writeValueAsString([\"amount\": salary, \"currency\": \"CNY\"])\nkernel.commit(\n    \"DATA_SALARY\", \n    \"salary.\" + empId, \n    \"master\", \n    salaryJson, \n    \"sys_admin\", \n    \"Init Salary\", \n    procId // <--- 关键：挂载到同一个 ProcessID\n).block()\n\nreturn [\n  \"status\": \"success\",\n  \"processId\": procId,\n  \"msg\": \"Employee onboarded with full audit trail.\"\n]"
+}
