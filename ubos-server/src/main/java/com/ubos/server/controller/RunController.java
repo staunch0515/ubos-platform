@@ -15,16 +15,16 @@ public class RunController {
     private final UbosRuntimeService runtimeService;
 
     /**
-     * 【凡人之躯】执行逻辑
-     * * URL: POST /api/run/logic.hello.world?branch=master
-     * Body: { "name": "Gemini" }
+     * URL: POST /api/run/{slug}?branch=master&commitId=1
      */
     @PostMapping("/{slug}")
     public Mono<Object> execute(
         @PathVariable String slug,
         @RequestParam(defaultValue = "master") String branch,
+        @RequestParam(required = false) Long commitId, // 【新增】可选参数
         @RequestBody Map<String, Object> context) {
 
-        return runtimeService.runLogic(slug, branch, context);
+        // 传入 commitId
+        return runtimeService.runLogic(slug, branch, commitId, context);
     }
 }

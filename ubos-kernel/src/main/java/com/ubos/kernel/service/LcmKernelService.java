@@ -98,4 +98,12 @@ public class LcmKernelService {
             .bind("cid", newCommitId)
             .then();
     }
+
+    /**
+     * 【新增】时光机：根据 CommitID 获取历史快照
+     */
+    public Mono<String> getSnapshotByCommit(Long commitId) {
+        return versionRepo.findById(commitId)
+            .map(LcmEntityVersionChain::getSnapshotData);
+    }
 }
