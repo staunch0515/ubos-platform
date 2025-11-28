@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.codehaus.groovy.control.CompilerConfiguration;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
+import com.ubos.kernel.service.LcmKernelService;
 
 import java.util.Map;
 import java.util.concurrent.*;
@@ -21,6 +22,8 @@ public class LcmLogicExecutor {
 
     private final ObjectMapper objectMapper;
     private final CompilerConfiguration compilerConfig;
+    // 【新增】注入内核服务
+    private final LcmKernelService kernelService;
 
     // 使用 CachedThreadPool，但建议生产环境限制最大线程数，防止线程爆炸
     private final ExecutorService sandboxPool = Executors.newCachedThreadPool();
@@ -49,6 +52,12 @@ public class LcmLogicExecutor {
                 Binding binding = new Binding();
                 binding.setVariable("ctx", contextParams);
                 binding.setVariable("log", log);
+
+                // 【核心修改】将内核服务注入给脚本，变量名叫 "kernel"
+                binding.setVariable("kernel", kernelService);
+                // 注入一个简单的 JSON 工具，方便脚本序列化数据
+                binding.setVariable("jsonUtils", objectMapper);
+
                 Script script = (Script) scriptClass.getDeclaredConstructor().newInstance();
                 script.setBinding(binding);
 
