@@ -120,7 +120,7 @@ public class LcmKernelService {
      * 【写】提交变更 (Commit)
      */
     @Transactional
-    public Mono<Long> commit(String type, String slug, String branch, String jsonContent, String author, String msg) {
+    public Mono<Long> commit(String type, String slug, String branch, String jsonContent, String author, String msg, String processId) {
         return entityRepo.findByEntityTypeAndSlug(type, slug)
             .switchIfEmpty(createEntity(type, slug))
             .flatMap(entity -> {
@@ -145,6 +145,7 @@ public class LcmKernelService {
                     .flatMap(savedCommit ->
                         createIndex(savedCommit.getCommitId(), jsonContent)
                             .then(updateBranchHead(entity.getId(), branch, savedCommit.getCommitId()))
+                            .then(linkProcess(processId, savedCommit.getCommitId()))
                             .thenReturn(savedCommit.getCommitId())
                     );
             });
@@ -194,6 +195,31 @@ public class LcmKernelService {
             .bind("eid", entityId)
             .bind("branch", branch)
             .bind("cid", newCommitId)
+            .then();
+    }
+
+    /**
+     * 【新增】开启一个业务过程 (Transaction Context)
+     */
+    public Mono<String> startProcess(String processName, String operator) {
+        String processId = UUID.randomUUID().toString();
+        String sql = "INSERT INTO lcm_process_commit_log (process_id, process_name, operator_id, started_at) VALUES (:pid, :name, :op, NOW())";
+        return dbClient.sql(sql)
+            .bind("pid", processId)
+            .bind("name", processName)
+            .bind("op", operator)
+            .then()
+            .thenReturn(processId);
+    }
+
+    // 【新增】关联 Process 和 Commit
+    private Mono<Void> linkProcess(String processId, Long commitId) {
+        if (processId == null || processId.isBlank()) return Mono.empty();
+
+        String sql = "INSERT INTO lcm_process_entity_map (process_id, commit_id) VALUES (:pid, :cid)";
+        return dbClient.sql(sql)
+            .bind("pid", processId)
+            .bind("cid", commitId)
             .then();
     }
 }
