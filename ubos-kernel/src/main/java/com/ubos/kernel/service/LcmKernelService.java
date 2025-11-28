@@ -28,22 +28,49 @@ public class LcmKernelService {
 
     private final LcmEntityRepository entityRepo;
     private final LcmVersionRepository versionRepo;
-    // 【修复1】 补全缺失的 Repository 字段
     private final LcmSearchIndexRepository indexRepo;
     private final DatabaseClient dbClient;
     private final ObjectMapper objectMapper;
 
     /**
-     * 【读】获取资源的最新快照
+     * 【升级版】获取资源快照 (支持继承)
+     * 逻辑：当前分支有吗？ -> 没有 -> 找父分支 -> 还没有 -> 报错
      */
     public Mono<String> getResourceSnapshot(String type, String slug, String branch) {
+        return findInBranchRecursive(type, slug, branch);
+    }
+
+    // 私有递归查找方法
+    private Mono<String> findInBranchRecursive(String type, String slug, String currentBranch) {
+        // 1. 尝试在当前分支查找
         return entityRepo.findByEntityTypeAndSlug(type, slug)
-            .flatMap(entity -> versionRepo.findHeadSnapshot(entity.getId(), branch))
-            .map(LcmEntityVersionChain::getSnapshotData);
+            .flatMap(entity -> versionRepo.findHeadSnapshot(entity.getId(), currentBranch))
+            .map(LcmEntityVersionChain::getSnapshotData)
+
+            // 2. 关键点：如果当前分支找不到 (SwitchIfEmpty)
+            .switchIfEmpty(Mono.defer(() -> {
+                // 3. 查找父分支的名字
+                return getParentBranchName(currentBranch)
+                    .flatMap(parentBranch -> {
+                        log.info("🔍 Resource [{}::{}] missing in [{}], fallback to parent [{}]",
+                            type, slug, currentBranch, parentBranch);
+                        // 4. 递归调用 (去父分支找)
+                        return findInBranchRecursive(type, slug, parentBranch);
+                    });
+            }));
+    }
+
+    // 辅助方法：查 sys_branch_config 表
+    private Mono<String> getParentBranchName(String branch) {
+        String sql = "SELECT parent_branch FROM sys_branch_config WHERE branch_name = :branch";
+        return dbClient.sql(sql)
+            .bind("branch", branch)
+            .map((row, meta) -> row.get("parent_branch", String.class))
+            .one();
     }
 
     /**
-     * 【新增】时光机：根据 CommitID 获取历史快照
+     * 【时光机】根据 CommitID 获取历史快照
      */
     public Mono<String> getSnapshotByCommit(Long commitId) {
         return versionRepo.findById(commitId)
@@ -51,7 +78,7 @@ public class LcmKernelService {
     }
 
     /**
-     * 【新增】通用搜索接口
+     * 【搜索】通用搜索接口
      */
     public Flux<Map<String, Object>> search(String type, String branch, Map<String, Object> filters) {
         if (filters.isEmpty()) {
@@ -81,8 +108,6 @@ public class LcmKernelService {
             .map((row, meta) -> {
                 String json = row.get("snapshot_data", String.class);
                 try {
-                    // 【修复2】 使用 TypeReference 确保泛型匹配 Map<String, Object>
-                    // 或者简单地进行强转
                     return (Map<String, Object>) objectMapper.readValue(json, Map.class);
                 } catch (Exception e) {
                     return Map.<String, Object>of();
@@ -118,7 +143,6 @@ public class LcmKernelService {
                         return versionRepo.save(newCommit);
                     })
                     .flatMap(savedCommit ->
-                        // 保存成功后，立即建立索引
                         createIndex(savedCommit.getCommitId(), jsonContent)
                             .then(updateBranchHead(entity.getId(), branch, savedCommit.getCommitId()))
                             .thenReturn(savedCommit.getCommitId())
@@ -126,7 +150,6 @@ public class LcmKernelService {
             });
     }
 
-    // 解析 JSON 并保存索引
     private Mono<Void> createIndex(Long commitId, String jsonContent) {
         return Mono.fromCallable(() -> {
             JsonNode root = objectMapper.readTree(jsonContent);
