@@ -1,0 +1,100 @@
+plugins {
+    id 'java'
+    // Spring Boot 也可以顺手升个级，3.2.5 比较稳定
+    id 'org.springframework.boot' version '3.2.5'
+    // 关键修复：升级到 1.1.6 以支持新版 Gradle
+    id 'io.spring.dependency-management' version '1.1.6'
+}
+allprojects {
+    group = 'com.ubos'
+    version = '0.1.0-SNAPSHOT'
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(17)
+        }
+    }
+
+    dependencies {
+        // 【核心修复】强制指定 Lombok 版本，解决 JDK 兼容性崩溃
+        compileOnly 'org.projectlombok:lombok:1.18.34'
+        annotationProcessor 'org.projectlombok:lombok:1.18.34'
+
+        // 其他通用依赖
+        implementation 'com.fasterxml.jackson.core:jackson-databind'
+        implementation 'io.projectreactor:reactor-core'
+
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testImplementation 'io.projectreactor:reactor-test'
+    }
+}
+
+// --- 模块特定依赖 ---
+
+project(':ubos-common') {
+    tasks.named('bootJar') { enabled = false }
+    tasks.named('jar') { enabled = true }
+    dependencies {
+        // 纯 POJO，无特殊依赖
+    }
+}
+
+project(':ubos-kernel') {
+    // 这是一个库，不需要打成可执行 JAR
+    tasks.named('bootJar') { enabled = false }
+    tasks.named('jar') { enabled = true }
+
+    dependencies {
+        implementation project(':ubos-common')
+
+        implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
+        runtimeOnly 'org.postgresql:r2dbc-postgresql'
+        runtimeOnly 'org.postgresql:postgresql'
+        implementation 'org.flywaydb:flyway-core'
+        implementation 'org.springframework:spring-jdbc'
+    }
+}
+
+project(':ubos-engine') {
+    tasks.named('bootJar') { enabled = false }
+    tasks.named('jar') { enabled = true }
+
+    dependencies {
+        implementation project(':ubos-kernel')
+
+        // ✅ ADD THIS LINE: This provides @Service, @Configuration, @Bean, and @Slf4j
+        implementation 'org.springframework.boot:spring-boot-starter'
+
+        // Groovy dependencies (keep these)
+        implementation "org.apache.groovy:groovy:4.0.15"
+        implementation "org.apache.groovy:groovy-json:4.0.15"
+        implementation "org.apache.groovy:groovy-templates:4.0.15"
+    }
+}
+
+project(':ubos-server') {
+    dependencies {
+        // 1. 引用 Engine (执行逻辑)
+        implementation project(':ubos-engine')
+
+        // 2. 【新增】显式引用 Kernel (因为 DevController 用到了 LcmKernelService)
+        implementation project(':ubos-kernel')
+
+        // 3. WebFlux 基础
+        implementation 'org.springframework.boot:spring-boot-starter-webflux'
+        implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+        // 4. 【新增】显式引用 R2DBC (因为 UbosApplication 用到了 @EnableR2dbcRepositories)
+        implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
+    }
+}

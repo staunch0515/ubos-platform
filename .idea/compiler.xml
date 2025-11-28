@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="ubos-common" target="23" />
+      <module name="ubos-common.main" target="23" />
+      <module name="ubos-common.test" target="23" />
+      <module name="ubos-engine" target="23" />
+      <module name="ubos-engine.main" target="23" />
+      <module name="ubos-engine.test" target="23" />
+      <module name="ubos-kernel" target="23" />
+      <module name="ubos-kernel.main" target="23" />
+      <module name="ubos-kernel.test" target="23" />
+      <module name="ubos-server" target="23" />
+      <module name="ubos-server.main" target="23" />
+      <module name="ubos-server.test" target="23" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
