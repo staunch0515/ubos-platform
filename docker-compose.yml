@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  # 1. 数据库服务
+  db:
+    image: postgres:15
+    container_name: ubos-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: ubos_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432" # 暴露给宿主机，方便您用 SQL 客户端查看
+    volumes:
+      - pg_data:/var/lib/postgresql/data # 数据持久化，重启不丢失
+
+  # 2. UBOS 内核服务
+  ubos-server:
+    build: .
+    container_name: ubos-server
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      # 【关键】覆盖配置文件里的 localhost，指向 docker 内部的 db 服务名
+      SPRING_R2DBC_URL: r2dbc:postgresql://db:5432/ubos_db
+      SPRING_R2DBC_USERNAME: postgres
+      SPRING_R2DBC_PASSWORD: password
+      # 允许远程关机
+      MANAGEMENT_ENDPOINT_SHUTDOWN_ENABLED: "true"
+      MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: "*"
+    depends_on:
+      - db # 等数据库启动了再启动我
+
+# 定义数据卷
+volumes:
+  pg_data:
