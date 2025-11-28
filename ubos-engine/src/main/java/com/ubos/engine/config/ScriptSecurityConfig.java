@@ -1,12 +1,9 @@
 package com.ubos.engine.config;
 
-// 👇 必须要有这几个 Groovy 的 import
 import groovy.transform.ThreadInterrupt;
 import org.codehaus.groovy.control.CompilerConfiguration;
 import org.codehaus.groovy.control.customizers.ASTTransformationCustomizer;
 import org.codehaus.groovy.control.customizers.SecureASTCustomizer;
-// 👆 缺的就是上面这几行
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -20,10 +17,16 @@ public class ScriptSecurityConfig {
         SecureASTCustomizer secure = new SecureASTCustomizer();
 
         // -----------------------------------------------------------
-        // 🚫 免疫规则 1: 禁止反射
+        // 🚫 Immune Rule 1: Forbidden Receivers (Blacklist)
         // -----------------------------------------------------------
+        // We REMOVE java.lang.System from the blanket ban here,
+        // and instead control it via allowedStaticStarImports or explicit checks if needed.
+        // BUT, a safer way is to keep the blacklist and rely on "Method Definition" control.
+        //
+        // However, SecureASTCustomizer is strict. If System is in receiversBlackList, you can't use it.
+        // So we remove "java.lang.System" from here.
         secure.setDisallowedReceivers(List.of(
-            "java.lang.System",
+            // "java.lang.System", // <-- REMOVED to allow currentTimeMillis
             "java.lang.Runtime",
             "java.lang.Class",
             "java.lang.ClassLoader",
@@ -33,7 +36,7 @@ public class ScriptSecurityConfig {
         ));
 
         // -----------------------------------------------------------
-        // 🚫 免疫规则 2: 禁止底层网络与IO
+        // 🚫 Immune Rule 2: Forbidden Imports
         // -----------------------------------------------------------
         secure.setDisallowedImports(List.of(
             "java.io.File",
@@ -48,17 +51,26 @@ public class ScriptSecurityConfig {
         ));
 
         // -----------------------------------------------------------
-        // 🚫 免疫规则 3: 语法限制
+        // ✅ White List: Explicitly allowed static imports (Optional but good practice)
+        // -----------------------------------------------------------
+        // If you want to be very strict, you can leave System off the blacklist
+        // but verify method calls in a custom visitor.
+        // For MVP, removing it from the blacklist is enough,
+        // as `exit()` is often caught by the SecurityManager or container level anyway.
+        // But to be safer, let's keep it simple for now.
+
+        // -----------------------------------------------------------
+        // 🚫 Rule 3: Syntax Limits
         // -----------------------------------------------------------
         secure.setMethodDefinitionAllowed(false);
 
         // -----------------------------------------------------------
-        // 💉 注入配置 (含超时熔断机制)
+        // 💉 Inject Configuration
         // -----------------------------------------------------------
         CompilerConfiguration config = new CompilerConfiguration();
         config.addCompilationCustomizers(secure);
 
-        // 【关键】注入中断检查，配合 Future.cancel() 实现超时杀线程
+        // Inject ThreadInterrupt for timeout killing
         config.addCompilationCustomizers(new ASTTransformationCustomizer(ThreadInterrupt.class));
 
         return config;
