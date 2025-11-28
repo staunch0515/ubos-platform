@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import com.ubos.kernel.service.LcmKernelService;
 
+import com.ubos.engine.service.LcmEventService;
+
 import java.util.Map;
 import java.util.concurrent.*;
 
@@ -24,6 +26,7 @@ public class LcmLogicExecutor {
     private final CompilerConfiguration compilerConfig;
     // 【新增】注入内核服务
     private final LcmKernelService kernelService;
+    private final LcmEventService eventService; // 【新增】注入事件服务
 
     // 使用 CachedThreadPool，但建议生产环境限制最大线程数，防止线程爆炸
     private final ExecutorService sandboxPool = Executors.newCachedThreadPool();
@@ -57,6 +60,9 @@ public class LcmLogicExecutor {
                 binding.setVariable("kernel", kernelService);
                 // 注入一个简单的 JSON 工具，方便脚本序列化数据
                 binding.setVariable("jsonUtils", objectMapper);
+
+                // 【新增】赋予脚本发射信号的能力！
+                binding.setVariable("dispatcher", eventService);
 
                 Script script = (Script) scriptClass.getDeclaredConstructor().newInstance();
                 script.setBinding(binding);
