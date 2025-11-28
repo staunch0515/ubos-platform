@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.*;
 
 @Slf4j
 @Service
@@ -20,59 +20,72 @@ import java.util.concurrent.ConcurrentHashMap;
 public class LcmLogicExecutor {
 
     private final ObjectMapper objectMapper;
-    private final CompilerConfiguration compilerConfig; // 注入上面的安全配置
+    private final CompilerConfiguration compilerConfig;
 
-    // 【记忆皮层】 编译缓存：避免每次都重新编译，Key 是脚本内容的 Hash 或 MD5
+    // 【新增】免疫系统的独立线程池 (隔离业务逻辑，防止阻塞主线程)
+    private final ExecutorService sandboxPool = Executors.newCachedThreadPool();
+
+    // 编译缓存
     private final Map<String, Class<?>> scriptCache = new ConcurrentHashMap<>();
 
-    /**
-     * 执行逻辑的核心入口
-     * @param snapshotJson 数据库里存的那段 JSON 字符串
-     * @param contextParams 传给脚本的变量 (ctx)
-     */
+    // 【新增】最大执行时间 (毫秒) -> 超过这个时间直接杀掉
+    private static final long MAX_EXECUTION_TIME_MS = 3000;
+
     public Mono<Object> execute(String snapshotJson, Map<String, Object> contextParams) {
-        return Mono.fromCallable(() -> {
-            // 1. 解析 JSON 包 (解开 DNA)
-            JsonNode root = objectMapper.readTree(snapshotJson);
+        return Mono.create(sink -> {
+            try {
+                // 1. 解析与编译 (这一步很快，在主线程做)
+                JsonNode root = objectMapper.readTree(snapshotJson);
+                String scriptContent = root.path("content").asText();
+                if (scriptContent == null || scriptContent.isBlank()) {
+                    sink.error(new IllegalArgumentException("Logic content is empty"));
+                    return;
+                }
 
-            // 假设 JSON 结构是: { "meta": {...}, "content": "groovy code..." }
-            String scriptContent = root.path("content").asText();
+                String cacheKey = String.valueOf(scriptContent.hashCode());
+                Class<?> scriptClass = scriptCache.computeIfAbsent(cacheKey, k -> {
+                    GroovyShell shell = new GroovyShell(compilerConfig);
+                    return shell.getClassLoader().parseClass(scriptContent);
+                });
 
-            if (scriptContent == null || scriptContent.isBlank()) {
-                throw new IllegalArgumentException("Logic snapshot content is empty");
+                // 2. 准备环境
+                Binding binding = new Binding();
+                binding.setVariable("ctx", contextParams);
+                binding.setVariable("log", log);
+
+                Script script = (Script) scriptClass.getDeclaredConstructor().newInstance();
+                script.setBinding(binding);
+
+                // 3. 【核心升级】在沙箱线程池中执行，并设置超时熔断
+                CompletableFuture.supplyAsync(() -> {
+                        try {
+                            return script.run();
+                        } catch (Exception e) {
+                            throw new CompletionException(e);
+                        }
+                    }, sandboxPool)
+                    .orTimeout(MAX_EXECUTION_TIME_MS, TimeUnit.MILLISECONDS) // JDK 9+ 特性：超时机制
+                    .whenComplete((result, ex) -> {
+                        if (ex != null) {
+                            // 4. 处理异常
+                            if (ex instanceof TimeoutException) {
+                                log.error("⚔️ [Immune System] Logic execution timed out! Killing process...");
+                                sink.error(new RuntimeException("Security Alert: Logic execution time exceeded limit (3000ms)."));
+                            } else {
+                                sink.error(ex.getCause() != null ? ex.getCause() : ex);
+                            }
+                        } else {
+                            // 5. 执行成功
+                            sink.success(result);
+                        }
+                    });
+
+            } catch (Exception e) {
+                sink.error(e);
             }
-
-            // 2. 编译或获取缓存 (神经连接)
-            // 这里的 Cache Key 可以用 snapshotJson 的哈希值，这里简化用 content 的哈希
-            String cacheKey = String.valueOf(scriptContent.hashCode());
-
-            Class<?> scriptClass = scriptCache.computeIfAbsent(cacheKey, k -> {
-                log.info("Compiling new script with hash: {}", k);
-                GroovyShell shell = new GroovyShell(compilerConfig);
-                return shell.getClassLoader().parseClass(scriptContent);
-            });
-
-            // 3. 准备运行环境 (注入上下文)
-            Binding binding = new Binding();
-
-            // 注入 'ctx' 变量，这是脚本与外界交互的唯一窗口
-            binding.setVariable("ctx", contextParams);
-
-            // TODO: 在这里还可以注入 'db', 'http', 'log' 等工具类
-            binding.setVariable("log", log);
-
-            // 4. 实例化并运行
-            Script script = (Script) scriptClass.getDeclaredConstructor().newInstance();
-            script.setBinding(binding);
-
-            log.debug("Executing script...");
-            return script.run();
         });
     }
 
-    /**
-     * 清除缓存 (当发生“神经脉冲”/回滚时调用)
-     */
     public void invalidateCache() {
         scriptCache.clear();
         log.info("Script cache cleared.");

@@ -14,24 +14,46 @@ public class ScriptSecurityConfig {
     public CompilerConfiguration secureCompilerConfig() {
         SecureASTCustomizer secure = new SecureASTCustomizer();
 
-        // 【免疫系统规则】
-
-        // 1. 禁止调用危险的 Java 系统类
+        // -----------------------------------------------------------
+        // 🚫 免疫规则 1: 禁止反射 (防止绕过沙箱)
+        // -----------------------------------------------------------
         secure.setDisallowedReceivers(List.of(
             "java.lang.System",
             "java.lang.Runtime",
+            "java.lang.Class",
+            "java.lang.ClassLoader",
             "java.lang.ProcessBuilder",
-            "java.io.File"
-        ));
-
-        // 2. 禁止创建线程 (防止资源耗尽攻击)
-        secure.setDisallowedImports(List.of(
             "java.lang.Thread",
-            "java.util.concurrent.*"
+            "java.lang.ThreadGroup"
         ));
 
-        // 3. (可选) 限制循环深度等...
+        // -----------------------------------------------------------
+        // 🚫 免疫规则 2: 禁止底层网络与IO
+        // -----------------------------------------------------------
+        secure.setDisallowedImports(List.of(
+            "java.io.File",
+            "java.io.FileInputStream",
+            "java.io.FileOutputStream",
+            "java.nio.*",
+            "java.net.Socket",
+            "java.net.ServerSocket",
+            "java.sql.*",
+            "java.util.concurrent.*",
+            "java.lang.reflect.*"
+        ));
 
+        // -----------------------------------------------------------
+        // 🚫 免疫规则 3: 语法限制
+        // -----------------------------------------------------------
+        // 禁止定义新方法 (防止脚本变得过于复杂)
+        secure.setMethodDefinitionAllowed(false);
+
+        // 注意：标准 Groovy SecureASTCustomizer 不支持 setTypeDefinitionAllowed
+        // 我们主要靠禁止 ClassLoader 和反射来防止类定义带来的危害
+
+        // -----------------------------------------------------------
+        // 💉 注入配置
+        // -----------------------------------------------------------
         CompilerConfiguration config = new CompilerConfiguration();
         config.addCompilationCustomizers(secure);
         return config;
