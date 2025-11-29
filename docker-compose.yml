@@ -9,30 +9,58 @@ services:
     environment:
       POSTGRES_DB: ubos_db
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
+      POSTGRES_PASSWORD: password_ubos  # ⚠️ Use a production-like password
     ports:
-      - "5432:5432" # 暴露给宿主机，方便您用 SQL 客户端查看
+      - "5432:5432"
     volumes:
-      - pg_data:/var/lib/postgresql/data # 数据持久化，重启不丢失
+      - pg_data:/var/lib/postgresql/data
 
-  # 2. UBOS 内核服务
+  # 2. UBOS JAVA 内核服务 (后端 API)
   ubos-server:
-    build: .
+    build:
+      context: . # Look for Dockerfile in the current directory
+      dockerfile: Dockerfile
     container_name: ubos-server
-    restart: always
-    ports:
-      - "8080:8080"
+    restart: on-failure
     environment:
-      # 【关键】覆盖配置文件里的 localhost，指向 docker 内部的 db 服务名
+      # ⚠️ 覆盖配置：指向 Docker 内部的 db 服务名
       SPRING_R2DBC_URL: r2dbc:postgresql://db:5432/ubos_db
       SPRING_R2DBC_USERNAME: postgres
-      SPRING_R2DBC_PASSWORD: password
-      # 允许远程关机
+      SPRING_R2DBC_PASSWORD: password_ubos
       MANAGEMENT_ENDPOINT_SHUTDOWN_ENABLED: "true"
-      MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: "*"
+    ports:
+      - "8080:8080" # 暴露 API 端口
     depends_on:
-      - db # 等数据库启动了再启动我
+      - db
 
-# 定义数据卷
+  # 3. UBOS PYTHON Copilot (前端/AI Agent)
+  ubos-copilot:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: ubos-copilot
+    restart: on-failure
+    environment:
+      # ⚠️ 必须设置给 Python Agent，让它知道 Java API 的地址
+      UBOS_API_URL: http://ubos-server:8080/api
+      OPENAI_API_KEY: ${OPENAI_API_KEY} # 从本地环境变量获取 Key
+    ports:
+      - "8501:8501" # 暴露 Streamlit UI 端口
+    depends_on:
+      - ubos-server # 确保 Java 服务启动后再启动 Copilot
+
 volumes:
   pg_data:
+
+# ------------------------------------------
+# 3. 补充 requirements.txt
+# ------------------------------------------
+
+# 请在 ubos-copilot 目录下创建 requirements.txt 文件：
+# ubos-copilot/requirements.txt
+# (用于 Dockerfile.frontend 安装依赖)
+
+# requests
+# openai
+# streamlit
+# pandas

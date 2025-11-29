@@ -1,24 +1,18 @@
-# --- 第一阶段：构建 (Builder) ---
-# 使用官方 Gradle 镜像进行编译，确保环境一致
+# Dockerfile (Java Backend)
+
+# Stage 1: Building
 FROM gradle:8.5-jdk17 AS builder
+# ... (rest of stage 1 remains unchanged) ...
 
-# 将代码复制到镜像中
-COPY --chown=gradle:gradle . /home/gradle/src
-WORKDIR /home/gradle/src
+# -----------------------------------------------------------
+# Stage 2: Running (Fix applied here)
+# -----------------------------------------------------------
+# Use the official OpenJDK JRE image with the slim tag (or alpine for smallest size)
+FROM openjdk:17-jdk-slim
+# OR, the most common working tag:
+# FROM openjdk:17-jdk-slim
 
-# 执行构建 (只打包 server 模块，依赖会自动处理)
-# --no-daemon: CI/Docker 环境推荐配置
-RUN ./gradlew :ubos-server:bootJar --no-daemon
-
-# --- 第二阶段：运行 (Runtime) ---
-# 使用轻量级的 JRE 镜像运行
-FROM openjdk:17-slim
-
-# 从构建阶段把 jar 包拷过来
+# Let's use 'eclipse-temurin:17-jdk' as it's the modern, supported replacement for the deprecated openjdk image
+FROM eclipse-temurin:17-jdk as runtime
 COPY --from=builder /home/gradle/src/ubos-server/build/libs/*.jar app.jar
-
-# 暴露端口
-EXPOSE 8080
-
-# 启动命令
 ENTRYPOINT ["java", "-jar", "/app.jar"]
