@@ -1,6 +1,8 @@
 package com.ubos.kernel.service;
 
+import com.ubos.kernel.model.LcmEntityInstance;
 import com.ubos.kernel.repository.LcmEntityRepository;
+import com.ubos.kernel.util.ReactiveRetry; // 引入 Retry Utility
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.r2dbc.core.DatabaseClient;
@@ -17,26 +19,21 @@ import java.util.Objects;
 public class LcmRelationService {
 
     private final DatabaseClient dbClient;
-    private final LcmEntityRepository entityRepository; // 保持依赖，但不再用于查询ID
+    private final LcmEntityRepository entityRepository;
 
     /**
      * 【核心写入】创建实体间关系 (Link)
      */
     public Mono<Void> createRelation(String sourceSlug, String targetSlug, String relationType) {
 
-        // 1. 【修复】分别查找并抛出明确异常，便于调试
-        // 使用 row.get(..., String.class) 避免 UUID 强转 String 的潜在 ClassCastException
+        // 1. 查找源和目标 Entity ID (绕过 Spring Data Repository 的潜在缓存/时序问题)
         Mono<String> sourceIdMono = dbClient.sql("SELECT id FROM lcm_entity_instance WHERE slug = :slug")
-            .bind("slug", sourceSlug)
-            .map((row, meta) -> row.get("id", String.class))
-            .one()
-            .switchIfEmpty(Mono.error(new RuntimeException("Source entity not found: " + sourceSlug)));
+            .bind("slug", sourceSlug).fetch().one().map(r -> (String)r.get("id"))
+            .retryWhen(ReactiveRetry.databaseTransientErrors()); // 👈 FIX: 加入重试
 
         Mono<String> targetIdMono = dbClient.sql("SELECT id FROM lcm_entity_instance WHERE slug = :slug")
-            .bind("slug", targetSlug)
-            .map((row, meta) -> row.get("id", String.class))
-            .one()
-            .switchIfEmpty(Mono.error(new RuntimeException("Target entity not found: " + targetSlug)));
+            .bind("slug", targetSlug).fetch().one().map(r -> (String)r.get("id"))
+            .retryWhen(ReactiveRetry.databaseTransientErrors()); // 👈 FIX: 加入重试
 
         // 2. 合并查找结果
         return Mono.zip(sourceIdMono, targetIdMono)
@@ -49,8 +46,10 @@ public class LcmRelationService {
                     .bind("srcId", tuple.getT1())
                     .bind("tgtId", tuple.getT2())
                     .bind("relType", relationType)
-                    .then();
-            });
+                    .then()
+                    .retryWhen(ReactiveRetry.databaseTransientErrors()); // 👈 FIX: 写入也加入重试
+            })
+            .switchIfEmpty(Mono.error(new RuntimeException("Source or Target entity not found for relation. Entity Slugs must exist before linking.")));
     }
 
     /**
@@ -71,6 +70,7 @@ public class LcmRelationService {
             .bind("relType", relationType)
             .map((row, meta) -> row.get("slug", String.class))
             .all()
+            .retryWhen(ReactiveRetry.databaseTransientErrors()) // 👈 FIX: 查询也加入重试
             .filter(Objects::nonNull)
             .distinct()
             .onErrorResume(e -> {
