@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ubos.common.model.AuthContext;
 import com.ubos.engine.service.LcmEventService;
 import com.ubos.kernel.service.LcmKernelService;
+import com.ubos.kernel.service.LcmRelationService;
 import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
 import groovy.lang.Script;
@@ -32,13 +33,16 @@ public class LcmLogicExecutor {
 
     private static final long MAX_EXECUTION_TIME_MS = 3000;
 
+    private final LcmRelationService relationService;
+
     // 构造函数：注入所有依赖 (注意：LcmEventService 需要 @Lazy 配合，以解决循环依赖)
     public LcmLogicExecutor(ObjectMapper objectMapper, CompilerConfiguration compilerConfig,
-        LcmKernelService kernelService, @Lazy LcmEventService eventService) {
+        LcmKernelService kernelService, @Lazy LcmEventService eventService, LcmRelationService relationService) {
         this.objectMapper = objectMapper;
         this.compilerConfig = compilerConfig;
         this.kernelService = kernelService;
         this.eventService = eventService;
+        this.relationService = relationService;
     }
 
     /**
@@ -82,7 +86,8 @@ public class LcmLogicExecutor {
                     binding.setVariable("log", log);
                     binding.setVariable("kernel", kernelService);
                     binding.setVariable("jsonUtils", objectMapper);
-                    binding.setVariable("dispatcher", eventService); // Event Bus
+                    binding.setVariable("dispatcher", eventService);
+                    binding.setVariable("relations", relationService);
 
                     Script script = (Script) scriptClass.getDeclaredConstructor().newInstance();
                     script.setBinding(binding);

@@ -25,9 +25,24 @@ spring:
 # 日志级别
 logging:
   level:
+    # UBOS 内部逻辑跟踪 (方便查看我们自己写的 log.info/debug)
     com.ubos: DEBUG
-    org.springframework.r2dbc: INFO
 
+    # --- 核心 SQL 跟踪 (查询语句和参数) ---
+
+    # 1. R2DBC 框架层面的数据绑定和语句执行
+    org.springframework.r2dbc: DEBUG
+    org.springframework.r2dbc.core: DEBUG
+
+    # 2. R2DBC 驱动层 (查看真正的网络交互和 SQL 语句)
+    io.r2dbc.spi.Connection: DEBUG
+    io.r2dbc.postgresql: DEBUG
+
+    # 3. 事务和连接池 (可选，但有助于调试启动问题)
+    io.r2dbc.pool: INFO
+
+    # 4. Spring 容器/配置 (保持 INFO 或 DEBUG)
+    org.springframework.beans.factory: INFO
 
 management:
   endpoint:

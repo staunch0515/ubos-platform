@@ -25,7 +25,6 @@ import java.util.*;
 @RequiredArgsConstructor
 public class LcmKernelService {
 
-    // 核心依赖注入
     private final LcmEntityRepository entityRepo;
     private final LcmVersionRepository versionRepo;
     private final LcmSearchIndexRepository indexRepo;
@@ -61,6 +60,9 @@ public class LcmKernelService {
             // 2. 如果当前分支找不到
             .switchIfEmpty(Mono.defer(() -> {
                 return getParentBranchName(currentBranch)
+                    // 【优化合并】使用您优化的默认回退到 master 的逻辑
+                    .defaultIfEmpty(!"master".equalsIgnoreCase(currentBranch) ? "master" : "")
+                    .filter(p -> !p.isBlank())
                     .flatMap(parentBranch -> {
                         log.info("🔍 Resource [{}::{}] missing in [{}], fallback to parent [{}]",
                             type, slug, currentBranch, parentBranch);
@@ -75,8 +77,13 @@ public class LcmKernelService {
         String sql = "SELECT parent_branch FROM sys_branch_config WHERE branch_name = :branch";
         return dbClient.sql(sql)
             .bind("branch", branch)
-            .map((row, meta) -> row.get("parent_branch", String.class))
-            .one();
+            .map((row, meta) -> {
+                // 【最终修复】这里无需复杂判断，直接获取 String 即可
+                String val = row.get("parent_branch", String.class);
+                return val != null ? val : ""; // 确保返回非空字符串
+            })
+            .one()
+            .filter(s -> !s.isEmpty()); // 如果返回空字符串，则过滤掉，触发 switchIfEmpty
     }
 
     /**
@@ -86,9 +93,9 @@ public class LcmKernelService {
         String sql;
 
         if (filters.isEmpty()) {
-            // 模式 A: 查所有 (用于调度器加载所有 CRON)
+            // 模式 A: 查所有 CRON 任务 (用于调度器加载)
             sql = """
-                SELECT v.snapshot_data
+                SELECT COALESCE(v.snapshot_data, '{}') as snapshot_data_safe 
                 FROM lcm_entity_instance i
                 JOIN lcm_entity_branch_head h ON i.id = h.entity_id
                 JOIN lcm_entity_version_chain v ON h.head_commit_id = v.commit_id
@@ -100,9 +107,9 @@ public class LcmKernelService {
                 .bind("type", type)
                 .bind("branch", branch)
                 .map((row, meta) -> {
-                    // 【CRITICAL FIX】空值防御
-                    String json = row.get("snapshot_data", String.class);
-                    if (json == null) return Collections.<String, Object>emptyMap();
+                    // 【终极防御】读取安全别名，防止 R2DBC 内部 Null 传播
+                    String json = row.get("snapshot_data_safe", String.class);
+                    if (json == null || json.isBlank()) return Collections.<String, Object>emptyMap();
                     return parseJsonToMap(json);
                 })
                 .all();
@@ -112,7 +119,7 @@ public class LcmKernelService {
             Object propValue = filters.get(propName);
 
             sql = """
-                SELECT v.snapshot_data
+                SELECT COALESCE(v.snapshot_data, '{}') as snapshot_data_safe
                 FROM lcm_entity_instance i
                 JOIN lcm_entity_branch_head h ON i.id = h.entity_id
                 JOIN lcm_entity_version_chain v ON h.head_commit_id = v.commit_id
@@ -129,9 +136,9 @@ public class LcmKernelService {
                 .bind("propName", propName)
                 .bind("valText", propValue.toString())
                 .map((row, meta) -> {
-                    // 【CRITICAL FIX】空值防御
-                    String json = row.get("snapshot_data", String.class);
-                    if (json == null) return Collections.<String, Object>emptyMap();
+                    // 【终极防御】读取安全别名
+                    String json = row.get("snapshot_data_safe", String.class);
+                    if (json == null || json.isBlank()) return Collections.<String, Object>emptyMap();
                     return parseJsonToMap(json);
                 })
                 .all();
@@ -142,7 +149,7 @@ public class LcmKernelService {
     // II. WRITE OPERATIONS (COMMIT / PROCESS / INDEXING)
     // ====================================================================
 
-    // 【兼容旧脚本的重载方法】
+    // 兼容旧脚本的重载方法 (6 参数)
     public Mono<Long> commit(String type, String slug, String branch, String jsonContent, String author, String msg) {
         return commit(type, slug, branch, jsonContent, author, msg, null);
     }
@@ -185,9 +192,7 @@ public class LcmKernelService {
             });
     }
 
-    /**
-     * 开启一个业务过程 (Process Context)
-     */
+    // 开启一个业务过程 (Process Context)
     public Mono<String> startProcess(String processName, String operator) {
         String processId = UUID.randomUUID().toString();
         String sql = "INSERT INTO lcm_process_commit_log (process_id, process_name, operator_id, started_at) VALUES (:pid, :name, :op, NOW())";
@@ -263,7 +268,10 @@ public class LcmKernelService {
     // 辅助方法：解析 JSON (供 search 调用)
     @SuppressWarnings("unchecked")
     private Map<String, Object> parseJsonToMap(String json) {
-        if (json == null) return Collections.emptyMap();
+        if (json == null || json.isBlank()) {
+            log.warn("Attempted to parse NULL or Blank JSON snapshot.");
+            return Collections.emptyMap();
+        }
         try {
             return (Map<String, Object>) objectMapper.readValue(json, Map.class);
         } catch (Exception e) {
