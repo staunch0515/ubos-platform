@@ -8,6 +8,7 @@ import com.ubos.kernel.model.LcmEntityVersionChain;
 import com.ubos.kernel.repository.LcmEntityRepository;
 import com.ubos.kernel.repository.LcmSearchIndexRepository;
 import com.ubos.kernel.repository.LcmVersionRepository;
+import com.ubos.kernel.util.ReactiveRetry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.r2dbc.core.DatabaseClient;
@@ -59,8 +60,8 @@ public class LcmKernelService {
 
             // 2. 如果当前分支找不到
             .switchIfEmpty(Mono.defer(() -> {
+                // FIX: 确保 Mono.defer 内部的整个链条被明确返回
                 return getParentBranchName(currentBranch)
-                    // 【优化合并】使用您优化的默认回退到 master 的逻辑
                     .defaultIfEmpty(!"master".equalsIgnoreCase(currentBranch) ? "master" : "")
                     .filter(p -> !p.isBlank())
                     .flatMap(parentBranch -> {
@@ -69,7 +70,8 @@ public class LcmKernelService {
                         // 3. 递归调用 (去父分支找)
                         return findInBranchRecursive(type, slug, parentBranch);
                     });
-            }));
+            }))
+            .retryWhen(ReactiveRetry.databaseTransientErrors());
     }
 
     // 辅助方法：查询 sys_branch_config 表获取父分支名
@@ -77,13 +79,10 @@ public class LcmKernelService {
         String sql = "SELECT parent_branch FROM sys_branch_config WHERE branch_name = :branch";
         return dbClient.sql(sql)
             .bind("branch", branch)
-            .map((row, meta) -> {
-                // 【最终修复】这里无需复杂判断，直接获取 String 即可
-                String val = row.get("parent_branch", String.class);
-                return val != null ? val : ""; // 确保返回非空字符串
-            })
+            .map((row, meta) -> row.get("parent_branch", String.class))
             .one()
-            .filter(s -> !s.isEmpty()); // 如果返回空字符串，则过滤掉，触发 switchIfEmpty
+            // ⚠️ FIX 3: 对配置查找应用重试策略
+            .retryWhen(ReactiveRetry.databaseTransientErrors());
     }
 
     /**
@@ -162,12 +161,13 @@ public class LcmKernelService {
         return entityRepo.findByEntityTypeAndSlug(type, slug)
             .switchIfEmpty(createEntity(type, slug))
             .flatMap(entity -> {
-                return versionRepo.findHeadSnapshot(entity.getId(), branch)
+                // 1. 获取该分支当前的 Head Commit ID
+                Mono<Long> parentIdMono = versionRepo.findHeadSnapshot(entity.getId(), branch)
                     .map(LcmEntityVersionChain::getCommitId)
-                    .defaultIfEmpty(0L)
+                    .defaultIfEmpty(0L);
+                return parentIdMono
                     .flatMap(parentId -> {
                         Long actualParentId = (parentId == 0L) ? null : parentId;
-
                         LcmEntityVersionChain newCommit = LcmEntityVersionChain.builder()
                             .entityId(entity.getId())
                             .branchName(branch)
@@ -177,9 +177,9 @@ public class LcmKernelService {
                             .message(msg)
                             .committedAt(LocalDateTime.now())
                             .build();
-
                         return versionRepo.save(newCommit);
                     })
+                    .retryWhen(ReactiveRetry.databaseTransientErrors())
                     .flatMap(savedCommit ->
                         // 1. 建立索引
                         createIndex(savedCommit.getCommitId(), jsonContent)
