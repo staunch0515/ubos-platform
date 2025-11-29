@@ -56,7 +56,7 @@ public class LcmLogicExecutor {
         return Mono.deferContextual(contextView -> {
 
             // 1. 从 Reactor Context 中取出 AuthContext
-            AuthContext authContext = contextView.getOrDefault(UbosConstants.AUTH_CONTEXT_KEY, // 👈 CHANGE APPLIED HERE
+            AuthContext authContext = contextView.getOrDefault(UbosConstants.AUTH_CONTEXT_KEY,
                 AuthContext.builder().userId("SYSTEM").username("SYSTEM_USER").role("SYSTEM").tenantId("MASTER").build());
 
             // 2. 将身份信息合并到 Groovy 脚本的 contextParams 中
@@ -94,11 +94,7 @@ public class LcmLogicExecutor {
 
                     // --- 沙箱执行与超时熔断 ---
                     Future<Object> future = sandboxPool.submit(() -> {
-                        try {
-                            return script.run();
-                        } catch (Exception e) {
-                            throw new CompletionException(e);
-                        }
+                        return script.run();
                     });
 
                     // 监视器 (异步非阻塞地等待结果)
@@ -112,7 +108,11 @@ public class LcmLogicExecutor {
                             future.cancel(true); // 强制中断
                             sink.error(new RuntimeException("Security Alert: Logic killed by Immune System (Timeout)."));
                         } catch (Exception e) {
-                            Throwable cause = e.getCause() != null ? e.getCause() : e;
+                            // 智能解包异常链，提取最根本的业务异常
+                            Throwable cause = e;
+                            while ((cause instanceof ExecutionException || cause instanceof CompletionException) && cause.getCause() != null) {
+                                cause = cause.getCause();
+                            }
                             sink.error(cause);
                         }
                     });
