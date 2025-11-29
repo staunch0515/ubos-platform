@@ -58,8 +58,8 @@ project(':ubos-kernel') {
         implementation project(':ubos-common')
 
         implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
-        runtimeOnly 'org.postgresql:r2dbc-postgresql'
-        runtimeOnly 'org.postgresql:postgresql'
+        runtimeOnly 'org.postgresql:r2dbc-postgresql:1.0.6'
+        runtimeOnly 'org.postgresql:postgresql:42.7.3'
         implementation 'org.flywaydb:flyway-core'
         implementation 'org.springframework:spring-jdbc'
     }
