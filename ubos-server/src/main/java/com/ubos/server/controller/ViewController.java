@@ -36,12 +36,14 @@ public class ViewController {
         // 1. 从 Reactor Context 中获取 AuthContext
         return Mono.deferContextual(contextView -> {
             AuthContext authContext = contextView.get(UbosConstants.AUTH_CONTEXT_KEY);
-            // 示例：Admin 看 dev 分支，其他租户看自己的 tenant 分支
-            String targetBranch = "ADMIN".equals(authContext.getRole()) ? "dev" : authContext.getTenantId().toLowerCase();
+            // 1. 确定目标分支 (Admin 默认看 dev)
+            final String targetBranch = authContext.getRole().equals("ADMIN") ? "dev" : authContext.getTenantId().toLowerCase();
 
-            log.debug("Fetching view definition. slug=[{}], branch=[{}]", slug, targetBranch);
+            // 2. 注入响应头
+            // ⚠️ FIX: 必须在 Mono 流中添加 Header，以确保在响应发出前被设置
+            exchange.getResponse().getHeaders().add("X-UBOS-BRANCH", targetBranch);
 
-            // 2. 调用 KernelService 查找 VIEW 实体 (利用分支继承逻辑)
+            // 3. 调用 KernelService 查找 VIEW 实体
             return kernelService.getResourceSnapshot("VIEW", slug, targetBranch)
                 .map(jsonString -> {
                     try {
