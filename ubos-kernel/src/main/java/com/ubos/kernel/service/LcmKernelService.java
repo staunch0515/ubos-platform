@@ -264,4 +264,20 @@ public class LcmKernelService {
             .then()
             .retryWhen(retryPolicy); // 👈 FIX: 应用重试
     }
+
+    /**
+     * 【读】检查实体是否存在 (用于 Genesis 启动时幂等性检查)
+     * 使用原生 SQL count，避免加载整个实体对象，性能更高
+     */
+    public Mono<Boolean> exists(String slug) {
+        String sql = "SELECT COUNT(1) FROM lcm_entity_instance WHERE slug = :slug";
+        return dbClient.sql(sql)
+            .bind("slug", slug)
+            .map((row, metadata) -> {
+                Long count = row.get(0, Long.class);
+                return count != null && count > 0;
+            })
+            .one()
+            .defaultIfEmpty(false);
+    }
 }

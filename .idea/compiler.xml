@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel>
-      <module name="ubos-common" target="23" />
-      <module name="ubos-common.main" target="23" />
-      <module name="ubos-common.test" target="23" />
-      <module name="ubos-engine" target="23" />
-      <module name="ubos-engine.main" target="23" />
-      <module name="ubos-engine.test" target="23" />
-      <module name="ubos-kernel" target="23" />
-      <module name="ubos-kernel.main" target="23" />
-      <module name="ubos-kernel.test" target="23" />
-      <module name="ubos-server" target="23" />
-      <module name="ubos-server.main" target="23" />
-      <module name="ubos-server.test" target="23" />
-    </bytecodeTargetLevel>
+    <annotationProcessing>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.34/ec547ef414ab1d2c040118fb9c1c265ada63af14/lombok-1.18.34.jar" />
+        </processorPath>
+        <module name="ubos-platform.ubos-kernel.main" />
+        <module name="ubos-platform.ubos-server.main" />
+        <module name="ubos-platform.ubos-common.main" />
+        <module name="ubos-platform.ubos-engine.main" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="17" />
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_STRING" value="-parameters" />
   </component>
 </project>

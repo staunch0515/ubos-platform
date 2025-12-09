@@ -52,3 +52,12 @@ management:
     web:
       exposure:
         include: "*"
+
+
+ubos:
+  genesis:
+    # 策略选项:
+    #   SAFE   - (生产默认) 安全模式：检查是否已初始化，如果已存在则跳过。
+    #   RESET  - (开发专用) 暴力模式：启动时清空所有数据，重新创世。
+    #   UPDATE - (进阶模式) 增量模式：只补充缺失的数据，不删除旧数据。
+    strategy: RESET

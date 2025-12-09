@@ -75,6 +75,9 @@ project(':ubos-engine') {
         // Core dependencies
         implementation project(':ubos-kernel')
 
+        compileOnly 'org.projectlombok:lombok:1.18.34'
+        annotationProcessor 'org.projectlombok:lombok:1.18.34'
+
         // ✅ ADD THIS LINE: This provides @Service, @Configuration, @Bean, and @Slf4j
         implementation 'org.springframework.boot:spring-boot-starter'
 

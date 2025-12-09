@@ -2,19 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ubos-common.iml" filepath="$PROJECT_DIR$/ubos-common.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ubos-common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/ubos-common.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ubos-common.test.iml" filepath="$PROJECT_DIR$/.idea/modules/ubos-common.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ubos-engine.iml" filepath="$PROJECT_DIR$/ubos-engine.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ubos-engine.main.iml" filepath="$PROJECT_DIR$/.idea/modules/ubos-engine.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ubos-engine.test.iml" filepath="$PROJECT_DIR$/.idea/modules/ubos-engine.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ubos-kernel.iml" filepath="$PROJECT_DIR$/ubos-kernel.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ubos-kernel.main.iml" filepath="$PROJECT_DIR$/.idea/modules/ubos-kernel.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ubos-kernel.test.iml" filepath="$PROJECT_DIR$/.idea/modules/ubos-kernel.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ubos-plaform.iml" filepath="$PROJECT_DIR$/ubos-plaform.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ubos-server.iml" filepath="$PROJECT_DIR$/ubos-server.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ubos-server.main.iml" filepath="$PROJECT_DIR$/.idea/modules/ubos-server.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ubos-server.test.iml" filepath="$PROJECT_DIR$/.idea/modules/ubos-server.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ubos-engine/ubos-platform.ubos-engine.main.iml" filepath="$PROJECT_DIR$/.idea/modules/ubos-engine/ubos-platform.ubos-engine.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ubos-kernel/ubos-platform.ubos-kernel.main.iml" filepath="$PROJECT_DIR$/.idea/modules/ubos-kernel/ubos-platform.ubos-kernel.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ubos-server/ubos-platform.ubos-server.main.iml" filepath="$PROJECT_DIR$/.idea/modules/ubos-server/ubos-platform.ubos-server.main.iml" />
     </modules>
   </component>
 </project>
