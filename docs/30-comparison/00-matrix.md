@@ -81,7 +81,7 @@ Every topic file ends with `VRD-NN-MM` verdicts. Each verdict is one of:
 - **fusion** — combine several approaches;
 - **NEW** — the corpus lacks an answer and a new one is defined.
 
-The index of all verdicts is maintained in §4 as topics are completed.
+§4 lists all verdicts (121 in total). §5 summarises the resulting platform shape.
 
 ## 4. Verdicts per topic
 
@@ -103,3 +103,27 @@ The index of all verdicts is maintained in §4 as topics are completed.
 | 14 | VRD-14-01 … VRD-14-04 |
 | 15 | VRD-15-01 … VRD-15-05 |
 | 16 | VRD-16-01 … VRD-16-07 |
+| 17 | VRD-17-01 … VRD-17-05 |
+| 18 | VRD-18-01 … VRD-18-05 |
+| 19 | VRD-19-01 … VRD-19-05 |
+| 20 | VRD-20-01 … VRD-20-05 |
+| 21 | VRD-21-01 … VRD-21-05 |
+| 22 | VRD-22-01 … VRD-22-04 |
+
+## 5. Resulting platform shape (summary of verdicts)
+
+- **Storage:** six-table versioned store (JSON snapshots, typed derived index, per-branch CAS, tombstones), with SQLite and PostgreSQL editions (CMP-01).
+- **Model:** a single-rooted semantic type system as entities, validated by a meta-schema, with slot-based property behaviour, reference properties and relationship entities (CMP-02).
+- **Addressing:** UUID + (tenant, type, slug); canonical `ubos://authority/Type/slug?branch&commit&tag&time&key&view` (CMP-03).
+- **Change:** a Process wraps a unit-of-work session and one atomic flush, with CAS, idempotency and typed provenance (CMP-04, CMP-21).
+- **Logic:** Rhai logic entities behind a versioned syscall ABI, in a layered sandbox; actions and slots bind to logic indirectly; native handlers exist for kernel mechanics (CMP-05, CMP-20).
+- **Orchestration:** pipelines, action state machines, durable process instances; emits dispatched through an outbox (CMP-06, CMP-11).
+- **Context:** Context entities (environment, pin, memory, host/sovereign); execution context with a trace tree (CMP-07).
+- **Branching:** overlay, draft, feature and release branches; merge strategies with path-level conflicts; revert as a commit (CMP-08).
+- **Rules:** derived schemas, DRAFT/PUBLISH levels, constraint entities, invariants, decisions with veto (CMP-09).
+- **Security:** governance as entities, RBAC via relationships plus IAM policies, deny by default, enforced at the syscall/read boundary; approvals as deferred commits (CMP-10).
+- **UI:** widget = f(type chain, mode); server render pipeline; views as entities; projection; pushed UI; bicameral cockpit plus builder studio (CMP-13, CMP-14).
+- **Protocol:** UBTP with five operations over TCP, WebSocket and HTTP (CMP-15).
+- **AI:** builder, runtime syscall, agents, copilot and explainer, all through governed paths (CMP-16).
+- **Packages:** packages and genesis through one loader; tenants extend the root package; editions and five clients over a kernel library (CMP-17, CMP-18, CMP-19).
+- **Method:** instruction file, one vocabulary, packages with scenarios, staged verification (CMP-22).

@@ -10,7 +10,7 @@ depends_on: [META-CHARTER, META-RULES, META-TEMPLATES]
 
 > Every session: read this file first, update it last (WRITING-RULES §9).
 
-## Current phase: P2 (next: fix topic list in `30-comparison/00-matrix.md`; P1 complete)
+## Current phase: P3 (next: `40-spec/00-outline.md`, glossary, conventions, ADR-001; P2 complete)
 
 ## P0 — Meta + Inventory
 - [x] `00-meta/DOC-CHARTER.md`
@@ -45,7 +45,7 @@ Order fixed in INV-SUMMARY §5. Folder: `20-analysis/<KEY>-<repo>/`.
 - [x] 01 storage · 02 meta-model · 03 identity · 04 change unit · 05 logic execution
 - [x] 06 orchestration · 07 context · 08 branching · 09 validation · 10 security
 - [x] 11 events · 12 query · 13 metadata UI · 14 client shells · 15 API/protocol · 16 AI
-- [ ] 17–22 (see CMP-00 §1)
+- [x] 17 boot · 18 tenancy · 19 deployment · 20 stack · 21 audit · 22 method — P2 complete (121 verdicts)
 
 ## P3 — Outline + conventions
 - [ ] `40-spec/00-outline.md`
@@ -78,3 +78,4 @@ Order fixed in INV-SUMMARY §5. Folder: `20-analysis/<KEY>-<repo>/`.
 | 2026-09-28 | P2 | Matrix + topics 01–05 with verdicts; Q-005, Q-006 raised. |
 | 2026-09-28 | P2 | Topics 06–10 with verdicts; Q-007 raised. |
 | 2026-09-28 | P2 | Topics 11–16 with verdicts. |
+| 2026-09-28 | P2 | Topics 17–22 with verdicts; matrix summary; Q-008 raised. P2 complete. |
