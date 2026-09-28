@@ -10,7 +10,7 @@ depends_on: [META-CHARTER, META-RULES, META-TEMPLATES]
 
 > Every session: read this file first, update it last (WRITING-RULES §9).
 
-## Current phase: P1 (next: UP ubos-platform)
+## Current phase: P1 (next: FU fund-ubos)
 
 ## P0 — Meta + Inventory
 - [x] `00-meta/DOC-CHARTER.md`
@@ -31,7 +31,7 @@ depends_on: [META-CHARTER, META-RULES, META-TEMPLATES]
 
 ## P1 — Per-repo analysis (TEMPLATES §A, 10 files each)
 Order fixed in INV-SUMMARY §5. Folder: `20-analysis/<KEY>-<repo>/`.
-- [ ] 1. UP ubos-platform   → `20-analysis/UP-ubos-platform/`
+- [x] 1. UP ubos-platform   → `20-analysis/UP-ubos-platform/` (41 concepts, 12 highlights)
 - [ ] 2. FU fund-ubos       → `20-analysis/FU-fund-ubos/`
 - [ ] 3. LC logicorum       → `20-analysis/LC-logicorum/`
 - [ ] 4. UB ubos            → `20-analysis/UB-ubos/`
@@ -64,3 +64,4 @@ Order fixed in INV-SUMMARY §5. Folder: `20-analysis/<KEY>-<repo>/`.
 |---|---|---|
 | 2026-09-28 | P0 | Created meta layer (charter, rules, templates, progress, open questions, AI guide stub). |
 | 2026-09-28 | P0 | Inventoried all 8 repos + summary (families, shared files, P1 order, preliminary P2 topics). P0 complete. |
+| 2026-09-28 | P1 | UP analysis complete (10 files). Serves as the reference example of TEMPLATES §A. |
