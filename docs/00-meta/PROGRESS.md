@@ -62,7 +62,7 @@ Priority P0 (minimal viable kernel), in this order:
 - [x] `10-architecture.md`
 - [x] `11-storage/` (index + 3 parts)
 - [x] `12-identity-uri.md`
-- [ ] `13-meta-model.md`
+- [x] `13-meta-model/` (index + 3 parts)
 - [ ] `14-versioning-branching.md`
 - [ ] `15-transactions.md`
 - [ ] `16-context.md`
