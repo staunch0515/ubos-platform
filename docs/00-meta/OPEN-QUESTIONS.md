@@ -17,3 +17,5 @@ Format: one row per question. `Owner` = `user` (needs human answer) or `research
 | Q-002 | META-CHARTER | Is there an old/new relationship among the 8 repos? | user | answered | No. All repos are peers. |
 | Q-003 | META-CHARTER | Documentation language? | user | answered | English only. |
 | Q-004 | META-CHARTER | Keep analysis notes? | user | answered | Yes, write everything; exhaustive research. |
+| Q-005 | CMP-01 | Idempotency and job records: entities or technical store? | research | open | Candidate: jobs as entities, idempotency keys technical with TTL. |
+| Q-006 | CMP-02 | Namespaced property keys for tenant extensions? | research | open | Candidate: dotted namespaces for non-root extensions. |
