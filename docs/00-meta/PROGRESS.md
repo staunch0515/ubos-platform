@@ -59,8 +59,8 @@ Order fixed in INV-SUMMARY §5. Folder: `20-analysis/<KEY>-<repo>/`.
 
 ## P4 — Spec chapters
 Priority P0 (minimal viable kernel), in this order:
-- [ ] `10-architecture.md`
-- [ ] `11-storage.md`
+- [x] `10-architecture.md`
+- [x] `11-storage/` (index + 3 parts)
 - [ ] `12-identity-uri.md`
 - [ ] `13-meta-model.md`
 - [ ] `14-versioning-branching.md`

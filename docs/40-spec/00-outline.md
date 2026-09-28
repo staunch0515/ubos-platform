@@ -49,7 +49,7 @@ Exact per-chapter dependencies are in §3.
 | SPEC-01 | `01-glossary/` (index + 3 parts) | Glossary | – | – | all | P3 |
 | SPEC-02 | `02-conventions.md` | Conventions and ID registry | CONV | SPEC-01 | VRD-22-01, 22-04 | P3 |
 | SPEC-10 | `10-architecture.md` | Architecture overview | ARCH | 01, 02 | VRD-19-01…03, 20-01…05 | P0 |
-| SPEC-11 | `11-storage.md` | Storage model and store traits | STO | 10 | VRD-01-01…06 | P0 |
+| SPEC-11 | `11-storage/` (index + 3 parts) | Storage model and store traits | STO | 10 | VRD-01-01…06 | P0 |
 | SPEC-12 | `12-identity-uri.md` | Identity and `ubos://` addressing | URI | 11 | VRD-03-01…05 | P0 |
 | SPEC-13 | `13-meta-model.md` | Meta-model, types, properties, slots, relationships, inheritance | META | 11, 12 | VRD-02-01…07 | P0 |
 | SPEC-14 | `14-versioning-branching.md` | Commits, heads, branches, merge, revert, diff | VER | 11, 12, 13 | VRD-08-01…06, 01-03, 01-04 | P0 |
