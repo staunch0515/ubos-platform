@@ -10,7 +10,7 @@ depends_on: [META-CHARTER, META-RULES, META-TEMPLATES]
 
 > Every session: read this file first, update it last (WRITING-RULES §9).
 
-## Current phase: P1 (next: UW ubos_web)
+## Current phase: P2 (next: fix topic list in `30-comparison/00-matrix.md`; P1 complete)
 
 ## P0 — Meta + Inventory
 - [x] `00-meta/DOC-CHARTER.md`
@@ -38,7 +38,7 @@ Order fixed in INV-SUMMARY §5. Folder: `20-analysis/<KEY>-<repo>/`.
 - [x] 5. UC ubos_core       → `20-analysis/UC-ubos_core/` (58 concepts, 14 highlights; canonical digest of the UC/US shared corpus, D-UC-01…58)
 - [x] 6. US ubos-system     → `20-analysis/US-ubos-system/` (48 US-specific concepts, 12 highlights; shared corpus via ANA-UC-07)
 - [x] 7. LS logrum-system   → `20-analysis/LS-logrum-system/` (43 concepts, 11 highlights)
-- [ ] 8. UW ubos_web        → `20-analysis/UW-ubos_web/`
+- [x] 8. UW ubos_web        → `20-analysis/UW-ubos_web/` (20 concepts, 5 highlights)
 
 ## P2 — Comparison
 - [ ] `30-comparison/00-matrix.md` (topic list fixed at start of P2)
@@ -71,3 +71,4 @@ Order fixed in INV-SUMMARY §5. Folder: `20-analysis/<KEY>-<repo>/`.
 | 2026-09-28 | P1 | UC analysis complete (9 files + digest folder with index and 3 parts). |
 | 2026-09-28 | P1 | US analysis complete (10 files; only US-specific concepts, UC concepts referenced). |
 | 2026-09-28 | P1 | LS analysis complete (10 files). |
+| 2026-09-28 | P1 | UW analysis complete (10 files). P1 complete for all 8 repositories. |
