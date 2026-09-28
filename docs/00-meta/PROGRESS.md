@@ -10,7 +10,7 @@ depends_on: [META-CHARTER, META-RULES, META-TEMPLATES]
 
 > Every session: read this file first, update it last (WRITING-RULES §9).
 
-## Current phase: P4 (next: P0 chapters in outline order, starting with SPEC-10 architecture and SPEC-11 storage; P3 complete)
+## Current phase: P4 (done: SPEC-10…15; next: SPEC-16 context, SPEC-17 logic runtime)
 
 ## P0 — Meta + Inventory
 - [x] `00-meta/DOC-CHARTER.md`
@@ -64,7 +64,7 @@ Priority P0 (minimal viable kernel), in this order:
 - [x] `12-identity-uri.md`
 - [x] `13-meta-model/` (index + 3 parts)
 - [x] `14-versioning-branching.md`
-- [ ] `15-transactions.md`
+- [x] `15-transactions.md`
 - [ ] `16-context.md`
 - [ ] `17-logic-runtime.md`
 - [ ] `18-rules-validation.md`
@@ -109,3 +109,4 @@ Priority P1:
 | 2026-09-28 | P2 | Topics 11–16 with verdicts. |
 | 2026-09-28 | P2 | Topics 17–22 with verdicts; matrix summary; Q-008 raised. P2 complete. |
 | 2026-09-28 | P3 | Q-005…Q-008 answered by the user; outline (SPEC-00), glossary (SPEC-01, 142 terms in 3 parts plus an index, alias map), conventions and ID registry (SPEC-02), ADR-001…004 accepted. P3 complete. |
+| 2026-09-28 | P4 | SPEC-10 architecture, SPEC-11 storage, SPEC-12 identity/URI (+ADR-005), SPEC-13 meta-model, SPEC-14 versioning/branching, SPEC-15 transactions. Conventions aligned (branch segments without dots, tags as slugs, UNSET commit action). |
