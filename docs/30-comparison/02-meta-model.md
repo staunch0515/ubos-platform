@@ -115,6 +115,7 @@ How are types, properties, inheritance and relationships defined so that the pla
   - Verticals extend it; the spec lists the ontology as a separate chapter ("domain packs").
 
 ### VRD-02-07 — Short property keys in payloads; relation-type URIs in type definitions (NEW, from LS critique)
+- **Resolution (Q-006, 2026-09-28):** non-root extension properties use dotted namespaced keys (`acme.email`); root/platform properties stay unprefixed.
 - **Decision:** NEW.
 - **Rationale:** Full-URI keys (LS) are unambiguous but inflate payloads and prompts. The ambiguity they solve is removed if each type definition maps its short property names to property or relation-type URIs.
 - **Consequences:** Payload `{"email": "…"}`; the type declares `properties[{name: "email", type: "ubos://…/Type/email", relation_type?: "ubos://…/RelationType/prop_email"}]`.

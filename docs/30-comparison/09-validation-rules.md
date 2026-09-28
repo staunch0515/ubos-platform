@@ -76,6 +76,7 @@ How are data validity, business constraints and invariants expressed and enforce
   - Custom constraints are Logic implementations bound to the validation slot of a type or relation type.
 
 ### VRD-09-04 — Invariants over PREV/NEW with hard and soft outcomes (adapt UB BEL + US EOP)
+- **Resolution (Q-007, 2026-09-28):** the expression language is a restricted Rhai subset (ADR-002).
 - **Decision:** adapt.
 - **Consequences:**
   - Types may declare `invariants [{name, expression, severity: error | warn, level}]` in a restricted, side-effect-free expression language evaluated with `prev` and `new`.
