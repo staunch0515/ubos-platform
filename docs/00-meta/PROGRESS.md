@@ -49,7 +49,7 @@ Order fixed in INV-SUMMARY §5. Folder: `20-analysis/<KEY>-<repo>/`.
 
 ## P3 — Outline + conventions
 - [x] `40-spec/00-outline.md`
-- [x] `40-spec/01-glossary.md`
+- [x] `40-spec/01-glossary/` (index + 3 parts)
 - [x] `40-spec/02-conventions.md` (MOD codes, type system notation, ID registry)
 - [x] `40-spec/90-adr/000-index.md`
 - [x] `40-spec/90-adr/001-technology-stack.md`
@@ -108,4 +108,4 @@ Priority P1:
 | 2026-09-28 | P2 | Topics 06–10 with verdicts; Q-007 raised. |
 | 2026-09-28 | P2 | Topics 11–16 with verdicts. |
 | 2026-09-28 | P2 | Topics 17–22 with verdicts; matrix summary; Q-008 raised. P2 complete. |
-| 2026-09-28 | P3 | Q-005…Q-008 answered by the user; outline (SPEC-00), glossary (SPEC-01, ~110 terms + alias map), conventions and ID registry (SPEC-02), ADR-001…004 accepted. P3 complete. |
+| 2026-09-28 | P3 | Q-005…Q-008 answered by the user; outline (SPEC-00), glossary (SPEC-01, ~120 terms in index + 3 parts, alias map), conventions and ID registry (SPEC-02), ADR-001…004 accepted. P3 complete. |

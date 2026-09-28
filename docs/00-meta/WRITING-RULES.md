@@ -68,7 +68,7 @@ are marked `status: deprecated`, not deleted.
 | Architecture decision | `ADR-NNN` | `ADR-001` | `40-spec/90-adr/` |
 | Entity / type | `ENT-<Name>` | `ENT-EntityDefinition` | `40-spec/*` |
 | Interface / API | `API-<MOD>-NNN` | `API-RT-007` | `40-spec/*` |
-| Glossary term | `TERM-<Name>` | `TERM-Rehydration` | `40-spec/01-glossary.md` |
+| Glossary term | `TERM-<Name>` | `TERM-Rehydration` | `40-spec/01-glossary/` |
 | Open question | `Q-NNN` | `Q-017` | `00-meta/OPEN-QUESTIONS.md` |
 
 `<MOD>` codes are defined in the spec outline (P3). Until then use the provisional code

@@ -17,7 +17,7 @@ depends_on: [META-CHARTER]
 
 ## If you are implementing the platform (after P4)
 1. Read `40-spec/00-outline.md` for the chapter map and module codes.
-2. Read `40-spec/01-glossary.md` and `40-spec/02-conventions.md`.
+2. Read `40-spec/01-glossary/` (start at `00-index.md`) and `40-spec/02-conventions.md`.
 3. Read `40-spec/90-adr/` (all accepted ADRs).
 4. For the module you implement: read its chapter plus every document in its `depends_on`.
 5. Treat `REQ-*` Acceptance sections as your definition of done.
