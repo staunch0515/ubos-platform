@@ -261,10 +261,10 @@ slug          = segment *7( "." segment )                  ; max 200 chars
 segment       = ALNUM [ *62( ALNUM / "_" / "-" ) ALNUM ]
 op-version    = "@v" 1*4DIGIT
 query         = param *( "&" param )
-param         = "branch=" branch-name / "commit=" 1*19DIGIT / "tag=" branch-name
+param         = "branch=" branch-name / "commit=" 1*19DIGIT / "tag=" slug
               / "time=" date-time / "key=" key-path / "view=" view
 branch-name   = bseg *3( "/" bseg )                        ; REQ-CONV-024
-bseg          = ( LALPHA / DIGIT ) *62( LALPHA / DIGIT / "." / "_" / "-" )
+bseg          = ( LALPHA / DIGIT ) *62( LALPHA / DIGIT / "_" / "-" )
 key-path      = key-seg *( "." key-seg )
 key-seg       = key-name *( "[" 1*9DIGIT "]" ) / 1*9DIGIT
 key-name      = ( ALPHA / "_" ) *63( ALPHA / DIGIT / "_" )
@@ -335,10 +335,10 @@ ALNUM         = ALPHA / DIGIT
      - If there is no match, follow the rename redirect (REQ-URI-013).
   6) **Version.**
      - `commit`: the version must belong to this entity, else `URI.COMMIT_MISMATCH`.
-     - `tag`: resolve the Tag (SPEC-14) to a commit, which must belong to this entity.
+     - `tag`: resolve the Tag (SPEC-14). A COMMIT tag must name a commit of this entity. A POINT tag resolves as `time` on the tag's branch.
      - `time`: the latest version at or before `time` on the first branch of the chain that has a head at that time.
      - Otherwise: the head on the first branch of the chain that has a head (`deleted = true` means not found on this chain).
-     - A pinned Context without selectors uses the pinned commit's **visibility cut**: versions with `commit_id ≤ pin`, resolved as of that pin (SPEC-14, SPEC-16).
+     - A pinned Context without selectors resolves as of the pin's point (branch + timestamp, SPEC-14 REQ-VER-006, SPEC-16).
   7) **Authorise** the read (SPEC-22). A denial is reported as `URI.NOT_FOUND`.
 - **Rationale:** Context indirection makes environments data (UB), while selectors give exact time travel (FU, LS).
 - **Origin:** VRD-03-02, VRD-03-03, CON-UB-017, CON-UC-016, CON-LS-016

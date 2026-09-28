@@ -76,6 +76,7 @@ Part 2 of SPEC-11 (`11-storage/`). Header, concepts and file list: `00-index.md`
   - A later commit moves the head by a conditional update (REQ-STO-012) that sets `seq_num = seq_num + 1`.
   - `deleted` MUST equal whether the new head is a DELETE commit.
   - A branch fork does not copy heads. Reads fall back along the branch parent chain (SPEC-14), so a head exists on a branch only after a commit there.
+  - An UNSET commit removes the head row with CAS on the expected head (API-STO-004 `remove`); `seq_num` restarts at 1 if the branch later commits the entity again.
 - **Origin:** VRD-01-03, CON-UB-041, CON-UC-041, VRD-08-01
 - **Acceptance:**
   1) After *n* commits on a branch, `seq_num = n`.

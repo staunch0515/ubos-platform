@@ -166,12 +166,12 @@ Rules:
 
 ### 3.6 Branch and tag names
 
-- REQ-CONV-024: A branch name MUST match `^[a-z0-9][a-z0-9._-]{0,62}(/[a-z0-9][a-z0-9._-]{0,62}){0,3}$`.
+- REQ-CONV-024: A branch name MUST match `^[a-z0-9][a-z0-9_-]{0,62}(/[a-z0-9][a-z0-9_-]{0,62}){0,3}$`. Segments contain no dots, so the Branch entity's slug is the name with `/` replaced by `.` (a one-to-one mapping, SPEC-14).
 - REQ-CONV-025: The default branch is `main`. Reserved prefixes:
   - `draft/<principal-slug>/<base>`: draft branches (VRD-08-03).
   - `overlay/<name>`: overlay branches inside one tenant (VRD-08-02). A tenant's overlay of root-package entities needs no branch name: it is stored as tenant-scoped heads (SPEC-11 REQ-STO-006, SPEC-23).
   - `release/<version>`: release branches.
-- REQ-CONV-026: A tag name MUST match the branch-name pattern and MUST NOT equal a branch name in the same tenant.
+- REQ-CONV-026: A tag name is the slug of a Tag entity (REQ-CONV-014), e.g. `release-2026.09` (SPEC-14).
 
 ### 3.7 Named operations and versions
 
