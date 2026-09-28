@@ -46,7 +46,7 @@ Exact per-chapter dependencies are in §3.
 
 | ID | File | Title | MOD | Depends on | Main verdicts | Priority |
 |---|---|---|---|---|---|---|
-| SPEC-01 | `01-glossary.md` | Glossary | – | – | all | P3 |
+| SPEC-01 | `01-glossary/` (index + 3 parts) | Glossary | – | – | all | P3 |
 | SPEC-02 | `02-conventions.md` | Conventions and ID registry | CONV | SPEC-01 | VRD-22-01, 22-04 | P3 |
 | SPEC-10 | `10-architecture.md` | Architecture overview | ARCH | 01, 02 | VRD-19-01…03, 20-01…05 | P0 |
 | SPEC-11 | `11-storage.md` | Storage model and store traits | STO | 10 | VRD-01-01…06 | P0 |
