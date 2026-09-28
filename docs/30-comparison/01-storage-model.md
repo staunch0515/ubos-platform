@@ -105,6 +105,7 @@ How does the platform physically store every artifact (data, metadata, logic, UI
   - The spec states which features degrade in the personal edition (vector search, partition archiving).
 
 ### VRD-01-06 — Technical state outside the six tables must be declared (NEW)
+- **Resolution (Q-005, 2026-09-28):** jobs are entities; idempotency keys are technical with TTL (ADR-004).
 - **Decision:** NEW.
 - **Rationale:** Resolves the tension between UC's "never add tables" rule and LC's and UC's need for queues, idempotency records and caches.
 - **Consequences:**

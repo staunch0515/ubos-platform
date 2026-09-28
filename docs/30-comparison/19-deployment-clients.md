@@ -73,6 +73,7 @@ How is the platform packaged and deployed, from a single laptop to an enterprise
 - All roles can run in one process (dev) or be scaled independently.
 
 ### VRD-19-04 — The five clients (NEW, confirm)
+- **Resolution (Q-008, 2026-09-28):** the five clients are web, desktop, mobile, CLI and SDK/agent; IDE integration (VRD-14-03) is developer tooling, not one of the five (ADR-003).
 - **Decision:** NEW, pending confirmation.
 - **Consequences:** Web shell, desktop app, CLI/terminal, IDE extension, SDK/agent. All use UBTP (VRD-15-01).
 - **Open:** Q-008.

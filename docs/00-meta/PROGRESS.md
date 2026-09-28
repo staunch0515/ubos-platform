@@ -10,7 +10,7 @@ depends_on: [META-CHARTER, META-RULES, META-TEMPLATES]
 
 > Every session: read this file first, update it last (WRITING-RULES §9).
 
-## Current phase: P3 (next: `40-spec/00-outline.md`, glossary, conventions, ADR-001; P2 complete)
+## Current phase: P4 (next: P0 chapters in outline order, starting with SPEC-10 architecture and SPEC-11 storage; P3 complete)
 
 ## P0 — Meta + Inventory
 - [x] `00-meta/DOC-CHARTER.md`
@@ -48,13 +48,42 @@ Order fixed in INV-SUMMARY §5. Folder: `20-analysis/<KEY>-<repo>/`.
 - [x] 17 boot · 18 tenancy · 19 deployment · 20 stack · 21 audit · 22 method — P2 complete (121 verdicts)
 
 ## P3 — Outline + conventions
-- [ ] `40-spec/00-outline.md`
-- [ ] `40-spec/01-glossary.md`
-- [ ] `40-spec/02-conventions.md` (MOD codes, type system notation, ID registry)
-- [ ] `40-spec/90-adr/001-technology-stack.md`
+- [x] `40-spec/00-outline.md`
+- [x] `40-spec/01-glossary.md`
+- [x] `40-spec/02-conventions.md` (MOD codes, type system notation, ID registry)
+- [x] `40-spec/90-adr/000-index.md`
+- [x] `40-spec/90-adr/001-technology-stack.md`
+- [x] `40-spec/90-adr/002-rule-expression-language.md`
+- [x] `40-spec/90-adr/003-client-set.md`
+- [x] `40-spec/90-adr/004-technical-state.md`
 
 ## P4 — Spec chapters
-- [ ] (filled from outline)
+Priority P0 (minimal viable kernel), in this order:
+- [ ] `10-architecture.md`
+- [ ] `11-storage.md`
+- [ ] `12-identity-uri.md`
+- [ ] `13-meta-model.md`
+- [ ] `14-versioning-branching.md`
+- [ ] `15-transactions.md`
+- [ ] `16-context.md`
+- [ ] `17-logic-runtime.md`
+- [ ] `18-rules-validation.md`
+- [ ] `19-orchestration.md`
+- [ ] `21-query-search.md`
+- [ ] `22-security.md`
+- [ ] `23-tenancy.md`
+- [ ] `24-protocol.md`
+- [ ] `28-packages-boot.md`
+- [ ] `30-audit-observability.md`
+
+Priority P1:
+- [ ] `20-events-jobs.md`
+- [ ] `25-ui-protocol.md`
+- [ ] `26-client-shells.md`
+- [ ] `27-ai.md`
+- [ ] `29-base-ontology.md`
+- [ ] `31-deployment-editions.md`
+- [ ] `32-nfr-catalogue.md`
 
 ## P5 — Consolidation
 - [ ] `docs/README.md`
@@ -79,3 +108,4 @@ Order fixed in INV-SUMMARY §5. Folder: `20-analysis/<KEY>-<repo>/`.
 | 2026-09-28 | P2 | Topics 06–10 with verdicts; Q-007 raised. |
 | 2026-09-28 | P2 | Topics 11–16 with verdicts. |
 | 2026-09-28 | P2 | Topics 17–22 with verdicts; matrix summary; Q-008 raised. P2 complete. |
+| 2026-09-28 | P3 | Q-005…Q-008 answered by the user; outline (SPEC-00), glossary (SPEC-01, ~110 terms + alias map), conventions and ID registry (SPEC-02), ADR-001…004 accepted. P3 complete. |
