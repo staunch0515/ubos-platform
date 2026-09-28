@@ -10,7 +10,7 @@ depends_on: [META-CHARTER, META-RULES, META-TEMPLATES]
 
 > Every session: read this file first, update it last (WRITING-RULES §9).
 
-## Current phase: P1 (next: LC logicorum)
+## Current phase: P1 (next: UB ubos — large design corpus, split digest file)
 
 ## P0 — Meta + Inventory
 - [x] `00-meta/DOC-CHARTER.md`
@@ -33,7 +33,7 @@ depends_on: [META-CHARTER, META-RULES, META-TEMPLATES]
 Order fixed in INV-SUMMARY §5. Folder: `20-analysis/<KEY>-<repo>/`.
 - [x] 1. UP ubos-platform   → `20-analysis/UP-ubos-platform/` (41 concepts, 12 highlights)
 - [x] 2. FU fund-ubos       → `20-analysis/FU-fund-ubos/` (37 concepts, 14 highlights; shared UP files referenced, not repeated)
-- [ ] 3. LC logicorum       → `20-analysis/LC-logicorum/`
+- [x] 3. LC logicorum       → `20-analysis/LC-logicorum/` (40 concepts, 13 highlights)
 - [ ] 4. UB ubos            → `20-analysis/UB-ubos/`
 - [ ] 5. UC ubos_core       → `20-analysis/UC-ubos_core/`
 - [ ] 6. US ubos-system     → `20-analysis/US-ubos-system/`
@@ -66,3 +66,4 @@ Order fixed in INV-SUMMARY §5. Folder: `20-analysis/<KEY>-<repo>/`.
 | 2026-09-28 | P0 | Inventoried all 8 repos + summary (families, shared files, P1 order, preliminary P2 topics). P0 complete. |
 | 2026-09-28 | P1 | UP analysis complete (10 files). Serves as the reference example of TEMPLATES §A. |
 | 2026-09-28 | P1 | FU analysis complete (10 files). Reconciliation notes for P2 recorded in ANA-FU-00. |
+| 2026-09-28 | P1 | LC analysis complete (10 files). |
