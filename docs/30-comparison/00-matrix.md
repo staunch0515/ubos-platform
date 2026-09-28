@@ -92,3 +92,8 @@ The index of all verdicts is maintained in §4 as topics are completed.
 | 03 | VRD-03-01 … VRD-03-05 |
 | 04 | VRD-04-01 … VRD-04-05 |
 | 05 | VRD-05-01 … VRD-05-06 |
+| 06 | VRD-06-01 … VRD-06-06 |
+| 07 | VRD-07-01 … VRD-07-05 |
+| 08 | VRD-08-01 … VRD-08-06 |
+| 09 | VRD-09-01 … VRD-09-06 |
+| 10 | VRD-10-01 … VRD-10-07 |

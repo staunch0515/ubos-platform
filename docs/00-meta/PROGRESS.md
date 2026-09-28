@@ -43,7 +43,8 @@ Order fixed in INV-SUMMARY §5. Folder: `20-analysis/<KEY>-<repo>/`.
 ## P2 — Comparison
 - [x] `30-comparison/00-matrix.md` (22 topics fixed)
 - [x] 01 storage · 02 meta-model · 03 identity · 04 change unit · 05 logic execution
-- [ ] 06–22 (see CMP-00 §1)
+- [x] 06 orchestration · 07 context · 08 branching · 09 validation · 10 security
+- [ ] 11–22 (see CMP-00 §1)
 
 ## P3 — Outline + conventions
 - [ ] `40-spec/00-outline.md`
@@ -74,3 +75,4 @@ Order fixed in INV-SUMMARY §5. Folder: `20-analysis/<KEY>-<repo>/`.
 | 2026-09-28 | P1 | LS analysis complete (10 files). |
 | 2026-09-28 | P1 | UW analysis complete (10 files). P1 complete for all 8 repositories. |
 | 2026-09-28 | P2 | Matrix + topics 01–05 with verdicts; Q-005, Q-006 raised. |
+| 2026-09-28 | P2 | Topics 06–10 with verdicts; Q-007 raised. |

@@ -19,3 +19,4 @@ Format: one row per question. `Owner` = `user` (needs human answer) or `research
 | Q-004 | META-CHARTER | Keep analysis notes? | user | answered | Yes, write everything; exhaustive research. |
 | Q-005 | CMP-01 | Idempotency and job records: entities or technical store? | research | open | Candidate: jobs as entities, idempotency keys technical with TTL. |
 | Q-006 | CMP-02 | Namespaced property keys for tenant extensions? | research | open | Candidate: dotted namespaces for non-root extensions. |
+| Q-007 | CMP-09 | Restricted expression language for invariants/guards (Rhai subset, CEL, JSONLogic)? | research | open | To be decided with ADR-001. |
