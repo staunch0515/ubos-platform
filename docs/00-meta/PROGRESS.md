@@ -108,4 +108,4 @@ Priority P1:
 | 2026-09-28 | P2 | Topics 06–10 with verdicts; Q-007 raised. |
 | 2026-09-28 | P2 | Topics 11–16 with verdicts. |
 | 2026-09-28 | P2 | Topics 17–22 with verdicts; matrix summary; Q-008 raised. P2 complete. |
-| 2026-09-28 | P3 | Q-005…Q-008 answered by the user; outline (SPEC-00), glossary (SPEC-01, ~120 terms in index + 3 parts, alias map), conventions and ID registry (SPEC-02), ADR-001…004 accepted. P3 complete. |
+| 2026-09-28 | P3 | Q-005…Q-008 answered by the user; outline (SPEC-00), glossary (SPEC-01, 142 terms in 3 parts plus an index, alias map), conventions and ID registry (SPEC-02), ADR-001…004 accepted. P3 complete. |
