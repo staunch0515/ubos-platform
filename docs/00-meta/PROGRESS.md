@@ -65,7 +65,7 @@ Priority P0 (minimal viable kernel), in this order:
 - [x] `13-meta-model/` (index + 3 parts)
 - [x] `14-versioning-branching.md`
 - [x] `15-transactions.md`
-- [ ] `16-context.md`
+- [x] `16-context.md`
 - [ ] `17-logic-runtime.md`
 - [ ] `18-rules-validation.md`
 - [ ] `19-orchestration.md`
