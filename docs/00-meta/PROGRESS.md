@@ -10,7 +10,7 @@ depends_on: [META-CHARTER, META-RULES, META-TEMPLATES]
 
 > Every session: read this file first, update it last (WRITING-RULES §9).
 
-## Current phase: P1 (next: UC ubos_core — large docs corpus shared with US; digest docs once in UC, reference from US)
+## Current phase: P1 (next: US ubos-system — reference ANA-UC-07 digest for the shared corpus; digest only US-only / differing docs)
 
 ## P0 — Meta + Inventory
 - [x] `00-meta/DOC-CHARTER.md`
@@ -35,7 +35,7 @@ Order fixed in INV-SUMMARY §5. Folder: `20-analysis/<KEY>-<repo>/`.
 - [x] 2. FU fund-ubos       → `20-analysis/FU-fund-ubos/` (37 concepts, 14 highlights; shared UP files referenced, not repeated)
 - [x] 3. LC logicorum       → `20-analysis/LC-logicorum/` (40 concepts, 13 highlights)
 - [x] 4. UB ubos            → `20-analysis/UB-ubos/` (57 concepts, 16 highlights; digest split into 3 parts, D-UB-01…20)
-- [ ] 5. UC ubos_core       → `20-analysis/UC-ubos_core/`
+- [x] 5. UC ubos_core       → `20-analysis/UC-ubos_core/` (58 concepts, 14 highlights; canonical digest of the UC/US shared corpus, D-UC-01…58)
 - [ ] 6. US ubos-system     → `20-analysis/US-ubos-system/`
 - [ ] 7. LS logrum-system   → `20-analysis/LS-logrum-system/`
 - [ ] 8. UW ubos_web        → `20-analysis/UW-ubos_web/`
@@ -68,3 +68,4 @@ Order fixed in INV-SUMMARY §5. Folder: `20-analysis/<KEY>-<repo>/`.
 | 2026-09-28 | P1 | FU analysis complete (10 files). Reconciliation notes for P2 recorded in ANA-FU-00. |
 | 2026-09-28 | P1 | LC analysis complete (10 files). |
 | 2026-09-28 | P1 | UB analysis complete (9 files + digest folder with index and 3 parts). |
+| 2026-09-28 | P1 | UC analysis complete (9 files + digest folder with index and 3 parts). |
