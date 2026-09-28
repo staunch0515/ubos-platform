@@ -1,6 +1,3 @@
 rootProject.name = 'ubos-platform'
 
-include 'ubos-common'
-include 'ubos-kernel'
-include 'ubos-engine'
 include 'ubos-server'
