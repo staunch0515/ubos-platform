@@ -122,9 +122,9 @@ ENT-EntityVersionRow:
       required: false
       description: (add) Second parent for MERGE commits (the source head).
     - name: action
-      type: enum{CREATE|UPDATE|DELETE|RENAME|COPY|MERGE|REVERT}
+      type: enum{CREATE|UPDATE|DELETE|RENAME|COPY|MERGE|REVERT|UNSET}
       required: true
-      description: (add) Kind of change (TERM-Commit); DELETE marks a tombstone.
+      description: (add) Kind of change (TERM-Commit); DELETE marks a tombstone; UNSET records "reset to inherit" (the branch no longer has an own version; SPEC-14 REQ-VER-004).
     - name: snapshot
       type: json
       required: true
@@ -161,6 +161,7 @@ ENT-EntityVersionRow:
     - Rows are immutable, except embedding, which may be set once from null.
     - parent_commit_id, if set, names a version of the same entity.
     - For action = MERGE, merge_parent_commit_id is set.
+    - For action = UNSET, snapshot is {} and no head points to the version (its head row is removed).
   relations:
     - version_of -> ENT-EntityInstanceRow (n..1)
     - produced_by -> ENT-ProcessLogRow via ENT-ProcessCommitMapRow (relation OUTPUT, exactly 1)
@@ -208,6 +209,7 @@ ENT-BranchHeadRow:
   invariants:
     - PRIMARY KEY (tenant_id, entity_id, branch_name).
     - deleted = (action of head_commit_id = DELETE).
+    - No head points to an UNSET version.
     - A head moves only by a conditional update on (head_commit_id, seq_num) (REQ-STO-012), or by an audited reset (SPEC-14).
 ```
 

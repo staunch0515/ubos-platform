@@ -102,7 +102,7 @@ Part of SPEC-01. Entry format and rules: `00-index.md` §0.
 - **Origin:** CON-UP-011, CON-UB-040, CON-LC-040, VRD-01-02
 
 ### TERM-Commit
-- **Definition:** The act and the record of writing one new version. Its commit ID (int64) is the identifier of that version. A commit has a parent commit (or none), an action (CREATE, UPDATE, DELETE, RENAME, COPY, MERGE, REVERT) and belongs to exactly one process.
+- **Definition:** The act and the record of writing one new version. Its commit ID (int64) is the identifier of that version. A commit has a parent commit (or none), an action (CREATE, UPDATE, DELETE, RENAME, COPY, MERGE, REVERT, UNSET) and belongs to exactly one process.
 - **Aliases:** version (UB); micro-commit (UB, fine-grained); execution commit (UC).
 - **Not:** a database transaction (one flush may write many commits atomically).
 - **Chapter:** SPEC-14
@@ -203,12 +203,12 @@ Part of SPEC-01. Entry format and rules: `00-index.md` §0.
 - **Origin:** CON-FU-041, CON-FU-051
 
 ### TERM-Tag
-- **Definition:** A named, immutable pointer to a commit (e.g. a release label). Usable as a version selector.
+- **Definition:** A named, immutable entity (type `Tag`) that marks either one commit of one entity (COMMIT tag) or a point of a whole branch (POINT tag: branch + timestamp, e.g. a release). Usable as a version selector.
 - **Chapter:** SPEC-14
 - **Origin:** CON-FU-010, CON-LS-016
 
 ### TERM-Pin
-- **Definition:** Binding a Context or a reference to a fixed commit instead of a branch head.
+- **Definition:** Binding a Context to a fixed point (a branch and a timestamp, or a Tag) instead of the moving branch head, or binding a reference to a fixed commit (`?commit=`).
 - **Aliases:** commit pin (UC); environment → pinned commit (FU); version anchoring (UC).
 - **Chapter:** SPEC-16
 - **Origin:** CON-FU-031, CON-UC-016, CON-UC-021, VRD-08-06
