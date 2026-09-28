@@ -138,6 +138,10 @@ ENT-Type:
       type: EmbeddingSpec?
       required: false
       description: ENTITY only; which properties feed version embeddings (SPEC-21). Default none.
+    - name: write_policy
+      type: WritePolicy?
+      required: false
+      description: ENTITY only; {mutate - ALLOW|DENY|ADMIN_ONLY (direct UBTP Mutate, SPEC-15 REQ-TX-030), require_expected_head - bool (REQ-TX-005)}. Nearest value wins. Default {ALLOW, false}.
   invariants:
     - The instance's type is Type (or a subtype of Type).
     - kind(T) = kind(p) for every supertype p; Entity and Type are ENTITY.

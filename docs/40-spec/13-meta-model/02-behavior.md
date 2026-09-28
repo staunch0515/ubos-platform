@@ -97,7 +97,7 @@ Part 2 of SPEC-13 (`13-meta-model/`). Header, concepts and file list: `00-index.
 | `invariants`, `rule_refs` | concatenated, de-duplicated by name/URI |
 | `primitive`, `kind` | inherited, unchanged |
 | `is_abstract` | not inherited (own value, default false) |
-| `open`, `searchable`, `lifecycle`, `embedding` | nearest non-absent value wins |
+| `open`, `searchable`, `lifecycle`, `embedding`, `write_policy` | nearest non-absent value wins |
 | `title`, `description`, `icon`, `tags`, `code` | own value only |
 
   Property definitions also take the effective definition of their value type (its constraints, slots, `ui_modes`, `searchable`, `sensitivity`). Property-level settings override value-type settings under the same rules.
