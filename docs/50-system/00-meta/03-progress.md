@@ -11,7 +11,7 @@ depends_on: [UBS-META-00, UBS-META-01]
 ## 1. Current state
 
 - **Stage:** Requirements volume (Batches B2–B9).
-- **Next batch:** B8.
+- **Next batch:** B9.
 - **Stop point:** after B9, wait for product-owner confirmation (DEC-010).
 
 ## 2. Batch plan
@@ -26,7 +26,7 @@ depends_on: [UBS-META-00, UBS-META-01]
 - [x] **B5** Functional: LOGIC, RULE, FLOW, EVT, QRY
 - [x] **B6** Functional: IAM, TEN, AUD, UX, OFFICE
 - [x] **B7** Functional: AI, PKG, INT, ANL, PROOF, SYNC
-- [ ] **B8** Functional: OPS, BILL, DEV, MIG, NTF, FILE, SIGN, LOC, STD
+- [x] **B8** Functional: OPS, BILL, DEV, MIG, NTF, FILE, SIGN, LOC, STD
 - [ ] **B9** Non-functional catalogue, compliance catalogue, constraints and assumptions, glossary seed, requirements index
 - [ ] **STOP** Product-owner confirmation of the requirements volume
 
@@ -76,3 +76,4 @@ depends_on: [UBS-META-00, UBS-META-01]
 | 2026-09-29 | B5 | Functional requirements LOGIC (46), RULE (31), FLOW (34), EVT (32), QRY (17): FR total 344. |
 | 2026-09-29 | B6 | Functional requirements IAM, TEN, AUD, UX, OFFICE: FR total 493. |
 | 2026-09-29 | B7 | Functional requirements AI, PKG, INT, ANL, PROOF, SYNC: FR total 672. FR-PROOF-075 moved to PH-3 (holds arrive in PH-3). |
+| 2026-09-29 | B8 | Functional requirements OPS, BILL, DEV, MIG, NTF, FILE, SIGN, LOC, STD: FR total 800 (PH-0 8, PH-1 304, PH-2 274, PH-3 152, PH-4 45, PH-5 17). Every capability has FRs; 3 capability phases aligned to earliest FR. |
