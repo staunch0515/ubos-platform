@@ -30,6 +30,10 @@ Decisions are never deleted. A replaced decision is marked
 | DEC-015 | Both first-vertical Buks stay in PH-2 | Accepted |
 | DEC-016 | The first commercial form is Server (on-premises and private cloud); hosted Cell follows in PH-4 | Accepted |
 | DEC-017 | Architecture-level ID kinds AR (architecture rule) and CTR (inter-system contract) | Accepted |
+| DEC-018 | Repository layout and reuse of the research repositories | Accepted |
+| DEC-019 | Licensing of the standard, reference implementation and tools | Proposed |
+| DEC-020 | Storage engine design: PostgreSQL/SQLite with kernel indexes and prolly trees | Accepted |
+| DEC-021 | Policy engine: Cedar-class analysable policies plus relationship tuples | Accepted |
 
 ---
 
@@ -196,3 +200,39 @@ Decisions are never deleted. A replaced decision is marked
   - `AR-<NNN>`: a normative architecture rule, defined in `20-architecture`;
   - `CTR-<NNN>`: a contract between two systems (caller, callee, protocol, guarantees), defined in `20-architecture`. Its operations are detailed as `IF-*` items in the system chapters.
 - **Affects:** UBS-META-01, tools/check_system.py
+
+### DEC-018 — Repository layout and reuse of the research repositories
+- **Status:** Accepted · **Date:** 2026-09-29
+- **Context:** The eight research repositories contain useful code but diverge from the specification.
+- **Decision:** The reference implementation lives in a new monorepo (`ubos`), with separate repositories for the standard (`bpa-standard`), the open verifier (`ubos-verify`) and first-party Buks (`ubos-buks`). Research-repository code may be ported only under the rules of UBS-ARC-07 §6.
+- **Consequences:** Clean dependency graph (AR-031). Porting is traceable.
+- **Alternatives considered:** Extending `ubos-system` in place was rejected because its layout predates the 13-system decomposition. It remains the first porting source.
+- **Affects:** UBS-ARC-07
+
+### DEC-019 — Licensing of the standard, reference implementation and tools
+- **Status:** Proposed · **Date:** 2026-09-29
+- **Context:** The ARM-style positioning needs an open standard, a trustworthy open verifier and a commercially licensable engine. The whitepaper (EXT-WP) used AGPLv3.
+- **Decision (proposed):**
+  - BPA text under CC BY 4.0;
+  - vectors, schemas, SDKs and verifier under Apache-2.0;
+  - kernel, node and Forge under AGPL-3.0 as an open edition, with a commercial licence for embedding and hosted use without AGPL obligations;
+  - first-party Buks under a commercial licence.
+- **Consequences:** Third parties can implement the standard freely. Embedding vendors buy commercial licences (FR-STD-061). Legal review is required before publication.
+- **Alternatives considered:** Fully proprietary was rejected because it contradicts the standard strategy. Apache-2.0 for everything was rejected because it removes the embedding licence revenue.
+- **Affects:** UBS-ARC-07, FR-STD-062
+
+### DEC-020 — Storage engine design: PostgreSQL/SQLite with kernel indexes and prolly trees
+- **Status:** Accepted · **Date:** 2026-09-29
+- **Context:** The design needs content addressing, fast head and bitemporal reads, Merkle roots per commit and gap-free ledgers, on standard databases.
+- **Decision:** Authoritative content (chunks, versions, entries, commits, refs) is stored in PostgreSQL or SQLite tables, with large chunks in the object store. Derived kernel indexes (head, temporal, relationship, unique key) and prolly-tree nodes are maintained in the flush transaction (AR-016). Commits on one branch go through a per-branch sequencer with group commit. Ledger sequences are allocated from row-locked counters inside the flush.
+- **Consequences:** Standard operations tooling (backups, replication). ASM-003 is validated in PH-1a benchmarks. Fallback: a log-structured object layer in front of PostgreSQL.
+- **Alternatives considered:** A custom storage engine was rejected for operational risk. Pure event sourcing with replay was rejected because read latency would be too high.
+- **Affects:** UBS-ARC-04, UBS-SYS-DVM
+
+### DEC-021 — Policy engine: Cedar-class analysable policies plus relationship tuples
+- **Status:** Accepted · **Date:** 2026-09-29
+- **Context:** IMP-06 requires analysable policies and relationship-based permissions.
+- **Decision:** Authorization policies use a Cedar-compatible language, evaluated in-process by the DVM. Relations come from the model's authorization relations, materialised in the relationship index and exposed to the policy engine as entity parents and attributes. Policy analysis (who-can) uses the language's analysis tooling.
+- **Consequences:** No separate authorization service. Consistency is guaranteed by snapshot evaluation (FR-IAM-053).
+- **Alternatives considered:** OPA/Rego was rejected because it is harder to analyse. A Zanzibar-style external service was rejected because of consistency and operational cost.
+- **Affects:** UBS-ARC-06, UBS-SYS-DVM

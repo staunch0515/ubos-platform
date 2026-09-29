@@ -10,8 +10,8 @@ depends_on: [UBS-META-00, UBS-META-01]
 
 ## 1. Current state
 
-- **Stage:** Architecture volume (Stage C).
-- **Next batch:** B10.
+- **Stage:** Standard volume (Stage D).
+- **Next batch:** B11.
 - **Stop point:** after B9, wait for product-owner confirmation (DEC-010).
 
 ## 2. Batch plan
@@ -31,7 +31,7 @@ depends_on: [UBS-META-00, UBS-META-01]
 - [x] **STOP** Product-owner confirmation of the requirements volume (2026-09-29; OQ-001…003 resolved by DEC-014…016)
 
 ### Stage C — Architecture (`20-architecture/`)
-- [ ] **B10** System family, boundaries, contracts between systems, topologies, data flows, cross-cutting concerns
+- [x] **B10** System family, boundaries, contracts between systems, topologies, data flows, cross-cutting concerns
 
 ### Stage D — Standard (`30-standard/`)
 - [ ] **B11** DVM semantics: object model, classes, inheritance, polymorphism, kinds
@@ -81,3 +81,4 @@ depends_on: [UBS-META-00, UBS-META-01]
 | 2026-09-29 | B8 | Functional requirements OPS, BILL, DEV, MIG, NTF, FILE, SIGN, LOC, STD: FR total 800 (PH-0 8, PH-1 304, PH-2 274, PH-3 152, PH-4 45, PH-5 17). Every capability has FRs; 3 capability phases aligned to earliest FR. |
 | 2026-09-29 | B9 | Non-functional catalogue (106 NR, 7 reference environments, 6 workloads), compliance catalogue (54 CR), 18 constraints, 12 assumptions, glossary (146 terms). Requirements volume set to `review`. Checker strict for requirement kinds. STOP for confirmation. |
 | 2026-09-29 | STOP | Product owner confirmed the requirements volume and accepted the recommendations: DEC-014 (PH-1a/PH-1b gates), DEC-015 (both verticals in PH-2), DEC-016 (Server first). DEC-017 adds AR and CTR ID kinds. Requirements set to `complete`. |
+| 2026-09-29 | B10 | Architecture volume: system family, 36 contracts, topologies, data architecture, 11 runtime flows, cross-cutting concerns, codebase and delivery, capability allocation (220); AR-001…034; DEC-018…021. |
