@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-05-05
 title: Functional Requirements — LOGIC (Instruction Set, Runtime, Sandbox)
-status: review
+status: complete
 phase: PH-1
 depends_on: [UBS-REQ-05, UBS-REQ-05-04]
 ---

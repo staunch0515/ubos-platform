@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-04-04
 title: Scenarios — Governed AI
-status: review
+status: complete
 phase: PH-3
 depends_on: [UBS-REQ-04]
 ---

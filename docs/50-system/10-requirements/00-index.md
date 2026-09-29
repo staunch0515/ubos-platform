@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-00
 title: Requirements Volume — Index
-status: review
+status: complete
 phase: ALL
 depends_on: [UBS-META-00, UBS-META-01]
 ---
@@ -62,6 +62,7 @@ Requirements by kind, phase and priority:
 
 ## Status
 
-All requirement documents are in `review` status and wait for product-owner confirmation
-(DEC-010). After confirmation they move to `complete`, and writing continues with the
-architecture volume.
+All requirement documents were confirmed by the product owner on 2026-09-29 and are
+`complete`. Changes from now on follow the maintenance rules (UBS-META-01 §8), and any change
+to scope needs a DEC record. PH-1 requirements are split into gates PH-1a and PH-1b by
+DEC-014.

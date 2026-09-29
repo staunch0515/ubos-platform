@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-06
 title: Non-Functional Requirements — Index, Reference Environments and Workloads
-status: review
+status: complete
 phase: ALL
 depends_on: [UBS-REQ-05, UBS-META-01]
 ---

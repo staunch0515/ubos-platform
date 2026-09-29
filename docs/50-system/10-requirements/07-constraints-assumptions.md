@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-07
 title: Constraints and Assumptions
-status: review
+status: complete
 phase: ALL
 depends_on: [UBS-META-00, UBS-META-06]
 ---

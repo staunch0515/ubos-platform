@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-05-13
 title: Functional Requirements — PKG (Buks) and INT (Integration)
-status: review
+status: complete
 phase: PH-1
 depends_on: [UBS-REQ-05, UBS-REQ-05-02]
 ---

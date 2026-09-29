@@ -26,6 +26,10 @@ Decisions are never deleted. A replaced decision is marked
 | DEC-011 | The "six tables only" rule is withdrawn | Accepted |
 | DEC-012 | Long-term economic and social narratives are excluded | Accepted |
 | DEC-013 | The system decomposition (thirteen systems) | Accepted |
+| DEC-014 | PH-1 has two exit gates: PH-1a (engine core) and PH-1b (governance and services) | Accepted |
+| DEC-015 | Both first-vertical Buks stay in PH-2 | Accepted |
+| DEC-016 | The first commercial form is Server (on-premises and private cloud); hosted Cell follows in PH-4 | Accepted |
+| DEC-017 | Architecture-level ID kinds AR (architecture rule) and CTR (inter-system contract) | Accepted |
 
 ---
 
@@ -153,3 +157,42 @@ Decisions are never deleted. A replaced decision is marked
 - **Status:** Accepted · **Date:** 2026-09-29
 - **Decision:** The system codes are BPA, DVM, FRG, NOD, CTL, WSP, STU, AGT, EXC, FED, NTY, BRG and SDK, as defined in `UBS-META-06` §5.
 - **Affects:** `20-architecture/`, `40-systems/`
+
+### DEC-014 — PH-1 has two exit gates: PH-1a (engine core) and PH-1b (governance and services)
+- **Status:** Accepted · **Date:** 2026-09-29
+- **Context:** PH-1 holds 341 requirements (OQ-001). A single exit gate would come too late to catch kernel design errors.
+- **Decision:** PH-1 keeps its phase code in requirement blocks, but has two sequential exit gates with their own verification plans and exit criteria (`EXIT-1-*` items are tagged `gate: 1a` or `gate: 1b`). The gate of a PH-1 requirement is determined by its domain, with the listed exceptions:
+
+  | Gate | Domains | Exceptions moved into this gate |
+  |---|---|---|
+  | **PH-1a Engine core** | MODEL, VER, TIME, LEDG, TXN, LOGIC, PROOF, FILE, ANL, STD, DEV (except CAP-DEV-06) | CAP-IAM-03 (principals and keys), CAP-IAM-09 (secrets and keys), CAP-TEN-01 and CAP-TEN-02 (tenants, VAEs, isolation), CAP-OPS-01 and CAP-OPS-02 (bootstrap, backup), CAP-PKG-07 (genesis), CAP-LOC-03 (time zones) |
+  | **PH-1b Governance and services** | RULE, FLOW, EVT, QRY, IAM, TEN, AUD, INT, PKG, OPS, LOC, SYNC, BILL, and CAP-DEV-06 (SDKs) | — |
+
+  PH-1a is verified through the in-process binding and the conformance runner. PH-1b adds UBTP bindings and SDKs.
+- **Consequences:** The phase plan (`50-phases/PH-1`) has two gates. Requirements depend only on the same or an earlier gate. A PH-1a requirement that needs a PH-1b capability is a defect to be reported as an open question.
+- **Alternatives considered:** Renumbering all phases (PH-1 … PH-6) was rejected because it would churn 960 requirement IDs' phase fields and the scenario map. Keeping one gate was rejected (OQ-001).
+- **Affects:** UBS-PH-1, 60-verification, UBS-REQ-04 (PH-1 scenarios are assigned to gates in the phase plan)
+
+### DEC-015 — Both first-vertical Buks stay in PH-2
+- **Status:** Accepted · **Date:** 2026-09-29
+- **Context:** OQ-002 asked whether to defer one vertical.
+- **Decision:** Fund Operations and Contract Management both ship in PH-2. Contract Management is lighter, and it is the proving ground for Live Doc, templates and electronic signatures. Fund Operations proves bitemporality, ledgers and restatement.
+- **Consequences:** The PH-2 verification plan includes both scenario families (SCN-1xx and SCN-2xx).
+- **Alternatives considered:** Deferring contracts was rejected because Office and signature capabilities would lack a real-world driver in PH-2.
+- **Affects:** UBS-PH-2, DEC-004
+
+### DEC-016 — The first commercial form is Server (on-premises and private cloud); hosted Cell follows in PH-4
+- **Status:** Accepted · **Date:** 2026-09-29
+- **Context:** OQ-003. Regulated first customers prefer controlled deployments, and a multi-tenant hosted service needs the Control Plane (PH-4).
+- **Decision:** The first sellable product is the Server edition, deployed by the customer or a partner in their data centre or private cloud, with UBOS-provided support. A single-tenant managed Server operated by UBOS for design partners is allowed from PH-3. Multi-tenant Cells start in PH-4.
+- **Consequences:** Operability (NR-OPER-*), air-gapped installation (FR-OPS-013) and offline licences (FR-PKG-083) gain importance. SOC 2 scope in PH-4 covers the Cell service.
+- **Alternatives considered:** SaaS-first was rejected because it needs the Control Plane and SOC 2 earlier.
+- **Affects:** UBS-REQ-01 §6, UBS-PH-2, UBS-PH-3, UBS-PH-4
+
+### DEC-017 — Architecture-level ID kinds AR (architecture rule) and CTR (inter-system contract)
+- **Status:** Accepted · **Date:** 2026-09-29
+- **Context:** The architecture volume states cross-system rules and contracts that are not system-internal design requirements.
+- **Decision:** Two ID kinds are added:
+  - `AR-<NNN>`: a normative architecture rule, defined in `20-architecture`;
+  - `CTR-<NNN>`: a contract between two systems (caller, callee, protocol, guarantees), defined in `20-architecture`. Its operations are detailed as `IF-*` items in the system chapters.
+- **Affects:** UBS-META-01, tools/check_system.py

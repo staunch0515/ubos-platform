@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-05-11
 title: Functional Requirements — OFFICE (Live Doc, Smart Grid, War Room, Action Messages, Executable Books)
-status: review
+status: complete
 phase: PH-2
 depends_on: [UBS-REQ-05, UBS-REQ-05-10]
 ---

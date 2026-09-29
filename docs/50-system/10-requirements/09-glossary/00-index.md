@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-09
 title: Glossary — Index
-status: review
+status: complete
 phase: ALL
 depends_on: [UBS-META-01]
 ---

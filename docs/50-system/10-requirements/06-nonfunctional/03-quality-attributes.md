@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-06-03
 title: Non-Functional Requirements — OBS, OPER, USE, ACC, PORT, COMPAT, MAINT, LOC
-status: review
+status: complete
 phase: PH-1
 depends_on: [UBS-REQ-06]
 ---

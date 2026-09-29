@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-06-01
 title: Non-Functional Requirements — PERF, SCAL, COST
-status: review
+status: complete
 phase: PH-1
 depends_on: [UBS-REQ-06]
 ---

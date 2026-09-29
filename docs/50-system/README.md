@@ -33,7 +33,7 @@ Processing Unit (BPU)** on a **Data Virtual Machine (DVM)**.
 | Folder | Content | Status |
 |---|---|---|
 | `00-meta/` | charter, rules, templates, progress, inputs, AI guide | stable / draft |
-| `10-requirements/` | vision, personas, capabilities, scenarios, FR, NR, CR, constraints, glossary | review (awaiting confirmation) |
+| `10-requirements/` | vision, personas, capabilities, scenarios, FR, NR, CR, constraints, glossary | complete (confirmed 2026-09-29) |
 | `20-architecture/` | system family, boundaries, contracts, topologies | planned |
 | `30-standard/` | the BPA standard (normative) | planned |
 | `40-systems/` | one folder per system (13 systems) | planned |

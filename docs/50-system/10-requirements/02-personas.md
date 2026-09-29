@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-02
 title: Personas
-status: review
+status: complete
 phase: ALL
 depends_on: [UBS-REQ-01]
 ---

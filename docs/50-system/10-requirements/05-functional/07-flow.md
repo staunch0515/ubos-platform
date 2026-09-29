@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-05-07
 title: Functional Requirements — FLOW (Lifecycles, Actions, Approvals, Workflows)
-status: review
+status: complete
 phase: PH-1
 depends_on: [UBS-REQ-05, UBS-REQ-05-06]
 ---
