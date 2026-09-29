@@ -10,7 +10,7 @@ depends_on: [META-CHARTER, META-RULES, META-TEMPLATES]
 
 > Every session: read this file first, update it last (WRITING-RULES §9).
 
-## Current phase: P4 (done: SPEC-10…19, 21…24; next: SPEC-28 packages/boot, SPEC-30 audit/observability — last P0 chapters)
+## Current phase: P4 (all P0 chapters done; next: P1 chapters SPEC-20 events/jobs, SPEC-25 UI protocol, SPEC-26 shells, SPEC-27 AI, SPEC-29 ontology, SPEC-31 deployment, SPEC-32 NFR)
 
 ## P0 — Meta + Inventory
 - [x] `00-meta/DOC-CHARTER.md`
@@ -74,7 +74,7 @@ Priority P0 (minimal viable kernel), in this order:
 - [x] `23-tenancy.md`
 - [x] `24-protocol/` (index + 3 parts)
 - [x] `28-packages-boot.md`
-- [ ] `30-audit-observability.md`
+- [x] `30-audit-observability.md`
 
 Priority P1:
 - [ ] `20-events-jobs.md`
@@ -112,3 +112,4 @@ Priority P1:
 | 2026-09-28 | P4 | SPEC-10 architecture, SPEC-11 storage, SPEC-12 identity/URI (+ADR-005), SPEC-13 meta-model, SPEC-14 versioning/branching, SPEC-15 transactions. Conventions aligned (branch segments without dots, tags as slugs, UNSET commit action). |
 | 2026-09-29 | P4 | SPEC-16 context, SPEC-17 logic runtime (syscall ABI v1), SPEC-18 rules and validation, SPEC-19 orchestration (pipelines, actions + lifecycles + dialogues, process instances, emits, intents). Glossary +5 terms; SPEC-13 Type gains schema_extra/write_policy. |
 | 2026-09-29 | P4 | SPEC-21 query and search, SPEC-22 security and governance, SPEC-23 tenancy, SPEC-24 UBTP protocol. SPEC-13 Type gains overlay_policy; glossary +3 terms. |
+| 2026-09-29 | P4 | SPEC-28 packages/loader/genesis/boot, SPEC-30 audit and observability. Lineage gains TRIGGERED_BY; offloaded traces are blobs. All P0 (minimal kernel) chapters complete. |

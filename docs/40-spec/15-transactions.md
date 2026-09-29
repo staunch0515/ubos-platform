@@ -142,7 +142,7 @@ ENT-ProvenanceRecord:
   fields:
     - {name: commit_id, type: commit_id, required: true, description: "Version depended on"}
     - {name: entity_id, type: uuid, required: true, description: "Its entity"}
-    - {name: relation, type: "enum{DEPENDS_ON_DATA|DEPENDS_ON_TYPE|DEPENDS_ON_FUNC|DEPENDS_ON_CTX|DEPENDS_ON_POLICY}", required: true, description: "Why it was read (REQ-TX-020)"}
+    - {name: relation, type: "enum{DEPENDS_ON_DATA|DEPENDS_ON_TYPE|DEPENDS_ON_FUNC|DEPENDS_ON_CTX|DEPENDS_ON_POLICY|TRIGGERED_BY}", required: true, description: "Why it was read (REQ-TX-020); TRIGGERED_BY = the commit whose event started this process (SPEC-30 REQ-OBS-005)"}
 ```
 
 ```yaml
@@ -372,6 +372,7 @@ ENT-MutateChange:
 | DEPENDS_ON_FUNC | the operation definition, and every Logic, Pipeline or Action version executed | DEPENDS_ON_FUNC (UC), DEPENDS_ON_LOGIC |
 | DEPENDS_ON_CTX | the Context entity version used | DEPENDS_ON_CTX (UC), DEPENDS_ON_CONTEXT |
 | DEPENDS_ON_POLICY | each Policy, Role or grant Relationship version that decided an authorisation | NEW |
+| TRIGGERED_BY | the commit whose event (hook, correlation signal, emit) started this process | TRIGGERED_BY (VRD-21-02) |
 
   Records are de-duplicated. If a process records more than 10 000 records, the kernel keeps FUNC, CTX, TYPE and POLICY records, drops the excess DATA records, and sets `metrics.provenance_truncated = true`.
 - **Rationale:** "Which code and which environment produced this version" is queryable (UC). Policy lineage explains access decisions (SPEC-22, SPEC-27 explanations).

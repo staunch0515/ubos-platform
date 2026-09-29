@@ -340,7 +340,7 @@ ENT-ProcessLogRow:
     - name: trace_ref
       type: uri?
       required: false
-      description: (add) URI of an offloaded trace entity (SPEC-30) when the trace exceeds the inline limit.
+      description: (add) blob://sha256/… URI of the offloaded full trace (SPEC-30 REQ-OBS-003) when it exceeds the inline limit.
     - name: trace_summary
       type: json?
       required: false
@@ -382,7 +382,7 @@ ENT-ProcessCommitMapRow:
       required: true
       description: A version the process produced or depended on.
     - name: relation
-      type: enum{OUTPUT|DEPENDS_ON_DATA|DEPENDS_ON_TYPE|DEPENDS_ON_FUNC|DEPENDS_ON_CTX|DEPENDS_ON_POLICY}
+      type: enum{OUTPUT|DEPENDS_ON_DATA|DEPENDS_ON_TYPE|DEPENDS_ON_FUNC|DEPENDS_ON_CTX|DEPENDS_ON_POLICY|TRIGGERED_BY}
       required: true
       description: Lineage relation (TERM-Provenance); SPEC-15 defines when each is recorded.
     - name: entity_id
