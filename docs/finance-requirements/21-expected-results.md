@@ -275,8 +275,8 @@ Sales tax payable at 2026-01-31 (account 2200): 3,135.00 = opening 3,300.00 − 
 
 Reportable amounts are payments made in the tax year (cash basis), not bills entered. The 2026 threshold for
 Forms 1099-NEC and 1099-MISC is taken from `thresholds-1099.csv` (2,000.00); the implementation MUST read the
-threshold from a table by tax year and MUST NOT hard-code it. The owner confirms the thresholds against the
-current IRS instructions before each acceptance run.
+threshold from a table by tax year and MUST NOT hard-code it. The owner confirmed the 2026 threshold of
+2,000.00 on 2026-09-29 and re-confirms the table against the current IRS instructions before each acceptance run.
 
 | Vendor | Name | Form and box | Paid in 2026 to date | Reportable at year end if no further payments |
 |---|---|---|---|---|
