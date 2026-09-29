@@ -31,7 +31,7 @@ depends_on: [UBS-SYS-FRG-02]
 ### IF-FRG-003 — Conformance adapter protocol
 - **Kind:** library API
 - **Caller → Callee:** FRG → implementation under test
-- **Request:** JSON lines `{ op: setup | execute | observe | teardown, vector_id, payload }`
+- **Request:** UBTP messages per STD-CONF-002 plus test-only operations (`reset`, `set_now`, `set_entropy_seed`, `load_genesis`, `export_state`); also accepted as JSON lines over stdin/stdout
 - **Response:** `{ ok, result | error }`
 - **Errors:** `not_applicable` for vectors outside claimed profiles
 - **Idempotency:** per vector.
