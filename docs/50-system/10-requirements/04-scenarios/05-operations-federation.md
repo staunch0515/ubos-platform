@@ -12,7 +12,7 @@ depends_on: [UBS-REQ-04]
 - **Goal:** An inspector works offline for a week and syncs without losing or silently overwriting anything.
 - **Personas:** PER-FieldWorker
 - **Systems:** NOD (Box on tablet), WSP, DVM
-- **Phase:** PH-3
+- **Phase:** PH-4 (moved with the Box edition, DEC-024)
 - **Preconditions:** 1. The tablet Box has replicated the scope "site inspections, region West". 2. Server-side, a colleague edits 2 of the same inspection records during the week.
 - **Main flow:**
   1. Offline, the worker updates 40 inspections and records 120 findings (ledger kind) with photos.
@@ -30,7 +30,7 @@ depends_on: [UBS-REQ-04]
 - **Goal:** A freelancer's Box data becomes part of an organisation's Server without conversion.
 - **Personas:** PER-PersonalUser, PER-TenantAdministrator
 - **Systems:** NOD, DVM
-- **Phase:** PH-3
+- **Phase:** PH-4 (moved with the Box edition, DEC-024)
 - **Preconditions:** 1. The freelancer has 2 years of client and invoice records on a Box.
 - **Main flow:**
   1. The administrator invites the freelancer and grants a VAE scope.

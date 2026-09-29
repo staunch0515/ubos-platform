@@ -205,8 +205,8 @@ Columns: ID · Name · Description · Main personas · Phase · FR range.
 | CAP-UX-04 | Progressive disclosure | Vocabulary and features per product layer (IMP-11) | all | PH-2 | FR-UX-041…049 |
 | CAP-UX-05 | History and as-of viewer | Timeline, as-of browsing and comparison for any record | PER-BusinessUser, PER-InternalAuditor | PH-2 | FR-UX-051…059 |
 | CAP-UX-06 | Change review | Diff and simulation review for change sets and approvals | PER-Approver, PER-AgentSupervisor | PH-2 | FR-UX-061…069 |
-| CAP-UX-07 | Desktop and mobile clients | Native shells for Box and mobile use | PER-FieldWorker, PER-PersonalUser | PH-3 | FR-UX-071…079 |
-| CAP-UX-08 | Offline experience | Offline indicators, queued actions, conflict resolution UI | PER-FieldWorker | PH-3 | FR-UX-081…089 |
+| CAP-UX-07 | Desktop and mobile clients | Native shells for Box and mobile use | PER-FieldWorker, PER-PersonalUser | PH-4 | FR-UX-071…079 |
+| CAP-UX-08 | Offline experience | Offline indicators, queued actions, conflict resolution UI | PER-FieldWorker | PH-4 | FR-UX-081…089 |
 | CAP-UX-09 | External portal | Restricted interface for external parties | PER-ExternalParty | PH-3 | FR-UX-091…099 |
 | CAP-UX-10 | Theming and branding | Tenant branding and accessible themes | PER-TenantAdministrator | PH-3 | FR-UX-101…109 |
 
@@ -215,9 +215,9 @@ Columns: ID · Name · Description · Main personas · Phase · FR range.
 | ID | Name | Description | Personas | Phase | FR range |
 |---|---|---|---|---|---|
 | CAP-OFFICE-01 | Live Doc | Documents as views with data bindings and embedded logic | PER-ContractManager | PH-2 | FR-OFFICE-011…019 |
-| CAP-OFFICE-02 | Templates and clauses | Clause libraries, templates, conditional sections | PER-ContractManager | PH-2 | FR-OFFICE-021…029 |
-| CAP-OFFICE-03 | Redlining and negotiation | Tracked changes between parties with versioned rounds | PER-ContractManager, PER-ExternalParty | PH-3 | FR-OFFICE-031…039 |
-| CAP-OFFICE-04 | Smart Grid | Spreadsheet interface in which rows are records and column formulas are shared logic | PER-FundAccountant | PH-3 | FR-OFFICE-041…049 |
+| CAP-OFFICE-02 | Templates and clauses | Clause libraries, templates, conditional sections | PER-ContractManager | PH-5 | FR-OFFICE-021…029 |
+| CAP-OFFICE-03 | Redlining and negotiation | Tracked changes between parties with versioned rounds | PER-ContractManager, PER-ExternalParty | PH-5 | FR-OFFICE-031…039 |
+| CAP-OFFICE-04 | Smart Grid | Spreadsheet interface in which rows are records and column formulas are shared logic | PER-FundAccountant | PH-2 | FR-OFFICE-041…049 |
 | CAP-OFFICE-05 | War Room | Live, drillable, actionable presentations | PER-Executive | PH-3 | FR-OFFICE-051…059 |
 | CAP-OFFICE-06 | Action Messages | Messages that carry executable, governed actions | PER-Approver | PH-3 | FR-OFFICE-061…069 |
 | CAP-OFFICE-07 | Executable Books | Authoring of knowledge Buks that mix narrative, logic and views | PER-IsvDeveloper, PER-BusinessArchitect | PH-4 | FR-OFFICE-071…079 |
@@ -291,10 +291,10 @@ Columns: ID · Name · Description · Main personas · Phase · FR range.
 
 | ID | Name | Description | Personas | Phase | FR range |
 |---|---|---|---|---|---|
-| CAP-SYNC-01 | Object exchange protocol | Merkle-based exchange of missing objects and commits (IMP-07) | PER-KernelEngineer | PH-3 | FR-SYNC-011…019 |
-| CAP-SYNC-02 | Box–Server sync | Personal and field nodes sync with their organisation's Server | PER-FieldWorker, PER-PersonalUser | PH-3 | FR-SYNC-021…029 |
-| CAP-SYNC-03 | Offline conflicts | Definition conflicts resolved by merge; ledger entries appended; user resolution UI | PER-FieldWorker | PH-3 | FR-SYNC-031…039 |
-| CAP-SYNC-04 | Selective replication | Replicate by scope and data classification | PER-SecurityOfficer | PH-3 | FR-SYNC-041…049 |
+| CAP-SYNC-01 | Object exchange protocol | Merkle-based exchange of missing objects and commits (IMP-07) | PER-KernelEngineer | PH-4 | FR-SYNC-011…019 |
+| CAP-SYNC-02 | Box–Server sync | Personal and field nodes sync with their organisation's Server | PER-FieldWorker, PER-PersonalUser | PH-4 | FR-SYNC-021…029 |
+| CAP-SYNC-03 | Offline conflicts | Definition conflicts resolved by merge; ledger entries appended; user resolution UI | PER-FieldWorker | PH-4 | FR-SYNC-031…039 |
+| CAP-SYNC-04 | Selective replication | Replicate by scope and data classification | PER-SecurityOfficer | PH-4 | FR-SYNC-041…049 |
 | CAP-SYNC-05 | Federation registry | Registration and discovery of VAEs across organisations with DID resolution | PER-TenantAdministrator | PH-5 | FR-SYNC-051…059 |
 | CAP-SYNC-06 | Cross-node VAE tree | Parent and child VAEs on different nodes with logic inheritance and network fallback | PER-TenantAdministrator | PH-5 | FR-SYNC-061…069 |
 | CAP-SYNC-07 | Shared BPUs | One BPU shared by several organisations, with signed, mutually approved changes | PER-ContractManager, PER-ExternalParty | PH-5 | FR-SYNC-071…079 |
@@ -343,7 +343,7 @@ Columns: ID · Name · Description · Main personas · Phase · FR range.
 | ID | Name | Description | Personas | Phase | FR range |
 |---|---|---|---|---|---|
 | CAP-MIG-01 | Spreadsheet import | Infer classes and import records from XLSX and CSV | PER-ImplementationConsultant, PER-PersonalUser | PH-2 | FR-MIG-011…019 |
-| CAP-MIG-02 | Document import | Convert DOCX documents into Live Doc templates with bindings | PER-ContractManager | PH-3 | FR-MIG-021…029 |
+| CAP-MIG-02 | Document import | Convert DOCX documents into Live Doc templates with bindings | PER-ContractManager | PH-5 | FR-MIG-021…029 |
 | CAP-MIG-03 | Legacy bulk load | Bulk load with historical versions and valid times | PER-ImplementationConsultant | PH-2 | FR-MIG-031…039 |
 | CAP-MIG-04 | Mapping definitions | Versioned source-to-class mappings and transformations | PER-ImplementationConsultant | PH-2 | FR-MIG-041…049 |
 | CAP-MIG-05 | Migration reconciliation | Control totals and record-level reconciliation reports | PER-ImplementationConsultant, PER-InternalAuditor | PH-2 | FR-MIG-051…059 |
@@ -369,10 +369,10 @@ Columns: ID · Name · Description · Main personas · Phase · FR range.
 
 | ID | Name | Description | Personas | Phase | FR range |
 |---|---|---|---|---|---|
-| CAP-SIGN-01 | Electronic signatures | E-SIGN and UETA compliant consent, intent and records | PER-ContractManager, PER-ExternalParty | PH-2 | FR-SIGN-011…019 |
-| CAP-SIGN-02 | Document seals | Cryptographic binding of a signature to the document state and data snapshot | PER-ContractManager | PH-2 | FR-SIGN-021…029 |
-| CAP-SIGN-03 | Signing ceremonies | Multi-party, ordered or parallel signing with reminders | PER-ContractManager | PH-2 | FR-SIGN-031…039 |
-| CAP-SIGN-04 | External signature providers | Integration with advanced and qualified signature providers | PER-ContractManager | PH-4 | FR-SIGN-041…049 |
+| CAP-SIGN-01 | Electronic signatures | E-SIGN and UETA compliant consent, intent and records | PER-ContractManager, PER-ExternalParty | PH-5 | FR-SIGN-011…019 |
+| CAP-SIGN-02 | Document seals | Cryptographic binding of a signature to the document state and data snapshot | PER-ContractManager | PH-5 | FR-SIGN-021…029 |
+| CAP-SIGN-03 | Signing ceremonies | Multi-party, ordered or parallel signing with reminders | PER-ContractManager | PH-5 | FR-SIGN-031…039 |
+| CAP-SIGN-04 | External signature providers | Integration with advanced and qualified signature providers | PER-ContractManager | PH-5 | FR-SIGN-041…049 |
 
 ## 29. LOC — Localisation, calendars, currencies
 

@@ -26,5 +26,4 @@ depends_on: [UBS-SYS-CTL-02]
 
 | Phase | CTL evidence |
 |---|---|
-| PH-3 | CTL-lite inventory for design-partner managed Servers (manual procedures documented) |
-| PH-4 | all suites green; one real Cell-to-Cell migration of a design-partner-sized tenant within NR-AVAIL-004; one full wave from canary to general without manual intervention |
+| PH-4 | all suites green; one real Cell-to-Cell migration of a WL-FIN-M-sized tenant within NR-AVAIL-004; one full wave from canary to general without manual intervention |

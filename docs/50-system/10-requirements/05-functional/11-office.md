@@ -16,22 +16,24 @@ chapter 2). Documents, grids and decks are views and logic bound to versioned da
 ### FR-OFFICE-011 — Documents as bound views
 - **Statement:** A Live Doc MUST be a view object that combines rich text with bindings to object fields (`{{path}}`), embedded logic blocks and conditional sections. Rendering MUST resolve bindings at the requested `asof` and `time`.
 - **Rationale:** Documents that never go stale (SCN-201).
-- **Priority:** Must · **Phase:** PH-2 · **Systems:** WSP, DVM
+- **Priority:** Must · **Phase:** PH-5 · **Systems:** WSP, DVM
 - **Personas:** PER-ContractManager
 - **Acceptance:**
   1. Given SCN-201 step 2, when the party address changes, then the next render shows the new address. A render `asof` before the change shows the old one.
 - **Verification:** SCN, CONF
 - **Origin:** EXT-TRI, EXT-WP
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ### FR-OFFICE-012 — Embedded logic blocks
 - **Statement:** Live Docs MUST support embedded logic blocks (L1 expressions or references to logic assets) that compute values at render time. Each rendered value MUST be traceable to its logic version.
 - **Rationale:** Self-calculating documents (for example late fees).
-- **Priority:** Must · **Phase:** PH-2 · **Systems:** WSP, DVM
+- **Priority:** Must · **Phase:** PH-5 · **Systems:** WSP, DVM
 - **Personas:** PER-ContractManager
 - **Acceptance:**
   1. Given a `late_fee` block, when rendered on two dates, then the values differ by the rule, and each value's lineage names the logic version.
 - **Verification:** CONF
 - **Origin:** EXT-TRI
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ### FR-OFFICE-013 — Deterministic rendering
 - **Statement:** Rendering the same document version with the same data commit, temporal parameters and locale MUST produce byte-identical output for each output format. The output MUST carry the document state hash and the data commit ID.
@@ -46,168 +48,184 @@ chapter 2). Documents, grids and decks are views and logic bound to versioned da
 ### FR-OFFICE-014 — Collaborative editing of drafts
 - **Statement:** Several users MUST be able to edit the text of a draft Live Doc concurrently with real-time merging. The session state MUST be checkpointed into commits at least every configured interval and on session end.
 - **Rationale:** Modern co-authoring without losing versioned history.
-- **Priority:** Should · **Phase:** PH-2 · **Systems:** WSP, DVM
+- **Priority:** Should · **Phase:** PH-5 · **Systems:** WSP, DVM
 - **Personas:** PER-ContractManager
 - **Acceptance:**
   1. Given two editors in one paragraph, when both type, then no keystroke is lost, and the checkpoint commit attributes both authors.
 - **Verification:** SCN, SIM
 - **Origin:** NEW
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ### FR-OFFICE-015 — Binding safety
 - **Statement:** Bindings MUST be resolved with the viewer's permissions. Masked or invisible values MUST render as placeholders, and export or signing MUST be blocked when required bindings are not visible to the actor.
 - **Rationale:** SCN-201 A1.
-- **Priority:** Must · **Phase:** PH-2 · **Systems:** WSP, DVM
+- **Priority:** Must · **Phase:** PH-5 · **Systems:** WSP, DVM
 - **Personas:** PER-SecurityOfficer
 - **Acceptance:**
   1. Given a hidden binding, when the user exports, then the export is refused with an explanation.
 - **Verification:** SEC
 - **Origin:** NEW
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ## CAP-OFFICE-02 — Templates and clauses
 
 ### FR-OFFICE-021 — Templates and clause library
 - **Statement:** The platform MUST support document templates composed of clauses from a versioned clause library. Clause variants are selected by decision tables or expressions.
 - **Rationale:** Standardised contracting (SCN-201, SCN-208).
-- **Priority:** Must · **Phase:** PH-2 · **Systems:** WSP, DVM
+- **Priority:** Must · **Phase:** PH-5 · **Systems:** WSP, DVM
 - **Personas:** PER-ContractManager
 - **Acceptance:**
   1. Given a contract value of 2.4M, when the template is instantiated, then the "2x fees" liability variant is selected.
 - **Verification:** SCN
 - **Origin:** NEW
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ### FR-OFFICE-022 — Clause references are versioned
 - **Statement:** A document MUST reference clause versions explicitly. Executed documents MUST keep their clause versions permanently.
 - **Rationale:** SCN-208 postcondition.
-- **Priority:** Must · **Phase:** PH-2 · **Systems:** DVM
+- **Priority:** Must · **Phase:** PH-5 · **Systems:** DVM
 - **Personas:** PER-ContractManager
 - **Acceptance:**
   1. Given a new clause version, when an executed agreement is rendered, then the old clause text appears.
 - **Verification:** CONF
 - **Origin:** NEW
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ### FR-OFFICE-023 — Conditional sections
 - **Statement:** Templates MUST support sections shown or hidden by L1 conditions over bound data.
 - **Rationale:** One template for many cases.
-- **Priority:** Must · **Phase:** PH-2 · **Systems:** WSP
+- **Priority:** Must · **Phase:** PH-5 · **Systems:** WSP
 - **Personas:** PER-ContractManager
 - **Acceptance:**
   1. Given "show the data-protection annex if personal data is processed", when the flag is false, then the annex is absent.
 - **Verification:** CONF
 - **Origin:** NEW
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ### FR-OFFICE-024 — Clause impact analysis
 - **Statement:** For a clause change, the platform MUST list the templates and documents that reference the clause, grouped by lifecycle state (SCN-208).
 - **Rationale:** Controlled legal change.
-- **Priority:** Must · **Phase:** PH-2 · **Systems:** DVM, STU
+- **Priority:** Must · **Phase:** PH-5 · **Systems:** DVM, STU
 - **Personas:** PER-ContractManager
 - **Acceptance:**
   1. Given SCN-208, when analysed, then the counts match.
 - **Verification:** SCN
 - **Origin:** NEW
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ## CAP-OFFICE-03 — Redlining and negotiation
 
 ### FR-OFFICE-031 — Negotiation rounds
 - **Statement:** Sharing a document with external parties MUST create negotiation rounds. Each round is recorded as a ledger entry with the shared version, the proposed changes and the author party.
 - **Rationale:** SCN-203.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** WSP, DVM
+- **Priority:** Must · **Phase:** PH-5 · **Systems:** WSP, DVM
 - **Personas:** PER-ContractManager, PER-ExternalParty
 - **Acceptance:**
   1. Given two rounds, when history is shown, then each round has author, time and diff.
 - **Verification:** SCN
 - **Origin:** NEW
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ### FR-OFFICE-032 — Tracked changes by party
 - **Statement:** Proposed text changes MUST be shown as tracked changes attributed to the proposing party, with accept, reject and counter operations.
 - **Rationale:** Familiar redlining.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** WSP
+- **Priority:** Must · **Phase:** PH-5 · **Systems:** WSP
 - **Personas:** PER-ContractManager
 - **Acceptance:**
   1. Given a counterparty proposal, when accepted, then the change enters the draft attributed to the counterparty.
 - **Verification:** SCN, USE
 - **Origin:** NEW
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ### FR-OFFICE-033 — Non-negotiable clauses
 - **Statement:** Clauses MAY be marked non-negotiable, in which case external edits to them MUST be refused.
 - **Rationale:** SCN-203 A1.
-- **Priority:** Should · **Phase:** PH-3 · **Systems:** WSP
+- **Priority:** Should · **Phase:** PH-5 · **Systems:** WSP
 - **Personas:** PER-ContractManager
 - **Acceptance:**
   1. Given a non-negotiable clause, when the counterparty edits it, then the edit is refused.
 - **Verification:** CONF
 - **Origin:** NEW
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ### FR-OFFICE-034 — Internal and external comments
 - **Statement:** Comments MUST be marked internal or external, and internal comments MUST never reach external parties (FR-UX-093).
 - **Rationale:** Confidential negotiation strategy.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** WSP
+- **Priority:** Must · **Phase:** PH-5 · **Systems:** WSP
 - **Personas:** PER-ContractManager
 - **Acceptance:**
   1. Given an internal comment, when the external view renders, then it is absent.
 - **Verification:** SEC
 - **Origin:** NEW
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ## CAP-OFFICE-04 — Smart Grid
 
 ### FR-OFFICE-041 — Grid over records
 - **Statement:** A Smart Grid MUST present the result of a saved query as a spreadsheet: one row per object and one column per field, computed column or aggregate. Cell edits are changes to the underlying objects.
 - **Rationale:** An Excel replacement with a real data model (EXT-TRI).
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** WSP, DVM
+- **Priority:** Must · **Phase:** PH-2 · **Systems:** WSP, DVM
 - **Personas:** PER-FundAccountant
 - **Acceptance:**
   1. Given a grid of fee accruals, when a cell is edited, then the underlying object changes through normal validation.
 - **Verification:** SCN
 - **Origin:** EXT-TRI, EXT-WP
+- **Phase note:** moved to PH-2 by DEC-025 (Smart Grid for batch journal entry).
 
 ### FR-OFFICE-042 — Computed columns from shared logic
 - **Statement:** Computed columns MUST be backed by L1 expressions or logic assets shared across grids. Cell-local formulas MUST NOT exist.
 - **Rationale:** "Fix the formula in one place" (EXT-TRI).
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** WSP, DVM
+- **Priority:** Must · **Phase:** PH-2 · **Systems:** WSP, DVM
 - **Personas:** PER-FundAccountant
 - **Acceptance:**
   1. Given SCN-105 A1, when a user tries to edit a column formula, then the grid opens the shared logic as a change set instead.
 - **Verification:** SCN
 - **Origin:** EXT-TRI
+- **Phase note:** moved to PH-2 by DEC-025 (Smart Grid for batch journal entry).
 
 ### FR-OFFICE-043 — Validated edits and bulk paste
 - **Statement:** Grid edits, including bulk paste, MUST be validated per cell and per row with explanations. The user commits them in one process or discards them.
 - **Rationale:** Spreadsheet speed with data integrity.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** WSP, DVM
+- **Priority:** Must · **Phase:** PH-2 · **Systems:** WSP, DVM
 - **Personas:** PER-FundAccountant
 - **Acceptance:**
   1. Given 500 pasted rows with 3 invalid cells, when committed, then the invalid cells are marked, and nothing commits until they are fixed or excluded.
 - **Verification:** SCN
 - **Origin:** NEW
+- **Phase note:** moved to PH-2 by DEC-025 (Smart Grid for batch journal entry).
 
 ### FR-OFFICE-044 — Overrides as adjustments
 - **Statement:** Where a computed value on a Ledger-based grid needs correction, the grid MUST create an adjustment entry with a reason. It MUST NOT overwrite the computed value.
 - **Rationale:** SCN-105 step 3.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** WSP, DVM
+- **Priority:** Must · **Phase:** PH-2 · **Systems:** WSP, DVM
 - **Personas:** PER-FundAccountant
 - **Acceptance:**
   1. Given an override, when saved, then an adjustment entry exists, and the logic is unchanged.
 - **Verification:** SCN
 - **Origin:** IMP-01
+- **Phase note:** moved to PH-2 by DEC-025 (Smart Grid for batch journal entry).
 
 ### FR-OFFICE-045 — Summaries and pivots
 - **Statement:** Grids MUST support group subtotals and pivot views, computed by server aggregation (CAP-QRY-04).
 - **Rationale:** Analysis in place.
-- **Priority:** Should · **Phase:** PH-3 · **Systems:** WSP
+- **Priority:** Should · **Phase:** PH-2 · **Systems:** WSP
 - **Personas:** PER-FundAccountant
 - **Acceptance:**
   1. Given a pivot by fund and month, when displayed, then the totals equal the query aggregates.
 - **Verification:** CONF
 - **Origin:** NEW
+- **Phase note:** moved to PH-2 by DEC-025 (Smart Grid for batch journal entry).
 
 ### FR-OFFICE-046 — XLSX interchange
 - **Statement:** Grids MUST export to XLSX with values, and optionally with a read-only formula sheet documenting the logic. They MUST import XLSX through the migration mapping (CAP-MIG-01).
 - **Rationale:** Coexistence with spreadsheets.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** WSP, BRG
+- **Priority:** Must · **Phase:** PH-2 · **Systems:** WSP, BRG
 - **Personas:** PER-FundAccountant
 - **Acceptance:**
   1. Given an export, when opened in a spreadsheet tool, then the values and headers match the grid.
 - **Verification:** CONF
 - **Origin:** NEW
+- **Phase note:** moved to PH-2 by DEC-025 (Smart Grid for batch journal entry).
 
 ## CAP-OFFICE-05 — War Room
 

@@ -278,7 +278,7 @@ Reading order:
 - **Priority:** Must · **Phase:** PH-1 · **Systems:** DVM
 - **Personas:** PER-ThirdPartyImplementer
 - **Acceptance:**
-  1. Given the replay corpus, when replayed on Linux x86-64, macOS ARM64 and the browser build, then all outcome hashes match.
+  1. Given the replay corpus, when replayed on Linux x86-64, Linux ARM64 and macOS ARM64, then all outcome hashes match (the browser build joins in PH-5).
 - **Verification:** CONF
 - **Origin:** FR-LOGIC-074, NR-DET-002
 

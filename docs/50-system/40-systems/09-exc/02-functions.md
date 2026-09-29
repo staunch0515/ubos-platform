@@ -101,7 +101,8 @@ depends_on: [UBS-SYS-EXC-01]
 ### DSN-EXC-010 — Private registries and mirrors
 - **Statement:** The same EXC software MUST run as a private registry inside a customer's Server or as a mirror for air-gapped deployments, syncing signed archives and advisories.
 - **Rationale:** FR-OPS-013, sovereign deployments.
-- **Priority:** Should · **Phase:** PH-3 · **Systems:** EXC
+- **Priority:** Should · **Phase:** PH-4 · **Systems:** EXC
+- **Phase note:** moved to PH-4 by DEC-023 (no design partners in PH-3).
 - **Personas:** PER-PlatformOperator
 - **Acceptance:**
   1. Given a mirror, when synced from the public Exchange, then archives and verification records are identical.

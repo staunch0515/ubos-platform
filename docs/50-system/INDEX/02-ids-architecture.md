@@ -90,7 +90,7 @@ depends_on: [UBS-IDX-00]
 | CTR-071 | Notification providers (NOD → providers) | `20-architecture/02-contracts.md` |
 | CTR-072 | Telemetry and SIEM export (NOD → collectors) | `20-architecture/02-contracts.md` |
 
-## DEC (21)
+## DEC (26)
 
 | ID | Title | Defined in |
 |---|---|---|
@@ -115,4 +115,9 @@ depends_on: [UBS-IDX-00]
 | DEC-019 | Licensing of the standard, reference implementation and tools | `90-decisions/000-index.md` |
 | DEC-020 | Storage engine design: PostgreSQL/SQLite with kernel indexes and prolly trees | `90-decisions/000-index.md` |
 | DEC-021 | Policy engine: Cedar-class analysable policies plus relationship tuples | `90-decisions/000-index.md` |
+| DEC-022 | First business package: US standard basic finance | `90-decisions/000-index.md` |
+| DEC-023 | Purpose of PH-0…PH-3 is platform demonstration, not sale | `90-decisions/000-index.md` |
+| DEC-024 | PostgreSQL only until PH-4 | `90-decisions/000-index.md` |
+| DEC-025 | PH-2 user interface is Web only; Smart Grid moves to PH-2 | `90-decisions/000-index.md` |
+| DEC-026 | Implementation-neutral finance requirements shared for comparison | `90-decisions/000-index.md` |
 

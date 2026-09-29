@@ -69,12 +69,13 @@ depends_on: [UBS-SYS-BRG-01]
 ### DSN-BRG-006 — Document import
 - **Statement:** BRG MUST convert DOCX templates into Live Doc templates with bindings suggested (FR-MIG-021) and extract clauses into the clause library with AI assistance through AGT, as proposals reviewed by users (FR-MIG-022).
 - **Rationale:** FR-MIG-021, FR-MIG-022, CAP-MIG-02.
-- **Priority:** Should · **Phase:** PH-3 · **Systems:** BRG, AGT, WSP
+- **Priority:** Should · **Phase:** PH-5 · **Systems:** BRG, AGT, WSP
 - **Personas:** PER-ContractManager
 - **Acceptance:**
   1. Given a 30-page agreement, when imported, then proposed clauses are listed for review, and nothing enters the library without acceptance.
 - **Verification:** SCN
 - **Origin:** FR-MIG-021, FR-MIG-022, FR-AI-062
+- **Phase note:** moved to PH-5 by DEC-022 (contract-only scope).
 
 ## Integration adapters
 
@@ -89,12 +90,12 @@ depends_on: [UBS-SYS-BRG-01]
 - **Origin:** FR-INT-041, FR-INT-042, AR-010
 
 ### DSN-BRG-102 — Financial adapters
-- **Statement:** BRG MUST provide adapters for bank statements (SFTP and bank APIs, using NOD parsers for camt, MT940 and BAI2), payment files (pain.001), custodian position and transaction files, and fund-platform order files (FR-INT-071…074).
+- **Statement:** BRG MUST provide adapters that fetch bank statements over SFTP and bank APIs (using NOD parsers for BAI2, camt and MT940) and deliver payment files (NACHA ACH, pain.001, positive pay) (FR-INT-071…074). Custodian and fund-platform adapters are deferred with fund operations (DEC-022).
 - **Rationale:** CAP-INT-07, first vertical.
 - **Priority:** Must · **Phase:** PH-3 · **Systems:** BRG, NOD
-- **Personas:** PER-FundAccountant
+- **Personas:** PER-Accountant
 - **Acceptance:**
-  1. Given daily custodian files for 30 days, when ingested, then positions reconcile with the fund ledger.
+  1. Given daily statements for 12 bank accounts over 30 days, when fetched and ingested, then every line exists once, and bank balances equal the statement balances.
 - **Verification:** SCN
 - **Origin:** FR-INT-071, FR-INT-072, FR-INT-073, FR-INT-074
 
@@ -121,12 +122,13 @@ depends_on: [UBS-SYS-BRG-01]
 ### DSN-BRG-105 — External signature providers
 - **Statement:** BRG MUST adapt DocuSign and Adobe Acrobat Sign envelopes to UBOS ceremonies (DSN-WSP-504).
 - **Rationale:** CAP-SIGN-04.
-- **Priority:** Should · **Phase:** PH-4 · **Systems:** BRG, WSP
+- **Priority:** Should · **Phase:** PH-5 · **Systems:** BRG, WSP
 - **Personas:** PER-ContractManager
 - **Acceptance:**
   1. Given a completed envelope, when received, then the ceremony completes, and the seal is created.
 - **Verification:** SCN
 - **Origin:** FR-SIGN-041, FR-SIGN-042
+- **Phase note:** moved to PH-5 by DEC-022 (contract-only scope).
 
 ## Analytics exit
 

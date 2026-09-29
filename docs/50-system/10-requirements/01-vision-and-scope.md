@@ -56,7 +56,8 @@ fully changeable as versioned data.
 
 | Segment | Primary value | Proof point (verified in pilots) |
 |---|---|---|
-| Regulated financial services (first vertical, DEC-004) | Reproducible books and records; bitemporal corrections; evidence packs for examinations | An examiner question ("state of fund X as known on date D") is answered in under 5 minutes, with a verifiable evidence pack |
+| Finance and accounting (first business package, DEC-022) | Reproducible books and records; immutable, provable journal entries; bitemporal corrections; evidence packs for auditors | An auditor question ("trial balance as known on date D") is answered in under 5 minutes, with a verifiable evidence pack |
+| Regulated financial services (deferred, DEC-022) | Reproducible books and records for funds; bitemporal NAV corrections | Deferred with the fund-operations package |
 | Enterprise operations (contracts, procurement, master data) | Change safety: draft, review, simulate and publish rules and master data without breaking operations | A rule change is simulated against 12 months of history before publication |
 | ISVs and implementation partners | Build vertical Buks once; customer overlays survive upgrades | A vendor upgrade merges into 10 customised tenants with conflicts reported, not lost |
 | AI-forward operations teams | Agents act inside a governed sandbox: branch, simulate, review, merge or roll back | An agent's change set of 100 edits is reviewed as one diff and reverted in one action |
@@ -66,7 +67,7 @@ fully changeable as versioned data.
 
 | Layer | Personas (see UBS-REQ-02) | Main systems | Vocabulary shown |
 |---|---|---|---|
-| **Business layer** | business users, approvers, fund and contract staff, executives, external parties | Workspace | record, form, task, draft, submitted, published, history, document, signature |
+| **Business layer** | business users, approvers, accountants and finance staff, executives, external parties | Workspace | record, form, task, draft, submitted, published, history, document, signature |
 | **Builder layer** | business architects, analysts, consultants, compliance officers | Studio, Workspace | class, field, rule sheet, lifecycle, view, change set, simulation, release, Buk |
 | **Platform layer** | logic developers, ISV developers, kernel engineers, operators | Forge, Node, Control Plane, SDK | branch, merge, commit, overlay, instruction, profile, projection, cell |
 
@@ -74,22 +75,25 @@ fully changeable as versioned data.
 
 | Edition | Host | Storage | Primary users | First phase |
 |---|---|---|---|---|
-| **Box** | desktop (Windows, macOS, Linux) and mobile | SQLite, local object store | individuals, field workers, small teams | PH-1 (headless), PH-3 (full app) |
-| **Server** | customer data centre or private cloud | PostgreSQL, S3-compatible store, runtime store | enterprises | PH-1 |
+| **Box** | desktop (Windows, macOS, Linux) and mobile | SQLite, local object store | individuals, field workers, small teams | PH-4 (DEC-024) |
+| **Server** | customer data centre or private cloud | PostgreSQL, S3-compatible store, runtime store | enterprises | PH-1 (the only edition until PH-4, DEC-024) |
 | **Cell** | UBOS-operated or partner-operated cloud | PostgreSQL per cell, tiered object store | multi-tenant SaaS customers | PH-4 |
 | **Browser kernel** | web browser (WASM, local SQLite) | origin-private file system | local-first web users | PH-5 |
 | **Worker** | organisation-owned machines | none authoritative | batch and AI jobs (DEC-002) | PH-4 |
 
 ## 7. Goals and success measures
 
+PH-0…PH-3 serve platform demonstration, not sale (DEC-023). PH-4 and PH-5 are specified but not
+scheduled for execution.
+
 Success measures become `MET-*` metrics in the phase plans.
 
 | # | Goal | Success measure | Phase |
 |---|---|---|---|
-| G1 | Prove the mechanism | 100% of BPA conformance vectors pass on the reference DVM on PostgreSQL and on SQLite | PH-1 |
-| G2 | Prove an application can be built without kernel changes | The fund-operations and contract Buks run with zero kernel code specific to them | PH-2 |
-| G3 | Prove regulated value | One design partner in asset management accepts the pilot, with reproducibility and evidence metrics met | PH-3 |
-| G4 | Prove governed AI | At least 80% of agent change sets in the pilot are accepted after review, and 100% are revertible | PH-3 |
+| G1 | Prove the mechanism | 100% of BPA conformance vectors pass on the reference DVM on PostgreSQL (SQLite added in PH-4, DEC-024) | PH-1 |
+| G2 | Prove an application can be built without kernel changes | The Basic Finance Buk (DEC-022) passes all finance acceptance scenarios with zero kernel code specific to finance, behind a professional Web interface | PH-2 |
+| G3 | Prove auditable value | An external CPA completes a year-end audit drill on the finance system using only its evidence packs, reproducible reports and the open verifier (DEC-023) | PH-3 |
+| G4 | Prove governed AI | At least 80% of agent change sets (bank reconciliation, AP bill coding) are accepted after review, and 100% are revertible | PH-3 |
 | G5 | Prove the platform | At least 3 third-party Buks are published; at least 1 third-party BPA implementation or embedding passes conformance | PH-4 |
 | G6 | Prove federation | Two independent organisations operate a shared contract BPU across their own nodes | PH-5 |
 

@@ -43,12 +43,13 @@ depends_on: [UBS-REQ-05, UBS-REQ-05-01]
 ### FR-IAM-014 — Local unlock on Box
 - **Statement:** The Box MUST protect its local keys with the operating system's key store and MUST require user unlock after a configurable idle time.
 - **Rationale:** Device theft protection.
-- **Priority:** Must · **Phase:** PH-1 · **Systems:** NOD
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** NOD
 - **Personas:** PER-PersonalUser, PER-FieldWorker
 - **Acceptance:**
   1. Given the idle time elapsed, when the app resumes, then unlock is required before data is readable.
 - **Verification:** SEC
 - **Origin:** NEW
+- **Phase note:** moved to PH-4 by DEC-024 and DEC-025 (SQLite, Box, devices and sync).
 
 ## CAP-IAM-02 — Enterprise SSO
 
@@ -395,12 +396,13 @@ depends_on: [UBS-REQ-05, UBS-REQ-05-01]
 ### FR-IAM-103 — Device registration and remote wipe
 - **Statement:** Devices that replicate data (Box, mobile) MUST be registered to principals. Administrators MUST be able to revoke a device. Revocation MUST destroy the device's local data keys at its next contact, and the replicated data MUST become unreadable.
 - **Rationale:** Lost devices.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** NOD
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** NOD
 - **Personas:** PER-SecurityOfficer, PER-FieldWorker
 - **Acceptance:**
   1. Given a revoked tablet, when it next connects, then the local keys are destroyed, and the UI shows "device revoked".
 - **Verification:** SEC
 - **Origin:** NEW
+- **Phase note:** moved to PH-4 by DEC-024 and DEC-025 (SQLite, Box, devices and sync).
 
 ### FR-IAM-104 — Delegated client authorization
 - **Statement:** External clients, including MCP clients, MUST obtain OAuth 2.1 authorization with explicit scopes, expiry and a named delegating user. Their calls MUST be attributed as "client on behalf of user".

@@ -14,15 +14,15 @@ depends_on: [UBS-PH-1]
 
 | Kind | Count |
 |---|---|
-| Functional requirements (FR) | 304 |
+| Functional requirements (FR) | 301 |
 | Non-functional requirements (NR) | 32 |
 | Compliance requirements (CR) | 5 |
 | Scenarios (SCN) | 13 |
 
 | Gate | Requirements |
 |---|---|
-| 1a (engine core) | 239 |
-| 1b (governance and services) | 102 |
+| 1a (engine core) | 237 |
+| 1b (governance and services) | 101 |
 
 ## Functional requirements by capability
 
@@ -61,7 +61,6 @@ depends_on: [UBS-PH-1]
 
 | Title | Requirement | Priority | Gate |
 |---|---|---|---|
-| Headless Box for development | FR-DEV-021 | Must | 1a |
 | Reproducible test VAEs | FR-DEV-022 | Must | 1a |
 
 ### Capability DEV-03 — Type generation
@@ -170,7 +169,6 @@ depends_on: [UBS-PH-1]
 | Local credentials | FR-IAM-011 | Must | 1b |
 | API keys | FR-IAM-012 | Must | 1b |
 | Brute-force protection | FR-IAM-013 | Must | 1b |
-| Local unlock on Box | FR-IAM-014 | Must | 1b |
 
 ### Capability IAM-03 — Principals and keys
 
@@ -424,7 +422,6 @@ depends_on: [UBS-PH-1]
 | Title | Requirement | Priority | Gate |
 |---|---|---|---|
 | Consistent backups and point-in-time restore | FR-OPS-021 | Must | 1a |
-| Box backups | FR-OPS-022 | Must | 1a |
 
 ### Capability OPS-04 — Telemetry
 

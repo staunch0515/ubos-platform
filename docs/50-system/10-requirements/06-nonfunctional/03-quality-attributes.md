@@ -216,7 +216,7 @@ depends_on: [UBS-REQ-06]
 
 ### NR-ACC-003 — Assistive technology support
 - **Statement:** Clients MUST work with major screen readers.
-- **Target:** Core tasks pass with NVDA and JAWS on Windows, VoiceOver on macOS and iOS, and TalkBack on Android.
+- **Target:** Core Web tasks pass with NVDA and JAWS on Windows and VoiceOver on macOS (PH-3); VoiceOver on iOS and TalkBack on Android apply to the mobile apps from PH-4 (DEC-025).
 - **Rationale:** Real-world accessibility.
 - **Priority:** Must · **Phase:** PH-3 · **Systems:** WSP
 - **Personas:** PER-BusinessUser
@@ -240,9 +240,9 @@ depends_on: [UBS-REQ-06]
 
 ### NR-PORT-001 — Client platforms
 - **Statement:** Clients MUST run on current mainstream platforms.
-- **Target:** Box and desktop: Windows 10 22H2+, macOS 13+, Ubuntu 22.04+ (x86_64 and arm64). Mobile: iOS 17+ and Android 13+. Web: the latest two major versions of Chrome, Edge, Firefox and Safari.
+- **Target:** Web (from PH-2): the latest two major versions of Chrome, Edge, Firefox and Safari. Box and desktop (from PH-4, DEC-024): Windows 10 22H2+, macOS 13+, Ubuntu 22.04+ (x86_64 and arm64). Mobile (from PH-4, DEC-025): iOS 17+ and Android 13+.
 - **Rationale:** Reach.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** WSP, NOD
+- **Priority:** Must · **Phase:** PH-2 · **Systems:** WSP, NOD
 - **Personas:** PER-PersonalUser, PER-FieldWorker
 - **Acceptance:**
   1. Given the support matrix, when the smoke suite runs on each, then it passes.
@@ -262,7 +262,7 @@ depends_on: [UBS-REQ-06]
 
 ### NR-PORT-003 — Data portability between implementations
 - **Statement:** Exports MUST move between implementations without loss.
-- **Target:** Export → import between the reference DVM on PostgreSQL and on SQLite (PH-1) and any certified implementation (PH-4) yields identical head roots in 100% of test datasets.
+- **Target:** Export → import round trips on the reference DVM on PostgreSQL (PH-1), between PostgreSQL and SQLite (PH-4, DEC-024) and with any certified implementation (PH-4) yields identical head roots in 100% of test datasets.
 - **Rationale:** FR-TEN-062.
 - **Priority:** Must · **Phase:** PH-1 · **Systems:** BPA, NOD
 - **Personas:** PER-TenantAdministrator
@@ -319,7 +319,7 @@ depends_on: [UBS-REQ-06]
 
 ### NR-COMPAT-004 — Buk compatibility across kernel minors
 - **Statement:** Verified Buks MUST keep working after kernel minor upgrades.
-- **Target:** 100% of the scenarios of the first-vertical Buks and of the published Exchange Buks pass on each new kernel minor before release.
+- **Target:** 100% of the scenarios of the first-party Buks (Basic Finance, DEC-022) and of the published Exchange Buks pass on each new kernel minor before release.
 - **Rationale:** Ecosystem trust.
 - **Priority:** Must · **Phase:** PH-2 · **Systems:** DVM, EXC
 - **Personas:** PER-IsvDeveloper

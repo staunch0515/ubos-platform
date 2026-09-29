@@ -337,12 +337,13 @@ Reading order:
 - **Origin:** FR-INT-042
 
 ### DSN-NOD-305 — Bank and fund file formats
-- **Statement:** The node MUST include parsers and generators for ISO 20022 camt.053/camt.054 and pain.001 (FR-INT-071, FR-INT-074), MT940/MT942 and BAI2 (FR-INT-072), and a configurable CSV/fixed-width profile for fund-platform files (FR-INT-073), each producing idempotent ingestion keys (DSN-DVM-446).
-- **Rationale:** First vertical needs (DEC-015).
+- **Statement:** The node MUST include parsers for US bank statements in BAI2 and ISO 20022 camt.053/camt.054, plus MT940/MT942 (FR-INT-071, FR-INT-072); generators for NACHA ACH files, ISO 20022 pain.001 and positive-pay files (FR-INT-074); and a configurable CSV/fixed-width profile for other institution files (FR-INT-073). Every parser MUST produce idempotent ingestion keys (DSN-DVM-446).
+- **Rationale:** Basic Finance needs bank reconciliation and payments (DEC-022).
 - **Priority:** Must · **Phase:** PH-2 · **Systems:** NOD, BRG
-- **Personas:** PER-FundAccountant
+- **Personas:** PER-Accountant
 - **Acceptance:**
-  1. Given sample files of each format, when ingested twice, then entries exist once, and parsing errors are reported per line.
+  1. Given sample BAI2, camt.053 and MT940 files, when ingested twice, then statement lines exist once, and parsing errors are reported per line.
+  2. Given a payment run, when a NACHA file is generated, then it passes a NACHA format validator.
 - **Verification:** CONF, SCN
 - **Origin:** FR-INT-071, FR-INT-072, FR-INT-073, FR-INT-074, FR-LEDG-074
 

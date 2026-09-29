@@ -299,12 +299,13 @@ Reading order:
 ### DSN-NOD-102 — Box local unlock
 - **Statement:** The Box MUST unlock its database key with an OS key-store-protected key and a local factor (PIN, biometrics or password) (FR-IAM-014).
 - **Rationale:** FR-IAM-014, FR-SYNC-043.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** NOD
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** NOD
 - **Personas:** PER-PersonalUser
 - **Acceptance:**
   1. Given the database file copied to another machine, when opened, then it cannot be decrypted.
 - **Verification:** SEC
 - **Origin:** FR-IAM-014, FR-SYNC-043
+- **Phase note:** moved to PH-4 by DEC-024 (SQLite, Box, devices and sync).
 
 ### DSN-NOD-103 — OIDC and SAML federation
 - **Statement:** The node MUST support OIDC (authorization code with PKCE) and SAML 2.0 (SP-initiated, signed assertions) per tenant, map claims to principals and groups, and support just-in-time provisioning (FR-IAM-023).
@@ -349,12 +350,13 @@ Reading order:
 ### DSN-NOD-107 — Device registration and remote wipe
 - **Statement:** Devices (Box, mobile) MUST be registered with a device key; a remote wipe command MUST be delivered at the next contact and trigger scope reduction to empty (DSN-DVM-954) and key destruction.
 - **Rationale:** FR-IAM-103.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** NOD
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** NOD
 - **Personas:** PER-SecurityOfficer
 - **Acceptance:**
   1. Given a wiped device, when it next connects, then local data is deleted, and the wipe is confirmed.
 - **Verification:** SEC
 - **Origin:** FR-IAM-103, FR-SYNC-042
+- **Phase note:** moved to PH-4 by DEC-024 (SQLite, Box, devices and sync).
 
 ### DSN-NOD-108 — Principal keys
 - **Statement:** The node MUST create an Ed25519 signing key per principal at first need, custodial (wrapped by the tenant key in the key service) by default, or client-held for devices and agents that bring their own. Keys MUST be registered in the principal's key history under `did:ubos` (STD-ADDR-010).

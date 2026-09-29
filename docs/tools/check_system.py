@@ -119,14 +119,18 @@ for i, fs in sorted(undefined.items()):
     msg = f'undefined {i} in {", ".join(sorted(fs)[:3])}{" …" if len(fs) > 3 else ""}'
     (warnings if i.startswith(PENDING) else errors).append(msg)
 
-# every exit criterion is supported by at least one verification item (**Supports:** field)
+# every exit criterion (except withdrawn ones) is supported by at least one verification item (**Supports:** field)
 supported = set()
 for rel, s in texts.items():
     if rel.startswith('60-verification'):
         for line in re.findall(r'\*\*Supports:\*\* (.+)', s):
             supported.update(re.findall(r'EXIT-\d-\d{2}', line))
+withdrawn = set()
+for rel, s in texts.items():
+    if rel.startswith('50-phases'):
+        withdrawn.update(re.findall(r'^\| (EXIT-\d-\d{2}) \| \*\*Withdrawn\*\*', s, re.M))
 for i in defs:
-    if i.startswith('EXIT-') and i not in supported:
+    if i.startswith('EXIT-') and i not in supported and i not in withdrawn:
         errors.append(f'{defs[i][0]}: {i} has no supporting verification item')
 
 # requirement blocks

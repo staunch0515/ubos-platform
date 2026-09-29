@@ -24,6 +24,6 @@ depends_on: [UBS-SYS-FRG-02]
 | PH-0 | runner executes the first vector set through the adapter protocol |
 | PH-1a | check, types, test on the reference DVM; L2 verification records accepted by the DVM |
 | PH-1b | `forge dev` loop within NR-PERF-016; Governance vectors |
-| PH-2 | pack, sign, verify reproducibly; simulator and debugger; LSP and VS Code extension; both vertical Buks built and verified with Forge |
+| PH-2 | pack, sign, verify reproducibly; simulator and debugger; LSP and VS Code extension; the Basic Finance Buk built and verified with Forge |
 | PH-3 | L3 toolchains for Rust, TypeScript and Go; AI iteration loop |
 | PH-4 | publish to EXC with reproducible verification |

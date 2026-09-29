@@ -36,7 +36,7 @@ are `AR-*` items.
 | Keys | OS key store (Keychain, DPAPI/TPM, Secret Service, Android Keystore, iOS Secure Enclave) |
 | Network | None required. Optional sync to a Server (CTR-060). Optional connectors if configured. |
 | Scaling | Single user or small team on a LAN (the Box can serve LAN peers in team mode, limited to 10 concurrent users) |
-| Phases | Headless from PH-1a; desktop app PH-3; mobile PH-3 |
+| Phases | Headless, desktop and mobile from PH-4 (DEC-024, DEC-025) |
 
 ## 3. Server — single node
 
@@ -91,7 +91,7 @@ are `AR-*` items.
 |---|---|
 | Definition | An HA Server deployed and operated by UBOS for one tenant in a dedicated cloud account or VPC |
 | Differences from customer-operated Server | UBOS operators with break-glass procedures, no business-data access (AR-006 applies to operator tooling); customer-managed keys optional |
-| Phases | PH-3 (design partners) |
+| Phases | PH-3 (a single demonstration tenant, DEC-023) |
 
 ## 6. Cell (multi-tenant hosted)
 
@@ -146,10 +146,11 @@ are `AR-*` items.
 
 | Topology | PH-1a | PH-1b | PH-2 | PH-3 | PH-4 | PH-5 |
 |---|---|---|---|---|---|---|
-| Box headless (in-process) | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| In-process host on PostgreSQL (development and tests) | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Box headless (SQLite) | — | — | — | — | ✓ | ✓ |
 | Server single node | — | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Server HA + DR | — | — | ✓ | ✓ | ✓ | ✓ |
-| Desktop and mobile apps | — | — | — | ✓ | ✓ | ✓ |
+| Desktop and mobile apps | — | — | — | — | ✓ | ✓ |
 | Managed Server | — | — | — | ✓ | ✓ | ✓ |
 | Cell | — | — | — | — | ✓ | ✓ |
 | Worker pool | — | — | — | — | ✓ | ✓ |

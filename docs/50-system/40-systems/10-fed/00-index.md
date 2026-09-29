@@ -33,6 +33,8 @@ PER-ExternalParty, PER-TenantAdministrator, PER-SecurityOfficer, PER-ComplianceO
 
 ## 4. Phase map
 
+PH-4 and PH-5 are specified but not scheduled for execution (DEC-023).
+
 | Phase | FED scope |
 |---|---|
 | PH-1 … PH-4 | none; `did:ubos` identifiers, key histories and sync structures are already in the standard and the DVM so that federation needs no data migration |

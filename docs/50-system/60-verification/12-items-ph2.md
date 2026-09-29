@@ -8,12 +8,12 @@ depends_on: [UBS-VER-01, UBS-PH-2]
 
 # Verification Items — PH-2
 
-### VER-CONF-8405 — BPA 1.0 conformance on both backends
+### VER-CONF-8405 — BPA 1.0 conformance on PostgreSQL
 - **Verifies:** all STD clauses of BPA 1.0 claimed profiles; FR-STD-011, FR-STD-041
 - **Suite:** SUITE-DVM-CONF · **Phase:** PH-2
-- **Environment:** ENV-REF-SERVER, ENV-REF-BOX
+- **Environment:** ENV-REF-SERVER
 - **Procedure:**
-  1. Run VER-CONF-0001…6299 (claimed profiles) on PostgreSQL and SQLite, including all PH-1 vectors.
+  1. Run VER-CONF-0001…6299 (claimed profiles) on PostgreSQL, including all PH-1 vectors (SQLite from PH-4, DEC-024).
   2. Run the previous release's vectors to confirm compatibility (DSN-BPA-006).
 - **Pass criterion:** 100% pass; 0 regressions of rc vectors.
 - **Evidence:** signed runner reports, release manifest.
@@ -41,36 +41,35 @@ depends_on: [UBS-VER-01, UBS-PH-2]
 - **Evidence:** model and checker output.
 - **Supports:** EXIT-2-02
 
-### VER-SCN-2000 — Fund-operations scenario family
-- **Verifies:** SCN-101, SCN-102, SCN-103, SCN-104, SCN-105, SCN-106, SCN-107, SCN-108, SCN-110; FR-LEDG, FR-TIME and FR-RULE requirements exercised by them
-- **Suite:** SUITE-PH2-FUND · **Phase:** PH-2
-- **Environment:** ENV-REF-SERVER (HA) with WL-FUND-M
+### VER-SCN-2000 — Basic Finance scenario family and accounting correctness
+- **Verifies:** SCN-501, SCN-502, SCN-503, SCN-504, SCN-505, SCN-506, SCN-507, SCN-508, SCN-509, SCN-510, SCN-012, MET-BIZ-003; FR-LEDG-011, FR-LEDG-013, FR-LEDG-021, FR-LEDG-031, FR-LEDG-041, FR-LEDG-051, FR-LEDG-052, FR-LEDG-053, FR-LEDG-061, FR-LEDG-062, FR-LEDG-063, FR-LEDG-071, FR-LEDG-072, FR-LEDG-073, FR-LEDG-074, FR-TIME-021, FR-TIME-031, FR-TIME-034, FR-TIME-041, FR-TIME-042, FR-RULE-071, FR-RULE-072, FR-RULE-073, FR-FLOW-043, FR-FLOW-044, FR-FLOW-045, FR-ANL-031, FR-ANL-032
+- **Suite:** SUITE-PH2-FINANCE · **Phase:** PH-2
+- **Environment:** ENV-REF-SERVER (HA) with the Northwind sample company and WL-FIN-M
 - **Procedure:**
-  1. Install the verified `fund-ops` Buk through a change set.
-  2. Run each scenario's main and alternate flows via SDK scripts and Playwright.
-  3. For SCN-103 and SCN-104 verify NAV lineage and restatement values against an independent spreadsheet calculation of the same inputs.
-  4. For SCN-107 verify the sealed close artefact with the verifier CLI.
-- **Pass criterion:** all steps pass; NAV values equal the independent calculation to the cent.
-- **Evidence:** scenario report with trace IDs; calculation workbook hash.
-- **Supports:** EXIT-2-03
+  1. Install the Forge-verified `basic-finance` Buk through a change set.
+  2. Run each scenario's main and alternate flows via SDK scripts and Playwright through the Web Workspace.
+  3. After SCN-506 export the trial balance, balance sheet, income statement, cash-flow statement, statement of equity, AR and AP agings and the 1099 summary, and compare them line by line with the expected results signed by the accounting reviewer.
+  4. For SCN-508 and SCN-509 compare the "as known on" and simulated statements with the independently computed values.
+  5. For SCN-510 compare revaluation gains and losses with the reference workbook.
+  6. Assert in every period that total debits equal total credits.
+- **Pass criterion:** all steps pass; every statement line equals the expected result to the cent (MET-BIZ-003 = 0).
+- **Evidence:** scenario report with trace IDs; accounting-correctness report; reference workbook hash; Buk verification record.
+- **Supports:** EXIT-2-16
 
 ### VER-SCN-2100 — Contract scenario family
-- **Verifies:** SCN-201, SCN-202, SCN-204, SCN-205, SCN-206, SCN-208
-- **Suite:** SUITE-PH2-CONTRACTS · **Phase:** PH-2
-- **Environment:** ENV-REF-SERVER (HA) with WL-CONTRACT-M
+- **Status:** Deferred (DEC-022). Kept with its number for the contract package; it verifies nothing until a decision schedules that package.
+- **Suite:** SUITE-PH2-CONTRACTS · **Phase:** deferred
 - **Procedure:**
-  1. Install the verified `contracts` Buk.
-  2. Run all scenarios; for SCN-204 verify the executed PDF with the independent verifier on a separate machine without network.
+  1. Install the verified `contracts` Buk; run SCN-201…208; verify executed PDFs with the independent verifier offline.
 - **Pass criterion:** all steps pass; independent verification succeeds.
 - **Evidence:** scenario report; verifier report.
-- **Supports:** EXIT-2-03, EXIT-2-12
 
 ### VER-INSP-0002 — Buk purity of the kernel
 - **Verifies:** CST-005, MET-BIZ-001
-- **Suite:** SUITE-PH2-FUND · **Phase:** PH-2
+- **Suite:** SUITE-PH2-FINANCE · **Phase:** PH-2
 - **Environment:** repository
 - **Procedure:**
-  1. Scan kernel crates for vertical identifiers (fund, NAV, share class, contract, clause) outside tests and fixtures.
+  1. Scan kernel crates for finance identifiers (account, journal, invoice, bill, vendor, customer, 1099, depreciation, revaluation, sales tax) outside tests, fixtures and generic ledger primitives defined by the standard.
   2. Review every kernel change of PH-2 tagged "kernel gap" and confirm it is generic and standardised.
 - **Pass criterion:** 0 findings.
 - **Evidence:** inspection record.
@@ -79,10 +78,10 @@ depends_on: [UBS-VER-01, UBS-PH-2]
 ### VER-BENCH-2100 — Throughput, freshness and experience latency
 - **Verifies:** NR-PERF-003, NR-PERF-013, NR-PERF-014, NR-PERF-015, NR-PERF-016, NR-PERF-017
 - **Suite:** SUITE-NOD-BENCH · **Phase:** PH-2
-- **Environment:** ENV-REF-SERVER, ENV-REF-WAN, ENV-REF-BOX (developer loop)
+- **Environment:** ENV-REF-SERVER, ENV-REF-WAN, developer workstation (developer loop)
 - **Procedure:**
   1. Sustain 2,000 commits/s and 5,000 ledger entries/s for 30 minutes.
-  2. Measure commit-to-searchable, detail-view server time, commit-to-client update over WAN, the developer loop for the reference Buk, and simulation throughput on WL-FUND-M.
+  2. Measure commit-to-searchable, detail-view server time, commit-to-client update over WAN, the developer loop for the reference Buk, and simulation throughput on WL-FIN-M.
 - **Pass criterion:** all six NR targets met (MET-PERF-020…023).
 - **Evidence:** benchmark report.
 - **Supports:** EXIT-2-05
@@ -135,23 +134,23 @@ depends_on: [UBS-VER-01, UBS-PH-2]
 
 ### VER-SCN-2200 — Privacy erasure and subject access
 - **Verifies:** SCN-016, NR-PRIV-001, NR-PRIV-002, NR-PRIV-005, CR-GDPR-002, CR-GDPR-004, CR-CCPA-002, DSN-DVM-830, DSN-DVM-831
-- **Suite:** SUITE-PH2-FUND · **Phase:** PH-2
+- **Suite:** SUITE-PH2-FINANCE · **Phase:** PH-2
 - **Environment:** ENV-REF-SERVER
 - **Procedure:**
-  1. Create an investor with personal data across versions, documents and ledger references.
+  1. Create a sole-proprietor customer and a 1099 vendor with personal data (name, address, TIN) across versions, documents and ledger references.
   2. Produce a subject export; measure time.
-  3. Approve erasure; verify values erased in all versions and exports, proofs still verify, and read logging recorded all personal reads.
+  3. Approve erasure; verify values erased in all versions and exports, proofs still verify, ledger amounts and balances are unchanged, records under the IRS retention schedule are refused with the reason, and read logging recorded all personal reads.
 - **Pass criterion:** export ≤ 1 h; technical erasure ≤ 24 h; 100% proofs verify; 100% personal reads logged.
 - **Evidence:** privacy report.
 - **Supports:** EXIT-2-09
 
-### VER-USE-2000 — Business-user and builder usability study
+### VER-USE-2000 — Accountant and builder usability study
 - **Verifies:** NR-USE-001, NR-USE-002, NR-USE-004, NR-USE-006, NR-USE-007
 - **Suite:** SUITE-WSP-USE · **Phase:** PH-2
 - **Environment:** ENV-REF-WAN with the HA Server
 - **Procedure:**
-  1. Run moderated sessions: ≥ 8 business users, ≥ 8 approvers, ≥ 6 business architects.
-  2. Core tasks: create record, submit for approval, approve with diff, find a record, view history as of a date, correct an error; builders: new class with lifecycle, 3 rules and views.
+  1. Run moderated sessions: ≥ 8 accountants and clerks, ≥ 8 approvers (controllers), ≥ 6 business architects (ASM-013).
+  2. Core tasks: enter an invoice, enter and submit a journal, approve with diff, find a transaction, view a report as of a date, correct an error; builders: new class with lifecycle, 3 rules and views.
 - **Pass criterion:** MET-USE-001…003 met; ≥ 85% can state next action after an error; 0 forbidden terms found by the vocabulary scan.
 - **Evidence:** study report.
 - **Supports:** EXIT-2-10
@@ -169,25 +168,24 @@ depends_on: [UBS-VER-01, UBS-PH-2]
 - **Supports:** EXIT-2-11
 
 ### VER-INSP-5001 — E-SIGN and UETA legal review
-- **Verifies:** CR-ESIGN-001, CR-ESIGN-002, CR-ESIGN-003, CR-ESIGN-004, FR-SIGN-011, DSN-WSP-501
-- **Suite:** SUITE-PH2-CONTRACTS · **Phase:** PH-2
-- **Environment:** staging with the contracts Buk
+- **Status:** Deferred (DEC-022). Moved with the e-signature ceremony to PH-5; see VER-SCN-5100.
+- **Suite:** SUITE-PH2-CONTRACTS · **Phase:** deferred
 - **Procedure:**
   1. Counsel reviews ceremony flows, consent texts, audit trail, retention and copies against E-SIGN and UETA.
 - **Pass criterion:** signed legal memo with no open blocking comments.
 - **Evidence:** legal memo.
-- **Supports:** EXIT-2-12
 
-### VER-SCN-2700 — Design-partner migration reconciliation
-- **Verifies:** FR-MIG-031, FR-MIG-033, FR-MIG-051, FR-MIG-052, FR-MIG-053, SCN-015, MET-BIZ-002
+### VER-SCN-2700 — Sample-company migration reconciliation
+- **Verifies:** FR-MIG-011, FR-MIG-031, FR-MIG-033, FR-MIG-051, FR-MIG-052, FR-MIG-053, SCN-015, SCN-501, MET-BIZ-002
 - **Suite:** SUITE-BRG-MIG · **Phase:** PH-2
-- **Environment:** isolated partner environment
+- **Environment:** ENV-REF-SERVER with the migration corpus
 - **Procedure:**
-  1. Import the partner's anonymised legacy extracts (funds, investors, holdings, 24 months of prices and NAVs, opening balances).
-  2. Produce control totals and record-level reconciliation; seal the migration report.
-- **Pass criterion:** 0 unexplained differences; partner signs acceptance.
-- **Evidence:** sealed reconciliation report, signed acceptance.
-- **Supports:** EXIT-2-13
+  1. Import the sample company's chart of accounts, customers, vendors, open invoices and bills, fixed-asset register, opening balances and one year of journal history from the spreadsheet and CSV extracts.
+  2. Resolve the deliberate data-quality defects through the import wizard with recorded decisions.
+  3. Produce control totals (trial balance per month, open AR and AP, asset net book value) and record-level reconciliation; seal the migration report.
+- **Pass criterion:** 0 unexplained differences against the source extracts; every resolved defect has a recorded decision.
+- **Evidence:** sealed reconciliation report.
+- **Supports:** EXIT-2-17
 
 ### VER-SCN-2701 — Installation and upgrade operability
 - **Verifies:** NR-OPER-001, NR-OPER-002, NR-OPER-004
@@ -211,3 +209,26 @@ depends_on: [UBS-VER-01, UBS-PH-2]
 - **Pass criterion:** empty list; all PH-1 suites green.
 - **Evidence:** traceability and regression reports.
 - **Supports:** EXIT-2-15
+
+### VER-USE-2001 — Finance workbench acceptance
+- **Verifies:** FR-OFFICE-041…046, DSN-WSP-116, DSN-WSP-117, DSN-WSP-118, DSN-WSP-119, DSN-WSP-120, DSN-WSP-401, MET-USE-004
+- **Suite:** SUITE-WSP-USE · **Phase:** PH-2
+- **Environment:** ENV-REF-WAN with the HA Server and the sample company
+- **Procedure:**
+  1. With the participants of VER-USE-2000, run keyboard-only journal entry of a 50-line journal in the Smart Grid, including paste from a spreadsheet and correction of validation errors.
+  2. Run register, report drill-down (statement line → account → entry → source document) and close-cockpit tasks for one month-end.
+  3. Record task time, errors and severity-rated usability findings.
+- **Pass criterion:** MET-USE-004 met; ≥ 90% success on workbench tasks; 0 open severity-1 findings.
+- **Evidence:** study report.
+- **Supports:** EXIT-2-10, EXIT-2-18
+
+### VER-INSP-9506 — PH-2 comparison data set
+- **Verifies:** MET-BIZ-004
+- **Suite:** SUITE-REGRESSION · **Phase:** PH-2
+- **Environment:** project records
+- **Procedure:**
+  1. Check that every PH-2 finance work item has the records required by the DEC-026 comparison protocol (effort, size, defects, change lead time, requirement coverage).
+  2. Check that scope differences against the finance requirements document are logged per requirement.
+- **Pass criterion:** 100% of work items recorded; data set signed by the owner.
+- **Evidence:** comparison data set.
+- **Supports:** EXIT-2-19

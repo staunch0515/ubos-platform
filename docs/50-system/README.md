@@ -36,13 +36,13 @@ Processing Unit (BPU)** on a **Data Virtual Machine (DVM)**.
 | Folder | Content | Status |
 |---|---|---|
 | `00-meta/` | charter, rules, templates, progress, inputs, AI guide | complete |
-| `10-requirements/` | vision, 28 personas, 220 capabilities, 55 scenarios, 800 FR, 106 NR, 54 CR, constraints, assumptions, 146 glossary terms | complete (confirmed 2026-09-29) |
+| `10-requirements/` | vision, 33 personas, 220 capabilities, 67 scenarios (19 deferred, DEC-022), 800 FR, 106 NR, 54 CR, constraints, assumptions, 146 glossary terms | complete (confirmed 2026-09-29) |
 | `20-architecture/` | 13-system family, 36 contracts, topologies, data architecture, runtime flows, cross-cutting rules (34 AR), codebase, capability allocation | complete |
 | `30-standard/` | the BPA standard: 239 normative clauses, 48 data schemas, instruction set ABI 1.0, UBTP, sync, errors, conformance | complete (normative) |
-| `40-systems/` | 13 system chapters: 690 design items (DSN), 118 interfaces, data, state machines, configuration, operations, verification | complete |
-| `50-phases/` | PH-0 … PH-5: goals, scope, generated feature lists, verification plans, 60 metrics, 74 exit criteria, 32 risks | complete |
-| `60-verification/` | principles, VER numbering, 12 methods, environments, datasets, 76 suites, 85 verification items, generated traceability | complete |
-| `90-decisions/` | DEC-001 … DEC-021 | active |
+| `40-systems/` | 13 system chapters: 695 design items (DSN), 118 interfaces, data, state machines, configuration, operations, verification | complete |
+| `50-phases/` | PH-0 … PH-5: goals, scope, generated feature lists, verification plans, 65 metrics, 85 exit criteria (7 withdrawn), 38 risks (5 withdrawn) | complete |
+| `60-verification/` | principles, VER numbering, 12 methods, environments, datasets, 77 suites, 90 verification items, generated traceability | complete |
+| `90-decisions/` | DEC-001 … DEC-026 | active |
 | `INDEX/` | generated catalogues of documents and IDs, statistics | generated |
 
 ## The six phases at a glance
@@ -51,10 +51,10 @@ Processing Unit (BPU)** on a **Data Virtual Machine (DVM)**.
 |---|---|---|
 | PH-0 | de-risk storage, core semantics and the testable standard | assumptions ASM-003, ASM-008 |
 | PH-1 | reference kernel and single-node server (gates 1a engine core, 1b governance and services) | G1 mechanism |
-| PH-2 | first sellable product: HA Server, Workspace, Studio, fund-operations and contract Buks | G2 applications without kernel changes |
-| PH-3 | regulated pilot with evidence, devices and offline, governed AI | G3 regulated value, G4 governed AI |
-| PH-4 | multi-tenant Cells, Control Plane, Exchange, certification, workers | G5 platform |
-| PH-5 | federation, shared BPUs, browser kernel | G6 federation |
+| PH-2 | first business package (US Basic Finance) on an HA Server with a professional Web Workspace and Smart Grid | G2 applications without kernel changes |
+| PH-3 | year of demonstration operation, external CPA audit drill, governed finance agents | G3 audit-grade evidence, G4 governed AI |
+| PH-4 (not scheduled) | SQLite, Box, desktop and mobile with sync; multi-tenant Cells, Control Plane, Exchange, certification, workers | G5 platform |
+| PH-5 (not scheduled) | federation, shared BPUs, browser kernel; contract-only capabilities | G6 federation |
 
 ## Tools
 

@@ -43,12 +43,12 @@ indirectly through the systems built on it.
 
 | Gate or phase | DVM scope |
 |---|---|
-| PH-0 | prototype of the storage engine and prolly tree (to validate DEC-020 and ASM-003); formal models of commit, CAS, merge and timeline |
-| PH-1a | storage, model, versioning, bitemporal, ledger, transactions, L1 and L2 runtime, proofs (roots, signatures, inclusion), portable export and import; in-process host API |
+| PH-0 | prototype of the storage engine on PostgreSQL and prolly tree (to validate DEC-020 and ASM-003); formal models of commit, CAS, merge and timeline |
+| PH-1a | storage (PostgreSQL only, DEC-024), model, versioning, bitemporal, ledger, transactions, L1 and L2 runtime, proofs (roots, signatures, inclusion), portable export and import; in-process host API |
 | PH-1b | governance sheets, decisions, lifecycles and ports, events and jobs objects, queries, authorization (RBAC and ABAC), view resolution basics |
-| PH-2 | lenses, decision tables, approvals and deferred commits, workflows and sagas, ReBAC, masking, crypto-shredding, simulation support, projections at scale |
-| PH-3 | L3 WASM, `ask.model`, agent-branch policies, vector-search hooks, sync data structures, legal holds and retention |
-| PH-4 | history tiering, embedding API for third parties, performance at Cell scale |
+| PH-2 | lenses, decision tables, approvals and deferred commits, workflows and sagas, ReBAC, masking, crypto-shredding, simulation support, projections at scale, chart-of-accounts roll-ups, multi-currency and FX, matching, periods and close artefacts, reports (Basic Finance, DEC-022) |
+| PH-3 | L3 WASM, `ask.model`, agent-branch policies, vector-search hooks, legal holds and retention |
+| PH-4 | SQLite adapter and sync data structures (DEC-024), history tiering, embedding API for third parties, performance at Cell scale |
 | PH-5 | browser build (WASM), federation fallback and shared-BPU structures |
 
 ## 5. Crate map (UBS-ARC-07)

@@ -1,12 +1,15 @@
 ---
 id: UBS-REQ-04-02
-title: Scenarios — Fund Operations (First Vertical)
+title: Scenarios — Fund Operations (Deferred, DEC-022)
 status: complete
 phase: PH-2
 depends_on: [UBS-REQ-04]
 ---
 
 # Scenarios — Fund Operations (SCN-101 … SCN-110)
+
+> **Deferred (DEC-022).** These scenarios are kept for a later business package and are not
+> assigned to any phase exit.
 
 ## Domain context (informative)
 
@@ -23,6 +26,7 @@ The Fund Operations Buk models the following classes. Kinds follow IMP-01.
 | `Holding`, `UnitBalance`, `AccountBalance` | Projection | derived from ledger classes |
 
 ### SCN-101 — Launch a new share class
+- **Status:** Deferred (DEC-022)
 - **Goal:** A new share class is configured, reviewed and published for a future launch date.
 - **Personas:** PER-FundOperationsManager, PER-ComplianceOfficer, PER-Approver
 - **Systems:** STU, WSP, DVM
@@ -40,6 +44,7 @@ The Fund Operations Buk models the following classes. Kinds follow IMP-01.
 - **Verification:** SCN, USE, PILOT
 
 ### SCN-102 — Subscription order to settled units
+- **Status:** Deferred (DEC-022)
 - **Goal:** A subscription is processed before cut-off, units are allotted at the correct NAV, and the register is updated.
 - **Personas:** PER-InvestorServicesClerk, PER-FundAccountant
 - **Systems:** WSP, DVM, BRG
@@ -58,6 +63,7 @@ The Fund Operations Buk models the following classes. Kinds follow IMP-01.
 - **Verification:** SCN, PILOT
 
 ### SCN-103 — Daily NAV calculation with lineage
+- **Status:** Deferred (DEC-022)
 - **Goal:** NAV per share class is calculated, checked, approved, published and fully explainable.
 - **Personas:** PER-FundAccountant, PER-FundOperationsManager, PER-InternalAuditor
 - **Systems:** DVM, WSP, BRG
@@ -75,6 +81,7 @@ The Fund Operations Buk models the following classes. Kinds follow IMP-01.
 - **Verification:** SCN, PILOT, PROP
 
 ### SCN-104 — Back-dated price correction and NAV restatement
+- **Status:** Deferred (DEC-022)
 - **Goal:** A wrong price discovered later is corrected, and every affected NAV and investor transaction is identified and restated.
 - **Personas:** PER-FundAccountant, PER-FundOperationsManager, PER-ComplianceOfficer
 - **Systems:** DVM, WSP
@@ -92,6 +99,7 @@ The Fund Operations Buk models the following classes. Kinds follow IMP-01.
 - **Verification:** SCN, PILOT, PROP
 
 ### SCN-105 — Fee calculation in Smart Grid
+- **Status:** Deferred (DEC-022)
 - **Goal:** Management and performance fees are computed by shared logic and reviewed in a spreadsheet-like view.
 - **Personas:** PER-FundAccountant
 - **Systems:** WSP, DVM
@@ -108,6 +116,7 @@ The Fund Operations Buk models the following classes. Kinds follow IMP-01.
 - **Verification:** SCN, USE
 
 ### SCN-106 — Investment restriction change simulated against history
+- **Status:** Deferred (DEC-022)
 - **Goal:** A compliance rule change is evaluated against 12 months of data before publication.
 - **Personas:** PER-ComplianceOfficer, PER-FundOperationsManager
 - **Systems:** STU, DVM, FRG
@@ -125,6 +134,7 @@ The Fund Operations Buk models the following classes. Kinds follow IMP-01.
 - **Verification:** SCN, BENCH
 
 ### SCN-107 — Month-end close and a post-close correction
+- **Status:** Deferred (DEC-022)
 - **Goal:** A period is closed, and a later correction is handled without reopening it.
 - **Personas:** PER-FundAccountant, PER-InternalAuditor
 - **Systems:** DVM, WSP
@@ -141,6 +151,7 @@ The Fund Operations Buk models the following classes. Kinds follow IMP-01.
 - **Verification:** SCN, PILOT
 
 ### SCN-108 — Custodian cash reconciliation with breaks
+- **Status:** Deferred (DEC-022)
 - **Goal:** Daily custodian statements are matched against internal cash ledgers, and breaks are managed.
 - **Personas:** PER-FundAccountant
 - **Systems:** BRG, DVM, WSP
@@ -157,6 +168,7 @@ The Fund Operations Buk models the following classes. Kinds follow IMP-01.
 - **Verification:** SCN, PILOT
 
 ### SCN-109 — Examination request answered with an evidence pack
+- **Status:** Deferred (DEC-022)
 - **Goal:** An examiner receives verifiable books and records for a question within hours.
 - **Personas:** PER-ComplianceOfficer, PER-RegulatorExaminer
 - **Systems:** NTY, DVM, WSP
@@ -173,6 +185,7 @@ The Fund Operations Buk models the following classes. Kinds follow IMP-01.
 - **Verification:** SCN, PILOT, AUDIT
 
 ### SCN-110 — Fee schedule change in the middle of a period
+- **Status:** Deferred (DEC-022)
 - **Goal:** A fee rate change effective mid-month is prorated correctly, including when approved after the effective date.
 - **Personas:** PER-FundAccountant, PER-FundOperationsManager
 - **Systems:** DVM

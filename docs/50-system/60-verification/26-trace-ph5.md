@@ -16,6 +16,39 @@ naming the requirement directly.
 
 | Title | Requirement | Priority | Methods | Realised by | Verified in suites | Direct VER items |
 |---|---|---|---|---|---|---|
+| Consumer consent to electronic records | CR-ESIGN-001 | Must | SCN, INSP | — | — | VER-SCN-5100 |
+| Accurate, reproducible retention | CR-ESIGN-002 | Must | CONF | — | — | VER-SCN-5100 |
+| Attribution | CR-ESIGN-003 | Must | CONF | — | — | VER-SCN-5100 |
+| Intent and association | CR-ESIGN-004 | Must | CONF | STD-PROOF-055 | SUITE-DVM-CONF | VER-SCN-5100 |
+| Preservation format | CR-FINRA-001 | Should | INSP | — | — | — |
+| Default retention | CR-FINRA-002 | Should | CONF | — | — | — |
+| Supervisory review evidence | CR-FINRA-003 | Should | INSP | DSN-NTY-008 | SUITE-NTY-EXAM | — |
+| Books and records for fund operations | CR-SEC-006 | Must | INSP, PILOT | DSN-DVM-443, DSN-NOD-381 | SUITE-DVM-CONF, SUITE-DVM-REPLAY, SUITE-DVM-STORE, SUITE-DVM-XIMPL … | — |
+| DOCX to Live Doc templates | FR-MIG-021 | Should | SCN, USE | DSN-BRG-006 | SUITE-BRG-MIG | — |
+| Clause extraction | FR-MIG-022 | Could | SCN | DSN-BRG-006 | SUITE-BRG-MIG | — |
+| Documents as bound views | FR-OFFICE-011 | Must | SCN, CONF | DSN-WSP-301, STD-FND-025 | SUITE-DVM-CONF, SUITE-WSP-E2E | — |
+| Embedded logic blocks | FR-OFFICE-012 | Must | CONF | DSN-WSP-302 | SUITE-WSP-RENDER | — |
+| Collaborative editing of drafts | FR-OFFICE-014 | Should | SCN, SIM | DSN-WSP-304 | SUITE-WSP-E2E | — |
+| Binding safety | FR-OFFICE-015 | Must | SEC | DSN-WSP-301 | SUITE-WSP-E2E | — |
+| Templates and clause library | FR-OFFICE-021 | Must | SCN | DSN-WSP-305 | SUITE-WSP-E2E | — |
+| Clause references are versioned | FR-OFFICE-022 | Must | CONF | DSN-WSP-305 | SUITE-WSP-E2E | — |
+| Conditional sections | FR-OFFICE-023 | Must | CONF | DSN-WSP-305 | SUITE-WSP-E2E | — |
+| Clause impact analysis | FR-OFFICE-024 | Must | SCN | DSN-WSP-305 | SUITE-WSP-E2E | — |
+| Negotiation rounds | FR-OFFICE-031 | Must | SCN | DSN-WSP-306 | SUITE-WSP-E2E, SUITE-WSP-SEC | — |
+| Tracked changes by party | FR-OFFICE-032 | Must | SCN, USE | DSN-WSP-306 | SUITE-WSP-E2E, SUITE-WSP-SEC | — |
+| Non-negotiable clauses | FR-OFFICE-033 | Should | CONF | DSN-WSP-306 | SUITE-WSP-E2E, SUITE-WSP-SEC | — |
+| Internal and external comments | FR-OFFICE-034 | Must | SEC | DSN-WSP-306 | SUITE-WSP-E2E, SUITE-WSP-SEC | — |
+| E-SIGN and UETA compliant signing | FR-SIGN-011 | Must | SCN, AUDIT | DSN-WSP-501 | SUITE-WSP-A11Y, SUITE-WSP-E2E | VER-SCN-5100 |
+| Signer authentication levels | FR-SIGN-012 | Must | SEC | DSN-WSP-501 | SUITE-WSP-A11Y, SUITE-WSP-E2E | — |
+| Copies for all parties | FR-SIGN-013 | Must | SCN | DSN-WSP-501 | SUITE-WSP-A11Y, SUITE-WSP-E2E | — |
+| Seal over document and data | FR-SIGN-021 | Must | CONF, SEC | DSN-WSP-503, STD-PROOF-055 | SUITE-DVM-CONF, SUITE-WSP-RENDER | — |
+| Embedded verification data | FR-SIGN-022 | Must | CONF | DSN-WSP-503, STD-PROOF-055 | SUITE-DVM-CONF, SUITE-WSP-RENDER | — |
+| Executed state is immutable | FR-SIGN-023 | Must | CONF | DSN-WSP-503 | SUITE-WSP-RENDER | — |
+| Multi-party ordered and parallel signing | FR-SIGN-031 | Must | SCN | DSN-WSP-502 | SUITE-WSP-E2E | — |
+| Void on change | FR-SIGN-032 | Must | SCN | DSN-WSP-502 | SUITE-WSP-E2E | — |
+| Ceremony audit trail | FR-SIGN-033 | Must | CONF | DSN-WSP-502 | SUITE-WSP-E2E | — |
+| Provider integration | FR-SIGN-041 | Should | CONF | DSN-BRG-105, DSN-WSP-504 | SUITE-BRG-MIG, SUITE-WSP-E2E | — |
+| Uniform seal model | FR-SIGN-042 | Should | CONF | DSN-BRG-105, DSN-WSP-504 | SUITE-BRG-MIG, SUITE-WSP-E2E | — |
 | VAE registry | FR-SYNC-051 | Must | CONF, SEC | DSN-FED-001, STD-ADDR-010 | SUITE-DVM-CONF, SUITE-FED-TRUST | — |
 | Federated discovery | FR-SYNC-052 | Must | FAULT | DSN-FED-002 | SUITE-FED-FALLBACK, SUITE-FED-SHARED, SUITE-FED-TRUST | — |
 | Trust relationships | FR-SYNC-053 | Must | SEC | DSN-FED-003, DSN-NOD-507 | SUITE-FED-TRUST, SUITE-NOD-AUTH, SUITE-NOD-EVENTS, SUITE-NOD-FILES … | VER-SEC-8500 |
@@ -34,3 +67,12 @@ naming the requirement directly.
 | Eviction handling | FR-SYNC-083 | Must | FAULT | DSN-DVM-956 | SUITE-DVM-BENCH, SUITE-DVM-CONF, SUITE-DVM-REPLAY, SUITE-DVM-STORE … | VER-CONF-8407 |
 | Non-extractable keys in the browser | FR-SYNC-084 | Must | SEC | DSN-DVM-956 | SUITE-DVM-BENCH, SUITE-DVM-CONF, SUITE-DVM-REPLAY, SUITE-DVM-STORE … | VER-CONF-8407 |
 | Browser kernel local reads | NR-PERF-024 | Should | BENCH | DSN-DVM-956, DSN-WSP-210 | SUITE-DVM-BENCH, SUITE-DVM-CONF, SUITE-DVM-REPLAY, SUITE-DVM-STORE … | VER-CONF-8407 |
+
+## Gaps
+
+Requirements without a realising design item verified by a suite and without a direct
+verification item. A Must gap blocks the phase exit (EXIT-5-* traceability criterion); a Should or
+Could gap is closed or carried over by decision (UBS-PH-00 §3.7).
+
+- CR-FINRA-001 (Should)
+- CR-FINRA-002 (Should)

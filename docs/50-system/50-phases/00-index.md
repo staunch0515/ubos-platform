@@ -22,14 +22,20 @@ feature list is `UBS-PHF-N`.
 |---|---|---|---|---|
 | PH-0 | Foundations and de-risking | Prove the riskiest technical choices and fix the standard's core before building the product. | — (enables G1) | 3 months |
 | PH-1 | Kernel and single-node server | Build the reference kernel and a single-node server that pass the standard's core profiles; gates PH-1a (engine core) and PH-1b (governance and services). | G1 prove the mechanism | 9 months (1a: 5, 1b: 4) |
-| PH-2 | First verticals and production server | Ship the first sellable product: HA Server, Workspace, Studio, and the fund-operations and contract Buks built without kernel changes. | G2 prove an application | 9 months |
-| PH-3 | Regulated pilot, devices and governed AI | Run a regulated design-partner pilot with evidence, add Box devices and offline sync, and add governed AI. | G3 regulated value, G4 governed AI | 9 months |
-| PH-4 | Platform scale and ecosystem | Open the platform: multi-tenant Cells, Control Plane, Exchange, certification, workers. | G5 prove the platform | 9 months |
-| PH-5 | Federation and the open network | Connect organisations: federation registry, cross-node VAE trees, shared BPUs, browser kernel. | G6 prove federation | 9–12 months |
+| PH-2 | First business package (Basic Finance) and production server | Deliver the first complete product for demonstration and comparison: HA Server on PostgreSQL, professional Web Workspace with Smart Grid, lean Studio, and the US Basic Finance Buk built without kernel changes. | G2 prove an application | 9 months |
+| PH-3 | CPA audit drill, evidence and governed AI | Run a year of the sample company's books with anchored evidence, pass an external CPA audit drill, and add governed finance agents. | G3 audit-grade evidence, G4 governed AI | 6–9 months |
+| PH-4 | Devices, platform scale and ecosystem (not scheduled) | Add SQLite, Box, desktop and mobile apps with sync; open the platform: multi-tenant Cells, Control Plane, Exchange, certification, workers. | G5 prove the platform | 9 months |
+| PH-5 | Federation and the open network (not scheduled) | Connect organisations: federation registry, cross-node VAE trees, shared BPUs, browser kernel; add the contract-only capabilities. | G6 prove federation | 9–12 months |
 
 Durations are reference values for a core team of 8–12 engineers in PH-0 to PH-2, growing
 per the team assumption stated in each plan. They are non-normative; exit criteria are
 normative.
+
+The product is built for demonstration and for comparison with the owner's Java system, not
+for sale (DEC-023). PH-0…PH-3 are scheduled; PH-4 and PH-5 are specified but not scheduled
+until the owner decides after PH-3. The first business package is Basic Finance (DEC-022);
+fund operations and contract management are deferred with their IDs kept. PostgreSQL is the
+only storage backend until PH-4 (DEC-024), and PH-2 is Web-only (DEC-025).
 
 ## 2. Systems by phase
 
@@ -37,18 +43,18 @@ Depth: **P** prototype, **N** new, **E** extended, **H** hardened, **—** not i
 
 | System | PH-0 | PH-1a | PH-1b | PH-2 | PH-3 | PH-4 | PH-5 |
 |---|---|---|---|---|---|---|---|
-| BPA standard | N | E | E | H (1.0) | E (Sync) | E (certification) | E |
-| DVM kernel | P | N | E | E | E | H | E (browser) |
-| NOD node | P | N (headless Box, host services) | N (Server single) | E (HA, REST, SSO) | E (Box apps, sync) | E (Cell, worker) | E (QUIC, federation hooks) |
+| BPA standard | N | E | E | H (1.0) | E | E (Sync, certification) | E |
+| DVM kernel | P | N (PostgreSQL) | E | E | E | H (SQLite) | E (browser) |
+| NOD node | P | N (in-process host, host services) | N (Server single) | E (HA, REST, SSO, bank files) | E (evidence, retention) | E (Box, sync, Cell, worker) | E (QUIC, federation hooks) |
 | FRG forge | P (runner) | N | E | E (Buks, simulator, LSP) | E (WASM) | E (publish) | — |
 | SDK | — | — | N (Rust, TS) | E | E (Python) | H | — |
-| WSP workspace | — | — | P (engineering UI) | N | E (apps, portal, office) | E (Books) | E (local kernel) |
-| STU studio | — | — | — | N | E (AI panel) | E | — |
+| WSP workspace | — | — | P (engineering UI) | N (Web, Smart Grid) | E (Copilot, dashboards) | E (apps, Books) | E (local kernel, portal, contract office) |
+| STU studio | — | — | — | N (lean) | E (AI panel) | E | — |
 | AGT agent hub | — | — | — | — | N | E | E |
 | NTY notary | — | P (verifier library) | — | P (packs, CLI) | N | E | — |
 | BRG bridge | — | — | — | N | E | E | — |
-| CTL control plane | — | — | — | — | P (CTL-lite) | N | E |
-| EXC exchange | — | — | — | — | P (private registry) | N | E (mirrors) |
+| CTL control plane | — | — | — | — | — | N | E |
+| EXC exchange | — | — | — | — | — | N | E (mirrors) |
 | FED federation | — | — | — | — | — | — | N |
 
 ## 3. Common rules for every phase
@@ -72,7 +78,7 @@ Every phase uses the same layers; later phases add, never remove:
 4. **Scenarios** — end-to-end reference scenarios (SCN) on real deployments.
 5. **Non-functional** — benchmarks on reference environments (BENCH), security (SEC),
    usability (USE), inspections (INSP).
-6. **Acceptance** — pilots with design partners (PILOT) where the phase goal requires it.
+6. **Acceptance** — acceptance drills (PILOT), such as the PH-3 CPA audit drill, where the phase goal requires it.
 
 ### 3.4 Pass thresholds that apply to every phase
 - 100% of conformance vectors of the claimed profiles pass on every supported backend.
@@ -85,7 +91,8 @@ Every phase uses the same layers; later phases add, never remove:
 
 ### 3.5 Acceptance and records
 Exit is decided by the **Phase Acceptance Board**: product owner (chair), engineering lead,
-quality lead, security lead and, from PH-2, a design-partner representative. Each exit
+quality lead, security lead and, from PH-2, the accounting reviewer (DEC-023 replaces the
+design-partner representative). Each exit
 criterion is accepted with a link to its evidence (report, signed runner report, benchmark
 report, study report or pilot acceptance). The board's decision is recorded as a DEC entry
 naming the phase, the release tag and the evidence bundle hash.

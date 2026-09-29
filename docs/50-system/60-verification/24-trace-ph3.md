@@ -18,15 +18,12 @@ naming the requirement directly.
 |---|---|---|---|---|---|---|
 | Limit use of sensitive personal information | CR-CCPA-003 | Should | SEC | DSN-AGT-002 | SUITE-AGT-GOV, SUITE-AGT-INJECT, SUITE-AGT-KILL | — |
 | No sale or sharing by the platform | CR-CCPA-004 | Must | INSP | DSN-AGT-006, DSN-CTL-001 | SUITE-AGT-GOV, SUITE-AGT-INJECT, SUITE-AGT-KILL, SUITE-CTL-BLIND … | — |
-| Preservation format | CR-FINRA-001 | Should | INSP | — | — | — |
-| Default retention | CR-FINRA-002 | Should | CONF | — | — | — |
 | Records of processing | CR-GDPR-005 | Should | SCN | — | — | — |
 | Breach detection and notification support | CR-GDPR-007 | Should | SCN | — | — | — |
 | Control mapping | CR-NIST-001 | Should | INSP | — | — | — |
 | Non-rewriteable, non-erasable or audit-trail storage | CR-SEC-001 | Must | AUDIT | — | — | VER-SCN-3150 |
 | Prompt production in readable form | CR-SEC-003 | Must | SCN, AUDIT | DSN-NTY-008 | SUITE-NTY-EXAM | VER-SCN-3100 |
 | Retention periods | CR-SEC-004 | Must | CONF, AUDIT | DSN-NOD-380 | SUITE-NOD-AUTH, SUITE-NOD-FILES, SUITE-NOD-PROTO, SUITE-NOD-SYNC | — |
-| Books and records for fund operations | CR-SEC-006 | Must | INSP, PILOT | DSN-DVM-443, DSN-NOD-381 | SUITE-DVM-CONF, SUITE-DVM-REPLAY, SUITE-DVM-STORE, SUITE-DVM-XIMPL … | — |
 | Electronic communications capture (integration) | CR-SEC-007 | Should | CONF | — | — | — |
 | Logical access controls | CR-SOC2-002 | Must | AUDIT, SEC | — | — | VER-INSP-9503 |
 | Monitoring and incident response | CR-SOC2-005 | Must | AUDIT | — | — | VER-INSP-9503 |
@@ -103,7 +100,6 @@ naming the requirement directly.
 | Who-can and what-can queries | FR-IAM-081 | Must | CONF, PROP | DSN-DVM-840 | SUITE-DVM-PROP | — |
 | Access review campaigns | FR-IAM-082 | Must | SCN, AUDIT | DSN-DVM-841, DSN-NOD-123 | SUITE-DVM-CONF, SUITE-DVM-REPLAY, SUITE-DVM-STORE, SUITE-DVM-XIMPL … | — |
 | Unused permission detection | FR-IAM-083 | Should | CONF | DSN-DVM-842 | SUITE-DVM-CONF, SUITE-DVM-REPLAY, SUITE-DVM-STORE, SUITE-DVM-XIMPL | — |
-| Device registration and remote wipe | FR-IAM-103 | Must | SEC | DSN-NOD-107, STD-SYNC-005 | SUITE-DVM-CONF, SUITE-NOD-AUTH, SUITE-NOD-EVENTS, SUITE-NOD-FILES … | — |
 | Delegated client authorization | FR-IAM-104 | Must | SEC, SCN | DSN-AGT-204, DSN-NOD-151, DSN-SDK-010 | SUITE-AGT-EVAL, SUITE-AGT-GOV, SUITE-AGT-INJECT, SUITE-AGT-KILL … | — |
 | Publish to external brokers | FR-INT-051 | Must | CONF | DSN-BRG-104, DSN-NOD-036 | SUITE-BRG-ADAPT, SUITE-BRG-MIG, SUITE-NOD-EVENTS, SUITE-NOD-JOBS … | — |
 | Delivery guarantees | FR-INT-052 | Must | FAULT | DSN-BRG-104, DSN-NOD-033, DSN-NOD-036 | SUITE-BRG-ADAPT, SUITE-BRG-MIG, SUITE-NOD-AUTH, SUITE-NOD-EVENTS … | — |
@@ -120,19 +116,7 @@ naming the requirement directly.
 | Fuel and memory metering for components | FR-LOGIC-053 | Must | CONF, SEC | DSN-DVM-614, STD-CTX-021 | SUITE-DVM-CONF, SUITE-DVM-REPLAY, SUITE-DVM-SEC, SUITE-DVM-STORE … | VER-SEC-0500 |
 | Signed and verified components | FR-LOGIC-054 | Must | CONF, SEC | DSN-DVM-615, DSN-NOD-242, STD-CTX-023 | SUITE-DVM-CONF, SUITE-DVM-SEC, SUITE-NOD-AUTH, SUITE-NOD-EVENTS … | VER-SEC-0500 |
 | Deterministic component subset | FR-LOGIC-055 | Must | CONF, PROP | DSN-DVM-614, DSN-FRG-505, STD-CTX-021 | SUITE-DVM-CONF, SUITE-DVM-REPLAY, SUITE-DVM-SEC, SUITE-DVM-STORE … | VER-SEC-0500 |
-| DOCX to Live Doc templates | FR-MIG-021 | Should | SCN, USE | DSN-BRG-006 | SUITE-BRG-MIG | — |
-| Clause extraction | FR-MIG-022 | Could | SCN | DSN-BRG-006 | SUITE-BRG-MIG | — |
 | Model as tool metadata | FR-MODEL-105 | Must | CONF, SEC | DSN-AGT-201, DSN-DVM-130, STD-BPU-002 | SUITE-AGT-EVAL, SUITE-AGT-MCP, SUITE-DVM-CONF, SUITE-DVM-REPLAY … | — |
-| Negotiation rounds | FR-OFFICE-031 | Must | SCN | DSN-WSP-306 | SUITE-WSP-E2E, SUITE-WSP-SEC | — |
-| Tracked changes by party | FR-OFFICE-032 | Must | SCN, USE | DSN-WSP-306 | SUITE-WSP-E2E, SUITE-WSP-SEC | — |
-| Non-negotiable clauses | FR-OFFICE-033 | Should | CONF | DSN-WSP-306 | SUITE-WSP-E2E, SUITE-WSP-SEC | — |
-| Internal and external comments | FR-OFFICE-034 | Must | SEC | DSN-WSP-306 | SUITE-WSP-E2E, SUITE-WSP-SEC | — |
-| Grid over records | FR-OFFICE-041 | Must | SCN | DSN-WSP-401 | SUITE-WSP-E2E, SUITE-WSP-PERF | — |
-| Computed columns from shared logic | FR-OFFICE-042 | Must | SCN | DSN-WSP-401 | SUITE-WSP-E2E, SUITE-WSP-PERF | — |
-| Validated edits and bulk paste | FR-OFFICE-043 | Must | SCN | DSN-WSP-401 | SUITE-WSP-E2E, SUITE-WSP-PERF | — |
-| Overrides as adjustments | FR-OFFICE-044 | Must | SCN | DSN-WSP-401 | SUITE-WSP-E2E, SUITE-WSP-PERF | — |
-| Summaries and pivots | FR-OFFICE-045 | Should | CONF | DSN-WSP-401 | SUITE-WSP-E2E, SUITE-WSP-PERF | — |
-| XLSX interchange | FR-OFFICE-046 | Must | CONF | DSN-WSP-401 | SUITE-WSP-E2E, SUITE-WSP-PERF | — |
 | Live decks | FR-OFFICE-051 | Must | SCN | DSN-WSP-402 | SUITE-WSP-E2E | — |
 | Drill-down | FR-OFFICE-052 | Must | SCN, USE | DSN-WSP-402 | SUITE-WSP-E2E | — |
 | Actions on slides | FR-OFFICE-053 | Must | SCN | DSN-WSP-402 | SUITE-WSP-E2E | — |
@@ -157,30 +141,6 @@ naming the requirement directly.
 | Hybrid search | FR-QRY-032 | Should | CONF | DSN-AGT-302, DSN-DVM-910, STD-ISA-084 | SUITE-AGT-GOV, SUITE-AGT-INJECT, SUITE-AGT-KILL, SUITE-DVM-CONF … | — |
 | Classification-aware embedding | FR-QRY-033 | Must | CONF, SEC | DSN-DVM-910, DSN-NOD-342 | SUITE-DVM-CONF, SUITE-DVM-REPLAY, SUITE-DVM-SEC, SUITE-DVM-STORE … | — |
 | DMN interchange | FR-RULE-044 | Could | CONF | DSN-DVM-724, DSN-STU-005 | SUITE-DVM-CONF, SUITE-DVM-REPLAY, SUITE-DVM-STORE, SUITE-DVM-XIMPL … | — |
-| Multi-party ordered and parallel signing | FR-SIGN-031 | Must | SCN | DSN-WSP-502 | SUITE-WSP-E2E | — |
-| Ceremony audit trail | FR-SIGN-033 | Must | CONF | DSN-WSP-502 | SUITE-WSP-E2E | — |
-| Have and want exchange | FR-SYNC-011 | Must | CONF, BENCH | DSN-DVM-952, DSN-NOD-501, STD-PROOF-001, STD-SYNC-002 | SUITE-DVM-BENCH, SUITE-DVM-CONF, SUITE-DVM-SIM, SUITE-NOD-AUTH … | VER-SIM-2200 |
-| Integrity on receipt | FR-SYNC-012 | Must | SEC, FAULT | DSN-NOD-501, STD-SYNC-003 | SUITE-DVM-CONF, SUITE-NOD-AUTH, SUITE-NOD-FILES, SUITE-NOD-PROTO … | VER-SIM-2200 |
-| Authorised scope | FR-SYNC-013 | Must | SEC | DSN-NOD-503, STD-SYNC-001 | SUITE-DVM-CONF, SUITE-NOD-AUTH, SUITE-NOD-EVENTS, SUITE-NOD-FILES … | VER-SIM-2200 |
-| Resumable and idempotent | FR-SYNC-014 | Must | FAULT, SIM | DSN-NOD-502, STD-SYNC-003 | SUITE-DVM-CONF, SUITE-NOD-EVENTS, SUITE-NOD-JOBS, SUITE-NOD-OPS | VER-SIM-2200 |
-| Formal model of the protocol | FR-SYNC-015 | Must | FORM | STD-SYNC-006 | SUITE-DVM-CONF | VER-FORM-0200 |
-| Replication scopes | FR-SYNC-021 | Must | CONF | DSN-DVM-952, STD-SYNC-001 | SUITE-DVM-BENCH, SUITE-DVM-CONF, SUITE-DVM-SIM | — |
-| Bidirectional sync with governed integration | FR-SYNC-022 | Must | SCN | DSN-DVM-952, DSN-NOD-505, STD-SYNC-004 | SUITE-DVM-BENCH, SUITE-DVM-CONF, SUITE-DVM-SIM, SUITE-NOD-OPS | — |
-| Background and scheduled sync | FR-SYNC-023 | Should | CONF | DSN-NOD-504, DSN-NOD-509 | SUITE-NOD-AUTH, SUITE-NOD-FILES, SUITE-NOD-OPS, SUITE-NOD-PROTO … | — |
-| Personal to organisation onboarding | FR-SYNC-024 | Should | SCN | DSN-NOD-412 | SUITE-NOD-OPS | — |
-| Definition conflicts merge | FR-SYNC-031 | Must | SCN, PROP | DSN-DVM-953, STD-SYNC-004 | SUITE-DVM-CONF, SUITE-DVM-REPLAY, SUITE-DVM-SIM, SUITE-DVM-STORE … | VER-SIM-2200 |
-| Ledger entries append with original valid time | FR-SYNC-032 | Must | SCN | DSN-DVM-953, STD-SYNC-004, STD-VER-054 | SUITE-DVM-CONF, SUITE-DVM-REPLAY, SUITE-DVM-SIM, SUITE-DVM-STORE … | VER-SIM-2200 |
-| Post-merge validation and returned rejections | FR-SYNC-033 | Must | SCN | DSN-DVM-953, DSN-NOD-505, DSN-WSP-204, STD-SYNC-004 | SUITE-DVM-CONF, SUITE-DVM-REPLAY, SUITE-DVM-SIM, SUITE-DVM-STORE … | VER-SIM-2200 |
-| Attributed resolutions | FR-SYNC-034 | Must | CONF | DSN-DVM-953 | SUITE-DVM-CONF, SUITE-DVM-REPLAY, SUITE-DVM-SIM, SUITE-DVM-STORE … | VER-SIM-2200 |
-| Scope by classification | FR-SYNC-041 | Must | SEC | DSN-NOD-503, STD-SYNC-001 | SUITE-DVM-CONF, SUITE-NOD-AUTH, SUITE-NOD-EVENTS, SUITE-NOD-FILES … | — |
-| Scope changes remove data | FR-SYNC-042 | Must | SEC | DSN-DVM-954, DSN-NOD-107, DSN-NOD-503, STD-SYNC-005 | SUITE-DVM-CONF, SUITE-DVM-SEC, SUITE-NOD-AUTH, SUITE-NOD-EVENTS … | — |
-| Encrypted local storage | FR-SYNC-043 | Must | SEC | DSN-DVM-011, DSN-NOD-102 | SUITE-DVM-FAULT, SUITE-DVM-SEC, SUITE-NOD-AUTH, SUITE-NOD-EVENTS … | — |
-| Desktop application | FR-UX-071 | Must | SCN | DSN-WSP-201 | SUITE-WSP-E2E | VER-SCN-3200 |
-| Mobile application | FR-UX-072 | Must | SCN, USE | DSN-WSP-202 | SUITE-WSP-E2E | VER-SCN-3200 |
-| One renderer contract | FR-UX-073 | Must | CONF | DSN-WSP-003 | SUITE-WSP-RENDER | — |
-| Offline indicators and queued actions | FR-UX-081 | Must | SCN, USE | DSN-WSP-203 | SUITE-WSP-E2E | — |
-| Conflict resolution screen | FR-UX-082 | Must | SCN, USE | DSN-WSP-204 | SUITE-WSP-A11Y, SUITE-WSP-USE | — |
-| Sync status | FR-UX-083 | Should | SCN | DSN-WSP-203 | SUITE-WSP-E2E | — |
 | External identities with narrow scopes | FR-UX-091 | Must | SEC, SCN | DSN-WSP-205 | SUITE-WSP-SEC | — |
 | Branded portal | FR-UX-092 | Should | SCN | DSN-WSP-205 | SUITE-WSP-SEC | — |
 | Internal-only content separation | FR-UX-093 | Must | SEC | DSN-WSP-205 | SUITE-WSP-SEC | — |
@@ -190,13 +150,9 @@ naming the requirement directly.
 | Assistive technology support | NR-ACC-003 | Must | USE, AUDIT | DSN-WSP-208 | SUITE-WSP-A11Y, SUITE-WSP-USE | VER-USE-3000 |
 | Accessible documents | NR-ACC-004 | Should | CONF | DSN-WSP-405 | SUITE-WSP-RENDER | VER-USE-3000 |
 | Graceful degradation | NR-AVAIL-005 | Must | FAULT | DSN-DVM-617, DSN-NOD-001, DSN-NOD-016, DSN-NOD-616 | SUITE-DVM-BENCH, SUITE-NOD-BENCH, SUITE-NOD-EVENTS, SUITE-NOD-JOBS … | — |
-| Sync efficiency | NR-PERF-018 | Must | BENCH | DSN-DVM-952, DSN-NOD-506, STD-SYNC-002 | SUITE-DVM-BENCH, SUITE-DVM-CONF, SUITE-DVM-SIM, SUITE-NOD-BENCH … | VER-SIM-2200 |
 | Agent kill-switch latency | NR-PERF-019 | Must | BENCH, FAULT | DSN-AGT-106, DSN-DVM-623, DSN-NOD-229 | SUITE-AGT-GOV, SUITE-AGT-INJECT, SUITE-AGT-KILL, SUITE-DVM-BENCH … | VER-SEC-6000 |
 | Analytics performance | NR-PERF-020 | Should | BENCH | — | — | — |
-| Box start-up | NR-PERF-023 | Should | BENCH | — | — | VER-SCN-3200 |
-| Client platforms | NR-PORT-001 | Must | SCN | DSN-WSP-201 | SUITE-WSP-E2E | VER-SCN-3200 |
 | Branch count | NR-SCAL-006 | Must | BENCH | DSN-DVM-204 | SUITE-DVM-BENCH | — |
-| Box data size | NR-SCAL-008 | Should | BENCH | — | — | VER-SCN-3200 |
 | Review efficiency | NR-USE-003 | Must | USE, PILOT | DSN-DVM-222, DSN-WSP-110 | SUITE-DVM-CONF, SUITE-DVM-REPLAY, SUITE-DVM-STORE, SUITE-DVM-XIMPL … | VER-USE-3000 |
 | Learnability | NR-USE-005 | Should | PILOT, USE | DSN-STU-016 | SUITE-STU-USE | VER-USE-3000 |
 
@@ -206,8 +162,6 @@ Requirements without a realising design item verified by a suite and without a d
 verification item. A Must gap blocks the phase exit (EXIT-3-* traceability criterion); a Should or
 Could gap is closed or carried over by decision (UBS-PH-00 §3.7).
 
-- CR-FINRA-001 (Should)
-- CR-FINRA-002 (Should)
 - CR-GDPR-005 (Should)
 - CR-GDPR-007 (Should)
 - CR-NIST-001 (Should)

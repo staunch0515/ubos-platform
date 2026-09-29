@@ -32,11 +32,13 @@ PER-ImplementationConsultant.
 
 ## 4. Phase map
 
+PH-4 and PH-5 are specified but not scheduled for execution (DEC-023).
+
 | Phase | EXC scope |
 |---|---|
 | PH-2 | none as a service; Buks distributed as signed files; namespaces reserved in a registry file |
-| PH-3 | private registry mode inside Server for design partners (same archive format and verification) |
-| PH-4 | public Exchange: publishers, verification service, listings, licences, invoicing, payouts, advisories |
+| PH-3 | none as a service (DEC-023); the finance Buk is distributed as a signed file |
+| PH-4 | private registry mode and mirrors (DSN-EXC-010); public Exchange: publishers, verification service, listings, licences, invoicing, payouts, advisories |
 | PH-5 | federation-aware mirrors for air-gapped and sovereign deployments |
 
 ## 5. Files

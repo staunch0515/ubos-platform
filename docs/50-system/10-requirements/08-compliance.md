@@ -193,12 +193,13 @@ DEC-003: US first, GDPR designed in.
 - **Statement:** The fund-operations Buk MUST maintain the records required for registered funds and advisers that fall in its scope (journals, ledgers, NAV computations, shareholder records, trade records) with bitemporal corrections and lineage.
 - **Control reference:** Investment Company Act Rule 31a-1(b); Advisers Act Rule 204-2(a)
 - **Rationale:** First-vertical fitness.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** DVM
+- **Priority:** Must · **Phase:** PH-5 · **Systems:** DVM
 - **Personas:** PER-FundAccountant, PER-ComplianceOfficer
 - **Acceptance:**
   1. Given the record map of the Buk against the rules, when reviewed by a compliance expert, then every in-scope record type is mapped.
 - **Verification:** INSP, PILOT
 - **Origin:** DEC-004
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ### CR-SEC-007 — Electronic communications capture (integration)
 - **Statement:** Action Messages and object threads that constitute business communications MUST be retainable as records under the same rules.
@@ -217,34 +218,37 @@ DEC-003: US first, GDPR designed in.
 - **Statement:** Records for broker-dealer customers MUST be preservable in a format and media that comply with SEC Rule 17a-4.
 - **Control reference:** FINRA Rule 4511(c)
 - **Rationale:** FINRA members.
-- **Priority:** Should · **Phase:** PH-3 · **Systems:** DVM, NOD
+- **Priority:** Should · **Phase:** PH-5 · **Systems:** DVM, NOD
 - **Personas:** PER-ComplianceOfficer
 - **Acceptance:**
   1. Given CR-SEC-001 compliance, when mapped, then FINRA 4511(c) is covered.
 - **Verification:** INSP
 - **Origin:** DEC-003
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ### CR-FINRA-002 — Default retention
 - **Statement:** Record classes without a specified period MUST default to at least 6 years in FINRA-profile tenants.
 - **Control reference:** FINRA Rule 4511(b)
 - **Rationale:** Default retention.
-- **Priority:** Should · **Phase:** PH-3 · **Systems:** DVM
+- **Priority:** Should · **Phase:** PH-5 · **Systems:** DVM
 - **Personas:** PER-ComplianceOfficer
 - **Acceptance:**
   1. Given the FINRA profile, when a record class without a period is created, then the retention defaults to 6 years.
 - **Verification:** CONF
 - **Origin:** DEC-003
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ### CR-FINRA-003 — Supervisory review evidence
 - **Statement:** Approvals, reviews and supervisory actions MUST be evidenced with reviewer, time and the reviewed content hash.
 - **Control reference:** FINRA Rule 3110 (supervision)
 - **Rationale:** Supervisory evidence.
-- **Priority:** Should · **Phase:** PH-2 · **Systems:** DVM
+- **Priority:** Should · **Phase:** PH-5 · **Systems:** DVM
 - **Personas:** PER-ComplianceOfficer
 - **Acceptance:**
   1. Given FR-FLOW-044, when examined, then the evidence elements are present.
 - **Verification:** INSP
 - **Origin:** DEC-003
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ## SOX — Sarbanes-Oxley IT general controls
 
@@ -513,45 +517,49 @@ DEC-003: US first, GDPR designed in.
 - **Statement:** Where consumers sign, the platform MUST obtain and record affirmative consent after the required disclosures, including the right to paper copies and withdrawal.
 - **Control reference:** 15 U.S.C. §7001(c)
 - **Rationale:** Enforceability.
-- **Priority:** Must · **Phase:** PH-2 · **Systems:** WSP
+- **Priority:** Must · **Phase:** PH-5 · **Systems:** WSP
 - **Personas:** PER-ExternalParty
 - **Acceptance:**
   1. Given a consumer ceremony, when completed, then the consent record includes the disclosures shown.
 - **Verification:** SCN, INSP
 - **Origin:** DEC-003
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ### CR-ESIGN-002 — Accurate, reproducible retention
 - **Statement:** Signed records MUST be retained in a form that accurately reflects them and remains accessible and reproducible for all entitled parties.
 - **Control reference:** 15 U.S.C. §7001(d), (e); UETA §12
 - **Rationale:** Record retention.
-- **Priority:** Must · **Phase:** PH-2 · **Systems:** DVM, WSP
+- **Priority:** Must · **Phase:** PH-5 · **Systems:** DVM, WSP
 - **Personas:** PER-ContractManager
 - **Acceptance:**
   1. Given FR-OFFICE-013 and FR-SIGN-013, when verified, then the requirement is met.
 - **Verification:** CONF
 - **Origin:** DEC-003
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ### CR-ESIGN-003 — Attribution
 - **Statement:** Signatures MUST be attributable to the signer through recorded authentication evidence.
 - **Control reference:** UETA §9
 - **Rationale:** Attribution.
-- **Priority:** Must · **Phase:** PH-2 · **Systems:** WSP
+- **Priority:** Must · **Phase:** PH-5 · **Systems:** WSP
 - **Personas:** PER-ContractManager
 - **Acceptance:**
   1. Given a signature, when inspected, then the authentication evidence is present.
 - **Verification:** CONF
 - **Origin:** DEC-003
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ### CR-ESIGN-004 — Intent and association
 - **Statement:** The signing process MUST capture the intent to sign and logically associate the signature with the record (the seal).
 - **Control reference:** 15 U.S.C. §7006(5); UETA §2(8), §7
 - **Rationale:** Validity.
-- **Priority:** Must · **Phase:** PH-2 · **Systems:** WSP, DVM
+- **Priority:** Must · **Phase:** PH-5 · **Systems:** WSP, DVM
 - **Personas:** PER-ContractManager
 - **Acceptance:**
   1. Given FR-SIGN-021, when verified, then intent and association are provable.
 - **Verification:** CONF
 - **Origin:** DEC-003
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ## WCAG — Accessibility
 

@@ -150,7 +150,7 @@ SOC2, SEC (SEC Rule 17a-4 and Rule 204-2), FINRA (Rule 4511), SOX, HIPAA, GDPR, 
 | BENCH | Benchmarks against NR targets on the reference environment | benchmark report with percentiles |
 | SEC | Security assessment: penetration test, sandbox escape tests, permission matrix | findings report |
 | USE | Usability study with target personas | task success rate, time on task, SUS score |
-| PILOT | Pilot acceptance with a design-partner customer | signed acceptance record plus metrics |
+| PILOT | Acceptance drill with an external party (for example the PH-3 CPA audit drill, DEC-023) | signed acceptance record plus metrics |
 | INSP | Inspection of documents, schemas or configurations | review checklist record |
 | AUDIT | Third-party audit or attestation | auditor report (for example SOC 2 Type II) |
 

@@ -17,7 +17,7 @@ verification volume (UBS-VER-00), except the DVM suites, which are defined in §
 | Suite | Content | Method | Runs |
 |---|---|---|---|
 | SUITE-DVM-CONF | standard conformance vectors (VER-CONF-*), all profiles the phase claims | CONF | every commit to the kernel repository |
-| SUITE-DVM-STORE | storage adapter suite, identical on PostgreSQL and SQLite | CONF | every commit |
+| SUITE-DVM-STORE | storage adapter suite on PostgreSQL; identical results on SQLite from PH-4 (DEC-024) | CONF | every commit |
 | SUITE-DVM-PROP | property tests: timelines, merge, diff, tree history independence, balances, cursors, row filters | PROP | every commit (short), nightly (long: 1 h per property) |
 | SUITE-DVM-SIM | deterministic simulation of concurrency, crashes and clock faults | SIM | nightly: 10,000 seeds; weekly: 1,000,000 seeds |
 | SUITE-DVM-FAULT | fault injection on real PostgreSQL, SQLite and object store: kill -9, disk full, network partitions, corrupt chunks | FAULT | nightly |
@@ -74,11 +74,11 @@ without mapped tests blocks the phase exit for its phase.
 | Phase | DVM evidence required |
 |---|---|
 | PH-0 | prototype benchmarks validating DEC-020 and ASM-003; FORM models for commit/CAS, merge and timelines checked; storage and tree prototype passing SUITE-DVM-PROP core properties |
-| PH-1a | SUITE-DVM-CONF 100% for Core, Bitemporal, Ledger and Proof (roots, signatures, inclusion); SUITE-DVM-STORE 100% on both adapters; SIM 10,000 seeds with no violation; FAULT matrix passed; BENCH gates NR-PERF-001…008; export and import round trip equal |
+| PH-1a | SUITE-DVM-CONF 100% for Core, Bitemporal, Ledger and Proof (roots, signatures, inclusion); SUITE-DVM-STORE 100% on PostgreSQL; SIM 10,000 seeds with no violation; FAULT matrix passed; BENCH gates NR-PERF-001…008; export and import round trip equal |
 | PH-1b | CONF for Governance profile (sheets, decisions, lifecycles); SEC permission matrix 100%; L2 escape suite passed; NR-PERF-009, NR-PERF-010, NR-PERF-014 |
-| PH-2 | lenses, decision tables, approvals, deferred commits, sagas, ReBAC, masking: CONF and PROP; FORM for approvals and sagas; replay corpus 100%; scenario suites for fund back office and contracts pass on the DVM |
-| PH-3 | L3 escape suite and cross-architecture determinism; crypto-shredding with proofs; sync structures under SIM; NR-PERF-018 |
-| PH-4 | tiering reads (NR-PERF-021); Cell-scale BENCH (NR-SCAL-001, NR-SCAL-002); SUITE-DVM-XIMPL with the third-party embedding build |
+| PH-2 | lenses, decision tables, approvals, deferred commits, sagas, ReBAC, masking: CONF and PROP; FORM for approvals and sagas; replay corpus 100%; Basic Finance scenario suite (SUITE-PH2-FINANCE) passes on the DVM |
+| PH-3 | L3 escape suite and cross-architecture determinism; crypto-shredding with proofs; holds and retention |
+| PH-4 | SQLite adapter passes SUITE-DVM-STORE and SUITE-DVM-CONF; sync structures under SIM and NR-PERF-018 (DEC-024); tiering reads (NR-PERF-021); Cell-scale BENCH (NR-SCAL-001, NR-SCAL-002); SUITE-DVM-XIMPL with the third-party embedding build |
 | PH-5 | browser build passes SUITE-DVM-CONF; shared-BPU structures under SIM and FORM |
 
 ## 6. Environments

@@ -18,4 +18,4 @@ depends_on: [UBS-SYS-NTY-02]
 | Phase | NTY evidence |
 |---|---|
 | PH-2 | verifier CLI verifies packs produced by the DVM |
-| PH-3 | anchoring for all design-partner tenants; tamper corpus 100% detected; independent review of the verifier by an external party |
+| PH-3 | anchoring for the demonstration tenant; CPA audit drill (SCN-511); tamper corpus 100% detected; independent review of the verifier by an external party |

@@ -16,5 +16,5 @@ depends_on: [UBS-SYS-STU-02]
 
 | Phase | STU evidence |
 |---|---|
-| PH-2 | both vertical Buks can be extended by a trained analyst in Studio within the NR-USE-004 targets; all edits appear as ordinary commits |
+| PH-2 | the Basic Finance Buk can be extended by a trained analyst in Studio within the NR-USE-004 targets; all edits appear as ordinary commits |
 | PH-3 | AI drafting produces checked branches; Buk packaging from Studio |

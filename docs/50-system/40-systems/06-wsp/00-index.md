@@ -39,10 +39,10 @@ PER-InternalAuditor, PER-RegulatorExaminer, PER-PersonalUser, PER-FieldWorker.
 | Phase | WSP scope |
 |---|---|
 | PH-1b | minimal web shell used for acceptance: generated forms, lists, details, history (engineering UI) |
-| PH-2 | production web workspace: shell, widget catalogue 1.0, forms with live validation, lists, details, timeline and as-of, diff review, tasks and inbox, explanations, Live Doc, rendering and export, e-signatures, localisation (EN, plus one more), accessibility WCAG 2.2 AA |
-| PH-3 | desktop and mobile apps, offline experience, external portal, Smart Grid, War Room, Action Messages, redlining and negotiation, dashboards, theming, Copilot panel |
-| PH-4 | Executable Books reader, external signature providers |
-| PH-5 | browser-local kernel mode (reads served by the WASM DVM) |
+| PH-2 | production Web workspace (Web only, DEC-025): shell, widget catalogue 1.0, keyboard-first entry, registers, report viewer with drill-down, close cockpit, Smart Grid, forms with live validation, lists, details, timeline and as-of, diff review, tasks and inbox, explanations, rendering and export, localisation (EN), accessibility WCAG 2.2 AA |
+| PH-3 | external portal, War Room, Action Messages, dashboards, theming, Copilot panel |
+| PH-4 | desktop and mobile apps and offline experience (DEC-024, DEC-025), Executable Books reader |
+| PH-5 | browser-local kernel mode; contract-only features: Live Doc, clause library, redlining and negotiation, electronic signatures (DEC-022) |
 
 ## 5. Technology
 

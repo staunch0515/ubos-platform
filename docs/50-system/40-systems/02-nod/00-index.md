@@ -60,11 +60,11 @@ webhooks), PER-PersonalUser and PER-FieldWorker (Box).
 | Gate or phase | NOD scope |
 |---|---|
 | PH-0 | transport and host-service skeleton for the storage prototype |
-| PH-1a | headless Box host and in-process host for the kernel; CLI host services |
+| PH-1a | in-process host for the kernel on PostgreSQL (DEC-024); CLI host services |
 | PH-1b | Server single node: UBTP, local authentication, sessions, secrets, jobs, schedules, outbox release, events, blobs, telemetry, health, backups, configuration, genesis Buks |
-| PH-2 | HA Server, REST facade, webhooks, OIDC and SAML, SCIM, notifications, file scanning and previews, text search, DR, upgrades |
-| PH-3 | Box desktop and mobile apps, device sync, managed Server, vector search adapter, legal-hold and retention jobs |
-| PH-4 | Cell profile, worker role, fleet agent for CTL, usage metering, tiering |
+| PH-2 | HA Server, REST facade, webhooks, OIDC and SAML, SCIM, notifications, file scanning and previews, text search, DR, upgrades, US bank statement and payment file formats (DEC-022) |
+| PH-3 | managed Server for one demonstration tenant, vector search adapter, legal-hold and retention jobs |
+| PH-4 | Box (headless, desktop, mobile) and device sync (DEC-024); Cell profile, worker role, fleet agent for CTL, usage metering, tiering |
 | PH-5 | QUIC transport, federation module hooks, browser host support services |
 
 ## 6. Crate and module map

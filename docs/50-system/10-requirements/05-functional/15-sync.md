@@ -19,168 +19,184 @@ lacks, and they verify everything they receive (IMP-07).
   2. compute missing objects by walking Merkle structures (have and want);
   3. transfer the missing chunks and commits in resumable batches.
 - **Rationale:** Efficient, verifiable replication (IMP-07).
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** DVM, NOD, BPA
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** DVM, NOD, BPA
 - **Personas:** PER-KernelEngineer
 - **Acceptance:**
   1. Given two replicas differing by 100 objects out of 10,000,000, when synchronised, then the transfer volume is proportional to the 100 objects.
 - **Verification:** CONF, BENCH
 - **Origin:** IMP-07, IMP-03
+- **Phase note:** moved to PH-4 by DEC-024 and DEC-025 (SQLite, Box, devices and sync).
 
 ### FR-SYNC-012 — Integrity on receipt
 - **Statement:** Every received chunk, object version and commit MUST be verified (hash and signature) before it becomes visible. Invalid data MUST be rejected, and the peer reported.
 - **Rationale:** Zero-trust replication (EXT-RFC 5.3).
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** DVM
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** DVM
 - **Personas:** PER-SecurityOfficer
 - **Acceptance:**
   1. Given a peer sending a corrupted chunk, when received, then it is rejected, and sync fails with `SYNC.INTEGRITY_FAILURE`.
 - **Verification:** SEC, FAULT
 - **Origin:** EXT-RFC
+- **Phase note:** moved to PH-4 by DEC-024 and DEC-025 (SQLite, Box, devices and sync).
 
 ### FR-SYNC-013 — Authorised scope
 - **Statement:** A node MUST send only objects within the replication scope that the receiving principal and device are cleared for.
 - **Rationale:** Replication is a read channel.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** NOD
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** NOD
 - **Personas:** PER-SecurityOfficer
 - **Acceptance:**
   1. Given a device without `confidential` clearance, when synchronised, then no confidential objects are sent.
 - **Verification:** SEC
 - **Origin:** NEW
+- **Phase note:** moved to PH-4 by DEC-024 and DEC-025 (SQLite, Box, devices and sync).
 
 ### FR-SYNC-014 — Resumable and idempotent
 - **Statement:** Interrupted syncs MUST resume from the last acknowledged batch, and repeated batches MUST have no additional effect.
 - **Rationale:** SCN-401 A1.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** NOD
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** NOD
 - **Personas:** PER-FieldWorker
 - **Acceptance:**
   1. Given an interruption at 60%, when resumed, then the transfer continues without duplicates.
 - **Verification:** FAULT, SIM
 - **Origin:** NEW
+- **Phase note:** moved to PH-4 by DEC-024 and DEC-025 (SQLite, Box, devices and sync).
 
 ### FR-SYNC-015 — Formal model of the protocol
 - **Statement:** The sync protocol MUST have a formal model with checked safety properties (no lost commits, no divergence after quiescence, integrity) before release.
 - **Rationale:** Distributed protocols need model checking.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** BPA
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** BPA
 - **Personas:** PER-KernelEngineer
 - **Acceptance:**
   1. Given the model, when checked for the declared bounds, then no invariant violation is found.
 - **Verification:** FORM
 - **Origin:** NEW
+- **Phase note:** moved to PH-4 by DEC-024 and DEC-025 (SQLite, Box, devices and sync).
 
 ## CAP-SYNC-02 — Box–Server sync
 
 ### FR-SYNC-021 — Replication scopes
 - **Statement:** Administrators and users MUST be able to define replication scopes for Box and mobile devices by classes, queries, VAEs and time windows.
 - **Rationale:** Devices hold only what they need.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** NOD, CTL
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** NOD, CTL
 - **Personas:** PER-FieldWorker, PER-TenantAdministrator
 - **Acceptance:**
   1. Given the scope "inspections, region West, last 90 days", when synchronised, then only matching objects are on the device.
 - **Verification:** CONF
 - **Origin:** IMP-07
+- **Phase note:** moved to PH-4 by DEC-024 and DEC-025 (SQLite, Box, devices and sync).
 
 ### FR-SYNC-022 — Bidirectional sync with governed integration
 - **Statement:** Local commits made on a device MUST be pushed to the server as a device branch. They are then integrated into the target branch automatically for `direct`-policy classes, and through a change set for `change_set`-policy classes.
 - **Rationale:** Offline work obeys the same governance.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** NOD, DVM
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** NOD, DVM
 - **Personas:** PER-FieldWorker
 - **Acceptance:**
   1. Given offline edits to inspections (`direct`) and to a checklist template (`change_set`), when synchronised, then the inspections merge, and the template change becomes a change set.
 - **Verification:** SCN
 - **Origin:** IMP-07
+- **Phase note:** moved to PH-4 by DEC-024 and DEC-025 (SQLite, Box, devices and sync).
 
 ### FR-SYNC-023 — Background and scheduled sync
 - **Statement:** Devices MUST sync in the background when connected, on schedule and on demand, with bandwidth and battery policies on mobile.
 - **Rationale:** Seamless experience.
-- **Priority:** Should · **Phase:** PH-3 · **Systems:** NOD, WSP
+- **Priority:** Should · **Phase:** PH-4 · **Systems:** NOD, WSP
 - **Personas:** PER-FieldWorker
 - **Acceptance:**
   1. Given a metered-network policy, when on cellular, then only metadata syncs until Wi-Fi is available.
 - **Verification:** CONF
 - **Origin:** NEW
+- **Phase note:** moved to PH-4 by DEC-024 and DEC-025 (SQLite, Box, devices and sync).
 
 ### FR-SYNC-024 — Personal to organisation onboarding
 - **Statement:** A Box user MUST be able to push selected classes and their history into an organisation VAE, keeping signatures and authorship. Class mapping is required when names collide (SCN-402).
 - **Rationale:** Grow from personal to enterprise without migration.
-- **Priority:** Should · **Phase:** PH-3 · **Systems:** NOD, DVM
+- **Priority:** Should · **Phase:** PH-4 · **Systems:** NOD, DVM
 - **Personas:** PER-PersonalUser
 - **Acceptance:**
   1. Given SCN-402, when executed, then the outcomes match.
 - **Verification:** SCN
 - **Origin:** UBS-REQ-01
+- **Phase note:** moved to PH-4 by DEC-024 and DEC-025 (SQLite, Box, devices and sync).
 
 ## CAP-SYNC-03 — Offline conflicts
 
 ### FR-SYNC-031 — Definition conflicts merge
 - **Statement:** Offline Definition changes MUST integrate by three-way merge (CAP-VER-05), with lens alignment first (FR-MODEL-085).
 - **Rationale:** One merge semantics everywhere.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** DVM
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** DVM
 - **Personas:** PER-FieldWorker
 - **Acceptance:**
   1. Given SCN-401, when synchronised, then 38 inspections merge automatically, and 2 report conflicts.
 - **Verification:** SCN, PROP
 - **Origin:** IMP-01, IMP-07
+- **Phase note:** moved to PH-4 by DEC-024 and DEC-025 (SQLite, Box, devices and sync).
 
 ### FR-SYNC-032 — Ledger entries append with original valid time
 - **Statement:** Offline ledger entries MUST be appended on the server in device order, with their original capture times as valid times and new server sequence numbers.
 - **Rationale:** Facts captured offline remain facts.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** DVM
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** DVM
 - **Personas:** PER-FieldWorker
 - **Acceptance:**
   1. Given 120 offline findings, when synchronised, then 120 entries exist with their capture times as valid times.
 - **Verification:** SCN
 - **Origin:** IMP-01
+- **Phase note:** moved to PH-4 by DEC-024 and DEC-025 (SQLite, Box, devices and sync).
 
 ### FR-SYNC-033 — Post-merge validation and returned rejections
 - **Statement:** The server MUST validate integrated offline changes. Rejected changes MUST be returned to the device with explanations and kept for the user to fix, not dropped.
 - **Rationale:** No silent loss.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** DVM, WSP
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** DVM, WSP
 - **Personas:** PER-FieldWorker
 - **Acceptance:**
   1. Given an offline edit that violates a rule changed on the server, when synchronised, then the device shows the rejection with its explanation.
 - **Verification:** SCN
 - **Origin:** NEW
+- **Phase note:** moved to PH-4 by DEC-024 and DEC-025 (SQLite, Box, devices and sync).
 
 ### FR-SYNC-034 — Attributed resolutions
 - **Statement:** Conflict resolutions made on devices MUST be committed with the resolving principal and the device identity.
 - **Rationale:** Audit.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** DVM
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** DVM
 - **Personas:** PER-InternalAuditor
 - **Acceptance:**
   1. Given a resolved conflict, when audited, then the principal and device are recorded.
 - **Verification:** CONF
 - **Origin:** NEW
+- **Phase note:** moved to PH-4 by DEC-024 and DEC-025 (SQLite, Box, devices and sync).
 
 ## CAP-SYNC-04 — Selective replication
 
 ### FR-SYNC-041 — Scope by classification
 - **Statement:** Replication scopes MUST filter by data classification and MUST never exceed the device's clearance.
 - **Rationale:** Data minimisation on devices.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** NOD
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** NOD
 - **Personas:** PER-SecurityOfficer
 - **Acceptance:**
   1. Given a device cleared for `internal`, when the scope includes personal fields, then those fields are masked or excluded.
 - **Verification:** SEC
 - **Origin:** NEW
+- **Phase note:** moved to PH-4 by DEC-024 and DEC-025 (SQLite, Box, devices and sync).
 
 ### FR-SYNC-042 — Scope changes remove data
 - **Statement:** When a scope shrinks or access is revoked, the device MUST remove the data that is out of scope at its next sync, and MUST report the removal.
 - **Rationale:** Access changes reach devices.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** NOD
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** NOD
 - **Personas:** PER-SecurityOfficer
 - **Acceptance:**
   1. Given a removed region, when synchronised, then that region's objects are gone from the device.
 - **Verification:** SEC
 - **Origin:** NEW
+- **Phase note:** moved to PH-4 by DEC-024 and DEC-025 (SQLite, Box, devices and sync).
 
 ### FR-SYNC-043 — Encrypted local storage
 - **Statement:** Replicated data on devices MUST be encrypted at rest with keys protected by the device key store (FR-IAM-014).
 - **Rationale:** Device loss.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** NOD
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** NOD
 - **Personas:** PER-SecurityOfficer
 - **Acceptance:**
   1. Given the device database file copied off the device, when opened, then its content is unreadable.
 - **Verification:** SEC
 - **Origin:** NEW
+- **Phase note:** moved to PH-4 by DEC-024 and DEC-025 (SQLite, Box, devices and sync).
 
 ## CAP-SYNC-05 — Federation registry
 

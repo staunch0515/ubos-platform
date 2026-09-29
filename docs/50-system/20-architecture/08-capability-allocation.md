@@ -131,14 +131,14 @@ UBS-ARC-01.
 | Progressive disclosure | CAP-UX-04 | PH-2 | WSP | STU |
 | History and as-of viewer | CAP-UX-05 | PH-2 | WSP | — |
 | Change review | CAP-UX-06 | PH-2 | WSP | STU |
-| Desktop and mobile clients | CAP-UX-07 | PH-3 | WSP | NOD, SDK |
-| Offline experience | CAP-UX-08 | PH-3 | WSP | — |
+| Desktop and mobile clients | CAP-UX-07 | PH-4 | WSP | NOD, SDK |
+| Offline experience | CAP-UX-08 | PH-4 | WSP | — |
 | External portal | CAP-UX-09 | PH-3 | WSP | NOD, DVM |
 | Theming and branding | CAP-UX-10 | PH-3 | WSP | — |
 | Live Doc | CAP-OFFICE-01 | PH-2 | WSP | DVM |
-| Templates and clauses | CAP-OFFICE-02 | PH-2 | DVM | WSP, STU |
-| Redlining and negotiation | CAP-OFFICE-03 | PH-3 | WSP | DVM |
-| Smart Grid | CAP-OFFICE-04 | PH-3 | WSP | DVM, BRG |
+| Templates and clauses | CAP-OFFICE-02 | PH-5 | DVM | WSP, STU |
+| Redlining and negotiation | CAP-OFFICE-03 | PH-5 | WSP | DVM |
+| Smart Grid | CAP-OFFICE-04 | PH-2 | WSP | DVM, BRG |
 | War Room | CAP-OFFICE-05 | PH-3 | WSP | DVM |
 | Action Messages | CAP-OFFICE-06 | PH-3 | WSP | DVM, NOD |
 | Executable Books | CAP-OFFICE-07 | PH-4 | WSP | FRG, DVM, STU, EXC |
@@ -182,10 +182,10 @@ UBS-ARC-01.
 | Evidence packs | CAP-PROOF-05 | PH-3 | NTY | — |
 | Independent verifier | CAP-PROOF-06 | PH-3 | NTY | BPA |
 | Encrypted fields and crypto-shredding | CAP-PROOF-07 | PH-2 | DVM | NOD |
-| Object exchange protocol | CAP-SYNC-01 | PH-3 | NOD | DVM, BPA |
-| Box–Server sync | CAP-SYNC-02 | PH-3 | NOD | DVM, CTL, WSP |
-| Offline conflicts | CAP-SYNC-03 | PH-3 | DVM | WSP |
-| Selective replication | CAP-SYNC-04 | PH-3 | NOD | — |
+| Object exchange protocol | CAP-SYNC-01 | PH-4 | NOD | DVM, BPA |
+| Box–Server sync | CAP-SYNC-02 | PH-4 | NOD | DVM, CTL, WSP |
+| Offline conflicts | CAP-SYNC-03 | PH-4 | DVM | WSP |
+| Selective replication | CAP-SYNC-04 | PH-4 | NOD | — |
 | Federation registry | CAP-SYNC-05 | PH-5 | FED | DVM, NOD |
 | Cross-node VAE tree | CAP-SYNC-06 | PH-5 | FED | DVM, NOD |
 | Shared BPUs | CAP-SYNC-07 | PH-5 | FED | DVM |
@@ -214,7 +214,7 @@ UBS-ARC-01.
 | Documentation generation | CAP-DEV-08 | PH-2 | FRG | — |
 | Debugging and tracing | CAP-DEV-09 | PH-2 | FRG | DVM |
 | Spreadsheet import | CAP-MIG-01 | PH-2 | BRG | STU |
-| Document import | CAP-MIG-02 | PH-3 | BRG | WSP, AGT |
+| Document import | CAP-MIG-02 | PH-5 | BRG | WSP, AGT |
 | Legacy bulk load | CAP-MIG-03 | PH-2 | BRG | DVM |
 | Mapping definitions | CAP-MIG-04 | PH-2 | BRG | — |
 | Migration reconciliation | CAP-MIG-05 | PH-2 | BRG | — |
@@ -225,10 +225,10 @@ UBS-ARC-01.
 | Content safety | CAP-FILE-02 | PH-2 | NOD | — |
 | Previews and extraction | CAP-FILE-03 | PH-2 | NOD | WSP |
 | VFS paths | CAP-FILE-04 | PH-2 | DVM | NOD, SDK |
-| Electronic signatures | CAP-SIGN-01 | PH-2 | WSP | NOD, DVM |
-| Document seals | CAP-SIGN-02 | PH-2 | DVM | WSP |
-| Signing ceremonies | CAP-SIGN-03 | PH-2 | DVM | WSP |
-| External signature providers | CAP-SIGN-04 | PH-4 | WSP | BRG |
+| Electronic signatures | CAP-SIGN-01 | PH-5 | WSP | NOD, DVM |
+| Document seals | CAP-SIGN-02 | PH-5 | DVM | WSP |
+| Signing ceremonies | CAP-SIGN-03 | PH-5 | DVM | WSP |
+| External signature providers | CAP-SIGN-04 | PH-5 | WSP | BRG |
 | Languages | CAP-LOC-01 | PH-2 | WSP | DVM |
 | Currencies and rates | CAP-LOC-02 | PH-2 | DVM | — |
 | Time zones | CAP-LOC-03 | PH-1 | DVM | NOD, WSP |

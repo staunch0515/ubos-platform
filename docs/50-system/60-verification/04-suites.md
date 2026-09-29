@@ -16,9 +16,10 @@ phase plans.
 | Suite | Content | Methods | Phase | Trigger | Owner |
 |---|---|---|---|---|---|
 | SUITE-PH1-SCN | the 13 PH-1 scenarios: gate-1a scenarios through the in-process binding, then all 13 over UBTP on a single-node Server | SCN | PH-1 | nightly from gate-1a start; release candidates | quality lead |
-| SUITE-PH2-FUND | fund-operations scenarios SCN-101…110 (PH-2 subset) on the HA Server with WL-FUND-M and vertical fixtures | SCN, BENCH | PH-2 | nightly; release candidates | fund Buk lead |
-| SUITE-PH2-CONTRACTS | contract scenarios SCN-201…208 (PH-2 subset) with WL-CONTRACT-M, including independent seal verification | SCN, INSP | PH-2 | nightly; release candidates | contracts Buk lead |
-| SUITE-PH3-PILOT | pilot measurements: daily NAV parity, restatement, close, examination drill, agent acceptance and revert rates | PILOT, SCN | PH-3 | daily during the pilot | pilot lead |
+| SUITE-PH2-FINANCE | Basic Finance scenarios SCN-501…510 on the HA Server with the Northwind sample company and WL-FIN-M; statements, agings and 1099 summary compared with the signed expected results to the cent | SCN, BENCH, INSP | PH-2 | nightly; release candidates | finance Buk lead |
+| SUITE-PH2-FUND | **Deferred (DEC-022).** fund-operations scenarios SCN-101…110 with WL-FUND-M and vertical fixtures | SCN, BENCH | deferred | when a decision schedules the package | — |
+| SUITE-PH2-CONTRACTS | **Deferred (DEC-022).** contract scenarios SCN-201…208 with WL-CONTRACT-M, including independent seal verification | SCN, INSP | deferred | when a decision schedules the package | — |
+| SUITE-PH3-PILOT | CPA audit drill and demonstration operation: monthly and year-end close, restatement, auditor requests with verified packs, re-performance of statements, agent acceptance and revert rates | PILOT, SCN | PH-3 | daily during the demonstration year; at each auditor request | audit-drill lead |
 | SUITE-PH4-PLATFORM | platform scenarios SCN-403, SCN-404, SCN-407, SCN-410 on Cells with CTL and EXC | SCN, FAULT | PH-4 | nightly; release candidates | platform lead |
 | SUITE-PH5-FED | federation scenarios SCN-408, SCN-409, SCN-411 across two organisations' nodes | SCN, SIM | PH-5 | nightly; release candidates | federation lead |
 | SUITE-REGRESSION | union of all suites of completed phases, run on every release candidate (UBS-PH-00 §3.6) | all | PH-1…PH-5 | release candidates | quality lead |
@@ -28,7 +29,7 @@ phase plans.
 | System | Suite | Content | Methods |
 |---|---|---|---|
 | DVM | SUITE-DVM-CONF | standard conformance vectors (VER-CONF-*), all profiles the phase claims | CONF |
-| DVM | SUITE-DVM-STORE | storage adapter suite, identical on PostgreSQL and SQLite | CONF |
+| DVM | SUITE-DVM-STORE | storage adapter suite, identical on PostgreSQL and (from PH-4, DEC-024) SQLite | CONF |
 | DVM | SUITE-DVM-PROP | property tests: timelines, merge, diff, tree history independence, balances, cursors, row filters | PROP |
 | DVM | SUITE-DVM-SIM | deterministic simulation of concurrency, crashes and clock faults | SIM |
 | DVM | SUITE-DVM-FAULT | fault injection on real PostgreSQL, SQLite and object store: kill -9, disk full, network partitions, corrupt chunks | FAULT |
@@ -43,7 +44,7 @@ phase plans.
 | NOD | SUITE-NOD-JOBS | jobs, leases with fencing, schedules exactly-once, timers, dead letters, poison detection | SIM, FAULT |
 | NOD | SUITE-NOD-EVENTS | outbox release ordering, webhooks, brokers, replay, masking per recipient | SIM, FAULT, SEC |
 | NOD | SUITE-NOD-FILES | resumable uploads, scanning, previews, WORM, download links | CONF, SEC |
-| NOD | SUITE-NOD-SYNC | device sync conformance, resumability, scope reduction and wipe, efficiency | CONF, SIM, BENCH |
+| NOD | SUITE-NOD-SYNC | device sync conformance, resumability, scope reduction and wipe, efficiency (from PH-4, DEC-024) | CONF, SIM, BENCH |
 | NOD | SUITE-NOD-OPS | install, bootstrap, backup and PITR, failover, split-brain, rolling upgrade, rollback, DR drill | FAULT, SCN |
 | NOD | SUITE-NOD-BENCH | end-to-end NR-PERF through the edge; fairness; subscription latency | BENCH |
 | NOD | SUITE-NOD-PEN | external penetration test and egress SSRF tests | SEC |

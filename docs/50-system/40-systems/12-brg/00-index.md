@@ -39,9 +39,10 @@ PER-PlatformOperator.
 
 | Phase | BRG scope |
 |---|---|
-| PH-2 | spreadsheet import, legacy bulk load with history and opening balances, mapping definitions and tests, reconciliation reports, e-mail and chat adapters, bank statement and fund-platform file adapters (with NOD parsers) |
-| PH-3 | document import (DOCX to Live Doc, clause extraction), CDC export to Parquet and Iceberg, embedded analytics engine and governed datasets, event streaming out, custodian and market-data adapters |
-| PH-4 | external e-signature provider adapters; additional ERP and CRM adapters |
+| PH-2 | spreadsheet import, legacy bulk load with history and opening balances, mapping definitions and tests, reconciliation reports, e-mail and chat adapters, bank statement and payment file handling (with NOD parsers) for Basic Finance (DEC-022) |
+| PH-3 | bank connectivity adapters (SFTP, bank APIs), CDC export to Parquet and Iceberg, embedded analytics engine and governed datasets, event streaming out |
+| PH-4 | additional ERP and CRM adapters |
+| PH-5 | document import (DOCX to Live Doc, clause extraction) and external e-signature providers (DEC-022) |
 
 ## 5. Files
 

@@ -14,7 +14,7 @@ depends_on: [UBS-SYS-AGT-02]
 | SUITE-AGT-KILL | kill switch latency and completeness under load | BENCH, SEC |
 | SUITE-AGT-INJECT | prompt-injection corpus against agents with side-effect tools | SEC |
 | SUITE-AGT-MCP | MCP conformance and delegation expiry | CONF |
-| SUITE-AGT-EVAL | evaluation suites for the reference agents (reconciliation assistant, contract clause reviewer) | CONF |
+| SUITE-AGT-EVAL | evaluation suites for the reference agents (bank reconciliation agent, AP coding agent; DEC-022) | CONF |
 | SUITE-AGT-SCN | agent scenarios SCN-3xx end to end | SCN |
 
 | Phase | AGT evidence |

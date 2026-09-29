@@ -17,7 +17,7 @@ system chapters (`20-`, `30-`, `40-`) do that and trace back to these IDs.
 | ID | File | Content |
 |---|---|---|
 | UBS-REQ-01 | `01-vision-and-scope.md` | problem, vision, principles, value propositions, product layers, editions, goals, scope, competitive frame |
-| UBS-REQ-02 | `02-personas.md` | 28 personas across business, assurance, builder, platform, AI and ecosystem layers |
+| UBS-REQ-02 | `02-personas.md` | 33 personas across business, assurance, builder, platform, AI and ecosystem layers |
 | UBS-REQ-03 | `03-capability-map.md` | 220 capabilities in 30 domains, with phases and FR numbering ranges |
 | UBS-REQ-04 | `04-scenarios/` | end-to-end reference scenarios (SCN-*) |
 | UBS-REQ-05 | `05-functional/` | functional requirements (FR-*) by domain |
@@ -37,17 +37,17 @@ Every FR, NR and CR item follows the block in `UBS-META-01` §5:
 
 The FR number encodes the capability: `FR-VER-051` refines `CAP-VER-05`.
 
-## Volume statistics (end of batch B9)
+## Volume statistics (after DEC-022…026)
 
 | Item kind | Count |
 |---|---|
-| Personas (PER) | 28 |
+| Personas (PER) | 33 |
 | Capabilities (CAP) | 220 in 30 domains |
-| Scenarios (SCN) | 55 |
+| Scenarios (SCN) | 67 (48 active, 19 deferred by DEC-022) |
 | Functional requirements (FR) | 800 |
 | Non-functional requirements (NR) | 106 |
 | Compliance requirements (CR) | 54 |
-| Constraints (CST) and assumptions (ASM) | 18 and 12 |
+| Constraints (CST) and assumptions (ASM) | 18 and 14 |
 | Glossary terms (GL) | 146 |
 | Reference environments (ENV) | 7 |
 

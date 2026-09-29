@@ -159,7 +159,7 @@ depends_on: [UBS-REQ-06]
 
 ### NR-DET-002 — Cross-implementation equivalence
 - **Statement:** Conforming implementations MUST produce identical results.
-- **Target:** 100% of determinism vectors identical across the reference DVM on PostgreSQL, the reference DVM on SQLite and (from PH-4) any certified implementation.
+- **Target:** 100% of determinism vectors identical across platforms for the reference DVM on PostgreSQL (PH-1), and from PH-4 on SQLite (DEC-024) and any certified implementation.
 - **Rationale:** FR-LOGIC-074.
 - **Priority:** Must · **Phase:** PH-1 · **Systems:** BPA, DVM
 - **Personas:** PER-ThirdPartyImplementer
@@ -344,7 +344,7 @@ depends_on: [UBS-REQ-06]
 - **Priority:** Must · **Phase:** PH-1 · **Systems:** FRG
 - **Personas:** PER-ComplianceOfficer
 - **Acceptance:**
-  1. Given the first-vertical Buks, when checked, then 100% coverage.
+  1. Given the first-party Buks (Basic Finance from PH-2), when checked, then 100% coverage.
 - **Verification:** INSP, CONF
 - **Origin:** NEW
 

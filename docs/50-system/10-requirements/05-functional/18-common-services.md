@@ -187,118 +187,129 @@ depends_on: [UBS-REQ-05]
 ### FR-SIGN-011 — E-SIGN and UETA compliant signing
 - **Statement:** Electronic signing MUST capture consent to electronic records, signer identity verification, intent to sign, an association of the signature with the record, and record retention and reproduction for all parties.
 - **Rationale:** Legal enforceability in the US (DEC-003).
-- **Priority:** Must · **Phase:** PH-2 · **Systems:** WSP, DVM
+- **Priority:** Must · **Phase:** PH-5 · **Systems:** WSP, DVM
 - **Personas:** PER-ContractManager, PER-ExternalParty
 - **Acceptance:**
   1. Given a signing ceremony, when completed, then consent, identity evidence and intent are recorded per signer.
 - **Verification:** SCN, AUDIT
 - **Origin:** NEW
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ### FR-SIGN-012 — Signer authentication levels
 - **Statement:** Signing MUST support authentication levels (e-mail link, SMS one-time code, SSO, passkey) configurable per document type.
 - **Rationale:** Risk-appropriate assurance.
-- **Priority:** Must · **Phase:** PH-2 · **Systems:** WSP, NOD
+- **Priority:** Must · **Phase:** PH-5 · **Systems:** WSP, NOD
 - **Personas:** PER-ContractManager
 - **Acceptance:**
   1. Given a document type requiring a passkey, when a signer uses only e-mail, then signing is refused.
 - **Verification:** SEC
 - **Origin:** NEW
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ### FR-SIGN-013 — Copies for all parties
 - **Statement:** Every signer MUST receive the executed document and its verification data.
 - **Rationale:** E-SIGN retention and reproduction requirements.
-- **Priority:** Must · **Phase:** PH-2 · **Systems:** WSP, NOD
+- **Priority:** Must · **Phase:** PH-5 · **Systems:** WSP, NOD
 - **Personas:** PER-ExternalParty
 - **Acceptance:**
   1. Given execution, when completed, then each signer receives the PDF and a verification link.
 - **Verification:** SCN
 - **Origin:** NEW
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ## CAP-SIGN-02 — Document seals
 
 ### FR-SIGN-021 — Seal over document and data
 - **Statement:** A signature seal MUST be computed over the rendered document hash, the data snapshot (the object versions bound in the document) and the signer's intent statement, and MUST be signed with the signer's or the platform's key according to the authentication level.
 - **Rationale:** Bind the signature to both text and data (EXT-TRI "Live Contract").
-- **Priority:** Must · **Phase:** PH-2 · **Systems:** DVM, WSP
+- **Priority:** Must · **Phase:** PH-5 · **Systems:** DVM, WSP
 - **Personas:** PER-ContractManager, PER-RegulatorExaminer
 - **Acceptance:**
   1. Given a sealed document, when one data value is changed, then seal verification fails.
 - **Verification:** CONF, SEC
 - **Origin:** EXT-TRI
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ### FR-SIGN-022 — Embedded verification data
 - **Statement:** Executed PDFs MUST embed the seal and verification references, and the verifier (CAP-PROOF-06) MUST verify them.
 - **Rationale:** Portable proof.
-- **Priority:** Must · **Phase:** PH-2 · **Systems:** WSP
+- **Priority:** Must · **Phase:** PH-5 · **Systems:** WSP
 - **Personas:** PER-ExternalParty
 - **Acceptance:**
   1. Given an executed PDF, when checked with the verifier, then the seal verifies.
 - **Verification:** CONF
 - **Origin:** NEW
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ### FR-SIGN-023 — Executed state is immutable
 - **Statement:** Once executed, the signed document version and its bound data versions MUST be immutable. Changes require amendments (SCN-205).
 - **Rationale:** Legal certainty.
-- **Priority:** Must · **Phase:** PH-2 · **Systems:** DVM
+- **Priority:** Must · **Phase:** PH-5 · **Systems:** DVM
 - **Personas:** PER-ContractManager
 - **Acceptance:**
   1. Given an executed agreement, when a direct edit is attempted, then it fails with `SIGN.EXECUTED_IMMUTABLE`.
 - **Verification:** CONF
 - **Origin:** NEW
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ## CAP-SIGN-03 — Signing ceremonies
 
 ### FR-SIGN-031 — Multi-party ordered and parallel signing
 - **Statement:** Ceremonies MUST support ordered, parallel and mixed signer groups, with reminders, expiry and decline with reason.
 - **Rationale:** Real contracting processes.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** WSP, DVM
+- **Priority:** Must · **Phase:** PH-5 · **Systems:** WSP, DVM
 - **Personas:** PER-ContractManager
 - **Acceptance:**
   1. Given the order internal → counterparty → internal countersign, when run, then each step waits for the previous one.
 - **Verification:** SCN
 - **Origin:** NEW
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ### FR-SIGN-032 — Void on change
 - **Statement:** Any change to the document or bound data during a ceremony MUST void pending signatures and restart the ceremony (SCN-204 A1).
 - **Rationale:** Sign what was seen.
-- **Priority:** Must · **Phase:** PH-2 · **Systems:** DVM
+- **Priority:** Must · **Phase:** PH-5 · **Systems:** DVM
 - **Personas:** PER-ContractManager
 - **Acceptance:**
   1. Given SCN-204 A1, when executed, then the outcomes match.
 - **Verification:** SCN
 - **Origin:** NEW
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ### FR-SIGN-033 — Ceremony audit trail
 - **Statement:** Ceremonies MUST produce an audit trail (sent, viewed, consented, authenticated, signed, declined) included in the executed record.
 - **Rationale:** Evidence.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** DVM
+- **Priority:** Must · **Phase:** PH-5 · **Systems:** DVM
 - **Personas:** PER-InternalAuditor
 - **Acceptance:**
   1. Given an executed document, when audited, then all ceremony events are present.
 - **Verification:** CONF
 - **Origin:** NEW
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ## CAP-SIGN-04 — External signature providers
 
 ### FR-SIGN-041 — Provider integration
 - **Statement:** The platform SHOULD integrate external signature providers (including advanced and qualified signature services) through connectors, and MUST store their evidence in the executed record.
 - **Rationale:** Customer choice and cross-border needs.
-- **Priority:** Should · **Phase:** PH-4 · **Systems:** BRG, WSP
+- **Priority:** Should · **Phase:** PH-5 · **Systems:** BRG, WSP
 - **Personas:** PER-ContractManager
 - **Acceptance:**
   1. Given a provider-signed document, when stored, then the provider evidence is attached and verifiable.
 - **Verification:** CONF
 - **Origin:** NEW
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ### FR-SIGN-042 — Uniform seal model
 - **Statement:** External signatures MUST be wrapped in the platform seal model (FR-SIGN-021), so that verification is uniform.
 - **Rationale:** One verifier.
-- **Priority:** Should · **Phase:** PH-4 · **Systems:** WSP
+- **Priority:** Should · **Phase:** PH-5 · **Systems:** WSP
 - **Personas:** PER-RegulatorExaminer
 - **Acceptance:**
   1. Given an externally signed document, when verified, then the platform seal also verifies.
 - **Verification:** CONF
 - **Origin:** NEW
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ## CAP-LOC-01 — Languages
 
