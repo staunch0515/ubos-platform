@@ -1,6 +1,6 @@
 # 美国标准基础财务系统需求 — 总结报告
 
-> 对象：产品负责人 · 日期：2026-09-29 · 对应分支：`claude/gifted-edison-cmqbu9`
+> 对象：产品负责人 · 日期：2026-09-29 · 仓库：`staunch0515/ubos-unit`（原 `ubos-platform` 分支 `claude/gifted-edison-cmqbu9`）
 > 需求正文（英文，权威版本）：`docs/finance-requirements/`，入口 `README.md`
 
 ---
