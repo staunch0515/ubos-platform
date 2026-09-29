@@ -11,7 +11,7 @@ depends_on: [UBS-META-00, UBS-META-01]
 ## 1. Current state
 
 - **Stage:** Phase plans (Stage F).
-- **Next batch:** B23.
+- **Next batch:** B24.
 - **Stop point:** after B9, wait for product-owner confirmation (DEC-010).
 
 ## 2. Batch plan
@@ -49,7 +49,7 @@ depends_on: [UBS-META-00, UBS-META-01]
 - [x] **B22** BPA (governance of the standard and its conformance programme)
 
 ### Stage F — Phases (`50-phases/`)
-- [ ] **B23** PH-0, PH-1, PH-2
+- [x] **B23** PH-0, PH-1, PH-2
 - [ ] **B24** PH-3, PH-4, PH-5
 
 ### Stage G — Verification (`60-verification/`)
@@ -93,3 +93,4 @@ depends_on: [UBS-META-00, UBS-META-01]
 | 2026-09-29 | B20 | AGT chapter: 30 design requirements (model gateway with routing, classification enforcement and redaction, metering, recording, resilience, no-training terms, structured outputs; agents as principals, agent branches, triggers, bounded loop, simulation before submission, kill switch, feedback, clarification; typed tools, permission filtering, previews, MCP, recording, prompt-injection containment; knowledge, retrieval, citations; Copilot, explanations, AI builder; evaluations, monitoring, governed evolution), 5 interfaces, run data, state machines. EXC chapter: 10 design requirements (publishers and namespaces, WORM archive storage, reproducible verification, listings, licences with offline validity, fiat invoicing, payouts on a UBOS ledger, advisories and yanking, no data hostage, private registries and mirrors). |
 | 2026-09-29 | B21 | FED chapter: 8 design requirements (signed registrations, resolution with DNS fallback, trust relationships, DID-bound mTLS, remote parents with fallback, shared BPUs with multi-party signatures, aggregated child queries, registry neutrality). NTY chapter: 9 design requirements (anchoring with two TSAs, monitoring, optional public log, evidence pack service, redaction, open verifier incl. offline web build, reports, examination support, least privilege). BRG chapter: 16 design requirements (spreadsheet inference, row results, history loads, mappings with tests, reconciliation, document import, adapter framework, financial adapters, mail and chat, streaming out, e-signature providers, exactly-once CDC to Iceberg, export masking, DuckDB engine, isolation). |
 | 2026-09-29 | B22 | BPA governance chapter: 10 design requirements (repository and signed releases, profiles, MUST-clause vector coverage, formal models with trace-to-vector alignment, change process and errata, compatibility policy, extension and algorithm registries, certification programme, reference licensing, standard-before-code). Systems volume complete: 13 systems, 682 DSN, 118 IF, 69 suites. Checker: DSN, IF, DAT, UBS-SYS and UBS-ARC references now strict. FRG adapter aligned with STD-CONF-002. |
+| 2026-09-29 | B23 | Phase volume: index with common rules (entry, scope control, six verification layers, universal thresholds, acceptance board, regression and carry-over rules, ID conventions) and system × phase matrix; generator `tools/gen_phase_features.py` producing exact feature lists per phase (UBS-PHF-0…5) incl. PH-1 gate tags; plans PH-0 (7 exits), PH-1 with gates 1a/1b (20 exits, 17 metrics), PH-2 (15 exits, 14 metrics). |
