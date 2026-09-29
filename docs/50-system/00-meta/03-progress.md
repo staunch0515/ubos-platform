@@ -11,7 +11,7 @@ depends_on: [UBS-META-00, UBS-META-01]
 ## 1. Current state
 
 - **Stage:** Requirements volume (Batches B2–B9).
-- **Next batch:** B5.
+- **Next batch:** B6.
 - **Stop point:** after B9, wait for product-owner confirmation (DEC-010).
 
 ## 2. Batch plan
@@ -23,7 +23,7 @@ depends_on: [UBS-META-00, UBS-META-01]
 - [x] **B2** `00-index`, `01-vision-and-scope`, `02-personas`, `03-capability-map`
 - [x] **B3** `04-scenarios/`: platform core (SCN-0xx), fund operations (SCN-1xx), contracts (SCN-2xx), AI agents (SCN-3xx), operations and federation (SCN-4xx)
 - [x] **B4** Functional: MODEL, VER, TIME, LEDG, TXN
-- [ ] **B5** Functional: LOGIC, RULE, FLOW, EVT, QRY
+- [x] **B5** Functional: LOGIC, RULE, FLOW, EVT, QRY
 - [ ] **B6** Functional: IAM, TEN, AUD, UX, OFFICE
 - [ ] **B7** Functional: AI, PKG, INT, ANL, PROOF, SYNC
 - [ ] **B8** Functional: OPS, BILL, DEV, MIG, NTF, FILE, SIGN, LOC, STD
@@ -73,3 +73,4 @@ depends_on: [UBS-META-00, UBS-META-01]
 | 2026-09-29 | B2 | Requirements index, vision and scope, 28 personas, capability map (220 capabilities, FR numbering rule). |
 | 2026-09-29 | B3 | 55 reference scenarios (platform core 18, fund operations 10, contracts 8, AI 7, operations/federation 12) with phase assignment. |
 | 2026-09-29 | B4 | Functional requirements MODEL (58), VER (50), TIME+LEDG (52), TXN (24): 184 FR in total. Checker now validates FR→capability mapping. |
+| 2026-09-29 | B5 | Functional requirements LOGIC (46), RULE (31), FLOW (34), EVT (32), QRY (17): FR total 344. |
