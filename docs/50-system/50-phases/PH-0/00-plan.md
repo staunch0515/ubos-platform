@@ -98,12 +98,14 @@ following design items as prototypes; they are re-verified in PH-1 at production
 
 | Scope in PH-0 | Suite | VER range |
 |---|---|---|
-| commit/CAS, merge, timeline models | SUITE-BPA-MODELS | VER-FORM-0001…0099 |
-| coverage report of 0.1 MUST clauses | SUITE-BPA-COVERAGE | VER-INSP-0001…0049 |
-| 0.1 vectors on the prototype (PostgreSQL and SQLite) | SUITE-DVM-CONF | VER-CONF-0001…0999 |
+| commit/CAS, merge, timeline models | SUITE-BPA-MODELS | VER-FORM-9000…9049 |
+| coverage report of 0.1 MUST clauses | SUITE-BPA-COVERAGE | VER-INSP-9000…9049 |
+| 0.1 vectors on the prototype (PostgreSQL and SQLite) | SUITE-DVM-CONF | standard vectors VER-CONF-0001…2699 (Core, Bitemporal, Ledger areas) |
 | roots history independence, timeline non-overlap, merge determinism | SUITE-DVM-PROP | VER-PROP-0001…0099 |
 | prototype benchmarks | SUITE-DVM-BENCH | VER-BENCH-0001…0049 |
 | first L2 escape cases | SUITE-DVM-SEC | VER-SEC-0001…0099 |
+
+VER numbering follows the allocation of the verification volume (UBS-VER-00 §3).
 
 ### 7.3 Environments and datasets
 
