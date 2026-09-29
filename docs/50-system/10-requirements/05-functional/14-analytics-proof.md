@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-05-14
 title: Functional Requirements — ANL (Projections, Reporting, Analytics Exit) and PROOF (Integrity and Evidence)
-status: review
+status: complete
 phase: PH-1
 depends_on: [UBS-REQ-05, UBS-REQ-05-02]
 ---

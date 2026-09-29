@@ -81,6 +81,8 @@ withdrawn item keeps its ID and is marked `**Status:** Withdrawn` with a reason.
 | Metric | `MET-<AREA>-<NNN>` | `MET-PERF-003` | phase plans, NR |
 | Risk | `RSK-<NNN>` | `RSK-017` | phase plans |
 | Decision | `DEC-<NNN>` | `DEC-011` | `90-decisions` |
+| Architecture rule | `AR-<NNN>` | `AR-004` | `20-architecture` (DEC-017) |
+| Inter-system contract | `CTR-<NNN>` | `CTR-012` | `20-architecture` (DEC-017) |
 | Open question | `OQ-<NNN>` | `OQ-004` | `00-meta/03-progress.md` |
 | Input reference | `IN-<NN>` / `IMP-<NN>` | `IMP-02` | `00-meta/06-inputs.md` |
 

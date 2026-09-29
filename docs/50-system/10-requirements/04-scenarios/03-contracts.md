@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-04-03
 title: Scenarios — Contract Management (First Vertical)
-status: review
+status: complete
 phase: PH-2
 depends_on: [UBS-REQ-04]
 ---

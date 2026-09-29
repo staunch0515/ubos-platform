@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-05-18
 title: Functional Requirements — NTF (Notifications), FILE (Files), SIGN (Signatures), LOC (Localisation)
-status: review
+status: complete
 phase: PH-1
 depends_on: [UBS-REQ-05]
 ---

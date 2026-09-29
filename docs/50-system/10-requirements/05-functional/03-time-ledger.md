@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-05-03
 title: Functional Requirements — TIME (Bitemporal) and LEDG (Ledger State)
-status: review
+status: complete
 phase: PH-1
 depends_on: [UBS-REQ-05, UBS-REQ-05-01, UBS-REQ-05-02]
 ---

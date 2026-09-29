@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-06-02
 title: Non-Functional Requirements — AVAIL, DUR, DET, SEC, PRIV
-status: review
+status: complete
 phase: PH-1
 depends_on: [UBS-REQ-06]
 ---

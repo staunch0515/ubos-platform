@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-05-15
 title: Functional Requirements — SYNC (Replication, Offline, Federation, Browser Kernel)
-status: review
+status: complete
 phase: PH-3
 depends_on: [UBS-REQ-05, UBS-REQ-05-02, UBS-REQ-05-14]
 ---

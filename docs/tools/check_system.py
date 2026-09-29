@@ -34,7 +34,7 @@ ID_RE = (r'UBS-[A-Z]+(?:-[A-Z]+)?-\d{1,3}|UBS-README'
          r'|FR-[A-Z]+-\d{3}|NR-[A-Z]+-\d{3}|CR-[A-Z0-9]+-\d{3}|CST-\d{3}|ASM-\d{3}'
          r'|STD-[A-Z]+-\d{3}|DSN-[A-Z]+-\d{3}|IF-[A-Z]+-\d{3}|DAT-[A-Z][A-Za-z0-9]+'
          r'|GL-[A-Z][A-Za-z0-9]+|EXIT-\d-\d{2}|VER-[A-Z]+-\d{4}|SUITE-[A-Z0-9-]+[A-Z0-9]'
-         r'|MET-[A-Z]+-\d{3}|RSK-\d{3}|DEC-\d{3}|OQ-\d{3}|IMP-\d{2}|IN-\d{2}|ENV-[A-Z0-9-]+[A-Z0-9]'
+         r'|MET-[A-Z]+-\d{3}|RSK-\d{3}|AR-\d{3}|CTR-\d{3}|DEC-\d{3}|OQ-\d{3}|IMP-\d{2}|IN-\d{2}|ENV-[A-Z0-9-]+[A-Z0-9]'
          r'|EXT-(?:WP|RFC|TRI|BP|BPU)')
 REF = re.compile(r'(?<![A-Za-z0-9_-])(' + ID_RE + r')(?![A-Za-z0-9_])')
 DEF_PATTERNS = [
@@ -46,7 +46,7 @@ EXAMPLES = {  # placeholders used in writing rules and templates
     'UBS-REQ-05', 'UBS-SYS-DVM-03', 'PER-FundAccountant', 'CAP-VER-03', 'SCN-012', 'FR-TIME-004',
     'NR-PERF-010', 'CR-SEC-003', 'CST-004', 'ASM-002', 'STD-ISA-012', 'DSN-DVM-101', 'IF-NOD-004',
     'DAT-Commit', 'GL-Commit', 'EXIT-1-07', 'VER-CONF-0042', 'SUITE-DVM-CORE', 'MET-PERF-003',
-    'RSK-017', 'DEC-011', 'OQ-004', 'IMP-02', 'PH-2'}
+    'RSK-017', 'AR-004', 'CTR-012', 'DEC-011', 'OQ-004', 'IMP-02', 'PH-2'}
 
 def md_files():
     return sorted(f for f in glob.glob(os.path.join(ROOT, '**', '*.md'), recursive=True)

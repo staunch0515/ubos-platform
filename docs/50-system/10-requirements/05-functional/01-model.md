@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-05-01
 title: Functional Requirements — MODEL (Classes, Inheritance, Polymorphism)
-status: review
+status: complete
 phase: PH-1
 depends_on: [UBS-REQ-05, UBS-REQ-03]
 ---

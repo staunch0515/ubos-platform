@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-05
 title: Functional Requirements — Index
-status: review
+status: complete
 phase: ALL
 depends_on: [UBS-REQ-03, UBS-META-01]
 ---

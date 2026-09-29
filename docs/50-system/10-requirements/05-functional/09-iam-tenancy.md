@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-05-09
 title: Functional Requirements — IAM (Identity and Access) and TEN (Tenancy and VAEs)
-status: review
+status: complete
 phase: PH-1
 depends_on: [UBS-REQ-05, UBS-REQ-05-01]
 ---

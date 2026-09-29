@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-05-04
 title: Functional Requirements — TXN (Processes, Atomicity, Concurrency, Provenance)
-status: review
+status: complete
 phase: PH-1
 depends_on: [UBS-REQ-05, UBS-REQ-05-02]
 ---

@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-03
 title: Capability Map
-status: review
+status: complete
 phase: ALL
 depends_on: [UBS-REQ-01, UBS-REQ-02, UBS-META-01]
 ---

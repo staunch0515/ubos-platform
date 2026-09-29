@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-08
 title: Compliance Requirements
-status: review
+status: complete
 phase: ALL
 depends_on: [UBS-REQ-05, UBS-REQ-06, DEC-003]
 ---

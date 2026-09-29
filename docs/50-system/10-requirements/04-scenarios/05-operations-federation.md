@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-04-05
 title: Scenarios — Offline, Ecosystem, Operations and Federation
-status: review
+status: complete
 phase: PH-2
 depends_on: [UBS-REQ-04]
 ---

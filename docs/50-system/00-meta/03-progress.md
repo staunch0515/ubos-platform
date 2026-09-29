@@ -10,8 +10,8 @@ depends_on: [UBS-META-00, UBS-META-01]
 
 ## 1. Current state
 
-- **Stage:** Requirements volume complete; waiting at the STOP point.
-- **Next batch:** B10 (after product-owner confirmation).
+- **Stage:** Architecture volume (Stage C).
+- **Next batch:** B10.
 - **Stop point:** after B9, wait for product-owner confirmation (DEC-010).
 
 ## 2. Batch plan
@@ -28,7 +28,7 @@ depends_on: [UBS-META-00, UBS-META-01]
 - [x] **B7** Functional: AI, PKG, INT, ANL, PROOF, SYNC
 - [x] **B8** Functional: OPS, BILL, DEV, MIG, NTF, FILE, SIGN, LOC, STD
 - [x] **B9** Non-functional catalogue, compliance catalogue, constraints and assumptions, glossary seed, requirements index
-- [ ] **STOP** Product-owner confirmation of the requirements volume
+- [x] **STOP** Product-owner confirmation of the requirements volume (2026-09-29; OQ-001…003 resolved by DEC-014…016)
 
 ### Stage C — Architecture (`20-architecture/`)
 - [ ] **B10** System family, boundaries, contracts between systems, topologies, data flows, cross-cutting concerns
@@ -63,9 +63,9 @@ depends_on: [UBS-META-00, UBS-META-01]
 
 | ID | Question | Status |
 |---|---|---|
-| OQ-001 | PH-1 carries 341 requirements (kernel breadth). Should PH-1 be split into PH-1a (store, model, versioning, transactions, logic) and PH-1b (rules, flow basics, events, IAM, proofs), each with its own exit gate? | Open — for product owner |
-| OQ-002 | The first vertical covers fund operations and contracts in PH-2. Should either be deferred to PH-3 to shorten PH-2? | Open — for product owner |
-| OQ-003 | Hosted Cell (PH-4) comes after Server (PH-1/PH-2). Is on-premises/private-cloud Server the confirmed first commercial form? | Open — for product owner |
+| OQ-001 | PH-1 carries 341 requirements (kernel breadth). Should PH-1 be split into PH-1a (store, model, versioning, transactions, logic) and PH-1b (rules, flow basics, events, IAM, proofs), each with its own exit gate? | Resolved by DEC-014 |
+| OQ-002 | The first vertical covers fund operations and contracts in PH-2. Should either be deferred to PH-3 to shorten PH-2? | Resolved by DEC-015 |
+| OQ-003 | Hosted Cell (PH-4) comes after Server (PH-1/PH-2). Is on-premises/private-cloud Server the confirmed first commercial form? | Resolved by DEC-016 |
 
 ## 4. Log
 
@@ -80,3 +80,4 @@ depends_on: [UBS-META-00, UBS-META-01]
 | 2026-09-29 | B7 | Functional requirements AI, PKG, INT, ANL, PROOF, SYNC: FR total 672. FR-PROOF-075 moved to PH-3 (holds arrive in PH-3). |
 | 2026-09-29 | B8 | Functional requirements OPS, BILL, DEV, MIG, NTF, FILE, SIGN, LOC, STD: FR total 800 (PH-0 8, PH-1 304, PH-2 274, PH-3 152, PH-4 45, PH-5 17). Every capability has FRs; 3 capability phases aligned to earliest FR. |
 | 2026-09-29 | B9 | Non-functional catalogue (106 NR, 7 reference environments, 6 workloads), compliance catalogue (54 CR), 18 constraints, 12 assumptions, glossary (146 terms). Requirements volume set to `review`. Checker strict for requirement kinds. STOP for confirmation. |
+| 2026-09-29 | STOP | Product owner confirmed the requirements volume and accepted the recommendations: DEC-014 (PH-1a/PH-1b gates), DEC-015 (both verticals in PH-2), DEC-016 (Server first). DEC-017 adds AR and CTR ID kinds. Requirements set to `complete`. |
