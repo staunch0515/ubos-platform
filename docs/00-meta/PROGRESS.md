@@ -10,7 +10,7 @@ depends_on: [META-CHARTER, META-RULES, META-TEMPLATES]
 
 > Every session: read this file first, update it last (WRITING-RULES §9).
 
-## Current phase: P4 (P0 done; P1 done: SPEC-20, SPEC-25; next: SPEC-26 shells, SPEC-27 AI, SPEC-29 ontology, SPEC-31 deployment, SPEC-32 NFR)
+## Current phase: P4 (P0 done; P1 done: SPEC-20, 25, 26, 27; next: SPEC-29 ontology, SPEC-31 deployment, SPEC-32 NFR)
 
 ## P0 — Meta + Inventory
 - [x] `00-meta/DOC-CHARTER.md`
@@ -80,7 +80,7 @@ Priority P1:
 - [x] `20-events-jobs/` (index + 3 parts)
 - [x] `25-ui-protocol/` (index + 3 parts)
 - [x] `26-client-shells.md`
-- [ ] `27-ai.md`
+- [x] `27-ai/` (index + 3 parts)
 - [ ] `29-base-ontology.md`
 - [ ] `31-deployment-editions.md`
 - [ ] `32-nfr-catalogue.md`
@@ -114,3 +114,4 @@ Priority P1:
 | 2026-09-29 | P4 | SPEC-21 query and search, SPEC-22 security and governance, SPEC-23 tenancy, SPEC-24 UBTP protocol. SPEC-13 Type gains overlay_policy; glossary +3 terms. |
 | 2026-09-29 | P4 | SPEC-28 packages/loader/genesis/boot, SPEC-30 audit and observability. Lineage gains TRIGGERED_BY; offloaded traces are blobs. All P0 (minimal kernel) chapters complete. |
 | 2026-09-29 | P4 | SPEC-20 events/triggers/jobs, SPEC-25 UI protocol. UI modes harmonised (view, edit, create, cell, card, filter, execute). |
+| 2026-09-29 | P4 | SPEC-26 client shells (+ADR-006 mobile: Tauri 2), SPEC-27 AI. Glossary +2 terms. |
