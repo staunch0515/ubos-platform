@@ -11,7 +11,7 @@ depends_on: [UBS-META-00, UBS-META-01]
 ## 1. Current state
 
 - **Stage:** Systems volume (Stage E).
-- **Next batch:** B18.
+- **Next batch:** B19.
 - **Stop point:** after B9, wait for product-owner confirmation (DEC-010).
 
 ## 2. Batch plan
@@ -42,7 +42,7 @@ depends_on: [UBS-META-00, UBS-META-01]
 ### Stage E — Systems (`40-systems/`)
 - [x] **B15–B16** DVM
 - [x] **B17** NOD, CTL
-- [ ] **B18** FRG, SDK
+- [x] **B18** FRG, SDK
 - [ ] **B19** WSP, STU
 - [ ] **B20** AGT, EXC
 - [ ] **B21** FED, NTY, BRG
@@ -88,3 +88,4 @@ depends_on: [UBS-META-00, UBS-META-01]
 | 2026-09-29 | B14 | Standard: L1 expressions and query form, governance sheets (grammar, property registry, specificity, cascade, decisions, decision tables), addressing (URI, VFS, did:ubos), UBTP, sync protocol (scoped trees, device integration, federation fallback, shared BPUs), error registry (≈100 codes), conformance and certification. Standard volume complete (239 clauses, 48 DAT schemas). |
 | 2026-09-29 | B15–B16 | Systems volume index; DVM chapter complete: overview, context, 294 design requirements (storage, model, versioning, time, ledger, transactions, runtime, rules and flow, authorization, query, proofs, export and sync), 56 interfaces (host API, host services, storage adapter), physical data design (PostgreSQL DDL, 6 new DAT row structures), 9 state machines, configuration keys and presets, operations (failure modes, recovery, capacity, metrics), verification plan (10 DVM suites, phase exit evidence). |
 | 2026-09-29 | B17 | NOD chapter: 170 design requirements (process architecture, UBTP and REST edge, webhooks, authentication, sessions, SCIM, secrets and keys, outbox release, jobs, schedules, workers, connectors, bank and fund file formats, files, search adapters, notifications, retention and WORM, tenancy, genesis Buks, usage, sync transport, installation, telemetry, backup, DR, upgrades, admin endpoint), 25 interfaces, operational tables, 8 state machines, configuration, runbooks, verification plan. CTL chapter: 26 design requirements (blindness, operator identity, registry, placement, lifecycle, migration, waves, usage, plans, budgets, capacity, consoles), 5 interfaces, data, state machines, configuration, operations, verification. |
+| 2026-09-29 | B18 | FRG chapter: 33 design requirements (CLI, project model, incremental build, check pipeline, type generation, verification records, coverage gates, lens verification, tests, simulator, replay debugging, Buk archive, dependency solver, signing, verification, install plans, migrations, publish, conformance runner and adapter protocol, dev loop, language server, VS Code extension, docs, WASM toolchains, AI machine interface), 5 interfaces, Buk manifest and verification record schemas. SDK chapter: 17 design requirements, 6 interfaces, state machines, verification plan. |
