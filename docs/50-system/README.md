@@ -36,7 +36,7 @@ Processing Unit (BPU)** on a **Data Virtual Machine (DVM)**.
 | `10-requirements/` | vision, personas, capabilities, scenarios, FR, NR, CR, constraints, glossary | complete (confirmed 2026-09-29) |
 | `20-architecture/` | system family, boundaries, contracts, topologies | planned |
 | `30-standard/` | the BPA standard (normative) | planned |
-| `40-systems/` | one folder per system (13 systems) | in progress (DVM complete) |
+| `40-systems/` | one folder per system (13 systems) | in progress (DVM, NOD, CTL complete) |
 | `50-phases/` | PH-0 … PH-5 with verification plans and exit criteria | planned |
 | `60-verification/` | methods, suites, environments, traceability | planned |
 | `90-decisions/` | DEC-* records | active |
