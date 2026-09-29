@@ -96,7 +96,7 @@ depends_on: [UBS-SYS-STU-01]
 - **Acceptance:**
   1. Given a failing rule test, when submitting, then submission is blocked with the failing test named.
 - **Verification:** CONF
-- **Origin:** FR-VER-031, FR-VER-033, FR-RULE-082
+- **Origin:** FR-VER-031, FR-VER-033, FR-RULE-082, CR-SOX-003
 
 ### DSN-STU-010 — Simulation workbench
 - **Statement:** Studio MUST start simulations (IF-DVM-036) on selected history periods and populations with budgets, and present results (DSN-WSP-111), storing runs as evidence.

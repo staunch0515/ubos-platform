@@ -62,7 +62,7 @@ AI implementer:
   1. Given the linearization vectors of the conformance suite, when checked, then results equal the vectors exactly.
   2. Given one process that adds a trait and a class using it, when committed, then it succeeds; the same class alone fails.
 - **Verification:** CONF, PROP
-- **Origin:** FR-MODEL-021, FR-MODEL-022, FR-MODEL-024, FR-MODEL-026, FR-MODEL-056, STD-CLS-011, STD-CLS-014
+- **Origin:** FR-MODEL-021, FR-MODEL-022, FR-MODEL-024, FR-MODEL-026, FR-MODEL-056, STD-CLS-011, STD-CLS-014, FR-MODEL-051
 
 ### DSN-DVM-104 — Narrowing checker
 - **Statement:** The narrowing checker MUST implement the narrowing matrix of STD-CLS-013 as a table-driven function `narrows(parent_field, child_field) → Ok | Violation(rule, path)`. It MUST be applied:
@@ -310,7 +310,18 @@ AI implementer:
 - **Acceptance:**
   1. Given two implementations of ABI 1.0, when each creates a VAE, then the genesis state roots are equal.
 - **Verification:** CONF
-- **Origin:** STD-CLS-010, STD-LGS-011, STD-KIND-040, NR-DET-002
+- **Origin:** STD-CLS-010, STD-LGS-011, STD-KIND-040, NR-DET-002, FR-TEN-012
+
+### DSN-DVM-134 — Buk installation registry and dependency protection
+- **Statement:** The DVM MUST keep, per VAE, an installation registry of Buks (name, version, archive root, namespace, installing change set, overlay branch) as System-kind objects. Uninstalling or downgrading a Buk MUST be refused while installed Buks depend on it (FR-PKG-053); uninstalling MUST keep data per the retention choice (FR-PKG-051) and remove only model, sheets and logic that no other Buk references.
+- **Rationale:** FR-PKG-051, FR-PKG-053, CAP-PKG-05.
+- **Priority:** Must · **Phase:** PH-2 · **Systems:** DVM, NOD
+- **Personas:** PER-TenantAdministrator
+- **Acceptance:**
+  1. Given Buk B depending on A, when A is uninstalled, then the operation is refused naming B.
+  2. Given an uninstall with data retention, when completed, then the Buk's objects remain readable and exportable.
+- **Verification:** CONF
+- **Origin:** FR-PKG-051, FR-PKG-053, FR-PKG-031
 
 ## Commits and branches
 
@@ -361,7 +372,7 @@ AI implementer:
 - **Acceptance:**
   1. Given a VAE with 10,000,000 objects, when a branch is created, then it completes within NR-PERF-004, and storage grows by less than 4 KiB.
 - **Verification:** BENCH
-- **Origin:** FR-VER-021, FR-VER-027, NR-PERF-004
+- **Origin:** FR-VER-021, FR-VER-027, NR-PERF-004, NR-SCAL-006
 
 ### DSN-DVM-205 — Branch index overlay
 - **Statement:** Kernel indexes of a child branch MUST hold only rows for objects changed on the child. Reads MUST resolve through the chain `child → parent@fork point → …` (DSN-DVM-261). The DVM MUST maintain a per-branch Bloom filter of changed object IDs (rebuilt from the index, never authoritative), to skip lookups on branches that did not change an object.

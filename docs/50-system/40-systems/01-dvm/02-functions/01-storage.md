@@ -151,7 +151,7 @@ depends_on: [UBS-SYS-DVM-02, UBS-ARC-04, UBS-STD-08]
 - **Acceptance:**
   1. Given a tiered version, when read, then it is returned within NR-PERF-021, and the proofs verify.
 - **Verification:** BENCH
-- **Origin:** FR-VER-091, FR-VER-092
+- **Origin:** FR-VER-091, FR-VER-092, NR-PERF-021
 
 ### DSN-DVM-013 — Garbage handling of unreferenced chunks
 - **Statement:** Chunks written to the object store for processes that later abort MUST be collected by a mark-and-sweep job that removes chunks unreferenced by any version or journal and older than 24 hours. The job MUST never remove referenced or WORM-locked content.

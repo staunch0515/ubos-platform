@@ -66,7 +66,7 @@ depends_on: [UBS-SYS-BPA-01]
 - **Acceptance:**
   1. Given a minor release, when its vectors from the previous minor are run, then all still pass.
 - **Verification:** CONF
-- **Origin:** FR-STD-041, FR-STD-042, NR-COMPAT-001, NR-COMPAT-003
+- **Origin:** FR-STD-041, FR-STD-042, NR-COMPAT-001, NR-COMPAT-003, NR-COMPAT-004
 
 ### DSN-BPA-007 — Extension and algorithm registries
 - **Statement:** The steward MUST operate the extension registry (STD-CONF-010, FR-STD-071) and the algorithm registry (STD-CONF-011), each entry with schema, vectors and owner; extensions MAY be promoted into the standard through the change process (FR-STD-072).

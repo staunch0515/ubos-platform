@@ -273,7 +273,7 @@ This file designs the crates `ubos-rules` and `ubos-flow`. Reading order:
 - **Acceptance:**
   1. Given an agent acting for the maker, when it approves, then the approval is rejected.
 - **Verification:** SEC, CONF
-- **Origin:** FR-FLOW-043, FR-AI-025
+- **Origin:** FR-FLOW-043, FR-AI-025, CR-SOX-002
 
 ### DSN-DVM-742 — Approval evidence
 - **Statement:** Approvals MUST be stored as `Approval` objects with approver, time, preview hash, comment and optional signature (FR-FLOW-044), and MUST become stale when the preview hash changes (FR-FLOW-045).

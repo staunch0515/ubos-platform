@@ -1,0 +1,372 @@
+---
+id: UBS-VER-10
+title: Verification Items — PH-0 and PH-1
+status: draft
+phase: PH-1
+depends_on: [UBS-VER-01, UBS-PH-0, UBS-PH-1]
+---
+
+# Verification Items — PH-0 and PH-1
+
+Items follow template T11. Each item names the exit criteria it evidences (**Supports**).
+Numbers follow UBS-VER-00 §3.
+
+## PH-0
+
+### VER-FORM-0001 — Commit and compare-and-set model
+- **Verifies:** STD-TXN-021, STD-TXN-022, STD-VER-003, DSN-DVM-208, DSN-DVM-515
+- **Suite:** SUITE-DVM-FORM · **Phase:** PH-0
+- **Environment:** model-checking workstation
+- **Procedure:**
+  1. Model processes, nodes, branch heads, base validation and read-set validation in TLA+.
+  2. State properties: linear first-parent history per branch; no lost update; serializable histories for serializable processes; dense `cseq`.
+  3. Check with TLC at 3 processes × 2 nodes × 3 objects × 4 commits.
+- **Pass criterion:** 0 violated properties; state count reported.
+- **Evidence:** `commit_cas.tla`, configuration, TLC output.
+- **Supports:** EXIT-0-02
+
+### VER-FORM-0002 — Three-way merge with ledger append model
+- **Verifies:** STD-VER-050, STD-VER-054, STD-VER-056, DSN-DVM-240, DSN-DVM-244, DSN-DVM-249
+- **Suite:** SUITE-DVM-FORM · **Phase:** PH-0
+- **Environment:** model-checking workstation
+- **Procedure:**
+  1. Model branches, Definition objects with fields, ledger keys with entries, merge base and the merge pipeline.
+  2. State properties: determinism; complete conflict reporting; no lost or duplicated ledger entries; gap-free target sequences; correct merge parents.
+  3. Check at 3 branches × 4 commits × 3 objects × 2 ledger keys.
+- **Pass criterion:** 0 violated properties.
+- **Evidence:** `merge.tla`, TLC output.
+- **Supports:** EXIT-0-02
+
+### VER-FORM-0003 — Timeline algebra model
+- **Verifies:** STD-TIME-010, STD-TIME-011, STD-TIME-012, DSN-DVM-303, DSN-DVM-326
+- **Suite:** SUITE-DVM-FORM · **Phase:** PH-0
+- **Environment:** model-checking workstation
+- **Procedure:**
+  1. Model the four timeline operations and bitemporal reads.
+  2. State properties: no overlapping segments; answers at past `(cseq, asof)` never change; impact set ⊇ results whose inputs changed.
+  3. Check at 3 objects × 5 operations × 4 commits.
+- **Pass criterion:** 0 violated properties.
+- **Evidence:** `timeline.tla`, TLC output.
+- **Supports:** EXIT-0-02
+
+### VER-INSP-9000 — BPA 0.1 release inspection
+- **Verifies:** FR-STD-011, FR-STD-013, FR-STD-014, FR-STD-021, DSN-BPA-001, DSN-BPA-002
+- **Suite:** SUITE-BPA-COVERAGE · **Phase:** PH-0
+- **Environment:** release pipeline
+- **Procedure:**
+  1. Verify the release tag signature and manifest hashes.
+  2. Count vectors by profile and check the schema of every vector against DAT-ConformanceVector.
+  3. Compute MUST-clause coverage for Core, Bitemporal and Ledger.
+- **Pass criterion:** signature valid; ≥ 300 vectors; 0 schema errors; coverage ≥ 80% (MET-QUAL-003).
+- **Evidence:** inspection record, coverage report.
+- **Supports:** EXIT-0-01
+
+### VER-CONF-8400 — Prototype conformance on both backends
+- **Verifies:** FR-STD-021, DSN-DVM-001, DSN-FRG-401, DSN-FRG-402
+- **Suite:** SUITE-DVM-CONF · **Phase:** PH-0
+- **Environment:** ENV-REF-SERVER (PostgreSQL), ENV-REF-BOX (SQLite)
+- **Procedure:**
+  1. Build the prototype with the adapter.
+  2. Run `forge conform --profile prototype` against PostgreSQL and SQLite.
+  3. Compare per-vector outcomes across backends.
+- **Pass criterion:** 100% pass on both backends; identical outcomes.
+- **Evidence:** two signed runner reports.
+- **Supports:** EXIT-0-03
+
+### VER-PROP-0001 — Root history independence
+- **Verifies:** STD-PROOF-001, STD-PROOF-002, NR-DET-003, DSN-DVM-007, DSN-DVM-930
+- **Suite:** SUITE-DVM-PROP · **Phase:** PH-0
+- **Environment:** CI workers
+- **Procedure:**
+  1. Generate pairs of operation sequences that reach the same key–value state by different orders, including deletes and re-inserts.
+  2. Compute roots after each sequence.
+- **Pass criterion:** equal roots in 100% of ≥ 1,000,000 pairs.
+- **Evidence:** property report.
+- **Supports:** EXIT-0-04, EXIT-1-04
+
+### VER-BENCH-0001 — Prototype storage benchmark
+- **Verifies:** ASM-003, DEC-020, NR-PERF-001, NR-PERF-002, NR-PERF-005
+- **Suite:** SUITE-DVM-BENCH · **Phase:** PH-0
+- **Environment:** ENV-REF-SERVER
+- **Procedure:**
+  1. Load WL-GENERIC-10M with 24 months of history.
+  2. Run point reads, simple commits at 500 commits/s and 10-change diffs for 30 minutes each, three times.
+- **Pass criterion:** MET-PERF-001, MET-PERF-002 and MET-PERF-003 met in the median run, or a DEC entry records the fallback.
+- **Evidence:** benchmark report with histograms and environment hash.
+- **Supports:** EXIT-0-05
+
+### VER-SEC-0001 — Rhai sandbox spike
+- **Verifies:** ASM-008, NR-SEC-002 (initial), DSN-DVM-612
+- **Suite:** SUITE-DVM-SEC · **Phase:** PH-0
+- **Environment:** CI workers
+- **Procedure:**
+  1. Run the 100 initial L2 escape cases (file, network, time, entropy, float, host abuse, resource exhaustion).
+- **Pass criterion:** 100 of 100 blocked (MET-SEC-001).
+- **Evidence:** sandbox report.
+- **Supports:** EXIT-0-06
+
+### VER-INSP-9003 — PH-1 re-baseline after PH-0
+- **Verifies:** CST-015, DEC-020, ASM-003, ASM-008
+- **Suite:** SUITE-BPA-COVERAGE · **Phase:** PH-0
+- **Environment:** planning records
+- **Procedure:**
+  1. Review PH-0 findings (benchmarks, models, sandbox spike) against the PH-1 plan.
+  2. Update UBS-PH-1 durations, risks and dependencies; record accepted changes as DEC entries.
+- **Pass criterion:** updated UBS-PH-1 approved by the Phase Acceptance Board; every PH-0 finding has a disposition.
+- **Evidence:** updated plan, decision entries.
+- **Supports:** EXIT-0-07
+
+## PH-1 gate 1a
+
+### VER-CONF-8401 — Engine-profile conformance
+- **Verifies:** all STD clauses of Core, Bitemporal, Ledger, Proof (roots, signatures, inclusion) and the instruction set used by them; NR-DET-002
+- **Suite:** SUITE-DVM-CONF · **Phase:** PH-1
+- **Environment:** ENV-REF-SERVER, ENV-REF-BOX; Linux x86-64, Linux ARM64, macOS ARM64
+- **Procedure:**
+  1. Run all vectors of the claimed profiles (VER-CONF-0001…4399) on PostgreSQL and SQLite on each platform.
+  2. Diff outcomes across backends and platforms.
+- **Pass criterion:** 100% pass everywhere; 0 cross-backend or cross-platform differences.
+- **Evidence:** signed runner reports (6 runs).
+- **Supports:** EXIT-1-02
+
+### VER-CONF-8402 — Storage adapter parity
+- **Verifies:** DSN-DVM-001, DSN-DVM-002, DSN-DVM-010, DSN-DVM-011, CST-002
+- **Suite:** SUITE-DVM-STORE · **Phase:** PH-1
+- **Environment:** ENV-REF-SERVER, ENV-REF-BOX
+- **Procedure:**
+  1. Run the storage suite (transactions, snapshot reads, index maintenance, sequences, chunk placement, RLS on PostgreSQL, WAL and encryption on SQLite).
+  2. Compare logical results.
+- **Pass criterion:** 100% pass; identical logical results.
+- **Evidence:** suite report.
+- **Supports:** EXIT-1-03
+
+### VER-PROP-0100 — Kernel property set
+- **Verifies:** DSN-DVM-005, DSN-DVM-092, DSN-DVM-230, DSN-DVM-242, DSN-DVM-303, DSN-DVM-420, DSN-DVM-421, DSN-DVM-908, NR-DET-003
+- **Suite:** SUITE-DVM-PROP · **Phase:** PH-1
+- **Environment:** CI workers (long mode)
+- **Procedure:**
+  1. Run properties: index rebuild equality; diff cost bound; merge determinism and ledger completeness; timeline non-overlap; balance = Σ entries at any `(asof, cseq)`; cursor completeness; roots history independence.
+  2. Long mode: ≥ 1,000,000 cases per property.
+- **Pass criterion:** 0 failures.
+- **Evidence:** property report.
+- **Supports:** EXIT-1-04
+
+### VER-SIM-0001 — Concurrency and crash simulation
+- **Verifies:** DSN-DVM-006, DSN-DVM-208, DSN-DVM-508, DSN-DVM-510, DSN-DVM-511, DSN-DVM-513, DSN-DVM-516, FR-TXN-023
+- **Suite:** SUITE-DVM-SIM · **Phase:** PH-1
+- **Environment:** simulation cluster
+- **Procedure:**
+  1. Simulate 2–4 nodes, 1–3 branches, contended objects and ledger keys, crashes at random points and clock jumps.
+  2. After each step check: linear history, dense `cseq`, no lost acknowledged commit, gap-free ledger sequences; run an Elle-style checker on serializable histories.
+  3. Run 10,000 seeds nightly and 1,000,000 before the gate.
+- **Pass criterion:** 0 violations; 30 consecutive clean nights.
+- **Evidence:** simulation report with seed ranges.
+- **Supports:** EXIT-1-05
+
+### VER-FAULT-0001 — Durability under real crashes
+- **Verifies:** NR-DUR-001, FR-TXN-013, DSN-DVM-503, DSN-DVM-508, DSN-DVM-402
+- **Suite:** SUITE-DVM-FAULT · **Phase:** PH-1
+- **Environment:** ENV-REF-SERVER (PostgreSQL), ENV-REF-BOX (SQLite)
+- **Procedure:**
+  1. Run WL-MIXED-OLTP with a client-side log of acknowledged commits.
+  2. Inject 5,000 SIGKILL and 5,000 power-loss events at random times per backend.
+  3. After each recovery compare the acknowledgement log with the store; run `verify indexes`, `verify sequences` and `verify roots`.
+- **Pass criterion:** 0 acknowledged commits missing; 0 partial commits; 0 verifier findings.
+- **Evidence:** fault report per backend.
+- **Supports:** EXIT-1-06
+
+### VER-FORM-0004 — Group commit and ledger sequence model
+- **Verifies:** DSN-DVM-006, DSN-DVM-402, DSN-DVM-404
+- **Suite:** SUITE-DVM-FORM · **Phase:** PH-1
+- **Environment:** model-checking workstation
+- **Procedure:**
+  1. Extend the commit model with batches, per-process abort within a batch, and ledger counters.
+  2. Check gap-freeness, per-key total order and batch atomicity per process.
+- **Pass criterion:** 0 violated properties.
+- **Evidence:** model and checker output.
+- **Supports:** EXIT-1-07
+
+### VER-CONF-8500 — Replay fidelity across platforms
+- **Verifies:** NR-DET-001, NR-DET-002, FR-LOGIC-073, FR-LOGIC-074, DSN-DVM-631, DSN-DVM-632
+- **Suite:** SUITE-DVM-REPLAY · **Phase:** PH-1
+- **Environment:** Linux x86-64, Linux ARM64, macOS ARM64
+- **Procedure:**
+  1. Replay the ≥ 10,000-process corpus on each platform.
+  2. Compare outcome hashes with the recorded ones.
+- **Pass criterion:** 100% identical on all platforms.
+- **Evidence:** replay report.
+- **Supports:** EXIT-1-08
+
+### VER-BENCH-0100 — Kernel performance gate 1a
+- **Verifies:** NR-PERF-001, NR-PERF-002, NR-PERF-004, NR-PERF-005, NR-PERF-006, NR-PERF-007, NR-PERF-010
+- **Suite:** SUITE-DVM-BENCH · **Phase:** PH-1
+- **Environment:** ENV-REF-SERVER (PostgreSQL); ENV-REF-BOX reported for SQLite
+- **Procedure:**
+  1. Load WL-GENERIC-10M with 24 months of history; apply WL-MIXED-OLTP at 70% of maximum sustainable throughput.
+  2. Measure each NR at its stated boundary per UBS-VER-01 BENCH procedure.
+- **Pass criterion:** MET-PERF-010…015 and NR-PERF-010 met in the median of three runs.
+- **Evidence:** benchmark report.
+- **Supports:** EXIT-1-09
+
+### VER-SEC-0100 — L2 escape suite
+- **Verifies:** NR-SEC-002, FR-LOGIC-062, FR-LOGIC-065, DSN-DVM-603, DSN-DVM-612, DSN-DVM-616, DSN-DVM-621
+- **Suite:** SUITE-DVM-SEC · **Phase:** PH-1
+- **Environment:** CI workers
+- **Procedure:**
+  1. Run the L2 escape corpus (≥ 300 cases).
+  2. For each case, assert termination or capability denial and absence of any external effect (file, network, clock, cross-tenant memory).
+- **Pass criterion:** 100% blocked (MET-SEC-010).
+- **Evidence:** security report.
+- **Supports:** EXIT-1-10
+
+### VER-INSP-0001 — Coverage, mutation and dependency graph
+- **Verifies:** NR-MAINT-002, NR-MAINT-003, AR-031, AR-032
+- **Suite:** SUITE-DVM-CONF · **Phase:** PH-1
+- **Environment:** CI
+- **Procedure:**
+  1. Measure line coverage and mutation score (cargo-mutants) for core crates.
+  2. Run the dependency-graph lint against the declared crate graph (UBS-ARC-07).
+- **Pass criterion:** coverage ≥ 85%; mutation score ≥ 70%; 0 violations.
+- **Evidence:** CI reports.
+- **Supports:** EXIT-1-11
+
+### VER-CONF-8403 — Portable export and import round trip
+- **Verifies:** NR-PORT-003, STD-PROOF-070, DSN-DVM-950, DSN-DVM-951
+- **Suite:** SUITE-DVM-STORE · **Phase:** PH-1
+- **Environment:** ENV-REF-SERVER, ENV-REF-BOX
+- **Procedure:**
+  1. Export 20 test VAEs (including one with WL-GENERIC-10M) from PostgreSQL; import into SQLite; export again and import into PostgreSQL.
+  2. Compare head roots, tags, ledger sequences and query results.
+- **Pass criterion:** identical roots and results in 100% of VAEs.
+- **Evidence:** round-trip report.
+- **Supports:** EXIT-1-12
+
+### VER-SCN-1000 — Gate-1a scenarios in process
+- **Verifies:** SCN-002, SCN-003, SCN-004, SCN-005, SCN-006, SCN-007, SCN-008, SCN-010, SCN-011, SCN-018
+- **Suite:** SUITE-PH1-SCN · **Phase:** PH-1
+- **Environment:** ENV-REF-BOX (headless Box, in-process binding)
+- **Procedure:**
+  1. Run each scenario's main and alternate flows as Forge scenario tests.
+- **Pass criterion:** all steps and acceptance statements pass.
+- **Evidence:** scenario report.
+- **Supports:** EXIT-1-13
+
+### VER-INSP-9001 — BPA 1.0-rc1 coverage
+- **Verifies:** FR-STD-022, DSN-BPA-003
+- **Suite:** SUITE-BPA-COVERAGE · **Phase:** PH-1
+- **Environment:** release pipeline
+- **Procedure:**
+  1. Compute MUST-clause coverage per profile for the rc1 profiles.
+- **Pass criterion:** 100% coverage.
+- **Evidence:** coverage report, release manifest.
+- **Supports:** EXIT-1-01
+
+## PH-1 gate 1b
+
+### VER-CONF-8404 — Governance profile and remaining 1b vectors
+- **Verifies:** STD-EXPR-*, STD-LGS-*, STD-ADDR-*, STD-PROTO-*, STD-ERR-* clauses in the claimed profiles
+- **Suite:** SUITE-DVM-CONF · **Phase:** PH-1
+- **Environment:** ENV-REF-SERVER, ENV-REF-BOX
+- **Procedure:**
+  1. Run VER-CONF-4400…5599 and VER-CONF-6000…6099 on both backends, plus all rc1 vectors.
+- **Pass criterion:** 100% pass on both backends.
+- **Evidence:** signed runner reports.
+- **Supports:** EXIT-1-14
+
+### VER-CONF-7000 — UBTP server conformance
+- **Verifies:** FR-INT-011, FR-INT-012, FR-INT-013, FR-INT-014, FR-INT-015, DSN-NOD-010…017
+- **Suite:** SUITE-NOD-PROTO · **Phase:** PH-1
+- **Environment:** ENV-REF-SMALL
+- **Procedure:**
+  1. Run the UBTP suite over WebSocket, HTTP and in-process bindings.
+  2. Run version-skew cases (client N−1).
+- **Pass criterion:** 100% pass; identical results across bindings.
+- **Evidence:** suite report.
+- **Supports:** EXIT-1-15
+
+### VER-CONF-7500 — SDK protocol suite
+- **Verifies:** FR-DEV-061, DSN-SDK-001…007, DSN-SDK-010…014
+- **Suite:** SUITE-SDK-PROTO · **Phase:** PH-1
+- **Environment:** ENV-REF-SMALL
+- **Procedure:**
+  1. Run the shared SDK protocol suite with the Rust and TypeScript SDKs.
+- **Pass criterion:** 100% pass for both SDKs.
+- **Evidence:** suite reports.
+- **Supports:** EXIT-1-15
+
+### VER-FAULT-4500 — SDK reconnection and idempotent retries
+- **Verifies:** DSN-SDK-002, DSN-SDK-003, DSN-SDK-004, AR-010
+- **Suite:** SUITE-SDK-NET · **Phase:** PH-1
+- **Environment:** ENV-REF-SMALL with network emulation
+- **Procedure:**
+  1. Drop connections after server commit and before response; partition for 30 s; resume subscriptions.
+- **Pass criterion:** exactly one commit per logical call; all missed updates received in order.
+- **Evidence:** fault report.
+- **Supports:** EXIT-1-15
+
+### VER-SEC-2000 — Tenant isolation suite
+- **Verifies:** NR-SEC-003, FR-TEN-021, FR-TEN-023, DSN-NOD-405, DSN-NOD-406, DSN-DVM-010
+- **Suite:** SUITE-NOD-ISO · **Phase:** PH-1
+- **Environment:** ENV-REF-SMALL
+- **Procedure:**
+  1. Create two tenants with overlapping class names and IDs.
+  2. Run the isolation corpus (≥ 500 cases) through UBTP, blobs, events and jobs.
+- **Pass criterion:** 0 successful cross-tenant accesses (MET-SEC-011).
+- **Evidence:** security report.
+- **Supports:** EXIT-1-16
+
+### VER-SEC-2001 — Secret and log hygiene; security event coverage
+- **Verifies:** NR-SEC-009, NR-SEC-010, FR-AUD-012, DSN-NOD-111, DSN-NOD-130
+- **Suite:** SUITE-NOD-AUTH · **Phase:** PH-1
+- **Environment:** ENV-REF-SMALL
+- **Procedure:**
+  1. Seed canary secrets in connectors and credentials; run the full PH-1 scenario suite.
+  2. Scan logs, traces and diagnostic bundles for canaries.
+  3. Compare produced security event types with the FR-AUD-012 list.
+- **Pass criterion:** 0 canary matches; 100% event types present.
+- **Evidence:** security report.
+- **Supports:** EXIT-1-16
+
+### VER-BENCH-2000 — Edge performance gate 1b
+- **Verifies:** NR-PERF-008, NR-PERF-009, NR-PERF-011, NR-PERF-012
+- **Suite:** SUITE-NOD-BENCH · **Phase:** PH-1
+- **Environment:** ENV-REF-SERVER
+- **Procedure:**
+  1. Run indexed queries with row filters over 10 M objects; 10,000-block sheet evaluation; commit-to-handler latency under WL-MIXED-OLTP; became-effective timing with 1,000 future changes.
+- **Pass criterion:** MET-PERF-016, MET-PERF-017, NR-PERF-009 and NR-PERF-012 met.
+- **Evidence:** benchmark report.
+- **Supports:** EXIT-1-17
+
+### VER-FAULT-2000 — Installation, backup and point-in-time restore
+- **Verifies:** NR-DUR-004, NR-OPER-003, NR-OPER-005, FR-OPS-021, DSN-NOD-602, DSN-NOD-603, DSN-NOD-615, DSN-NOD-620
+- **Suite:** SUITE-NOD-OPS · **Phase:** PH-1
+- **Environment:** ENV-REF-SMALL
+- **Procedure:**
+  1. Install from the guide on a clean host; record time.
+  2. Run the invalid configuration corpus (≥ 200).
+  3. Under load, restore to 10 random points in the last 7 days; verify roots and run `verify`.
+  4. Produce a diagnostic bundle.
+- **Pass criterion:** 100% invalid configurations rejected; 10 of 10 restores verified; bundle ≤ 5 minutes.
+- **Evidence:** operations report.
+- **Supports:** EXIT-1-18
+
+### VER-SCN-1001 — All PH-1 scenarios over UBTP
+- **Verifies:** SCN-001…SCN-011, SCN-017, SCN-018
+- **Suite:** SUITE-PH1-SCN · **Phase:** PH-1
+- **Environment:** ENV-REF-SMALL (single-node Server)
+- **Procedure:**
+  1. Run all 13 scenarios through the SDKs over UBTP, including alternate flows.
+- **Pass criterion:** 13 of 13 pass (MET-QUAL-015).
+- **Evidence:** scenario report.
+- **Supports:** EXIT-1-19
+
+### VER-INSP-9500 — PH-1 traceability
+- **Verifies:** all PH-1 Must FR, NR and CR
+- **Suite:** SUITE-REGRESSION · **Phase:** PH-1
+- **Environment:** CI
+- **Procedure:**
+  1. Generate the traceability report (`gen_traceability.py`) and the verification results index.
+  2. List Must requirements without a passing mapped item.
+- **Pass criterion:** the list is empty.
+- **Evidence:** traceability report.
+- **Supports:** EXIT-1-20

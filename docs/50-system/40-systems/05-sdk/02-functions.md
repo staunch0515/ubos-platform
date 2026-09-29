@@ -177,3 +177,13 @@ depends_on: [UBS-SYS-SDK-01]
   1. Given a minimal application, when bundled, then the SDK contributes less than 60 KB gzipped.
 - **Verification:** BENCH
 - **Origin:** NR-USE-001
+
+### DSN-SDK-018 — Reference documentation completeness
+- **Statement:** Every public UBTP message, instruction, SDK API and CLI command MUST have generated reference documentation with at least one example, and a CI check MUST fail when any public item lacks it (NR-MAINT-005).
+- **Rationale:** NR-MAINT-005.
+- **Priority:** Must · **Phase:** PH-2 · **Systems:** SDK, FRG
+- **Personas:** PER-IsvDeveloper
+- **Acceptance:**
+  1. Given a new SDK method without an example, when CI runs, then the documentation check fails.
+- **Verification:** CONF
+- **Origin:** NR-MAINT-005

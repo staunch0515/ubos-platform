@@ -394,7 +394,7 @@ Reading order:
 - **Acceptance:**
   1. Given a deleted log row, when the chain is verified, then the gap is detected.
 - **Verification:** SEC, FAULT
-- **Origin:** FR-AUD-012, FR-AUD-013, FR-AUD-014, NR-SEC-010, NR-OBS-003
+- **Origin:** FR-AUD-012, FR-AUD-013, FR-AUD-014, NR-SEC-010, NR-OBS-003, CR-NIST-004
 
 ### DSN-NOD-112 — Break-glass accounts
 - **Statement:** Each tenant MAY define break-glass local accounts usable when the IdP is unavailable; use MUST require step-up, raise an alert and grant a time-bounded break-glass context (DSN-DVM-808).
