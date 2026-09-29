@@ -36,8 +36,63 @@ to that persona.
 - **Concepts hidden from this persona:** branch, merge, commit hash, instruction
 - **Success signal:** median approval decision time under 2 minutes, with the diff visible in 100% of approvals
 
+### PER-Accountant — Staff Accountant
+- **Segment:** company finance department (first business package, DEC-022)
+- **Role:** records journal entries, maintains the general ledger, prepares reconciliations and close schedules
+- **Goals:** 1. Post correct entries quickly. 2. Close the month on time. 3. Explain every balance.
+- **Pains today:** 1. Corrections that silently change prior reports. 2. Spreadsheet-based accrual and depreciation schedules. 3. Reconciliations without traceable matches.
+- **Skills:** business depth high · technical depth low
+- **Primary systems:** WSP, Smart Grid (OFFICE)
+- **Concepts visible to this persona:** journal entry, posting, period, reversal, reconciliation, as-of view
+- **Concepts hidden from this persona:** branch, merge, instruction, projection
+- **Success signal:** a month-end close completed inside the system with every statement line traceable to entries
+
+### PER-Controller — Controller
+- **Segment:** company finance department
+- **Role:** owns the chart of accounts, accounting policies, approvals, period close and financial statements
+- **Goals:** 1. Enforce internal controls (segregation of duties, approvals). 2. Change accounting rules safely. 3. Deliver audited statements.
+- **Pains today:** 1. Rule changes take effect without review. 2. Prior-period reports cannot be reproduced. 3. Audit requests consume weeks.
+- **Skills:** business depth high · technical depth medium
+- **Primary systems:** WSP, STU (lean)
+- **Concepts visible to this persona:** chart of accounts, policy, approval, close, restatement, simulation
+- **Concepts hidden from this persona:** branch, merge, instruction
+- **Success signal:** an auditor request answered from the system in minutes, with verifiable evidence
+
+### PER-PayablesClerk — Accounts Payable Clerk
+- **Segment:** company finance department
+- **Role:** enters vendor bills, codes expenses, prepares payments, maintains 1099 vendor data
+- **Goals:** 1. Enter and code bills fast. 2. Pay on time without duplicates. 3. Produce correct 1099 data.
+- **Pains today:** 1. Manual coding. 2. Duplicate payments. 3. Year-end 1099 clean-up.
+- **Skills:** business depth medium · technical depth low
+- **Primary systems:** WSP, Smart Grid (OFFICE)
+- **Concepts visible to this persona:** vendor, bill, payment, approval, 1099
+- **Concepts hidden from this persona:** branch, merge, ledger class
+- **Success signal:** bills coded with AI suggestions and approved without re-keying
+
+### PER-ReceivablesClerk — Accounts Receivable Clerk
+- **Segment:** company finance department
+- **Role:** issues customer invoices and credit memos, applies receipts, follows up on aging
+- **Goals:** 1. Invoice correctly with sales tax. 2. Apply cash quickly. 3. Keep aging current.
+- **Pains today:** 1. Unapplied cash. 2. Tax errors. 3. Statements out of date.
+- **Skills:** business depth medium · technical depth low
+- **Primary systems:** WSP
+- **Concepts visible to this persona:** customer, invoice, receipt, credit memo, aging, statement
+- **Concepts hidden from this persona:** branch, merge, ledger class
+- **Success signal:** 95% of receipts applied the same day
+
+### PER-ExternalAuditor — External Auditor (CPA)
+- **Segment:** independent CPA firm
+- **Role:** audits the company's financial statements under generally accepted auditing standards
+- **Goals:** 1. Obtain sufficient, reliable evidence. 2. Test controls and balances efficiently. 3. Verify that reports are complete and unaltered.
+- **Pains today:** 1. Evidence arrives as spreadsheets and PDFs of unknown provenance. 2. Re-performance is manual. 3. Roll-forward of balances is slow.
+- **Skills:** business depth high · technical depth medium
+- **Primary systems:** WSP (auditor role), NTY open verifier
+- **Concepts visible to this persona:** trial balance, as-of report, evidence pack, audit trail, verification report
+- **Concepts hidden from this persona:** branch, instruction, projection
+- **Success signal:** year-end audit procedures on the ledger completed from evidence packs without requesting manual extracts
+
 ### PER-FundAccountant — Fund Accountant
-- **Segment:** asset manager, fund administrator (first vertical)
+- **Segment:** asset manager, fund administrator (deferred vertical, DEC-022)
 - **Role:** calculates NAV and fees and books and reconciles fund accounts
 - **Goals:** 1. Produce NAV on time. 2. Correct past errors (as-of corrections) without corrupting later periods. 3. Explain every number.
 - **Pains today:** 1. Back-dated corrections done by hand. 2. Spreadsheets used for fee calculations. 3. Reconciliation breaks with no lineage.

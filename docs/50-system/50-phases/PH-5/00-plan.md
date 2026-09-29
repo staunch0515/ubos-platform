@@ -8,6 +8,11 @@ depends_on: [UBS-PH-00, UBS-PH-4]
 
 # PH-5 — Federation and the Open Network
 
+> **Not scheduled (DEC-023).** PH-5 is specified so that the design stays complete, but it is
+> not planned until the owner decides after PH-3. Its content now also includes the
+> capabilities that serve only contract management (Live Doc clauses, e-signatures, external
+> portal, War Room, negotiation, contract migration), moved from PH-2 and PH-3 (DEC-022).
+
 ## 1. Goal and business value
 
 PH-5 connects organisations. Independently operated nodes resolve each other through the
@@ -36,17 +41,21 @@ Measurable outcomes:
 | BPA | federation and shared-BPU clauses finalised; formal model STD-SYNC-012 | extended |
 | EXC | federation-aware mirrors for sovereign and air-gapped deployments | extended |
 | CTL | EU management region and EU Cells (if not advanced earlier by decision) | extended |
+| WSP, BRG (contract-only) | Live Doc clauses and negotiation, e-signature ceremony and seals, external portal, War Room, contract migration (FR-OFFICE, FR-SIGN, FR-MIG-021…022) | new |
 
 ## 3. Feature list
 
-The generated list is UBS-PHF-5: 17 FR, 1 NR and 3 scenarios (SCN-408, SCN-409, SCN-411).
+The generated list is UBS-PHF-5: 42 FR, 1 NR, 8 CR and 3 scenarios (SCN-408, SCN-409,
+SCN-411). The deferred scenario families SCN-101…110 and SCN-201…208 are not counted until a
+decision schedules their packages (DEC-022).
 Design coverage: all DSN items with **Phase** PH-5, including the whole FED chapter.
 
 ## 4. Dependencies
 
 | Dependency | Kind | Needed by |
 |---|---|---|
-| EXIT-4-01…11 | prior exit | start |
+| EXIT-4-01…15 | prior exit | start |
+| legal review of the E-SIGN/UETA ceremony design (CR-ESIGN-001…004) | external | month 3 |
 | two pilot organisations for the shared-BPU pilot (for example a fund administrator and an asset manager) with legal agreements for data sharing | external | month 1 |
 | browser support for OPFS and WASM performance (ASM-011) | external | month 2 |
 | registry operators (UBOS plus at least one independent operator) | external | month 4 |
@@ -66,6 +75,7 @@ evidence (NTY), never as a system of record.
 | BPA 1.2 with federation and shared-BPU clauses | signed release |
 | Browser kernel package | npm package with WASM kernel and OPFS adapter |
 | Shared-BPU pilot report | signed by both organisations |
+| Contract-only capabilities | Workspace release with clauses, e-signatures, portal and War Room; legal memo |
 
 ## 7. Verification plan
 
@@ -90,6 +100,7 @@ evidence (NTY), never as a system of record.
 | shared-BPU pilot | SUITE-FED-PILOT | VER-PILOT-5000…5049 |
 | browser kernel conformance and performance | SUITE-DVM-CONF, SUITE-DVM-BENCH | VER-CONF-0001…6299 (claimed profiles), VER-BENCH-0400…0449 |
 | federation scenarios | SUITE-PH5-FED | VER-SCN-5000…5099 |
+| contract-only capabilities and the E-SIGN/UETA review | SUITE-WSP-E2E | VER-SCN-5100…5149 |
 
 VER numbering follows the allocation of the verification volume (UBS-VER-00 §3).
 
@@ -144,6 +155,7 @@ All earlier suites re-run; federation suites join the nightly runs.
 | EXIT-5-06 | BPA 1.2 released with federation and shared-BPU vectors | release manifest |
 | EXIT-5-07 | Registry replicated by at least one independent operator with signature-verified records | operator report |
 | EXIT-5-08 | Traceability shows every PH-5 Must requirement covered; all earlier suites pass | traceability and regression reports |
+| EXIT-5-09 | Contract-only capabilities (clauses, e-signature ceremony with independent seal verification, portal, War Room) pass their scenarios, and legal counsel approves the E-SIGN/UETA ceremony design (moved from EXIT-2-12, DEC-022) | scenario report, legal memo |
 
 ## 10. Risks and mitigations
 
@@ -153,6 +165,7 @@ All earlier suites re-run; federation suites join the nightly runs.
 | RSK-051 | Shared-BPU protocol defects under partitions | M | H | formal model first; simulation with million-seed runs | any divergence | kernel lead |
 | RSK-052 | Browser storage eviction and quotas limit usefulness (ASM-011) | M | M | eviction handling and re-sync (FR-SYNC-083); scope limits | eviction rate in beta | client lead |
 | RSK-053 | Registry becomes a single point of failure or control | L | M | multiple operators, DNS fallback, cached resolution | registry outage alerts | platform lead |
+| RSK-054 | E-SIGN ceremony not accepted by counsel (moved from RSK-025) | L | H | early legal review at design time; standard patterns | review comments requiring redesign | legal lead |
 
 ## 11. Reference duration and team assumption
 

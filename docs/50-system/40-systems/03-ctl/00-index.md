@@ -35,9 +35,11 @@ billing integration).
 
 ## 4. Phase map
 
+PH-4 and PH-5 are specified but not scheduled for execution (DEC-023).
+
 | Phase | CTL scope |
 |---|---|
-| PH-1 … PH-3 | none as a product; Server and managed Server are operated with node CLI and infrastructure tooling; a minimal internal "CTL-lite" script set tracks design-partner nodes (PH-3) |
+| PH-1 … PH-3 | none as a product; Server and managed Server are operated with node CLI and infrastructure tooling; the single demonstration Server needs no inventory (DEC-023) |
 | PH-4 | full CTL: registry, placement, lifecycle, migration, upgrade waves, config rollout, usage, plans, entitlements, budgets, capacity and tiering, operator console, tenant portal |
 | PH-5 | federation-aware registry hooks; multi-region Cell groups |
 

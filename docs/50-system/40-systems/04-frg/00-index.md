@@ -41,7 +41,7 @@ PER-AiAgent (FRG as a tool through AGT).
 |---|---|
 | PH-0 | conformance runner skeleton and vector format; formal-model tooling integration |
 | PH-1a | `forge check`, `forge types`, `forge test` against an in-process DVM; verification records for L2 assets; conformance runner for Core, Bitemporal, Ledger, Proof |
-| PH-1b | headless Box dev environment (`forge dev`), install into a VAE over UBTP, Governance profile vectors, rule tests |
+| PH-1b | local development node on PostgreSQL (`forge dev`, DEC-024), install into a VAE over UBTP, Governance profile vectors, rule tests |
 | PH-2 | Buk format, dependency resolution and lock, `forge pack/sign/verify`, simulator and history replay, debugger traces, language server and VS Code extension, documentation generation, Forge service in NOD |
 | PH-3 | L3 WASM component toolchain (Rust, TypeScript via componentize-js, Go via TinyGo), AI iteration loop hooks |
 | PH-4 | publish to EXC, reproducible verification service for EXC |

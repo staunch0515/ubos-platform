@@ -24,10 +24,11 @@ depends_on: [UBS-IDX-00]
 | UBS-REQ-03 | Capability Map | complete | ALL | `10-requirements/03-capability-map.md` |
 | UBS-REQ-04 | Reference Scenarios — Index | complete | ALL | `10-requirements/04-scenarios/00-index.md` |
 | UBS-REQ-04-01 | Scenarios — Platform Core | complete | PH-1 | `10-requirements/04-scenarios/01-platform-core.md` |
-| UBS-REQ-04-02 | Scenarios — Fund Operations (First Vertical) | complete | PH-2 | `10-requirements/04-scenarios/02-fund-operations.md` |
+| UBS-REQ-04-02 | Scenarios — Fund Operations (Deferred, DEC-022) | complete | PH-2 | `10-requirements/04-scenarios/02-fund-operations.md` |
 | UBS-REQ-04-03 | Scenarios — Contract Management (First Vertical) | complete | PH-2 | `10-requirements/04-scenarios/03-contracts.md` |
 | UBS-REQ-04-04 | Scenarios — Governed AI | complete | PH-3 | `10-requirements/04-scenarios/04-ai-agents.md` |
 | UBS-REQ-04-05 | Scenarios — Offline, Ecosystem, Operations and Federation | complete | PH-2 | `10-requirements/04-scenarios/05-operations-federation.md` |
+| UBS-REQ-04-06 | Scenarios — Basic Finance (First Business Package) | draft | PH-2 | `10-requirements/04-scenarios/06-finance.md` |
 | UBS-REQ-05 | Functional Requirements — Index | complete | ALL | `10-requirements/05-functional/00-index.md` |
 | UBS-REQ-05-01 | Functional Requirements — MODEL (Classes, Inheritance, Polymorphism) | complete | PH-1 | `10-requirements/05-functional/01-model.md` |
 | UBS-REQ-05-02 | Functional Requirements — VER (Versioning, Branches, Merge, Release) | complete | PH-1 | `10-requirements/05-functional/02-versioning.md` |
@@ -223,11 +224,11 @@ depends_on: [UBS-IDX-00]
 | UBS-PHF-0 | PH-0 — Feature List (generated) | draft | PH-0 | `50-phases/PH-0/01-features.md` |
 | UBS-PH-1 | PH-1 — Kernel and Single-Node Server (gates PH-1a and PH-1b) | draft | PH-1 | `50-phases/PH-1/00-plan.md` |
 | UBS-PHF-1 | PH-1 — Feature List (generated) | draft | PH-1 | `50-phases/PH-1/01-features.md` |
-| UBS-PH-2 | PH-2 — First Verticals and Production Server | draft | PH-2 | `50-phases/PH-2/00-plan.md` |
+| UBS-PH-2 | PH-2 — First Business Package (Basic Finance) and Production Server | draft | PH-2 | `50-phases/PH-2/00-plan.md` |
 | UBS-PHF-2 | PH-2 — Feature List (generated) | draft | PH-2 | `50-phases/PH-2/01-features.md` |
-| UBS-PH-3 | PH-3 — Regulated Pilot, Devices and Governed AI | draft | PH-3 | `50-phases/PH-3/00-plan.md` |
+| UBS-PH-3 | PH-3 — CPA Audit Drill, Evidence and Governed AI | draft | PH-3 | `50-phases/PH-3/00-plan.md` |
 | UBS-PHF-3 | PH-3 — Feature List (generated) | draft | PH-3 | `50-phases/PH-3/01-features.md` |
-| UBS-PH-4 | PH-4 — Platform Scale and Ecosystem | draft | PH-4 | `50-phases/PH-4/00-plan.md` |
+| UBS-PH-4 | PH-4 — Devices, Platform Scale and Ecosystem | draft | PH-4 | `50-phases/PH-4/00-plan.md` |
 | UBS-PHF-4 | PH-4 — Feature List (generated) | draft | PH-4 | `50-phases/PH-4/01-features.md` |
 | UBS-PH-5 | PH-5 — Federation and the Open Network | draft | PH-5 | `50-phases/PH-5/00-plan.md` |
 | UBS-PHF-5 | PH-5 — Feature List (generated) | draft | PH-5 | `50-phases/PH-5/01-features.md` |

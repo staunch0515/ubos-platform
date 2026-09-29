@@ -985,7 +985,7 @@ depends_on: [UBS-IDX-00]
 | CR-WCAG-002 | Section 508 and ACR | `10-requirements/08-compliance.md` |
 | CR-WCAG-003 | Accessible documents | `10-requirements/08-compliance.md` |
 
-## SCN (55)
+## SCN (67)
 
 | ID | Title | Defined in |
 |---|---|---|
@@ -1044,6 +1044,18 @@ depends_on: [UBS-IDX-00]
 | SCN-410 | Enterprise worker pool runs a batch | `10-requirements/04-scenarios/05-operations-federation.md` |
 | SCN-411 | Local-first web user | `10-requirements/04-scenarios/05-operations-federation.md` |
 | SCN-412 | Automated deprovisioning and access review | `10-requirements/04-scenarios/05-operations-federation.md` |
+| SCN-501 | Set up the company books | `10-requirements/04-scenarios/06-finance.md` |
+| SCN-502 | Journal entry with maker–checker approval | `10-requirements/04-scenarios/06-finance.md` |
+| SCN-503 | Customer invoice to cash receipt | `10-requirements/04-scenarios/06-finance.md` |
+| SCN-504 | Vendor bill to payment with 1099 tracking | `10-requirements/04-scenarios/06-finance.md` |
+| SCN-505 | Bank reconciliation with statement import | `10-requirements/04-scenarios/06-finance.md` |
+| SCN-506 | Month-end close and financial statements | `10-requirements/04-scenarios/06-finance.md` |
+| SCN-507 | Posting to a closed period and governed reopen | `10-requirements/04-scenarios/06-finance.md` |
+| SCN-508 | Back-dated correction and "as known on" reporting | `10-requirements/04-scenarios/06-finance.md` |
+| SCN-509 | Accounting rule change simulated against history | `10-requirements/04-scenarios/06-finance.md` |
+| SCN-510 | Foreign-currency invoice and period-end revaluation | `10-requirements/04-scenarios/06-finance.md` |
+| SCN-511 | Year-end close and CPA audit drill | `10-requirements/04-scenarios/06-finance.md` |
+| SCN-512 | Finance agents under review and Copilot explanations | `10-requirements/04-scenarios/06-finance.md` |
 
 ## CAP (220)
 
@@ -1270,10 +1282,11 @@ depends_on: [UBS-IDX-00]
 | CAP-VER-09 | History tiering | `10-requirements/03-capability-map.md` |
 | CAP-VER-10 | Transaction-time travel | `10-requirements/03-capability-map.md` |
 
-## PER (28)
+## PER (33)
 
 | ID | Title | Defined in |
 |---|---|---|
+| PER-Accountant | Staff Accountant | `10-requirements/02-personas.md` |
 | PER-AgentSupervisor | Agent Supervisor | `10-requirements/02-personas.md` |
 | PER-AiAgent | AI Agent (non-human principal) | `10-requirements/02-personas.md` |
 | PER-Approver | Approver | `10-requirements/02-personas.md` |
@@ -1282,9 +1295,11 @@ depends_on: [UBS-IDX-00]
 | PER-BusinessUser | Business User | `10-requirements/02-personas.md` |
 | PER-ComplianceOfficer | Compliance Officer | `10-requirements/02-personas.md` |
 | PER-ContractManager | Contract Manager | `10-requirements/02-personas.md` |
+| PER-Controller | Controller | `10-requirements/02-personas.md` |
 | PER-DataAnalyst | Data Analyst | `10-requirements/02-personas.md` |
 | PER-ExchangeOperator | Exchange Operator | `10-requirements/02-personas.md` |
 | PER-Executive | Executive | `10-requirements/02-personas.md` |
+| PER-ExternalAuditor | External Auditor (CPA) | `10-requirements/02-personas.md` |
 | PER-ExternalParty | External Party | `10-requirements/02-personas.md` |
 | PER-FieldWorker | Field Worker | `10-requirements/02-personas.md` |
 | PER-FundAccountant | Fund Accountant | `10-requirements/02-personas.md` |
@@ -1295,8 +1310,10 @@ depends_on: [UBS-IDX-00]
 | PER-IsvDeveloper | ISV Developer | `10-requirements/02-personas.md` |
 | PER-KernelEngineer | Kernel Engineer | `10-requirements/02-personas.md` |
 | PER-LogicDeveloper | Logic Developer | `10-requirements/02-personas.md` |
+| PER-PayablesClerk | Accounts Payable Clerk | `10-requirements/02-personas.md` |
 | PER-PersonalUser | Personal User | `10-requirements/02-personas.md` |
 | PER-PlatformOperator | Platform Operator | `10-requirements/02-personas.md` |
+| PER-ReceivablesClerk | Accounts Receivable Clerk | `10-requirements/02-personas.md` |
 | PER-RegulatorExaminer | Regulator or External Examiner | `10-requirements/02-personas.md` |
 | PER-SecurityOfficer | Security Officer | `10-requirements/02-personas.md` |
 | PER-StandardsSteward | Standards Steward | `10-requirements/02-personas.md` |
@@ -1308,7 +1325,7 @@ depends_on: [UBS-IDX-00]
 | ID | Title | Defined in |
 |---|---|---|
 | CST-001 | The BPA standard is language-neutral. The reference implementation is Rust (kernel, servers, CLI) an | `10-requirements/07-constraints-assumptions.md` |
-| CST-002 | Authoritative storage uses PostgreSQL 16+ (Server, Cell) and SQLite (Box, browser, mobile). The runt | `10-requirements/07-constraints-assumptions.md` |
+| CST-002 | Authoritative storage uses PostgreSQL 16+ (Server, Cell) and SQLite (Box, browser, mobile; from PH-4 | `10-requirements/07-constraints-assumptions.md` |
 | CST-003 | Authoritative state is written only by the commit path. Projections, caches and indexes are non-auth | `10-requirements/07-constraints-assumptions.md` |
 | CST-004 | Business classes do not create database tables by default. Typed tables exist only as declared proje | `10-requirements/07-constraints-assumptions.md` |
 | CST-005 | The kernel contains no business rules. Business behaviour ships as Buks. | `10-requirements/07-constraints-assumptions.md` |
@@ -1326,12 +1343,12 @@ depends_on: [UBS-IDX-00]
 | CST-017 | Operators of hosted Cells must not be able to read tenant business data through platform tooling. | `10-requirements/07-constraints-assumptions.md` |
 | CST-018 | Customer data must always be exportable in open formats, regardless of licence state. | `10-requirements/07-constraints-assumptions.md` |
 
-## ASM (12)
+## ASM (14)
 
 | ID | Title | Defined in |
 |---|---|---|
 | ASM-001 | A core team of 8–12 engineers is available from PH-0, growing to 15–20 by PH-4, with at least 3 seni | `10-requirements/07-constraints-assumptions.md` |
-| ASM-002 | At least one asset-management or fund-administration design partner commits by the start of PH-2 to  | `10-requirements/07-constraints-assumptions.md` |
+| ASM-002 | An independent US CPA (or a firm) is available in PH-3 to run the audit drill on the sample company' | `10-requirements/07-constraints-assumptions.md` |
 | ASM-003 | PostgreSQL 16+ on NVMe meets the NR-PERF commit targets with the designed storage layout. | `10-requirements/07-constraints-assumptions.md` |
 | ASM-004 | Commercial and self-hostable LLMs with structured output and tool use remain available at acceptable | `10-requirements/07-constraints-assumptions.md` |
 | ASM-005 | An RFC 3161 time-stamp authority acceptable to US regulators and auditors is available for anchoring | `10-requirements/07-constraints-assumptions.md` |
@@ -1341,7 +1358,9 @@ depends_on: [UBS-IDX-00]
 | ASM-009 | Tauri 2 supports the desktop and mobile targets with an embedded Rust kernel. | `10-requirements/07-constraints-assumptions.md` |
 | ASM-010 | Third parties are interested in implementing or embedding the BPA once a vertical proves value. | `10-requirements/07-constraints-assumptions.md` |
 | ASM-011 | Browsers provide origin-private file system storage and WebAssembly performance sufficient for the b | `10-requirements/07-constraints-assumptions.md` |
-| ASM-012 | Design partners provide anonymised production-like data for benchmarks and simulations. | `10-requirements/07-constraints-assumptions.md` |
+| ASM-012 | The sample-company dataset (Northwind Components, Inc.) with independently computed expected results | `10-requirements/07-constraints-assumptions.md` |
+| ASM-013 | Accountants familiar with US GAAP are available as usability-study participants in PH-2 (EXIT-2-18). | `10-requirements/07-constraints-assumptions.md` |
+| ASM-014 | The owner's Java system implements the same finance requirements (`docs/finance-requirements/`) in t | `10-requirements/07-constraints-assumptions.md` |
 
 ## GL (146)
 

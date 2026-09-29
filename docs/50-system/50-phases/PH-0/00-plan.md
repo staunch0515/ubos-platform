@@ -11,7 +11,7 @@ depends_on: [UBS-PH-00, UBS-STD-00, UBS-SYS-DVM-00, UBS-SYS-BPA-00]
 ## 1. Goal and business value
 
 PH-0 proves, before the product is built, that the three riskiest technical bets hold: (1)
-content-addressed, bitemporal, branchable state on PostgreSQL and SQLite meets the latency
+content-addressed, bitemporal, branchable state on PostgreSQL meets the latency
 targets (ASM-003, DEC-020); (2) the core semantics (commit and compare-and-set, three-way
 merge with ledger append, timeline algebra) are correct as specified; (3) the standard can be
 tested language-neutrally. The business value is risk removal: every later phase builds on
@@ -31,7 +31,7 @@ Measurable outcomes:
 | System | Components | Depth |
 |---|---|---|
 | BPA | `bpa-standard` repository, release pipeline, clauses for FND, OBJ, CLS (core), KIND, VER (commit, branch, merge), TIME, TXN (commit, CAS), PROOF (tree, roots) | new |
-| DVM | prototype crates `ubos-types`, `ubos-store` (PostgreSQL and SQLite), `ubos-tree`, minimal `ubos-version` and `ubos-time` sufficient for vectors | prototype |
+| DVM | prototype crates `ubos-types`, `ubos-store` (PostgreSQL; SQLite follows in PH-4, DEC-024), `ubos-tree`, minimal `ubos-version` and `ubos-time` sufficient for vectors | prototype |
 | FRG | conformance runner and adapter protocol (DSN-FRG-401, DSN-FRG-402) | prototype |
 | NOD | in-process host services (clock, entropy, blobs) for the prototype | prototype |
 | `ubos-verify` | TLA+ models for commit/CAS, merge, timelines | new |
@@ -100,7 +100,7 @@ following design items as prototypes; they are re-verified in PH-1 at production
 |---|---|---|
 | commit/CAS, merge, timeline models | SUITE-BPA-MODELS | VER-FORM-9000…9049 |
 | coverage report of 0.1 MUST clauses | SUITE-BPA-COVERAGE | VER-INSP-9000…9049 |
-| 0.1 vectors on the prototype (PostgreSQL and SQLite) | SUITE-DVM-CONF | standard vectors VER-CONF-0001…2699 (Core, Bitemporal, Ledger areas) |
+| 0.1 vectors on the prototype (PostgreSQL) | SUITE-DVM-CONF | standard vectors VER-CONF-0001…2699 (Core, Bitemporal, Ledger areas) |
 | roots history independence, timeline non-overlap, merge determinism | SUITE-DVM-PROP | VER-PROP-0001…0099 |
 | prototype benchmarks | SUITE-DVM-BENCH | VER-BENCH-0001…0049 |
 | first L2 escape cases | SUITE-DVM-SEC | VER-SEC-0001…0099 |
@@ -112,7 +112,6 @@ VER numbering follows the allocation of the verification volume (UBS-VER-00 §3)
 | Use | Environment |
 |---|---|
 | PostgreSQL benchmarks with WL-GENERIC-10M | ENV-REF-SERVER |
-| SQLite benchmarks with a 1,000,000-object dataset | ENV-REF-BOX |
 | model checking (TLC) and property tests | developer workstations |
 
 Datasets: WL-GENERIC-10M generated with a fixed seed; history of 24 months at 10% monthly
@@ -123,7 +122,7 @@ change for bitemporal reads.
 | Check | Threshold |
 |---|---|
 | formal models | 0 violations; state space at least 3 branches × 4 commits × 3 objects for merge, 3 processes × 2 nodes for CAS, 3 objects × 5 operations for timelines |
-| vectors | 100% pass on both backends for the vectors marked `prototype` in 0.1 |
+| vectors | 100% pass on PostgreSQL for the vectors marked `prototype` in 0.1 |
 | properties | ≥ 1,000,000 generated cases per property, 0 failures |
 | benchmarks | point read p95 ≤ 6.25 ms and simple commit p50 ≤ 19 ms (80% of NR-PERF-001 and NR-PERF-002 targets, measured as target ÷ 0.8) |
 | sandbox spike | 100% of 100 initial escape cases blocked |
@@ -156,7 +155,7 @@ The PH-0 vectors, properties and models become permanent members of the PH-1 sui
 |---|---|---|
 | EXIT-0-01 | BPA 0.1 is released, signed, with Core, Bitemporal and Ledger clauses and ≥ 300 vectors | release manifest and signature |
 | EXIT-0-02 | The three formal models are checked with no violation at the stated state-space bounds | model-checking reports |
-| EXIT-0-03 | The prototype passes 100% of `prototype` vectors on PostgreSQL and SQLite through the runner | signed runner reports |
+| EXIT-0-03 | The prototype passes 100% of `prototype` vectors on PostgreSQL through the runner | signed runner reports |
 | EXIT-0-04 | Root history independence holds in ≥ 1,000,000 generated cases | property report |
 | EXIT-0-05 | Benchmarks meet MET-PERF-001…003, or a decision records the storage fallback of DEC-020 | benchmark report and DEC entry |
 | EXIT-0-06 | The Rhai sandbox spike blocks all 100 initial escape cases, or a decision revises ASM-008 | sandbox report and DEC entry |

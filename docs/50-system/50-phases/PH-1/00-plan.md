@@ -11,23 +11,22 @@ depends_on: [UBS-PH-00, UBS-PH-0, UBS-SYS-DVM-00, UBS-SYS-NOD-00]
 ## 1. Goal and business value
 
 PH-1 builds the reference kernel (DVM) to production quality and wraps it in a single-node
-Server and a headless Box, so that the mechanism is proven end to end: typed, inherited,
+Server on PostgreSQL (DEC-024), so that the mechanism is proven end to end: typed, inherited,
 bitemporal, branchable, provable business state with deterministic governed logic. It
 delivers business goal **G1** (UBS-REQ-01 §7): 100% of the BPA conformance vectors of the
-claimed profiles pass on the reference DVM on PostgreSQL and on SQLite.
+claimed profiles pass on the reference DVM on PostgreSQL. SQLite follows in PH-4 (DEC-024).
 
 PH-1 has two sequential gates (DEC-014):
 - **PH-1a Engine core** — the kernel and its in-process host: storage, model, versioning,
   time, ledger, transactions, L1/L2 runtime, proofs, portable export and import, Forge
-  check/types/test, headless Box host services.
+  check/types/test, in-process host services on PostgreSQL.
 - **PH-1b Governance and services** — governance sheets, decisions, lifecycles and ports,
   events and jobs, queries with authorization, UBTP server, SDKs, local identity, secrets,
   single-node Server operations, and an engineering UI for acceptance.
 
 Measurable outcomes:
 1. BPA 1.0-rc conformance: 100% of vectors of Core, Bitemporal, Ledger, Proof (roots,
-   signatures, inclusion) and Governance profiles pass on PostgreSQL and SQLite
-   (MET-QUAL-010).
+   signatures, inclusion) and Governance profiles pass on PostgreSQL (MET-QUAL-010).
 2. PH-1 NR performance targets met on ENV-REF-SERVER (MET-PERF-010…017).
 3. 0 lost acknowledged commits in 10,000 injected crashes (NR-DUR-001, MET-QUAL-013).
 4. 100% replay fidelity on 10,000 processes (NR-DET-001, MET-QUAL-014).
@@ -39,7 +38,7 @@ Measurable outcomes:
 |---|---|---|---|
 | BPA | 1.0-rc clauses for Core, Bitemporal, Ledger, Proof (subset), Governance; vectors covering all MUST clauses of these profiles | 1a, 1b | extended |
 | DVM | all engine crates at production quality for storage, model, versioning, time, ledger, transactions, runtime (L1, L2), proofs, export/import (1a); rules, flow core, authorization (RBAC, ABAC), query, view resolution basics (1b) | 1a, 1b | new |
-| NOD | headless Box host and CTR-002 host services (1a); Server single node: UBTP server, local authentication, sessions, secrets, jobs, schedules, outbox release, events, blobs, telemetry, health, backup and PITR, configuration, genesis Buks (1b) | 1a, 1b | new |
+| NOD | in-process host and CTR-002 host services on PostgreSQL (1a); Server single node: UBTP server, local authentication, sessions, secrets, jobs, schedules, outbox release, events, blobs, telemetry, health, backup and PITR, configuration, genesis Buks (1b) | 1a, 1b | new |
 | FRG | check, types, test, verification records for L2, conformance runner, `forge dev` (1b) | 1a, 1b | new |
 | SDK | Rust and TypeScript SDKs over UBTP | 1b | new |
 | WSP | engineering UI (generated forms, lists, details, history) used only for acceptance | 1b | prototype |
@@ -73,7 +72,7 @@ DSN-SDK items with **Phase** PH-1; DSN-BPA-003, DSN-BPA-004, DSN-BPA-010.
 | ENV-REF-SERVER, ENV-REF-SMALL, ENV-REF-BOX reference environments provisioned and scripted | external | month 2 |
 | fault-injection harness (process kill, power-loss simulation via dm-flakey or equivalent) | internal | month 3 |
 | Cedar-compatible policy engine library selected (DEC-021) | external | gate 1b start |
-| PostgreSQL 16+ and SQLite 3.45+ | external | start |
+| PostgreSQL 16+ | external | start |
 
 ## 5. Out of scope for this phase
 
@@ -82,7 +81,8 @@ DSN-SDK items with **Phase** PH-1; DSN-BPA-003, DSN-BPA-004, DSN-BPA-010.
 - Lenses, decision tables, approvals and deferred commits, workflows, sagas, ReBAC, masking,
   crypto-shredding, simulation (PH-2).
 - Production Workspace and Studio, Buks of the verticals (PH-2).
-- L3 WASM, AI, sync, Box desktop/mobile apps, legal holds, anchoring (PH-3).
+- L3 WASM, AI, legal holds, anchoring (PH-3).
+- SQLite adapter, Box (headless, desktop, mobile), device sync (PH-4, DEC-024).
 - Cells, Control Plane, Exchange, workers, tiering (PH-4); federation and browser kernel (PH-5).
 
 ## 6. Deliverables
@@ -150,7 +150,6 @@ VER numbering follows the allocation of the verification volume (UBS-VER-00 §3)
 |---|---|
 | kernel and edge benchmarks, fault matrix on PostgreSQL | ENV-REF-SERVER |
 | single-node Server installation and scenario runs | ENV-REF-SMALL |
-| SQLite benchmarks and headless Box | ENV-REF-BOX |
 
 Datasets and workloads: WL-GENERIC-10M with 24 months of history; WL-MIXED-OLTP load
 profile; a 10,000-process replay corpus recorded from the scenario suite and synthetic
@@ -162,8 +161,8 @@ Gate 1a:
 
 | Check | Threshold |
 |---|---|
-| engine-profile vectors | 100% pass on PostgreSQL and SQLite |
-| storage parity suite | 100% pass, identical results on both adapters |
+| engine-profile vectors | 100% pass on PostgreSQL |
+| storage suite | 100% pass on PostgreSQL |
 | properties | ≥ 1,000,000 cases per property per release candidate; 0 failures (NR-DET-003) |
 | simulation | 10,000 seeds per night for 30 consecutive nights with 0 violations; 1,000,000 seeds before gate |
 | fault matrix | 0 acknowledged commits lost across 10,000 injected crashes (NR-DUR-001) |
@@ -171,13 +170,13 @@ Gate 1a:
 | performance | NR-PERF-001, -002, -004, -005, -006, -007, -010 targets met on ENV-REF-SERVER |
 | sandbox | 100% of ≥ 300 L2 escape cases blocked (NR-SEC-002) |
 | maintainability | ≥ 85% line coverage and ≥ 70% mutation score for core crates; 0 dependency-graph violations (NR-MAINT-002, NR-MAINT-003) |
-| portability | export from PostgreSQL imported into SQLite and back yields identical head roots in 100% of test VAEs (NR-PORT-003) |
+| portability | export from one PostgreSQL VAE imported into another yields identical head roots in 100% of test VAEs (NR-PORT-003, PH-1 part) |
 
 Gate 1b:
 
 | Check | Threshold |
 |---|---|
-| Governance-profile vectors | 100% pass on both backends |
+| Governance-profile vectors | 100% pass on PostgreSQL |
 | UBTP and SDK suites | 100% pass on WebSocket, HTTP and in-process bindings |
 | isolation | 100% pass; 0 cross-tenant access (NR-SEC-003) |
 | secrets | 0 matches of secret scanning over logs and traces of the full scenario suite (NR-SEC-009) |
@@ -207,7 +206,7 @@ regression over 10% or any simulation failure blocks the next release candidate.
 
 | Metric | Name | Target | Gate |
 |---|---|---|---|
-| MET-QUAL-010 | conformance vectors passing, claimed profiles, both backends | 100% | 1a, 1b |
+| MET-QUAL-010 | conformance vectors passing, claimed profiles, PostgreSQL | 100% | 1a, 1b |
 | MET-QUAL-011 | simulation seeds without violation before gate | ≥ 1,000,000 | 1a |
 | MET-QUAL-012 | core crate mutation score | ≥ 70% | 1a |
 | MET-QUAL-013 | acknowledged commits lost in fault injection | 0 of ≥ 10,000 crashes | 1a |
@@ -230,19 +229,19 @@ regression over 10% or any simulation failure blocks the next release candidate.
 | Exit | Gate | Criterion | Evidence |
 |---|---|---|---|
 | EXIT-1-01 | 1a | BPA 1.0-rc1 released with vectors covering 100% of MUST clauses of Core, Bitemporal, Ledger and Proof (roots, signatures, inclusion) | release manifest, coverage report |
-| EXIT-1-02 | 1a | 100% of engine-profile vectors pass on PostgreSQL and SQLite | signed runner reports |
-| EXIT-1-03 | 1a | Storage parity suite passes with identical results on both adapters | SUITE-DVM-STORE report |
+| EXIT-1-02 | 1a | 100% of engine-profile vectors pass on PostgreSQL | signed runner reports |
+| EXIT-1-03 | 1a | Storage suite passes 100% on PostgreSQL, with the storage trait free of backend-specific types (inspection) | SUITE-DVM-STORE report, inspection record |
 | EXIT-1-04 | 1a | 0 property failures at ≥ 1,000,000 cases per property | property report |
 | EXIT-1-05 | 1a | 1,000,000 simulation seeds with 0 violations, including 30 consecutive clean nights | simulation report |
-| EXIT-1-06 | 1a | 0 lost acknowledged commits in ≥ 10,000 injected crashes on PostgreSQL and SQLite | fault report |
+| EXIT-1-06 | 1a | 0 lost acknowledged commits in ≥ 10,000 injected crashes on PostgreSQL | fault report |
 | EXIT-1-07 | 1a | Extended formal models (group commit, ledger sequences) checked with 0 violations | model reports |
 | EXIT-1-08 | 1a | 100% replay fidelity across three platforms on ≥ 10,000 processes | replay report |
-| EXIT-1-09 | 1a | MET-PERF-010…015 met on ENV-REF-SERVER; SQLite results reported on ENV-REF-BOX | benchmark report |
+| EXIT-1-09 | 1a | MET-PERF-010…015 met on ENV-REF-SERVER | benchmark report |
 | EXIT-1-10 | 1a | 100% of ≥ 300 L2 escape cases blocked | security report |
 | EXIT-1-11 | 1a | Coverage ≥ 85% and mutation score ≥ 70% for core crates; 0 dependency-graph violations | CI reports |
-| EXIT-1-12 | 1a | Portable export/import round trip between backends yields identical roots | round-trip report |
+| EXIT-1-12 | 1a | Portable export/import round trip between PostgreSQL VAEs yields identical roots | round-trip report |
 | EXIT-1-13 | 1a | Gate-1a scenarios (10) pass through the in-process binding | scenario report |
-| EXIT-1-14 | 1b | BPA 1.0-rc2 adds the Governance profile with full MUST coverage; 100% pass on both backends | release manifest, runner reports |
+| EXIT-1-14 | 1b | BPA 1.0-rc2 adds the Governance profile with full MUST coverage; 100% pass on PostgreSQL | release manifest, runner reports |
 | EXIT-1-15 | 1b | UBTP and SDK suites pass on all PH-1 bindings | suite reports |
 | EXIT-1-16 | 1b | Isolation suite 100% pass; 0 secret-scanning matches; 100% security event coverage | security report |
 | EXIT-1-17 | 1b | MET-PERF-016 and MET-PERF-017 met, and NR-PERF-009 and NR-PERF-012 met | benchmark report |

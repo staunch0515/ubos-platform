@@ -13,11 +13,11 @@ depends_on: [UBS-VER-00, UBS-VER-04]
 | Phase | Requirements | Must | Realised by design | Covered by suites or items | Must gaps |
 |---|---|---|---|---|---|
 | PH-0 | 8 | 8 | 8 | 8 | 0 |
-| PH-1 | 341 | 326 | 338 | 341 | 0 |
-| PH-2 | 345 | 269 | 327 | 339 | 0 |
-| PH-3 | 183 | 132 | 167 | 174 | 0 |
-| PH-4 | 65 | 42 | 52 | 58 | 0 |
-| PH-5 | 18 | 15 | 18 | 18 | 0 |
+| PH-1 | 338 | 323 | 335 | 338 | 0 |
+| PH-2 | 332 | 257 | 317 | 326 | 0 |
+| PH-3 | 139 | 99 | 127 | 132 | 0 |
+| PH-4 | 92 | 66 | 77 | 85 | 0 |
+| PH-5 | 51 | 39 | 46 | 49 | 0 |
 
 Per-phase files: `21-trace-ph0.md` … `26-trace-ph5.md`.
 

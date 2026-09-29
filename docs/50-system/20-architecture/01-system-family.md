@@ -118,12 +118,14 @@ The diagram in table form (lower layers never depend on higher layers):
 
 ## 6. Phase introduction of systems
 
+PH-0…PH-3 serve platform demonstration (DEC-023); PH-4 and PH-5 are specified but not scheduled.
+
 | Phase | New systems or major extensions |
 |---|---|
 | PH-0 | BPA (v0 draft, formal models, vectors), FRG (conformance runner) |
-| PH-1a | DVM core, NOD in-process host and Box headless, FRG CLI basics |
+| PH-1a | DVM core on PostgreSQL (DEC-024), NOD in-process host, FRG CLI basics |
 | PH-1b | NOD Server with UBTP, SDK (TypeScript, Rust), DVM governance (rules, flow, events, IAM) |
-| PH-2 | WSP web, STU, BRG (connectors, imports), first vertical Buks, NOD HA and DR |
-| PH-3 | AGT, NTY, WSP Office suite (grid, war room, messages), desktop and mobile, SYNC (Box–Server), L3 WASM |
-| PH-4 | CTL, Cell, EXC, Worker role, certification programme, tiering |
-| PH-5 | FED, cross-organisation shared BPUs, browser kernel |
+| PH-2 | WSP web (with Smart Grid), lean STU, BRG (imports, bank files), Basic Finance Buk (DEC-022), NOD HA and DR |
+| PH-3 | AGT, NTY, WSP (war room, action messages, portal, dashboards), L3 WASM |
+| PH-4 | SQLite adapter, Box (headless, desktop, mobile) and SYNC (Box–Server) (DEC-024); CTL, Cell, EXC, Worker role, certification programme, tiering |
+| PH-5 | FED, cross-organisation shared BPUs, browser kernel, contract-only capabilities (Live Doc, clauses, negotiation, electronic signatures; DEC-022) |

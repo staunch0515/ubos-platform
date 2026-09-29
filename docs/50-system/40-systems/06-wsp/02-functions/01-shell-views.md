@@ -208,47 +208,103 @@ depends_on: [UBS-SYS-WSP-01]
 - **Verification:** SCN
 - **Origin:** FR-AUD-011, FR-AUD-022, FR-AUD-041, FR-AUD-042
 
+### DSN-WSP-116 — Keyboard-first journal and document entry
+- **Statement:** Entry screens for journal entries, invoices, bills, receipts and payments MUST support full keyboard operation: predictable tab order, account and party lookup by code or name with type-ahead, Enter to add a line, hotkeys for save, submit, copy entry, reverse entry and apply template, and a live debit–credit difference indicator that blocks submission while unbalanced. Recurring and template entries MUST be available from the entry screen.
+- **Rationale:** Professional accounting users enter high volumes; mouse-driven forms are too slow (DEC-025).
+- **Priority:** Must · **Phase:** PH-2 · **Systems:** WSP
+- **Personas:** PER-Accountant, PER-PayablesClerk, PER-ReceivablesClerk
+- **Acceptance:**
+  1. Given a trained accountant, when entering a 10-line journal entry, then it is completed without using the mouse in under 60 seconds.
+  2. Given an unbalanced entry, when submission is attempted, then it is blocked and the difference is shown.
+- **Verification:** USE, SCN
+- **Origin:** FR-UX-031, NR-USE-001, NR-ACC-002, DEC-025
+
+### DSN-WSP-117 — Registers and ledger views
+- **Statement:** WSP MUST provide account registers and general-ledger detail views with running balances, opening and closing balances per period, filters (period, dimension, source, user, status), column choice, totals, and export to XLSX and CSV. Customer and vendor ledgers MUST show documents, applications and balances. Views MUST be virtualised for at least 100,000 rows.
+- **Rationale:** Registers are the everyday working surface of accountants.
+- **Priority:** Must · **Phase:** PH-2 · **Systems:** WSP
+- **Personas:** PER-Accountant, PER-Controller
+- **Acceptance:**
+  1. Given an account with 100,000 lines in a year, when its register is opened and scrolled, then the running balance is correct at every row and the first page renders within 1 s.
+- **Verification:** SCN, BENCH
+- **Origin:** FR-UX-032, FR-QRY-041, FR-QRY-071, FR-OFFICE-046
+
+### DSN-WSP-118 — Financial report viewer with drill-down
+- **Statement:** Financial statements and reports MUST render in a report viewer with comparative columns (prior period, prior year, budget-free variance), selectable reporting date and "as known on" date (bitemporal), subtotal hierarchies from the chart of accounts, and drill-down from any figure to accounts, to entries and to the source document. Reports MUST export to print-quality PDF and to XLSX with formulas replaced by values and a provenance footer (report version, run time, as-of and as-known dates).
+- **Rationale:** Statements must be explainable and reproducible from the screen (FR-AUD-021, FR-ANL-032).
+- **Priority:** Must · **Phase:** PH-2 · **Systems:** WSP
+- **Personas:** PER-Controller, PER-Executive, PER-ExternalAuditor
+- **Acceptance:**
+  1. Given a balance sheet, when a line is drilled into, then the listed entries sum exactly to the line.
+  2. Given the same report run twice with the same parameters, when exported to PDF, then the files are byte-identical.
+- **Verification:** SCN, CONF
+- **Origin:** FR-AUD-021, FR-ANL-031, FR-ANL-032, FR-OFFICE-081, FR-TIME-031
+
+### DSN-WSP-119 — Period close cockpit
+- **Statement:** WSP MUST provide a close cockpit per period showing period status, a close checklist (unposted entries, pending approvals, unreconciled bank accounts, depreciation run, revaluation run, subledger-to-control-account agreement), the owner and status of each task, and the close and reopen actions governed by approvals.
+- **Rationale:** Month-end close is the central finance workflow.
+- **Priority:** Must · **Phase:** PH-2 · **Systems:** WSP
+- **Personas:** PER-Controller, PER-Accountant
+- **Acceptance:**
+  1. Given an unreconciled bank account, when close is attempted, then the cockpit blocks it and links to the reconciliation.
+- **Verification:** SCN, USE
+- **Origin:** FR-LEDG-061, FR-LEDG-062, FR-LEDG-063, FR-FLOW-051
+
+### DSN-WSP-120 — Presentation of financial data
+- **Statement:** Financial figures MUST be right-aligned with consistent decimal places, thousands separators and currency codes where currencies mix; negative amounts MUST be shown with a minus sign or parentheses per user preference; dates MUST use the US format by default; dense table layouts MUST remain WCAG 2.2 AA compliant in light and dark themes. Posted, draft, reversed and voided states MUST be distinguishable by text and not by colour alone.
+- **Rationale:** Professional, readable output for accountants and auditors (DEC-025).
+- **Priority:** Must · **Phase:** PH-2 · **Systems:** WSP
+- **Personas:** PER-Accountant, PER-ExternalAuditor
+- **Acceptance:**
+  1. Given the report and register screens, when inspected against the presentation checklist, then every item passes.
+- **Verification:** INSP, USE
+- **Origin:** FR-LOC-051, NR-ACC-001, DEC-025
+
 ## Clients, offline, portal, theming, localisation, accessibility
 
 ### DSN-WSP-201 — Desktop application
 - **Statement:** The desktop app MUST be a Tauri 2 shell with the web renderer and an embedded Box node, supporting Windows, macOS and Linux (FR-UX-071), with OS keychain integration.
 - **Rationale:** FR-UX-071, NR-PORT-001.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** WSP, NOD
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** WSP, NOD
 - **Personas:** PER-PersonalUser
 - **Acceptance:**
   1. Given the desktop app offline, when started, then the user works on local data.
 - **Verification:** SCN
 - **Origin:** FR-UX-071, NR-PORT-001
+- **Phase note:** moved to PH-4 by DEC-024 (SQLite, Box, devices and sync).
 
 ### DSN-WSP-202 — Mobile application
 - **Statement:** The mobile app MUST use Tauri 2 mobile with the same renderer, mobile view variants, camera capture for attachments and biometric unlock (FR-UX-072).
 - **Rationale:** FR-UX-072.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** WSP, NOD
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** WSP, NOD
 - **Personas:** PER-FieldWorker
 - **Acceptance:**
   1. Given iOS and Android devices, when the field scenario suite runs, then it passes.
 - **Verification:** SCN
 - **Origin:** FR-UX-072
+- **Phase note:** moved to PH-4 by DEC-024 (SQLite, Box, devices and sync).
 
 ### DSN-WSP-203 — Offline indicators and queued actions
 - **Statement:** When offline, WSP MUST show offline state, allow permitted local actions (committed to the device branch), list queued items and sync status (FR-UX-081, FR-UX-083).
 - **Rationale:** FR-UX-081, FR-UX-083, CAP-UX-08.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** WSP
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** WSP
 - **Personas:** PER-FieldWorker
 - **Acceptance:**
   1. Given 10 offline edits, when reconnected, then the sync status shows progress to completion.
 - **Verification:** SCN
 - **Origin:** FR-UX-081, FR-UX-083
+- **Phase note:** moved to PH-4 by DEC-024 (SQLite, Box, devices and sync).
 
 ### DSN-WSP-204 — Conflict resolution screen
 - **Statement:** Rejections and conflicts returned by sync (DSN-DVM-953) MUST be presented with the server value, the local value, the reason and resolution options (FR-UX-082).
 - **Rationale:** FR-UX-082, CAP-SYNC-03.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** WSP
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** WSP
 - **Personas:** PER-FieldWorker
 - **Acceptance:**
   1. Given a rejected offline edit, when viewed, then the user can re-apply, discard or edit it.
 - **Verification:** USE
 - **Origin:** FR-UX-082, FR-SYNC-033
+- **Phase note:** moved to PH-4 by DEC-024 (SQLite, Box, devices and sync).
 
 ### DSN-WSP-205 — External portal
 - **Statement:** The portal MUST serve external identities with narrow scopes (FR-UX-091) under tenant branding (FR-UX-092), showing only content marked external (FR-UX-093).

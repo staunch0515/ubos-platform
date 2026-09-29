@@ -16,7 +16,7 @@ Decisions are never deleted. A replaced decision is marked
 | DEC-001 | Location and title of the volume | Accepted |
 | DEC-002 | The enterprise-internal worker pool is kept; the public compute grid is excluded | Accepted |
 | DEC-003 | US-first compliance, GDPR considered | Accepted |
-| DEC-004 | First vertical: fund and asset-management back office plus contract management | Accepted |
+| DEC-004 | First vertical: fund and asset-management back office plus contract management | Superseded by DEC-022 |
 | DEC-005 | Six phases, PH-0 … PH-5 | Accepted |
 | DEC-006 | Reference durations with an explicit team assumption; phases gated by exit criteria | Accepted |
 | DEC-007 | Technology stack of the reference implementation | Accepted |
@@ -27,13 +27,18 @@ Decisions are never deleted. A replaced decision is marked
 | DEC-012 | Long-term economic and social narratives are excluded | Accepted |
 | DEC-013 | The system decomposition (thirteen systems) | Accepted |
 | DEC-014 | PH-1 has two exit gates: PH-1a (engine core) and PH-1b (governance and services) | Accepted |
-| DEC-015 | Both first-vertical Buks stay in PH-2 | Accepted |
-| DEC-016 | The first commercial form is Server (on-premises and private cloud); hosted Cell follows in PH-4 | Accepted |
+| DEC-015 | Both first-vertical Buks stay in PH-2 | Superseded by DEC-022 |
+| DEC-016 | The first commercial form is Server (on-premises and private cloud); hosted Cell follows in PH-4 | Accepted, revised by DEC-023 |
 | DEC-017 | Architecture-level ID kinds AR (architecture rule) and CTR (inter-system contract) | Accepted |
 | DEC-018 | Repository layout and reuse of the research repositories | Accepted |
 | DEC-019 | Licensing of the standard, reference implementation and tools | Accepted |
 | DEC-020 | Storage engine design: PostgreSQL/SQLite with kernel indexes and prolly trees | Accepted |
 | DEC-021 | Policy engine: Cedar-class analysable policies plus relationship tuples | Accepted |
+| DEC-022 | First business package: US standard basic finance; fund operations and contract management deferred | Accepted |
+| DEC-023 | Purpose of PH-0…PH-3 is platform demonstration, not sale | Accepted |
+| DEC-024 | PostgreSQL only until PH-4; SQLite, Box and device sync move to PH-4 | Accepted |
+| DEC-025 | PH-2 user interface is Web only, professional and practical; Smart Grid moves to PH-2 | Accepted |
+| DEC-026 | Implementation-neutral finance requirements shared with a Java reference system for comparison | Accepted |
 
 ---
 
@@ -72,7 +77,7 @@ Decisions are never deleted. A replaced decision is marked
 - **Affects:** UBS-REQ-08, NR-SEC, NR-PRIV
 
 ### DEC-004 — First vertical: fund and asset-management back office plus contract management
-- **Status:** Accepted · **Date:** 2026-09-29
+- **Status:** Superseded by DEC-022 · **Date:** 2026-09-29
 - **Context:** The architecture needs a flagship "whole product" to prove its value. Regulated finance values immutability, bitemporality and proofs most. One of the source repositories came from the fund domain.
 - **Decision:** The first vertical Buk set is:
   1. Fund Operations: fund and share-class master data; subscriptions and redemptions; NAV and fee calculation with bitemporal corrections; investor register; compliance rules.
@@ -178,7 +183,7 @@ Decisions are never deleted. A replaced decision is marked
 - **Affects:** UBS-PH-1, 60-verification, UBS-REQ-04 (PH-1 scenarios are assigned to gates in the phase plan)
 
 ### DEC-015 — Both first-vertical Buks stay in PH-2
-- **Status:** Accepted · **Date:** 2026-09-29
+- **Status:** Superseded by DEC-022 · **Date:** 2026-09-29
 - **Context:** OQ-002 asked whether to defer one vertical.
 - **Decision:** Fund Operations and Contract Management both ship in PH-2. Contract Management is lighter, and it is the proving ground for Live Doc, templates and electronic signatures. Fund Operations proves bitemporality, ledgers and restatement.
 - **Consequences:** The PH-2 verification plan includes both scenario families (SCN-1xx and SCN-2xx).
@@ -186,7 +191,7 @@ Decisions are never deleted. A replaced decision is marked
 - **Affects:** UBS-PH-2, DEC-004
 
 ### DEC-016 — The first commercial form is Server (on-premises and private cloud); hosted Cell follows in PH-4
-- **Status:** Accepted · **Date:** 2026-09-29
+- **Status:** Accepted, revised by DEC-023 · **Date:** 2026-09-29
 - **Context:** OQ-003. Regulated first customers prefer controlled deployments, and a multi-tenant hosted service needs the Control Plane (PH-4).
 - **Decision:** The first sellable product is the Server edition, deployed by the customer or a partner in their data centre or private cloud, with UBOS-provided support. A single-tenant managed Server operated by UBOS for design partners is allowed from PH-3. Multi-tenant Cells start in PH-4.
 - **Consequences:** Operability (NR-OPER-*), air-gapped installation (FR-OPS-013) and offline licences (FR-PKG-083) gain importance. SOC 2 scope in PH-4 covers the Cell service.
@@ -236,3 +241,47 @@ Decisions are never deleted. A replaced decision is marked
 - **Consequences:** No separate authorization service. Consistency is guaranteed by snapshot evaluation (FR-IAM-053).
 - **Alternatives considered:** OPA/Rego was rejected because it is harder to analyse. A Zanzibar-style external service was rejected because of consistency and operational cost.
 - **Affects:** UBS-ARC-06, UBS-SYS-DVM
+
+### DEC-022 — First business package: US standard basic finance
+- **Status:** Accepted · **Date:** 2026-09-29
+- **Context:** The product owner decided that the first business package must be a standard basic finance system according to US practice (US GAAP basis, single company), because accounting rules are universal, precise and easy to verify, and because a finance ledger exercises the platform's hardest guarantees (immutability, bitemporality, proofs, governed change). Fund operations and contract management add domain risk without adding platform evidence at this stage.
+- **Decision:**
+  1. The first Buk is **Basic Finance** (`finance`): general ledger and chart of accounts, journals with approval, periods and close, accounts receivable, accounts payable with 1099 reporting, cash and bank reconciliation, fixed assets and depreciation, multi-currency (ASC 830), basic US state sales tax, financial statements (balance sheet, income statement, cash flow statement, statement of stockholders' equity), audit trail and internal controls. Single company.
+  2. Excluded from the finance scope: payroll, inventory and costing, multi-entity consolidation, budgeting, project accounting, complex revenue recognition (ASC 606 multiple performance obligations) and lease accounting (ASC 842).
+  3. Fund operations (SCN-101…110) and contract management (SCN-201…208) are **Deferred**; their IDs are kept. Capabilities that only contract management needs (Live Doc, clause library, negotiation, electronic signatures and seals of signed documents, document import to templates) move to PH-5.
+  4. Fund and contract examples inside generic kernel requirements stay as illustrative examples; they do not create fund- or contract-specific scope.
+  5. The detailed finance requirements live in an implementation-neutral document (DEC-026). The platform volume references them through the finance scenarios SCN-501…512.
+- **Consequences:** PH-2 delivers the finance Buk; PH-3 replaces the regulated fund pilot with an external CPA audit drill on finance data; the scenario families, workloads (WL-FIN-M), suites (SUITE-PH2-FINANCE) and phase exits change accordingly.
+- **Alternatives considered:** Keeping fund operations first was rejected (domain risk, needs a design partner). Doing finance and contracts together was rejected (scope).
+- **Affects:** DEC-004, DEC-015, UBS-REQ-01, UBS-REQ-04, UBS-PH-2, UBS-PH-3, UBS-VER-04
+
+### DEC-023 — Purpose of PH-0…PH-3 is platform demonstration, not sale
+- **Status:** Accepted · **Date:** 2026-09-29
+- **Context:** The software is not sold for the time being. The finance system exists to show the capabilities the platform imposes: reproducibility at any past point, immutable and provable entries, reviewed and simulated change, explainable rules, and AI work under human review. Market differentiation is not a design driver.
+- **Decision:** PH-2 delivers a production-quality demonstration product instead of a sellable product. Commercial exit criteria (design-partner migration, legal review of signatures, commercial packaging) are removed from PH-2 and PH-3. DEC-016 remains the intended commercial form when sales start. PH-4 and PH-5 remain specified but are not scheduled for execution.
+- **Consequences:** Goals G2 and G3 are restated (UBS-REQ-01 §7). PH-3 acceptance uses an external CPA audit drill instead of a customer pilot.
+- **Alternatives considered:** Keeping commercial criteria was rejected because they would drive work that the owner does not want now.
+- **Affects:** DEC-016, UBS-REQ-01, UBS-PH-00, UBS-PH-2, UBS-PH-3
+
+### DEC-024 — PostgreSQL only until PH-4
+- **Status:** Accepted · **Date:** 2026-09-29
+- **Context:** Supporting two storage adapters from PH-1 doubles storage testing. The product owner agreed to start with PostgreSQL.
+- **Decision:** PH-0…PH-3 use PostgreSQL only. The SQLite adapter, the Box edition (desktop, mobile, headless SQLite), device sync and PostgreSQL↔SQLite portability move to PH-4. The PH-1a in-process host runs on PostgreSQL. The browser kernel stays in PH-5. The storage trait stays backend-neutral so that SQLite can be added without kernel changes.
+- **Consequences:** G1 is measured on PostgreSQL; cross-backend equivalence becomes a PH-4 criterion. DEC-020 is unchanged in design.
+- **Alternatives considered:** Dropping SQLite entirely was rejected; the Box and browser editions need it later.
+- **Affects:** DEC-020, UBS-REQ-01 §6, UBS-SYS-DVM, UBS-SYS-NOD, UBS-PH-1, UBS-PH-4
+
+### DEC-025 — PH-2 user interface is Web only; Smart Grid moves to PH-2
+- **Status:** Accepted · **Date:** 2026-09-29
+- **Context:** The owner wants a professional, practical Web interface in PH-2 and no desktop or mobile apps at this stage. Batch journal entry benefits from a spreadsheet-like grid.
+- **Decision:** PH-2 ships the Web Workspace and a lean Web Studio. Desktop and mobile apps move to PH-4 with the Box. Smart Grid (FR-OFFICE-041…046) moves from PH-3 to PH-2. Professional accounting workbench patterns (keyboard-first entry, drill-down from statements to entries, register views, print-quality reports) become design requirements of WSP.
+- **Consequences:** WSP design items and the PH-2 usability targets change; the PH-3 device exit criteria move to PH-4.
+- **Affects:** UBS-SYS-WSP, UBS-PH-2, UBS-PH-3, UBS-PH-4
+
+### DEC-026 — Implementation-neutral finance requirements shared for comparison
+- **Status:** Accepted · **Date:** 2026-09-29
+- **Context:** The owner will implement the same finance requirements on this platform and on a separate Java system, then compare development characteristics and efficiency.
+- **Decision:** The finance requirements are written in English as a separate, implementation-neutral document in `docs/finance-requirements/` with their own ID scheme (`FIN-*`). They do not use UBOS concepts. The document includes acceptance criteria, a common sample-company dataset with expected results, shared acceptance scenarios and a comparison protocol. A separate annex in this volume maps the finance requirements to platform capabilities.
+- **Consequences:** Both implementations are measured against the same acceptance tests. The platform volume refers to the finance document through the scenarios SCN-501…512 and the suite SUITE-PH2-FINANCE.
+- **Affects:** UBS-PH-2, UBS-VER-03, UBS-VER-04
+

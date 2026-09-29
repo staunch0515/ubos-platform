@@ -160,7 +160,7 @@ depends_on: [UBS-REQ-06]
 - **Priority:** Must · **Phase:** PH-2 · **Systems:** DVM, WSP
 - **Personas:** PER-BusinessUser
 - **Acceptance:**
-  1. Given WL-FUND-M, when detail views are loaded, then the targets hold.
+  1. Given WL-FIN-M, when detail views are loaded, then the targets hold.
 - **Verification:** BENCH
 - **Origin:** NEW
 
@@ -188,7 +188,7 @@ depends_on: [UBS-REQ-06]
 
 ### NR-PERF-017 — Simulation throughput
 - **Statement:** Historical simulation MUST process realistic windows in reasonable time.
-- **Target:** At least 1,000 replayed processes per minute per application node; a one-month NAV simulation on WL-FUND-M completes within 30 minutes on ENV-REF-SERVER.
+- **Target:** At least 1,000 replayed processes per minute per application node; a one-month ledger re-evaluation simulation on WL-FIN-M completes within 30 minutes on ENV-REF-SERVER.
 - **Rationale:** SCN-106.
 - **Priority:** Should · **Phase:** PH-2 · **Systems:** FRG, DVM
 - **Personas:** PER-ComplianceOfficer
@@ -201,12 +201,13 @@ depends_on: [UBS-REQ-06]
 - **Statement:** Sync MUST transfer data in proportion to the difference.
 - **Target:** Synchronising 100 changed objects (average 4 KB) between replicas of 1,000,000 objects completes in ≤ 10 s on ENV-REF-WAN, with a transfer volume ≤ 2× the changed payload plus 200 KB.
 - **Rationale:** FR-SYNC-011.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** NOD
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** NOD
 - **Personas:** PER-FieldWorker
 - **Acceptance:**
   1. Given the scenario, when measured, then the targets hold.
 - **Verification:** BENCH
 - **Origin:** IMP-07
+- **Phase note:** moved to PH-4 by DEC-024 and DEC-025 (SQLite, Box, devices and sync).
 
 ### NR-PERF-019 — Agent kill-switch latency
 - **Statement:** Stopping agents MUST be immediate.
@@ -226,7 +227,7 @@ depends_on: [UBS-REQ-06]
 - **Priority:** Should · **Phase:** PH-3 · **Systems:** BRG
 - **Personas:** PER-DataAnalyst
 - **Acceptance:**
-  1. Given WL-FUND-L entries, when aggregated, then the targets hold.
+  1. Given 50,000,000 ledger entries generated with the WL-FIN-M generator (about 7 years of the sample company at 3× volume), when aggregated, then the targets hold.
 - **Verification:** BENCH
 - **Origin:** IMP-09
 
@@ -256,12 +257,13 @@ depends_on: [UBS-REQ-06]
 - **Statement:** The Box MUST start quickly.
 - **Target:** Cold start to usable UI ≤ 3 s with 100,000 objects; first-time bootstrap ≤ 2 min on ENV-REF-BOX.
 - **Rationale:** PER-PersonalUser success signal.
-- **Priority:** Should · **Phase:** PH-3 · **Systems:** NOD, WSP
+- **Priority:** Should · **Phase:** PH-4 · **Systems:** NOD, WSP
 - **Personas:** PER-PersonalUser
 - **Acceptance:**
   1. Given the Box, when started 10 times, then all starts are ≤ 3 s.
 - **Verification:** BENCH
 - **Origin:** NEW
+- **Phase note:** moved to PH-4 by DEC-024 and DEC-025 (SQLite, Box, devices and sync).
 
 ### NR-PERF-024 — Browser kernel local reads
 - **Statement:** The browser kernel MUST serve local reads fast.
@@ -357,12 +359,13 @@ depends_on: [UBS-REQ-06]
 - **Statement:** The Box MUST handle substantial personal and small-team data.
 - **Target:** 1,000,000 objects and 10 GB of files with NR-PERF-001 p95 ≤ 10 ms on ENV-REF-BOX.
 - **Rationale:** Serious personal and field use.
-- **Priority:** Should · **Phase:** PH-3 · **Systems:** NOD
+- **Priority:** Should · **Phase:** PH-4 · **Systems:** NOD
 - **Personas:** PER-PersonalUser
 - **Acceptance:**
   1. Given the dataset, when benchmarked, then the target holds.
 - **Verification:** BENCH
 - **Origin:** NEW
+- **Phase note:** moved to PH-4 by DEC-024 and DEC-025 (SQLite, Box, devices and sync).
 
 ### NR-SCAL-009 — File storage per cell
 - **Statement:** File storage MUST scale with the object store.

@@ -15,12 +15,13 @@ depends_on: [UBS-SYS-DVM-02, UBS-ARC-04, UBS-STD-08]
   - `outbox_append`, `idempotency_put`;
   - snapshot reads by commit ordinal.
 
-  Two production adapters MUST exist, for PostgreSQL 16+ and SQLite 3.45+, and both MUST pass the same storage conformance suite.
+  The PostgreSQL 16+ adapter MUST exist from PH-1. The SQLite 3.45+ adapter follows in PH-4 (DEC-024) and MUST then pass the same storage conformance suite; the trait MUST stay backend-neutral so that SQLite needs no kernel change.
 - **Rationale:** One kernel, several editions (AR-002, CST-002).
 - **Priority:** Must · **Phase:** PH-1 · **Systems:** DVM
 - **Personas:** PER-KernelEngineer
 - **Acceptance:**
-  1. Given the storage suite, when run against both adapters, then 100% pass, and results are identical.
+  1. Given the storage suite, when run against the PostgreSQL adapter, then 100% pass (PH-1).
+  2. Given the SQLite adapter (PH-4), when the same suite runs, then 100% pass with results identical to PostgreSQL.
 - **Verification:** CONF, PROP
 - **Origin:** DEC-020, CTR-005, NR-PORT-003
 
@@ -136,12 +137,13 @@ depends_on: [UBS-SYS-DVM-02, UBS-ARC-04, UBS-STD-08]
 ### DSN-DVM-011 — SQLite specifics
 - **Statement:** The SQLite adapter MUST use WAL mode, a single writer connection (the sequencer), `synchronous=FULL`, and page-level encryption of the database file with the device key (SQLCipher-compatible) on Box, mobile and browser.
 - **Rationale:** Durable, encrypted local storage.
-- **Priority:** Must · **Phase:** PH-1 · **Systems:** DVM
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** DVM
 - **Personas:** PER-PersonalUser
 - **Acceptance:**
   1. Given power loss during commit on Box, when restarted, then the last acknowledged commit is present.
 - **Verification:** FAULT, SEC
 - **Origin:** NR-DUR-001, FR-SYNC-043
+- **Phase note:** moved to PH-4 by DEC-024 (SQLite, Box, devices and sync).
 
 ### DSN-DVM-012 — Cold-tier reads
 - **Statement:** When a chunk is marked tiered, reads MUST fetch it from the cold tier through the host blob service, verify its hash, and optionally rehydrate it into the hot tier per policy.

@@ -18,7 +18,7 @@ depends_on: [UBS-SYS-NOD-02, UBS-SYS-DVM-08]
 | SUITE-NOD-JOBS | jobs, leases with fencing, schedules exactly-once, timers, dead letters, poison detection | SIM, FAULT | nightly |
 | SUITE-NOD-EVENTS | outbox release ordering, webhooks, brokers, replay, masking per recipient | SIM, FAULT, SEC | nightly |
 | SUITE-NOD-FILES | resumable uploads, scanning, previews, WORM, download links | CONF, SEC | nightly |
-| SUITE-NOD-SYNC | device sync conformance, resumability, scope reduction and wipe, efficiency | CONF, SIM, BENCH | nightly (PH-3+) |
+| SUITE-NOD-SYNC | device sync conformance, resumability, scope reduction and wipe, efficiency | CONF, SIM, BENCH | nightly (PH-4+, DEC-024) |
 | SUITE-NOD-OPS | install, bootstrap, backup and PITR, failover, split-brain, rolling upgrade, rollback, DR drill | FAULT, SCN | weekly and release |
 | SUITE-NOD-BENCH | end-to-end NR-PERF through the edge; fairness; subscription latency | BENCH | nightly and release |
 | SUITE-NOD-PEN | external penetration test and egress SSRF tests | SEC | before PH-2 exit and yearly |
@@ -40,11 +40,11 @@ depends_on: [UBS-SYS-NOD-02, UBS-SYS-DVM-08]
 
 | Phase | NOD evidence required |
 |---|---|
-| PH-1a | headless Box host runs SUITE-DVM-CONF; host services pass their contract tests |
+| PH-1a | in-process host on PostgreSQL runs SUITE-DVM-CONF; host services pass their contract tests |
 | PH-1b | SUITE-NOD-PROTO, -ISO, -AUTH (local), -JOBS, -EVENTS (subscriptions), -OPS (install, backup, PITR) green; single-node NR-PERF-001, -002, -011, -015 via the edge |
-| PH-2 | HA failover and split-brain FAULT tests; REST, webhooks, OIDC, SAML, SCIM; notifications; files; text search; rolling upgrade and rollback; DR drill; penetration test with no open high findings (NR-SEC-001) |
-| PH-3 | Box apps; SUITE-NOD-SYNC including NR-PERF-018; vector adapter; retention, holds and WORM; managed Server design-partner operations |
-| PH-4 | Cell profile at NR-SCAL-002; worker role with result verification; usage chain to CTL; tenant migration within NR-AVAIL-004 |
+| PH-2 | HA failover and split-brain FAULT tests; REST, webhooks, OIDC, SAML, SCIM; notifications; files; text search; rolling upgrade and rollback; DR drill; penetration test with no open high findings (NR-SEC-001); bank statement parsers and NACHA generation |
+| PH-3 | vector adapter; retention, holds and WORM; managed Server operations for the demonstration tenant |
+| PH-4 | Box apps and SUITE-NOD-SYNC including NR-PERF-018 (DEC-024); Cell profile at NR-SCAL-002; worker role with result verification; usage chain to CTL; tenant migration within NR-AVAIL-004 |
 | PH-5 | QUIC; cross-organisation sync with FED trust |
 
 ## 4. Environments

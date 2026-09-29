@@ -24,20 +24,23 @@ Scenarios are **end-to-end, observable business stories**. They serve three purp
 | File | Range | Theme |
 |---|---|---|
 | `01-platform-core.md` | SCN-001 … SCN-018 | kernel and platform mechanics, first run in PH-1 and PH-2 |
-| `02-fund-operations.md` | SCN-101 … SCN-110 | first vertical: fund and asset-management back office (DEC-004) |
-| `03-contracts.md` | SCN-201 … SCN-208 | first vertical: contract management (DEC-004) |
+| `02-fund-operations.md` | SCN-101 … SCN-110 | fund and asset-management back office — **deferred** (DEC-022) |
+| `03-contracts.md` | SCN-201 … SCN-208 | contract management — **deferred** (DEC-022) |
 | `04-ai-agents.md` | SCN-301 … SCN-307 | governed AI (IMP-10) |
 | `05-operations-federation.md` | SCN-401 … SCN-412 | offline, ecosystem, operations, federation |
+| `06-finance.md` | SCN-501 … SCN-512 | first business package: US basic finance (DEC-022) |
 
 ## Scenario-to-phase summary
 
 | Phase | Scenarios that MUST pass at exit |
 |---|---|
 | PH-1 | SCN-001 … SCN-011, SCN-017, SCN-018 |
-| PH-2 | SCN-012 … SCN-016, SCN-101 … SCN-108, SCN-110, SCN-201, SCN-202, SCN-204 … SCN-206, SCN-208, SCN-405, SCN-406 |
-| PH-3 | SCN-109, SCN-203, SCN-207, SCN-301 … SCN-307, SCN-401, SCN-402, SCN-412 |
-| PH-4 | SCN-403, SCN-404, SCN-407, SCN-410 |
+| PH-2 | SCN-012 … SCN-016, SCN-501 … SCN-510, SCN-405, SCN-406 |
+| PH-3 | SCN-301, SCN-302, SCN-304 … SCN-307, SCN-412, SCN-511, SCN-512 |
+| PH-4 | SCN-401, SCN-402, SCN-403, SCN-404, SCN-407, SCN-410 |
 | PH-5 | SCN-408, SCN-409, SCN-411 |
+
+Deferred scenarios (SCN-101…110, SCN-201…208, SCN-303) are not assigned to any phase (DEC-022).
 
 Every scenario that passed in an earlier phase MUST still pass in every later phase
 (regression rule).

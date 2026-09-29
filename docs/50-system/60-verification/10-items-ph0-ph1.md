@@ -61,16 +61,15 @@ Numbers follow UBS-VER-00 §3.
 - **Evidence:** inspection record, coverage report.
 - **Supports:** EXIT-0-01
 
-### VER-CONF-8400 — Prototype conformance on both backends
+### VER-CONF-8400 — Prototype conformance on PostgreSQL
 - **Verifies:** FR-STD-021, DSN-DVM-001, DSN-FRG-401, DSN-FRG-402
 - **Suite:** SUITE-DVM-CONF · **Phase:** PH-0
-- **Environment:** ENV-REF-SERVER (PostgreSQL), ENV-REF-BOX (SQLite)
+- **Environment:** ENV-REF-SERVER (PostgreSQL)
 - **Procedure:**
-  1. Build the prototype with the adapter.
-  2. Run `forge conform --profile prototype` against PostgreSQL and SQLite.
-  3. Compare per-vector outcomes across backends.
-- **Pass criterion:** 100% pass on both backends; identical outcomes.
-- **Evidence:** two signed runner reports.
+  1. Build the prototype with the PostgreSQL adapter.
+  2. Run `forge conform --profile prototype` against PostgreSQL (SQLite from PH-4, DEC-024).
+- **Pass criterion:** 100% pass.
+- **Evidence:** signed runner report.
 - **Supports:** EXIT-0-03
 
 ### VER-PROP-0001 — Root history independence
@@ -121,22 +120,22 @@ Numbers follow UBS-VER-00 §3.
 ### VER-CONF-8401 — Engine-profile conformance
 - **Verifies:** all STD clauses of Core, Bitemporal, Ledger, Proof (roots, signatures, inclusion) and the instruction set used by them; NR-DET-002
 - **Suite:** SUITE-DVM-CONF · **Phase:** PH-1
-- **Environment:** ENV-REF-SERVER, ENV-REF-BOX; Linux x86-64, Linux ARM64, macOS ARM64
+- **Environment:** ENV-REF-SERVER; kernel on Linux x86-64, Linux ARM64 and macOS ARM64 against PostgreSQL
 - **Procedure:**
-  1. Run all vectors of the claimed profiles (VER-CONF-0001…4399) on PostgreSQL and SQLite on each platform.
-  2. Diff outcomes across backends and platforms.
-- **Pass criterion:** 100% pass everywhere; 0 cross-backend or cross-platform differences.
-- **Evidence:** signed runner reports (6 runs).
+  1. Run all vectors of the claimed profiles (VER-CONF-0001…4399) on PostgreSQL from each platform.
+  2. Diff outcomes across platforms.
+- **Pass criterion:** 100% pass everywhere; 0 cross-platform differences.
+- **Evidence:** signed runner reports (3 runs).
 - **Supports:** EXIT-1-02
 
-### VER-CONF-8402 — Storage adapter parity
-- **Verifies:** DSN-DVM-001, DSN-DVM-002, DSN-DVM-010, DSN-DVM-011, CST-002
+### VER-CONF-8402 — Storage adapter suite on PostgreSQL
+- **Verifies:** DSN-DVM-001, DSN-DVM-002, DSN-DVM-010, CST-002
 - **Suite:** SUITE-DVM-STORE · **Phase:** PH-1
-- **Environment:** ENV-REF-SERVER, ENV-REF-BOX
+- **Environment:** ENV-REF-SERVER
 - **Procedure:**
-  1. Run the storage suite (transactions, snapshot reads, index maintenance, sequences, chunk placement, RLS on PostgreSQL, WAL and encryption on SQLite).
-  2. Compare logical results.
-- **Pass criterion:** 100% pass; identical logical results.
+  1. Run the storage suite (transactions, snapshot reads, index maintenance, sequences, chunk placement, RLS) on PostgreSQL.
+  2. Inspect the storage trait for backend-specific types, so that the SQLite adapter (PH-4, DEC-024) needs no trait change.
+- **Pass criterion:** 100% pass; 0 backend-specific types in the trait.
 - **Evidence:** suite report.
 - **Supports:** EXIT-1-03
 
@@ -166,13 +165,13 @@ Numbers follow UBS-VER-00 §3.
 ### VER-FAULT-0001 — Durability under real crashes
 - **Verifies:** NR-DUR-001, FR-TXN-013, DSN-DVM-503, DSN-DVM-508, DSN-DVM-402
 - **Suite:** SUITE-DVM-FAULT · **Phase:** PH-1
-- **Environment:** ENV-REF-SERVER (PostgreSQL), ENV-REF-BOX (SQLite)
+- **Environment:** ENV-REF-SERVER (PostgreSQL)
 - **Procedure:**
   1. Run WL-MIXED-OLTP with a client-side log of acknowledged commits.
-  2. Inject 5,000 SIGKILL and 5,000 power-loss events at random times per backend.
+  2. Inject 5,000 SIGKILL and 5,000 power-loss events at random times.
   3. After each recovery compare the acknowledgement log with the store; run `verify indexes`, `verify sequences` and `verify roots`.
 - **Pass criterion:** 0 acknowledged commits missing; 0 partial commits; 0 verifier findings.
-- **Evidence:** fault report per backend.
+- **Evidence:** fault report.
 - **Supports:** EXIT-1-06
 
 ### VER-FORM-0004 — Group commit and ledger sequence model
@@ -200,7 +199,7 @@ Numbers follow UBS-VER-00 §3.
 ### VER-BENCH-0100 — Kernel performance gate 1a
 - **Verifies:** NR-PERF-001, NR-PERF-002, NR-PERF-004, NR-PERF-005, NR-PERF-006, NR-PERF-007, NR-PERF-010
 - **Suite:** SUITE-DVM-BENCH · **Phase:** PH-1
-- **Environment:** ENV-REF-SERVER (PostgreSQL); ENV-REF-BOX reported for SQLite
+- **Environment:** ENV-REF-SERVER (PostgreSQL)
 - **Procedure:**
   1. Load WL-GENERIC-10M with 24 months of history; apply WL-MIXED-OLTP at 70% of maximum sustainable throughput.
   2. Measure each NR at its stated boundary per UBS-VER-01 BENCH procedure.
@@ -233,9 +232,9 @@ Numbers follow UBS-VER-00 §3.
 ### VER-CONF-8403 — Portable export and import round trip
 - **Verifies:** NR-PORT-003, STD-PROOF-070, DSN-DVM-950, DSN-DVM-951
 - **Suite:** SUITE-DVM-STORE · **Phase:** PH-1
-- **Environment:** ENV-REF-SERVER, ENV-REF-BOX
+- **Environment:** ENV-REF-SERVER
 - **Procedure:**
-  1. Export 20 test VAEs (including one with WL-GENERIC-10M) from PostgreSQL; import into SQLite; export again and import into PostgreSQL.
+  1. Export 20 test VAEs (including one with WL-GENERIC-10M) from one PostgreSQL database; import into a second PostgreSQL database; export again and import into the first (SQLite round trip from PH-4, DEC-024).
   2. Compare head roots, tags, ledger sequences and query results.
 - **Pass criterion:** identical roots and results in 100% of VAEs.
 - **Evidence:** round-trip report.
@@ -244,7 +243,7 @@ Numbers follow UBS-VER-00 §3.
 ### VER-SCN-1000 — Gate-1a scenarios in process
 - **Verifies:** SCN-002, SCN-003, SCN-004, SCN-005, SCN-006, SCN-007, SCN-008, SCN-010, SCN-011, SCN-018
 - **Suite:** SUITE-PH1-SCN · **Phase:** PH-1
-- **Environment:** ENV-REF-BOX (headless Box, in-process binding)
+- **Environment:** ENV-REF-SMALL (in-process host on PostgreSQL)
 - **Procedure:**
   1. Run each scenario's main and alternate flows as Forge scenario tests.
 - **Pass criterion:** all steps and acceptance statements pass.
@@ -266,10 +265,10 @@ Numbers follow UBS-VER-00 §3.
 ### VER-CONF-8404 — Governance profile and remaining 1b vectors
 - **Verifies:** STD-EXPR-*, STD-LGS-*, STD-ADDR-*, STD-PROTO-*, STD-ERR-* clauses in the claimed profiles
 - **Suite:** SUITE-DVM-CONF · **Phase:** PH-1
-- **Environment:** ENV-REF-SERVER, ENV-REF-BOX
+- **Environment:** ENV-REF-SERVER
 - **Procedure:**
-  1. Run VER-CONF-4400…5599 and VER-CONF-6000…6099 on both backends, plus all rc1 vectors.
-- **Pass criterion:** 100% pass on both backends.
+  1. Run VER-CONF-4400…5599 and VER-CONF-6000…6099 on PostgreSQL, plus all rc1 vectors.
+- **Pass criterion:** 100% pass.
 - **Evidence:** signed runner reports.
 - **Supports:** EXIT-1-14
 

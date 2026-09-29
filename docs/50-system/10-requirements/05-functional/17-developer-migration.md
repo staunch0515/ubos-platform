@@ -50,12 +50,13 @@ depends_on: [UBS-REQ-05, UBS-REQ-05-05]
 ### FR-DEV-021 — Headless Box for development
 - **Statement:** Developers MUST be able to run a headless Box locally with one command, seeded with genesis and optional sample data.
 - **Rationale:** A local, offline development environment.
-- **Priority:** Must · **Phase:** PH-1 · **Systems:** NOD, FRG
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** NOD, FRG
 - **Personas:** PER-LogicDeveloper
 - **Acceptance:**
   1. Given `forge dev up`, when run, then a local VAE is available within 30 seconds.
 - **Verification:** SCN
 - **Origin:** NEW
+- **Phase note:** moved to PH-4 by DEC-024 and DEC-025 (SQLite, Box, devices and sync).
 
 ### FR-DEV-022 — Reproducible test VAEs
 - **Statement:** Test VAEs MUST be creatable from fixtures deterministically, and disposable.
@@ -282,22 +283,24 @@ depends_on: [UBS-REQ-05, UBS-REQ-05-05]
 ### FR-MIG-021 — DOCX to Live Doc templates
 - **Statement:** The importer MUST convert DOCX documents into Live Doc templates, preserving structure and styles within the widget catalogue, and MUST propose bindings for recognised entities (party names, dates, amounts).
 - **Rationale:** Migrating contract templates.
-- **Priority:** Should · **Phase:** PH-3 · **Systems:** BRG, WSP
+- **Priority:** Should · **Phase:** PH-5 · **Systems:** BRG, WSP
 - **Personas:** PER-ContractManager
 - **Acceptance:**
   1. Given a contract DOCX, when imported, then the headings and clauses are preserved, and binding suggestions are listed.
 - **Verification:** SCN, USE
 - **Origin:** NEW
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ### FR-MIG-022 — Clause extraction
 - **Statement:** The importer SHOULD split imported documents into clause-library candidates.
 - **Rationale:** Build clause libraries from existing contracts.
-- **Priority:** Could · **Phase:** PH-3 · **Systems:** BRG, AGT
+- **Priority:** Could · **Phase:** PH-5 · **Systems:** BRG, AGT
 - **Personas:** PER-ContractManager
 - **Acceptance:**
   1. Given 50 contracts, when analysed, then similar clauses are grouped as candidates.
 - **Verification:** SCN
 - **Origin:** NEW
+- **Phase note:** moved to PH-5 by DEC-022 (contract or fund scope deferred).
 
 ## CAP-MIG-03 — Legacy bulk load
 

@@ -15,37 +15,37 @@ depends_on: [UBS-IDX-00]
 | Kind | Count |
 |---|---|
 | AR | 34 |
-| ASM | 12 |
+| ASM | 14 |
 | CAP | 220 |
 | CR | 54 |
 | CST | 18 |
 | CTR | 36 |
 | DAT | 63 |
-| DEC | 21 |
-| DSN | 690 |
+| DEC | 26 |
+| DSN | 695 |
 | ENV | 7 |
-| EXIT | 74 |
+| EXIT | 85 |
 | FR | 800 |
 | GL | 146 |
 | IF | 118 |
 | IMP | 12 |
 | IN | 6 |
-| MET | 60 |
+| MET | 65 |
 | NR | 106 |
 | OQ | 3 |
-| PER | 28 |
-| RSK | 32 |
-| SCN | 55 |
+| PER | 33 |
+| RSK | 38 |
+| SCN | 67 |
 | STD | 239 |
-| SUITE | 76 |
-| VER | 85 |
+| SUITE | 77 |
+| VER | 90 |
 
 ## Requirements by phase
 
 | Kind | PH-0 | PH-1 | PH-2 | PH-3 | PH-4 | PH-5 |
 |---|---|---|---|---|---|---|
-| FR | 8 | 304 | 274 | 152 | 45 | 17 |
-| NR | 0 | 32 | 51 | 12 | 10 | 1 |
-| CR | 0 | 5 | 20 | 19 | 10 | 0 |
+| FR | 8 | 301 | 265 | 115 | 69 | 42 |
+| NR | 0 | 32 | 52 | 8 | 13 | 1 |
+| CR | 0 | 5 | 15 | 16 | 10 | 8 |
 
-| Documents | 239 |
+| Documents | 240 |

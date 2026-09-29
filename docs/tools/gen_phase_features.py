@@ -36,9 +36,9 @@ GATE_1A_NR_ITEMS = {'NR-PERF-001', 'NR-PERF-002', 'NR-PERF-003', 'NR-PERF-004', 
 PHASE_TITLES = {
     'PH-0': 'Foundations and de-risking',
     'PH-1': 'Kernel and single-node server',
-    'PH-2': 'First verticals and production server',
-    'PH-3': 'Regulated pilot, devices and governed AI',
-    'PH-4': 'Platform scale and ecosystem',
+    'PH-2': 'First business package (Basic Finance) and production server',
+    'PH-3': 'CPA audit drill, evidence and governed AI',
+    'PH-4': 'Devices, platform scale and ecosystem',
     'PH-5': 'Federation and the open network',
 }
 
@@ -71,7 +71,10 @@ def main():
         sheads = list(SCN.finditer(text))
         for i, m in enumerate(sheads):
             end = sheads[i + 1].start() if i + 1 < len(sheads) else len(text)
-            scenarios.append((m.group(1), m.group(2).strip(), field(text[m.start():end], 'Phase')))
+            blk = text[m.start():end]
+            if '**Status:** Deferred' in blk:
+                continue
+            scenarios.append((m.group(1), m.group(2).strip(), field(blk, 'Phase')))
 
     def cap_of(fr):
         _, dom, num = fr.split('-')

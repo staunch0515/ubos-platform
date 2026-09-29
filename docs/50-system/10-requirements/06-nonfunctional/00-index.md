@@ -40,12 +40,13 @@ volume references them.
 
 | Name | Content |
 |---|---|
-| WL-FUND-M | Fund operations, medium: 200 funds, 1,000 share classes, 500,000 investor accounts, 20,000,000 ledger entries, 10,000 prices per day for 5 years (about 12,500,000 price versions), 2,000 dealing orders per day |
-| WL-FUND-L | 10× WL-FUND-M |
+| WL-FIN-M | Basic finance, medium (first business package, DEC-022): one company, 600 accounts, 5,000 customers, 2,000 vendors, 300,000 invoices and 200,000 bills per year, 2,500,000 general-ledger lines per year for 3 years, 12 bank accounts with daily statements, 150 fixed assets, 2 foreign currencies with daily rates |
+| WL-FUND-M | (deferred, DEC-022) Fund operations, medium: 200 funds, 1,000 share classes, 500,000 investor accounts, 20,000,000 ledger entries, 10,000 prices per day for 5 years (about 12,500,000 price versions), 2,000 dealing orders per day |
+| WL-FUND-L | (deferred, DEC-022) 10× WL-FUND-M |
 | WL-CONTRACT-M | 200,000 agreements, 3,000,000 obligations, 1,000,000 documents with an average of 12 versions each |
 | WL-GENERIC-10M | 10,000,000 current Definition objects across 200 classes, 10% changed per month for 24 months |
 | WL-MIXED-OLTP | Operation mix: 70% reads, 20% simple commits (1–10 objects), 5% queries, 5% ledger appends, with concurrency sized to the environment |
-| WL-TENANTS-1K | 1,000 small tenants (10 users, 100,000 objects each) plus 3 large tenants (WL-FUND-M each) in one Cell |
+| WL-TENANTS-1K | 1,000 small tenants (10 users, 100,000 objects each) plus 3 large tenants (WL-FIN-M each) in one Cell |
 
 ## Measurement rules
 

@@ -134,12 +134,13 @@ Reading order:
 ### DSN-NOD-412 — Personal to organisation onboarding
 - **Statement:** A personal Box VAE MUST be attachable to an organisation Server as a scoped branch, with the user choosing what to share (FR-SYNC-024).
 - **Rationale:** FR-SYNC-024.
-- **Priority:** Should · **Phase:** PH-3 · **Systems:** NOD
+- **Priority:** Should · **Phase:** PH-4 · **Systems:** NOD
 - **Personas:** PER-PersonalUser
 - **Acceptance:**
   1. Given a personal VAE, when attached, then only the chosen scope is synced to the organisation.
 - **Verification:** SCN
 - **Origin:** FR-SYNC-024
+- **Phase note:** moved to PH-4 by DEC-024 (SQLite, Box, devices and sync).
 
 ## Genesis Buks and packages
 
@@ -240,62 +241,68 @@ Reading order:
 ### DSN-NOD-501 — Sync endpoint
 - **Statement:** The Server MUST expose the UBTP `Sync` operation (CTR-060) that drives the DVM `sync_session` (IF-DVM-045): head exchange, have/want rounds, pack transfer in chunks of at most 4 MB, device-branch push and integration, rejection return.
 - **Rationale:** FR-SYNC-011, STD-SYNC-001…004.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** NOD
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** NOD
 - **Personas:** PER-FieldWorker
 - **Acceptance:**
   1. Given the sync conformance suite, when run between Box and Server, then all cases pass.
 - **Verification:** CONF
 - **Origin:** FR-SYNC-011, FR-SYNC-012, STD-SYNC-001, STD-SYNC-002, STD-SYNC-003, STD-SYNC-004
+- **Phase note:** moved to PH-4 by DEC-024 (SQLite, Box, devices and sync).
 
 ### DSN-NOD-502 — Resumable and idempotent transfer
 - **Statement:** Transfers MUST be resumable at pack-chunk granularity and idempotent by content address (FR-SYNC-014).
 - **Rationale:** FR-SYNC-014.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** NOD
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** NOD
 - **Personas:** PER-FieldWorker
 - **Acceptance:**
   1. Given a connection dropped at 70% of a 500 MB sync, when resumed, then at most one chunk is resent.
 - **Verification:** FAULT
 - **Origin:** FR-SYNC-014
+- **Phase note:** moved to PH-4 by DEC-024 (SQLite, Box, devices and sync).
 
 ### DSN-NOD-503 — Authorised scope
 - **Statement:** The Server MUST compute each device's scope from its sync scope object and the user's permissions, re-evaluated at each session (FR-SYNC-013, FR-SYNC-041); scope reductions MUST be pushed as wipe instructions (FR-SYNC-042).
 - **Rationale:** FR-SYNC-013, FR-SYNC-041, FR-SYNC-042.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** NOD
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** NOD
 - **Personas:** PER-SecurityOfficer
 - **Acceptance:**
   1. Given a user removed from a fund team, when the device next syncs, then the fund's data is removed from the device.
 - **Verification:** SEC
 - **Origin:** FR-SYNC-013, FR-SYNC-041, FR-SYNC-042
+- **Phase note:** moved to PH-4 by DEC-024 (SQLite, Box, devices and sync).
 
 ### DSN-NOD-504 — Background and scheduled sync
 - **Statement:** The Box MUST sync in the background on connectivity changes and on schedule (FR-SYNC-023), with bandwidth and battery policies on mobile.
 - **Rationale:** FR-SYNC-023.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** NOD
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** NOD
 - **Personas:** PER-FieldWorker
 - **Acceptance:**
   1. Given a device regaining connectivity, when detected, then sync starts within 30 s.
 - **Verification:** SCN
 - **Origin:** FR-SYNC-023
+- **Phase note:** moved to PH-4 by DEC-024 (SQLite, Box, devices and sync).
 
 ### DSN-NOD-505 — Governed integration of device branches
 - **Statement:** Device branches MUST be integrated on the Server by a merge process under the device user's principal and the target branch's policies; if a change set is required, the integration MUST create one instead of merging (FR-SYNC-022).
 - **Rationale:** FR-SYNC-022.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** NOD, DVM
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** NOD, DVM
 - **Personas:** PER-FieldWorker
 - **Acceptance:**
   1. Given a device edit to a review-required class, when synced, then a change set is opened, and the user sees it pending.
 - **Verification:** SCN
 - **Origin:** FR-SYNC-022, FR-SYNC-033
+- **Phase note:** moved to PH-4 by DEC-024 (SQLite, Box, devices and sync).
 
 ### DSN-NOD-506 — Sync efficiency
 - **Statement:** Sync MUST meet NR-PERF-018 by exchanging tree summaries top-down and transferring only missing nodes and chunks.
 - **Rationale:** NR-PERF-018.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** NOD
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** NOD
 - **Personas:** PER-FieldWorker
 - **Acceptance:**
   1. Given the NR-PERF-018 workload, when synced, then the transferred bytes meet the target.
 - **Verification:** BENCH
 - **Origin:** NR-PERF-018
+- **Phase note:** moved to PH-4 by DEC-024 (SQLite, Box, devices and sync).
 
 ### DSN-NOD-507 — Cross-organisation sync transport
 - **Statement:** The node MUST support sync between organisations' nodes (CTR-062) with mutual TLS using `did:ubos` identities and trust relationships from FED (FR-SYNC-053, FR-SYNC-054).
@@ -320,12 +327,13 @@ Reading order:
 ### DSN-NOD-509 — Sync observability
 - **Statement:** The Server MUST report per device: last sync, lag, pending rejections and scope size.
 - **Rationale:** Operators and users know device state.
-- **Priority:** Should · **Phase:** PH-3 · **Systems:** NOD
+- **Priority:** Should · **Phase:** PH-4 · **Systems:** NOD
 - **Personas:** PER-TenantAdministrator
 - **Acceptance:**
   1. Given a device offline for 3 days, when viewed, then its lag and last sync are shown.
 - **Verification:** CONF
 - **Origin:** FR-SYNC-023
+- **Phase note:** moved to PH-4 by DEC-024 (SQLite, Box, devices and sync).
 
 ## Installation and configuration
 
@@ -476,12 +484,13 @@ Reading order:
 ### DSN-NOD-621 — Box backups
 - **Statement:** The Box MUST back up its encrypted database and blobs to a user-chosen target (local disk, cloud folder or Server) with online SQLite backup (FR-OPS-022).
 - **Rationale:** FR-OPS-022.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** NOD
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** NOD
 - **Personas:** PER-PersonalUser
 - **Acceptance:**
   1. Given a Box restored from backup on a new device, when unlocked, then data equals the backup point.
 - **Verification:** SCN
 - **Origin:** FR-OPS-022
+- **Phase note:** moved to PH-4 by DEC-024 (SQLite, Box, devices and sync).
 
 ### DSN-NOD-622 — Restore drills
 - **Statement:** The node MUST support automated restore drills into an isolated environment, reporting restore time and verification results (FR-OPS-023).
@@ -588,12 +597,13 @@ Reading order:
 ### DSN-NOD-634 — Box updates
 - **Statement:** The Box MUST update through signed update channels (Tauri updater) with staged rollout and rollback.
 - **Rationale:** NR-SEC-007.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** NOD
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** NOD
 - **Personas:** PER-PersonalUser
 - **Acceptance:**
   1. Given an unsigned update package, when offered, then it is refused.
 - **Verification:** SEC
 - **Origin:** NR-SEC-007
+- **Phase note:** moved to PH-4 by DEC-024 (SQLite, Box, devices and sync).
 
 ## Cluster coordination and admin endpoint
 

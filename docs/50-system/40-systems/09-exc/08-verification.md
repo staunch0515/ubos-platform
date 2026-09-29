@@ -17,5 +17,4 @@ depends_on: [UBS-SYS-EXC-02]
 
 | Phase | EXC evidence |
 |---|---|
-| PH-3 | private registry mode used by design partners |
-| PH-4 | public Exchange with at least the two first-party vertical Buks and one third-party Buk listed, licensed, invoiced and paid out in a pilot |
+| PH-4 | public Exchange with at least the first-party Basic Finance Buk and one third-party Buk listed, licensed, invoiced and paid out in a pilot |

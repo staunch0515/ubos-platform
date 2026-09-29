@@ -14,12 +14,77 @@ depends_on: [UBS-PH-5]
 
 | Kind | Count |
 |---|---|
-| Functional requirements (FR) | 17 |
+| Functional requirements (FR) | 42 |
 | Non-functional requirements (NR) | 1 |
-| Compliance requirements (CR) | 0 |
+| Compliance requirements (CR) | 8 |
 | Scenarios (SCN) | 3 |
 
 ## Functional requirements by capability
+
+### Capability MIG-02 — Document import
+
+| Title | Requirement | Priority |
+|---|---|---|
+| DOCX to Live Doc templates | FR-MIG-021 | Should |
+| Clause extraction | FR-MIG-022 | Could |
+
+### Capability OFFICE-01 — Live Doc
+
+| Title | Requirement | Priority |
+|---|---|---|
+| Documents as bound views | FR-OFFICE-011 | Must |
+| Embedded logic blocks | FR-OFFICE-012 | Must |
+| Collaborative editing of drafts | FR-OFFICE-014 | Should |
+| Binding safety | FR-OFFICE-015 | Must |
+
+### Capability OFFICE-02 — Templates and clauses
+
+| Title | Requirement | Priority |
+|---|---|---|
+| Templates and clause library | FR-OFFICE-021 | Must |
+| Clause references are versioned | FR-OFFICE-022 | Must |
+| Conditional sections | FR-OFFICE-023 | Must |
+| Clause impact analysis | FR-OFFICE-024 | Must |
+
+### Capability OFFICE-03 — Redlining and negotiation
+
+| Title | Requirement | Priority |
+|---|---|---|
+| Negotiation rounds | FR-OFFICE-031 | Must |
+| Tracked changes by party | FR-OFFICE-032 | Must |
+| Non-negotiable clauses | FR-OFFICE-033 | Should |
+| Internal and external comments | FR-OFFICE-034 | Must |
+
+### Capability SIGN-01 — Electronic signatures
+
+| Title | Requirement | Priority |
+|---|---|---|
+| E-SIGN and UETA compliant signing | FR-SIGN-011 | Must |
+| Signer authentication levels | FR-SIGN-012 | Must |
+| Copies for all parties | FR-SIGN-013 | Must |
+
+### Capability SIGN-02 — Document seals
+
+| Title | Requirement | Priority |
+|---|---|---|
+| Seal over document and data | FR-SIGN-021 | Must |
+| Embedded verification data | FR-SIGN-022 | Must |
+| Executed state is immutable | FR-SIGN-023 | Must |
+
+### Capability SIGN-03 — Signing ceremonies
+
+| Title | Requirement | Priority |
+|---|---|---|
+| Multi-party ordered and parallel signing | FR-SIGN-031 | Must |
+| Void on change | FR-SIGN-032 | Must |
+| Ceremony audit trail | FR-SIGN-033 | Must |
+
+### Capability SIGN-04 — External signature providers
+
+| Title | Requirement | Priority |
+|---|---|---|
+| Provider integration | FR-SIGN-041 | Should |
+| Uniform seal model | FR-SIGN-042 | Should |
 
 ### Capability SYNC-05 — Federation registry
 
@@ -66,7 +131,16 @@ depends_on: [UBS-PH-5]
 
 ## Compliance requirements
 
-None in this phase.
+| Title | Requirement | Priority |
+|---|---|---|
+| Consumer consent to electronic records | CR-ESIGN-001 | Must |
+| Accurate, reproducible retention | CR-ESIGN-002 | Must |
+| Attribution | CR-ESIGN-003 | Must |
+| Intent and association | CR-ESIGN-004 | Must |
+| Preservation format | CR-FINRA-001 | Should |
+| Default retention | CR-FINRA-002 | Should |
+| Supervisory review evidence | CR-FINRA-003 | Should |
+| Books and records for fund operations | CR-SEC-006 | Must |
 
 ## Scenarios
 

@@ -465,64 +465,70 @@ depends_on: [UBS-REQ-05, UBS-REQ-05-04]
 ### FR-UX-071 — Desktop application
 - **Statement:** A desktop application (Tauri 2) MUST embed the Box node for personal use and MUST also act as a client of Server and Cell nodes, using the same renderer as the web.
 - **Rationale:** Local-first desktop (UBS-REQ-01 §6).
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** WSP, NOD
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** WSP, NOD
 - **Personas:** PER-PersonalUser
 - **Acceptance:**
   1. Given a fresh install, when first launched, then a local VAE is bootstrapped in under 2 minutes.
 - **Verification:** SCN
 - **Origin:** L40:SPEC-26
+- **Phase note:** moved to PH-4 by DEC-024 and DEC-025 (SQLite, Box, devices and sync).
 
 ### FR-UX-072 — Mobile application
 - **Statement:** Mobile applications (iOS and Android) MUST support tasks, approvals, records, documents, signatures and offline scopes, using the same view protocol.
 - **Rationale:** Approvals and field work on the go.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** WSP, NOD
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** WSP, NOD
 - **Personas:** PER-Approver, PER-FieldWorker
 - **Acceptance:**
   1. Given an approval task, when opened on mobile, then the diff review and approval complete with step-up authentication.
 - **Verification:** SCN, USE
 - **Origin:** L40:SPEC-26
+- **Phase note:** moved to PH-4 by DEC-024 and DEC-025 (SQLite, Box, devices and sync).
 
 ### FR-UX-073 — One renderer contract
 - **Statement:** Web, desktop and mobile clients MUST pass the same renderer conformance suite for the widget catalogue.
 - **Rationale:** Consistency across clients.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** WSP, SDK
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** WSP, SDK
 - **Personas:** PER-KernelEngineer
 - **Acceptance:**
   1. Given the renderer suite, when run on the three clients, then all pass.
 - **Verification:** CONF
 - **Origin:** NEW
+- **Phase note:** moved to PH-4 by DEC-024 and DEC-025 (SQLite, Box, devices and sync).
 
 ## CAP-UX-08 — Offline experience
 
 ### FR-UX-081 — Offline indicators and queued actions
 - **Statement:** Offline-capable clients MUST show connectivity state and pending local commits, and MUST allow working on replicated scopes while offline.
 - **Rationale:** SCN-401.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** WSP
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** WSP
 - **Personas:** PER-FieldWorker
 - **Acceptance:**
   1. Given offline mode, when 5 edits are made, then "5 pending" is shown.
 - **Verification:** SCN, USE
 - **Origin:** IMP-07
+- **Phase note:** moved to PH-4 by DEC-024 and DEC-025 (SQLite, Box, devices and sync).
 
 ### FR-UX-082 — Conflict resolution screen
 - **Statement:** Sync conflicts MUST be presented per object with both values and base, and the choices keep mine, keep theirs or edit. Resolutions MUST be attributed.
 - **Rationale:** Understandable conflict handling.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** WSP
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** WSP
 - **Personas:** PER-FieldWorker
 - **Acceptance:**
   1. Given 2 conflicts, when resolved, then the sync completes, and the audit shows the resolutions.
 - **Verification:** SCN, USE
 - **Origin:** IMP-07
+- **Phase note:** moved to PH-4 by DEC-024 and DEC-025 (SQLite, Box, devices and sync).
 
 ### FR-UX-083 — Sync status
 - **Statement:** Clients MUST show last sync time, errors and progress, and MUST allow manual sync.
 - **Rationale:** User confidence.
-- **Priority:** Should · **Phase:** PH-3 · **Systems:** WSP
+- **Priority:** Should · **Phase:** PH-4 · **Systems:** WSP
 - **Personas:** PER-FieldWorker
 - **Acceptance:**
   1. Given a sync error, when shown, then the error has an explanation and a retry.
 - **Verification:** SCN
 - **Origin:** NEW
+- **Phase note:** moved to PH-4 by DEC-024 and DEC-025 (SQLite, Box, devices and sync).
 
 ## CAP-UX-09 — External portal
 

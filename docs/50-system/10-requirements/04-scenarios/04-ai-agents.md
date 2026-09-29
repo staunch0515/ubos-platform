@@ -16,10 +16,10 @@ requirements.
 
 ### SCN-301 — Reconciliation agent proposes adjustments for review
 - **Goal:** An agent clears routine reconciliation breaks, and a human approves its change set in minutes.
-- **Personas:** PER-AiAgent, PER-AgentSupervisor, PER-FundAccountant
+- **Personas:** PER-AiAgent, PER-AgentSupervisor, PER-Accountant
 - **Systems:** AGT, DVM, WSP
 - **Phase:** PH-3
-- **Preconditions:** 1. Agent `recon-bot` has role `recon-proposer`, scope "fund GLOBAL-EQ, classes StatementLine, CashMovement (read), ReconMatch (write)", a budget of 200k tokens per day and 500 commits per day. 2. SCN-108 left 40 open breaks.
+- **Preconditions:** 1. Agent `recon-bot` has role `recon-proposer`, scope "company books, classes BankStatementLine, GlLine (read), ReconMatch (write)", a budget of 200k tokens per day and 500 commits per day. 2. SCN-505 left 40 open breaks.
 - **Main flow:**
   1. At 19:00 the agent is scheduled → Agent Hub opens branch `agent/recon-bot/2026-10-09`.
   2. The agent reads the breaks through tools, matches 31 of them with explanations, and proposes 4 adjustment entries.
@@ -48,6 +48,7 @@ requirements.
 - **Verification:** SCN, SEC
 
 ### SCN-303 — Copilot drafts a contract amendment
+- **Status:** Deferred (DEC-022)
 - **Goal:** A user describes a change in natural language, and the copilot prepares a correct draft for review.
 - **Personas:** PER-ContractManager
 - **Systems:** AGT, WSP, DVM

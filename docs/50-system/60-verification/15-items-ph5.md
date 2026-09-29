@@ -101,3 +101,15 @@ depends_on: [UBS-VER-01, UBS-PH-5]
 - **Pass criterion:** no uncovered Must requirement; all earlier suites green.
 - **Evidence:** traceability and regression reports.
 - **Supports:** EXIT-5-08
+
+### VER-SCN-5100 — Contract-only capabilities and E-SIGN/UETA review
+- **Verifies:** CR-ESIGN-001, CR-ESIGN-002, CR-ESIGN-003, CR-ESIGN-004, FR-SIGN-011, DSN-WSP-501, SCN-204
+- **Suite:** SUITE-WSP-E2E · **Phase:** PH-5
+- **Environment:** ENV-REF-SERVER with the contract capabilities enabled; offline verification machine
+- **Procedure:**
+  1. Counsel reviews ceremony flows, consent texts, audit trail, retention and copies against E-SIGN and UETA (continues deferred item VER-INSP-5001).
+  2. Run clause editing, the signature ceremony, the external portal and a War Room session end to end.
+  3. Verify an executed PDF with the independent verifier on a machine without network.
+- **Pass criterion:** signed legal memo with no open blocking comments; all flows pass; independent verification succeeds.
+- **Evidence:** legal memo, scenario report, verifier report.
+- **Supports:** EXIT-5-09

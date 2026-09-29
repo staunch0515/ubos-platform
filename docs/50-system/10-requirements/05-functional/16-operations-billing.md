@@ -60,12 +60,13 @@ depends_on: [UBS-REQ-05, UBS-REQ-05-09]
 ### FR-OPS-022 — Box backups
 - **Statement:** The Box MUST offer encrypted backups to a user-chosen location and restore with verification.
 - **Rationale:** Personal data safety.
-- **Priority:** Must · **Phase:** PH-1 · **Systems:** NOD
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** NOD
 - **Personas:** PER-PersonalUser
 - **Acceptance:**
   1. Given a backup, when restored on a new machine, then all data and history verify.
 - **Verification:** SCN
 - **Origin:** NEW
+- **Phase note:** moved to PH-4 by DEC-024 and DEC-025 (SQLite, Box, devices and sync).
 
 ### FR-OPS-023 — Restore drills
 - **Statement:** The platform MUST support automated restore drills into an isolated environment, with a report of verification results.

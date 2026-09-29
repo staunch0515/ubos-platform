@@ -300,7 +300,7 @@ depends_on: [UBS-SYS-FRG-01]
 ## Developer experience
 
 ### DSN-FRG-501 — Local dev environment
-- **Statement:** `forge dev` MUST start a headless Box (FR-DEV-021) with the project installed, watch sources, re-install changes on a dev branch within NR-PERF-016, and expose UBTP for local clients.
+- **Statement:** `forge dev` MUST start a local development node — the in-process host on a local PostgreSQL until PH-4, the headless Box afterwards (FR-DEV-021, DEC-024) — with the project installed, watch sources, re-install changes on a dev branch within NR-PERF-016, and expose UBTP for local clients.
 - **Rationale:** FR-DEV-021, NR-PERF-016.
 - **Priority:** Must · **Phase:** PH-1 · **Systems:** FRG, NOD
 - **Personas:** PER-LogicDeveloper

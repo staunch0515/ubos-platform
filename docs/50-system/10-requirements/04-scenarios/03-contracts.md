@@ -8,6 +8,9 @@ depends_on: [UBS-REQ-04]
 
 # Scenarios — Contract Management (SCN-201 … SCN-208)
 
+> **Deferred (DEC-022).** These scenarios are kept for a later business package and are not
+> assigned to any phase exit. Contract-only capabilities move to PH-5.
+
 ## Domain context (informative)
 
 | Class | Kind | Notes |
@@ -19,6 +22,7 @@ depends_on: [UBS-REQ-04]
 | `LiveDoc` | view object | document rendering bound to agreement data |
 
 ### SCN-201 — Draft a contract from a template with live party data
+- **Status:** Deferred (DEC-022)
 - **Goal:** A contract draft always shows current party data and the correct clause variants.
 - **Personas:** PER-ContractManager
 - **Systems:** WSP, DVM
@@ -35,6 +39,7 @@ depends_on: [UBS-REQ-04]
 - **Verification:** SCN, USE
 
 ### SCN-202 — Internal approval with segregation of duties and obligation extraction
+- **Status:** Deferred (DEC-022)
 - **Goal:** Contracts are approved by the right people, and obligations are captured as structured objects.
 - **Personas:** PER-ContractManager, PER-Approver, PER-ComplianceOfficer
 - **Systems:** WSP, DVM
@@ -51,6 +56,7 @@ depends_on: [UBS-REQ-04]
 - **Verification:** SCN, PILOT
 
 ### SCN-203 — Negotiation rounds with a counterparty
+- **Status:** Deferred (DEC-022)
 - **Goal:** Redlines are exchanged with an external party, and each round is versioned and attributable.
 - **Personas:** PER-ContractManager, PER-ExternalParty
 - **Systems:** WSP (external portal), DVM
@@ -68,6 +74,7 @@ depends_on: [UBS-REQ-04]
 - **Verification:** SCN, USE, SEC
 
 ### SCN-204 — Electronic signature with a seal and independent verification
+- **Status:** Deferred (DEC-022)
 - **Goal:** Signatures legally bind the exact document state and data, and anyone can verify them later.
 - **Personas:** PER-ContractManager, PER-ExternalParty, PER-RegulatorExaminer
 - **Systems:** WSP, DVM, NTY (PH-3 for anchoring)
@@ -85,6 +92,7 @@ depends_on: [UBS-REQ-04]
 - **Verification:** SCN, INSP, AUDIT
 
 ### SCN-205 — Amend an executed contract
+- **Status:** Deferred (DEC-022)
 - **Goal:** An amendment changes the terms from a date, and the original terms remain provable.
 - **Personas:** PER-ContractManager
 - **Systems:** WSP, DVM
@@ -101,6 +109,7 @@ depends_on: [UBS-REQ-04]
 - **Verification:** SCN, PROP
 
 ### SCN-206 — Obligation tracking and renewal alert
+- **Status:** Deferred (DEC-022)
 - **Goal:** No renewal or reporting obligation is missed.
 - **Personas:** PER-ContractManager, PER-BusinessUser
 - **Systems:** DVM, WSP
@@ -117,6 +126,7 @@ depends_on: [UBS-REQ-04]
 - **Verification:** SCN
 
 ### SCN-207 — Legal hold during a dispute
+- **Status:** Deferred (DEC-022)
 - **Goal:** All records related to a disputed agreement are preserved beyond normal retention.
 - **Personas:** PER-ComplianceOfficer, PER-ContractManager
 - **Systems:** DVM, NTY
@@ -133,6 +143,7 @@ depends_on: [UBS-REQ-04]
 - **Verification:** SCN, AUDIT
 
 ### SCN-208 — Clause library change impact
+- **Status:** Deferred (DEC-022)
 - **Goal:** Before changing a standard clause, legal sees which agreements and templates use it.
 - **Personas:** PER-ContractManager, PER-BusinessArchitect
 - **Systems:** STU, DVM

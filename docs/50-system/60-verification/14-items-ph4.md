@@ -139,3 +139,61 @@ depends_on: [UBS-VER-01, UBS-PH-4]
 - **Pass criterion:** no uncovered Must requirement; all earlier suites green.
 - **Evidence:** traceability and regression reports.
 - **Supports:** EXIT-4-11
+
+### VER-FORM-0200 — Sync protocol model
+- **Phase note:** moved from PH-3 by DEC-024; the number is kept.
+- **Verifies:** STD-SYNC-006, FR-SYNC-015, DSN-DVM-952
+- **Suite:** SUITE-DVM-FORM · **Phase:** PH-4
+- **Environment:** model-checking workstation
+- **Procedure:**
+  1. Model device and server branches, scopes, have/want, integration and rejections.
+  2. Check convergence, no data loss, scope safety (no out-of-scope data on devices).
+- **Pass criterion:** 0 violations at 2 devices × 1 server × 3 objects × 4 changes.
+- **Evidence:** model and checker output.
+- **Supports:** EXIT-4-12
+
+### VER-SIM-2200 — Offline sync simulation and efficiency
+- **Phase note:** moved from PH-3 by DEC-024; the number is kept.
+- **Verifies:** FR-SYNC-011…014, FR-SYNC-031…034, NR-PERF-018, DSN-NOD-501…506, SCN-401
+- **Suite:** SUITE-NOD-SYNC · **Phase:** PH-4
+- **Environment:** simulation cluster; ENV-REF-WAN for efficiency
+- **Procedure:**
+  1. Simulate 10,000 offline/online cycles with conflicting edits, scope changes and interrupted transfers.
+  2. Measure sync of 100 changes in 1 M objects over WAN.
+- **Pass criterion:** 0 data loss; convergence in 100% of cycles; NR-PERF-018 met.
+- **Evidence:** sync report.
+- **Supports:** EXIT-4-12
+
+### VER-SCN-3200 — Device suite
+- **Phase note:** moved from PH-3 by DEC-024; the number is kept.
+- **Verifies:** FR-UX-071, FR-UX-072, NR-PORT-001, NR-PERF-023, NR-SCAL-008, DSN-WSP-201…204
+- **Suite:** SUITE-WSP-E2E · **Phase:** PH-4
+- **Environment:** ENV-REF-BOX (Windows, macOS, Linux), ENV-REF-MOBILE (iOS, Android)
+- **Procedure:**
+  1. Run install, unlock, offline work, sync, conflict resolution, backup and restore on each platform.
+  2. Measure cold start with 100,000 objects and reads with 1 M objects.
+- **Pass criterion:** all steps pass on every platform; NR-PERF-023 and NR-SCAL-008 met.
+- **Evidence:** device report.
+- **Supports:** EXIT-4-13
+
+### VER-CONF-8406 — BPA 1.1 Sync profile
+- **Phase note:** moved from PH-3 by DEC-024; the number is kept.
+- **Verifies:** STD-SYNC-001…006 vectors (VER-CONF-5700…5899)
+- **Suite:** SUITE-DVM-CONF · **Phase:** PH-4
+- **Environment:** ENV-REF-SERVER, ENV-REF-BOX
+- **Procedure:**
+  1. Run the Sync profile vectors and all earlier vectors.
+- **Pass criterion:** 100% pass.
+- **Evidence:** signed runner reports, release manifest.
+- **Supports:** EXIT-4-14
+
+### VER-CONF-8408 — SQLite adapter conformance
+- **Verifies:** NR-PORT-003, NR-DET-002, DSN-DVM-001, MET-QUAL-040
+- **Suite:** SUITE-DVM-STORE, SUITE-DVM-CONF · **Phase:** PH-4
+- **Environment:** ENV-REF-BOX
+- **Procedure:**
+  1. Run the storage adapter suite on SQLite.
+  2. Run all BPA vectors of the claimed profiles on SQLite and compare roots and results with the PostgreSQL run.
+- **Pass criterion:** 100% pass; identical roots and results on both backends.
+- **Evidence:** signed runner reports.
+- **Supports:** EXIT-4-15

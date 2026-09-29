@@ -628,39 +628,43 @@ This file designs the crates `ubos-authz`, `ubos-query` and `ubos-proof`. Readin
 - **Priority:** Must · **Phase:** PH-1 · **Systems:** DVM
 - **Personas:** PER-ThirdPartyImplementer
 - **Acceptance:**
-  1. Given an archive exported from PostgreSQL, when imported into SQLite, then all roots are equal, and queries give identical results.
+  1. Given an archive exported from one PostgreSQL VAE, when imported into another PostgreSQL VAE, then all roots are equal, and queries give identical results.
+  2. Given the SQLite adapter (PH-4, DEC-024), when the same archive is imported into SQLite, then roots and query results are equal.
 - **Verification:** CONF
 - **Origin:** NR-PORT-003, NR-DET-002, FR-MIG-013
 
 ### DSN-DVM-952 — Sync data structures
 - **Statement:** The DVM MUST provide the data structures of the sync protocol (STD-SYNC-001…004): scope evaluation to a set of keys, have/want computation by tree comparison, packing of missing nodes and commits, and integration of device branches by merge.
 - **Rationale:** FR-SYNC-011, FR-SYNC-021, FR-SYNC-022.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** DVM
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** DVM
 - **Personas:** PER-FieldWorker
 - **Acceptance:**
   1. Given a device offline for a week with 100 local changes and 10,000 server changes, when synced, then transferred bytes meet NR-PERF-018, and both sides converge.
 - **Verification:** SIM, BENCH
 - **Origin:** FR-SYNC-011, FR-SYNC-021, FR-SYNC-022, STD-SYNC-001, STD-SYNC-002, STD-SYNC-003, STD-SYNC-004, NR-PERF-018
+- **Phase note:** moved to PH-4 by DEC-024 (SQLite, Box, devices and sync).
 
 ### DSN-DVM-953 — Sync conflict handling
 - **Statement:** Integrating device branches MUST use the merge engine; ledger entries MUST be appended with their original valid time (FR-SYNC-032); rejected changes MUST be returned to the device as rejection records (FR-SYNC-033) with attributed resolutions (FR-SYNC-034).
 - **Rationale:** Offline work is merged, not overwritten.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** DVM
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** DVM
 - **Personas:** PER-FieldWorker
 - **Acceptance:**
   1. Given a device change that violates a new server rule, when synced, then the device receives a rejection record with the reason.
 - **Verification:** SIM, CONF
 - **Origin:** FR-SYNC-031, FR-SYNC-032, FR-SYNC-033, FR-SYNC-034
+- **Phase note:** moved to PH-4 by DEC-024 (SQLite, Box, devices and sync).
 
 ### DSN-DVM-954 — Scope reduction and wipe
 - **Statement:** When a device's scope shrinks (STD-SYNC-005), the DVM on the device MUST delete data outside the new scope, including chunks and index rows, and report completion.
 - **Rationale:** FR-SYNC-042.
-- **Priority:** Must · **Phase:** PH-3 · **Systems:** DVM
+- **Priority:** Must · **Phase:** PH-4 · **Systems:** DVM
 - **Personas:** PER-SecurityOfficer
 - **Acceptance:**
   1. Given a scope reduction, when applied, then no out-of-scope record remains in the device store.
 - **Verification:** SEC
 - **Origin:** FR-SYNC-042, STD-SYNC-005
+- **Phase note:** moved to PH-4 by DEC-024 (SQLite, Box, devices and sync).
 
 ### DSN-DVM-955 — Shared BPU structures
 - **Statement:** The DVM MUST support shared objects replicated between VAEs (STD-SYNC-011): proposals, multi-party signatures and party-appended ledger entries, verified by the rules of the share.
