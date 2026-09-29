@@ -142,6 +142,10 @@ ENT-Type:
       type: json_schema?
       required: false
       description: ENTITY only; explicit JSON Schema combined with the derived schema by allOf (SPEC-18 REQ-RULE-001, FU schema entities). Additive along the chain.
+    - name: overlay_policy
+      type: OverlayPolicy?
+      required: false
+      description: How tenants may patch root-owned instances of this type (SPEC-23 REQ-TEN-016) - {mode - NONE|PRESENTATION|FULL}. Nearest value wins; default PRESENTATION.
     - name: write_policy
       type: WritePolicy?
       required: false
