@@ -26,7 +26,7 @@ PHASES = {f'PH-{i}' for i in range(6)}
 STATUSES = {'draft', 'review', 'complete', 'stable'}
 
 # Kinds whose defining batch is not written yet: undefined references are warnings.
-PENDING = ('UBS-IDX-',)
+PENDING = ()
 
 ID_RE = (r'UBS-[A-Z]+(?:-[A-Z]+)?-\d{1,3}|UBS-README'
          r'|PER-[A-Z][A-Za-z0-9]+|CAP-[A-Z]+-\d{2}|SCN-\d{3}'
@@ -48,8 +48,7 @@ EXAMPLES = {  # placeholders used in writing rules and templates
     'RSK-017', 'AR-004', 'CTR-012', 'DEC-011', 'OQ-004', 'IMP-02', 'PH-2'}
 
 def md_files():
-    return sorted(f for f in glob.glob(os.path.join(ROOT, '**', '*.md'), recursive=True)
-                  if '/INDEX/' not in f.replace(os.sep, '/'))
+    return sorted(glob.glob(os.path.join(ROOT, '**', '*.md'), recursive=True))
 
 def strip_code(text):
     """Remove fenced code blocks (templates/examples) but keep yaml DAT definitions."""
@@ -74,6 +73,8 @@ for f in md_files():
     if meta.get('status') not in STATUSES: errors.append(f'{rel}: bad status {meta.get("status")}')
     if meta.get('phase') not in PHASES | {'ALL'}: errors.append(f'{rel}: bad phase {meta.get("phase")}')
     if 'id' in meta: defs[meta['id']].append(rel)
+    if rel.startswith('INDEX'):  # generated indexes: only their document IDs count
+        continue
     body = strip_code(s)
     for pat in DEF_PATTERNS:
         for m in re.finditer(pat, body, re.M):
@@ -106,7 +107,7 @@ for i, fs in defs.items():
 # references
 undefined = collections.defaultdict(set)
 for rel, s in texts.items():
-    if 'writing-rules' in rel or 'templates' in rel: continue
+    if 'writing-rules' in rel or 'templates' in rel or rel.startswith('INDEX'): continue
     for m in REF.finditer(s):
         i = m.group(1)
         if i in defs or i in BUILTIN or i in EXAMPLES: continue
