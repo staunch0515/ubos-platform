@@ -105,19 +105,22 @@ change (DSN-BPA-010), never as Buk-specific kernel code.
 
 | Scope | Suite | VER range |
 |---|---|---|
-| new kernel vectors (lenses, decision tables, approvals, sagas, ReBAC, masking) | SUITE-DVM-CONF | VER-CONF-8000…9999 |
-| new properties (lens application, row filters, approvals) | SUITE-DVM-PROP | VER-PROP-0400…0599 |
-| approvals and sagas models | SUITE-DVM-FORM | VER-FORM-0200…0299 |
-| HA, failover, split brain, upgrades, DR | SUITE-NOD-OPS | VER-FAULT-1100…1299 |
-| REST, webhooks, brokers, SSO, SCIM | SUITE-NOD-PROTO, SUITE-NOD-AUTH, SUITE-NOD-EVENTS | VER-CONF-7400…7699 |
-| files and search | SUITE-NOD-FILES | VER-CONF-7700…7799 |
-| penetration test | SUITE-NOD-PEN | VER-SEC-2000…2099 |
-| Buk tooling | SUITE-FRG-REPRO, SUITE-FRG-RESOLVE, SUITE-FRG-DX | VER-CONF-7800…7899 |
-| workspace end to end, accessibility, rendering, performance | SUITE-WSP-E2E, SUITE-WSP-A11Y, SUITE-WSP-RENDER, SUITE-WSP-PERF | VER-SCN-0200…0399 |
-| usability studies | SUITE-WSP-USE, SUITE-STU-USE | VER-USE-0001…0049 |
-| migration | SUITE-BRG-MIG | VER-SCN-0400…0449 |
-| vertical scenario families | SUITE-PH2-FUND, SUITE-PH2-CONTRACTS (60-verification) | VER-SCN-0100…0199 |
-| edge and kernel benchmarks at scale | SUITE-NOD-BENCH, SUITE-DVM-BENCH | VER-BENCH-2000…2199 |
+| standard vectors for lenses, decision tables, approvals, deferred commits, sagas, ReBAC, masking (new clauses of 1.0 in their areas) | SUITE-DVM-CONF | VER-CONF-0001…6299 (all 1.0 areas) |
+| new kernel properties (lens application, row filters, approvals) | SUITE-DVM-PROP | VER-PROP-0400…0599 |
+| approvals and sagas models | SUITE-DVM-FORM | VER-FORM-0100…0199 |
+| HA, failover, split brain, upgrades, DR | SUITE-NOD-OPS | VER-FAULT-2100…2299 |
+| REST, webhooks, brokers, SSO, SCIM | SUITE-NOD-PROTO, SUITE-NOD-AUTH, SUITE-NOD-EVENTS | VER-CONF-7100…7299, VER-SEC-2200…2299 |
+| files and search | SUITE-NOD-FILES | VER-CONF-7300…7349, VER-SEC-2300…2349 |
+| penetration test | SUITE-NOD-PEN | VER-SEC-2900…2999 |
+| Buk tooling | SUITE-FRG-REPRO, SUITE-FRG-RESOLVE, SUITE-FRG-DX | VER-CONF-7800…7899, VER-PROP-4000…4049, VER-BENCH-4000…4049 |
+| workspace end to end | SUITE-WSP-E2E | VER-SCN-2500…2699 |
+| accessibility, rendering, performance, security | SUITE-WSP-A11Y, SUITE-WSP-RENDER, SUITE-WSP-PERF, SUITE-WSP-SEC | VER-INSP-5000…5099, VER-CONF-9000…9049, VER-BENCH-5000…5049, VER-SEC-5000…5049 |
+| usability studies | SUITE-WSP-USE, SUITE-STU-USE | VER-USE-2000…2049 |
+| migration | SUITE-BRG-MIG | VER-SCN-2700…2749 |
+| vertical scenario families | SUITE-PH2-FUND, SUITE-PH2-CONTRACTS | VER-SCN-2000…2199 |
+| edge and kernel benchmarks at scale | SUITE-NOD-BENCH, SUITE-DVM-BENCH | VER-BENCH-2100…2199, VER-BENCH-0200…0299 |
+
+VER numbering follows the allocation of the verification volume (UBS-VER-00 §3).
 
 ### 7.3 Environments and datasets
 

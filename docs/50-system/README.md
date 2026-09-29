@@ -37,7 +37,7 @@ Processing Unit (BPU)** on a **Data Virtual Machine (DVM)**.
 | `20-architecture/` | system family, boundaries, contracts, topologies | planned |
 | `30-standard/` | the BPA standard (normative) | planned |
 | `40-systems/` | one folder per system (13 systems) | complete (13 systems) |
-| `50-phases/` | PH-0 … PH-5 with verification plans and exit criteria | in progress (index, PH-0, PH-1, PH-2) |
+| `50-phases/` | PH-0 … PH-5 with verification plans and exit criteria | complete (index and PH-0 … PH-5) |
 | `60-verification/` | methods, suites, environments, traceability | planned |
 | `90-decisions/` | DEC-* records | active |
 | `INDEX/` | generated indexes | planned |

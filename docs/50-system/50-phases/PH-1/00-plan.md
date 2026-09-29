@@ -121,26 +121,28 @@ DSN-SDK items with **Phase** PH-1; DSN-BPA-003, DSN-BPA-004, DSN-BPA-010.
 
 | Scope | Suite | Gate | VER range |
 |---|---|---|---|
-| standard vectors for engine profiles | SUITE-DVM-CONF | 1a | VER-CONF-0001…4999 |
-| storage adapter parity | SUITE-DVM-STORE | 1a | VER-CONF-5000…5199 |
+| standard vectors of Core, Bitemporal, Ledger, Proof (subset) and the instruction set | SUITE-DVM-CONF | 1a | VER-CONF-0001…4399 (clause areas FND…CTX) |
+| storage adapter parity | SUITE-DVM-STORE | 1a | VER-CONF-8400…8499 |
 | kernel properties | SUITE-DVM-PROP | 1a | VER-PROP-0100…0399 |
 | concurrency and crash simulation (10,000 seeds per night) | SUITE-DVM-SIM | 1a | VER-SIM-0001…0199 |
 | real-database fault matrix | SUITE-DVM-FAULT | 1a | VER-FAULT-0001…0199 |
-| formal models extended | SUITE-DVM-FORM | 1a | VER-FORM-0100…0199 |
+| extended formal models | SUITE-DVM-FORM | 1a | VER-FORM-0001…0099 |
 | kernel benchmarks | SUITE-DVM-BENCH | 1a | VER-BENCH-0100…0199 |
 | L2 sandbox escape suite (≥ 300 cases) | SUITE-DVM-SEC | 1a | VER-SEC-0100…0499 |
-| replay corpus across OS and CPU | SUITE-DVM-REPLAY | 1a | VER-CONF-5200…5299 |
-| Forge commands and checks | SUITE-FRG-CLI, SUITE-FRG-CHECK | 1a | VER-CONF-5300…5499 |
-| Governance profile vectors | SUITE-DVM-CONF | 1b | VER-CONF-6000…6999 |
-| UBTP protocol | SUITE-NOD-PROTO | 1b | VER-CONF-7000…7199 |
-| isolation suite | SUITE-NOD-ISO | 1b | VER-SEC-1000…1099 |
-| authentication and sessions (local) | SUITE-NOD-AUTH | 1b | VER-SEC-1100…1199 |
-| jobs, schedules, timers | SUITE-NOD-JOBS | 1b | VER-SIM-1000…1099 |
-| events and subscriptions | SUITE-NOD-EVENTS | 1b | VER-SIM-1100…1199 |
-| install, backup, PITR | SUITE-NOD-OPS | 1b | VER-FAULT-1000…1099 |
-| SDK protocol and network faults | SUITE-SDK-PROTO, SUITE-SDK-NET | 1b | VER-CONF-7200…7399 |
-| edge benchmarks | SUITE-NOD-BENCH | 1b | VER-BENCH-1000…1099 |
-| PH-1 scenarios | SUITE-PH1-SCN (60-verification) | 1a, 1b | VER-SCN-0001…0099 |
+| replay corpus across OS and CPU | SUITE-DVM-REPLAY | 1a | VER-CONF-8500…8549 |
+| Forge commands and checks | SUITE-FRG-CLI, SUITE-FRG-CHECK | 1a | VER-CONF-7700…7799 |
+| standard vectors of expressions, Governance profile, addressing, UBTP and errors | SUITE-DVM-CONF | 1b | VER-CONF-4400…5599, VER-CONF-6000…6099 |
+| UBTP protocol | SUITE-NOD-PROTO | 1b | VER-CONF-7000…7099 |
+| isolation suite | SUITE-NOD-ISO | 1b | VER-SEC-2000…2099 |
+| authentication and sessions (local) | SUITE-NOD-AUTH | 1b | VER-SEC-2100…2199 |
+| jobs, schedules, timers | SUITE-NOD-JOBS | 1b | VER-SIM-2000…2099 |
+| events and subscriptions | SUITE-NOD-EVENTS | 1b | VER-SIM-2100…2199 |
+| install, backup, PITR | SUITE-NOD-OPS | 1b | VER-FAULT-2000…2099 |
+| SDK protocol and network faults | SUITE-SDK-PROTO, SUITE-SDK-NET | 1b | VER-CONF-7500…7599, VER-FAULT-4500…4549 |
+| edge benchmarks | SUITE-NOD-BENCH | 1b | VER-BENCH-2000…2099 |
+| PH-1 scenarios | SUITE-PH1-SCN | 1a, 1b | VER-SCN-1000…1099 |
+
+VER numbering follows the allocation of the verification volume (UBS-VER-00 §3).
 
 ### 7.3 Environments and datasets
 
