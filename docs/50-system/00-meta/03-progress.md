@@ -11,7 +11,7 @@ depends_on: [UBS-META-00, UBS-META-01]
 ## 1. Current state
 
 - **Stage:** Standard volume (Stage D).
-- **Next batch:** B11.
+- **Next batch:** B12.
 - **Stop point:** after B9, wait for product-owner confirmation (DEC-010).
 
 ## 2. Batch plan
@@ -34,7 +34,7 @@ depends_on: [UBS-META-00, UBS-META-01]
 - [x] **B10** System family, boundaries, contracts between systems, topologies, data flows, cross-cutting concerns
 
 ### Stage D — Standard (`30-standard/`)
-- [ ] **B11** DVM semantics: object model, classes, inheritance, polymorphism, kinds
+- [x] **B11** DVM semantics: object model, classes, inheritance, polymorphism, kinds
 - [ ] **B12** Versioning, bitemporality, content addressing, commit semantics, merge
 - [ ] **B13** BPU model, instruction set (ABI), execution context, determinism, metering
 - [ ] **B14** LGS language, addressing and URIs, UBTP protocol, sync protocol, error registry, conformance rules
@@ -82,3 +82,4 @@ depends_on: [UBS-META-00, UBS-META-01]
 | 2026-09-29 | B9 | Non-functional catalogue (106 NR, 7 reference environments, 6 workloads), compliance catalogue (54 CR), 18 constraints, 12 assumptions, glossary (146 terms). Requirements volume set to `review`. Checker strict for requirement kinds. STOP for confirmation. |
 | 2026-09-29 | STOP | Product owner confirmed the requirements volume and accepted the recommendations: DEC-014 (PH-1a/PH-1b gates), DEC-015 (both verticals in PH-2), DEC-016 (Server first). DEC-017 adds AR and CTR ID kinds. Requirements set to `complete`. |
 | 2026-09-29 | B10 | Architecture volume: system family, 36 contracts, topologies, data architecture, 11 runtime flows, cross-cutting concerns, codebase and delivery, capability allocation (220); AR-001…034; DEC-018…021. |
+| 2026-09-29 | B11 | Standard: index and profiles, foundations (canonical JSON, hashing, identifiers, value types, encrypted fields), object model, class system (C3, narrowing matrix, polymorphism, extensions, lenses), state kinds. |
