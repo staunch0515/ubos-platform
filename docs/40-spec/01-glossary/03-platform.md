@@ -200,6 +200,18 @@ Part of SPEC-01. Entry format and rules: `00-index.md` §0.
 
 ---
 
+### TERM-Shell
+- **Definition:** A server-defined layout entity of a client (COCKPIT, STUDIO or MOBILE). It sets the home intent, dock and omnibar sources, pinned apps and theme per role.
+- **Aliases:** desktop VIEW (UP).
+- **Chapter:** SPEC-26
+- **Origin:** CON-UP-054, VRD-14-01
+
+### TERM-App
+- **Definition:** A named bundle of views and actions shown as an application in the launcher.
+- **Aliases:** app manifest (UB); feature (UW catalog).
+- **Chapter:** SPEC-26
+- **Origin:** CON-UP-054, CON-UB-062, CON-UW-010
+
 ---
 
 ## 14. AI
