@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-05-02
 title: Functional Requirements — VER (Versioning, Branches, Merge, Release)
-status: draft
+status: review
 phase: PH-1
 depends_on: [UBS-REQ-05, UBS-REQ-05-01]
 ---

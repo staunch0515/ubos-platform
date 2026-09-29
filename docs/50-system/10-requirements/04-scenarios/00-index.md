@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-04
 title: Reference Scenarios — Index
-status: draft
+status: review
 phase: ALL
 depends_on: [UBS-REQ-02, UBS-REQ-03]
 ---

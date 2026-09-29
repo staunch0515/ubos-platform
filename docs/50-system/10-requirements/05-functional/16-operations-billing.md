@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-05-16
 title: Functional Requirements — OPS (Operations) and BILL (Metering, Licensing, Billing)
-status: draft
+status: review
 phase: PH-1
 depends_on: [UBS-REQ-05, UBS-REQ-05-09]
 ---
