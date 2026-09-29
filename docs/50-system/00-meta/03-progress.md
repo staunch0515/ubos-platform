@@ -11,7 +11,7 @@ depends_on: [UBS-META-00, UBS-META-01]
 ## 1. Current state
 
 - **Stage:** Systems volume (Stage E).
-- **Next batch:** B20.
+- **Next batch:** B21.
 - **Stop point:** after B9, wait for product-owner confirmation (DEC-010).
 
 ## 2. Batch plan
@@ -44,7 +44,7 @@ depends_on: [UBS-META-00, UBS-META-01]
 - [x] **B17** NOD, CTL
 - [x] **B18** FRG, SDK
 - [x] **B19** WSP, STU
-- [ ] **B20** AGT, EXC
+- [x] **B20** AGT, EXC
 - [ ] **B21** FED, NTY, BRG
 - [ ] **B22** BPA (governance of the standard and its conformance programme)
 
@@ -90,3 +90,4 @@ depends_on: [UBS-META-00, UBS-META-01]
 | 2026-09-29 | B17 | NOD chapter: 170 design requirements (process architecture, UBTP and REST edge, webhooks, authentication, sessions, SCIM, secrets and keys, outbox release, jobs, schedules, workers, connectors, bank and fund file formats, files, search adapters, notifications, retention and WORM, tenancy, genesis Buks, usage, sync transport, installation, telemetry, backup, DR, upgrades, admin endpoint), 25 interfaces, operational tables, 8 state machines, configuration, runbooks, verification plan. CTL chapter: 26 design requirements (blindness, operator identity, registry, placement, lifecycle, migration, waves, usage, plans, budgets, capacity, consoles), 5 interfaces, data, state machines, configuration, operations, verification. |
 | 2026-09-29 | B18 | FRG chapter: 33 design requirements (CLI, project model, incremental build, check pipeline, type generation, verification records, coverage gates, lens verification, tests, simulator, replay debugging, Buk archive, dependency solver, signing, verification, install plans, migrations, publish, conformance runner and adapter protocol, dev loop, language server, VS Code extension, docs, WASM toolchains, AI machine interface), 5 interfaces, Buk manifest and verification record schemas. SDK chapter: 17 design requirements, 6 interfaces, state machines, verification plan. |
 | 2026-09-29 | B19 | WSP chapter: 44 design requirements (server-driven renderer, widget catalogue, shell, forms, lists, details, timeline and as-of, diff review, tasks, explanations, progressive disclosure, audit views, desktop, mobile, offline, portal, theming, localisation, accessibility, dashboards, Live Doc, clauses, negotiation, Smart Grid, War Room, Action Messages, Books, rendering, E-SIGN/UETA signing and seals), interfaces, state machines, verification. STU chapter: 16 design requirements (builder branches, model designer, impact, sheet and decision-table editors, lifecycle, view and script editors, change sets, simulation, releases, integrations, import wizard, AI drafting, Buk packaging). |
+| 2026-09-29 | B20 | AGT chapter: 30 design requirements (model gateway with routing, classification enforcement and redaction, metering, recording, resilience, no-training terms, structured outputs; agents as principals, agent branches, triggers, bounded loop, simulation before submission, kill switch, feedback, clarification; typed tools, permission filtering, previews, MCP, recording, prompt-injection containment; knowledge, retrieval, citations; Copilot, explanations, AI builder; evaluations, monitoring, governed evolution), 5 interfaces, run data, state machines. EXC chapter: 10 design requirements (publishers and namespaces, WORM archive storage, reproducible verification, listings, licences with offline validity, fiat invoicing, payouts on a UBOS ledger, advisories and yanking, no data hostage, private registries and mirrors). |
