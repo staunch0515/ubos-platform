@@ -67,6 +67,22 @@ Part of SPEC-01. Entry format and rules: `00-index.md` §0.
 
 ---
 
+### TERM-ServiceAccount
+- **Definition:** A non-human principal: a tenant's system identity, an integration account, the anonymous identity, or the kernel identity in `logrums`.
+- **Aliases:** SYSTEM user (UP); SYSTEM_INTERNAL_ROLE (LC); scheduler user (UC).
+- **Chapter:** SPEC-22
+- **Origin:** CON-UP-030, CON-LC-027, VRD-11-05
+
+### TERM-Secret
+- **Definition:** An encrypted entity holding a secret value (a password, token or key). It is referenced by Context env vars and read only through `secret.get` with permission, and never appears in traces or the audit.
+- **Chapter:** SPEC-22
+- **Origin:** VRD-10-01, REQ-CTX-003
+
+### TERM-TenantGrant
+- **Definition:** A TENANT_GRANT relationship by which one tenant lets another tenant's principals access listed resources, optionally including embassy sessions.
+- **Chapter:** SPEC-23
+- **Origin:** VRD-18-04, CON-UC-024
+
 ---
 
 ## 12. Protocol
