@@ -31,7 +31,7 @@ Decisions are never deleted. A replaced decision is marked
 | DEC-016 | The first commercial form is Server (on-premises and private cloud); hosted Cell follows in PH-4 | Accepted |
 | DEC-017 | Architecture-level ID kinds AR (architecture rule) and CTR (inter-system contract) | Accepted |
 | DEC-018 | Repository layout and reuse of the research repositories | Accepted |
-| DEC-019 | Licensing of the standard, reference implementation and tools | Proposed |
+| DEC-019 | Licensing of the standard, reference implementation and tools | Accepted |
 | DEC-020 | Storage engine design: PostgreSQL/SQLite with kernel indexes and prolly trees | Accepted |
 | DEC-021 | Policy engine: Cedar-class analysable policies plus relationship tuples | Accepted |
 
@@ -210,9 +210,9 @@ Decisions are never deleted. A replaced decision is marked
 - **Affects:** UBS-ARC-07
 
 ### DEC-019 — Licensing of the standard, reference implementation and tools
-- **Status:** Proposed · **Date:** 2026-09-29
+- **Status:** Accepted · **Date:** 2026-09-29 (confirmed by the product owner as proposed)
 - **Context:** The ARM-style positioning needs an open standard, a trustworthy open verifier and a commercially licensable engine. The whitepaper (EXT-WP) used AGPLv3.
-- **Decision (proposed):**
+- **Decision:**
   - BPA text under CC BY 4.0;
   - vectors, schemas, SDKs and verifier under Apache-2.0;
   - kernel, node and Forge under AGPL-3.0 as an open edition, with a commercial licence for embedding and hosted use without AGPL obligations;
