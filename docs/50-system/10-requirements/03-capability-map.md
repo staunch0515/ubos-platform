@@ -103,7 +103,7 @@ Columns: ID · Name · Description · Main personas · Phase · FR range.
 | CAP-LOGIC-07 | Determinism and replay | Recorded non-determinism; any execution can be replayed bit-for-bit | PER-InternalAuditor, PER-KernelEngineer | PH-1 | FR-LOGIC-071…079 |
 | CAP-LOGIC-08 | Logic asset lifecycle | Draft → committed → verified → deprecated; only verified logic runs in production branches | PER-LogicDeveloper | PH-1 | FR-LOGIC-081…089 |
 | CAP-LOGIC-09 | Static analysis | The immune system rejects forbidden patterns and unbounded constructs before execution | PER-SecurityOfficer | PH-1 | FR-LOGIC-091…099 |
-| CAP-LOGIC-10 | Connectors | External calls only through declared connector objects with credentials held by the platform | PER-LogicDeveloper | PH-2 | FR-LOGIC-101…109 |
+| CAP-LOGIC-10 | Connectors | External calls only through declared connector objects with credentials held by the platform | PER-LogicDeveloper | PH-1 | FR-LOGIC-101…109 |
 
 ## 7. RULE — Governance sheets, validation, decisions
 
@@ -260,7 +260,7 @@ Columns: ID · Name · Description · Main personas · Phase · FR range.
 | CAP-INT-03 | Webhooks | Signed outbound webhooks; verified inbound webhooks | PER-LogicDeveloper | PH-2 | FR-INT-031…039 |
 | CAP-INT-04 | Connector framework | Connector objects with credentials, rate limits and recorded exchanges | PER-LogicDeveloper | PH-2 | FR-INT-041…049 |
 | CAP-INT-05 | Event streaming out | Publish events to external brokers (Kafka-compatible, cloud queues) as CloudEvents | PER-DataAnalyst | PH-3 | FR-INT-051…059 |
-| CAP-INT-06 | Email and chat | Inbound email to records; Action Messages via email and chat tools | PER-BusinessUser | PH-3 | FR-INT-061…069 |
+| CAP-INT-06 | Email and chat | Inbound email to records; Action Messages via email and chat tools | PER-BusinessUser | PH-2 | FR-INT-061…069 |
 | CAP-INT-07 | Financial adapters | File- and message-level adapters for custodians, banks and fund platforms (ISO 20022, CSV, SFTP) | PER-FundAccountant | PH-3 | FR-INT-071…079 |
 | CAP-INT-08 | API credentials | API keys, OAuth client credentials, scopes, rotation | PER-TenantAdministrator | PH-2 | FR-INT-081…089 |
 
@@ -371,7 +371,7 @@ Columns: ID · Name · Description · Main personas · Phase · FR range.
 |---|---|---|---|---|---|
 | CAP-SIGN-01 | Electronic signatures | E-SIGN and UETA compliant consent, intent and records | PER-ContractManager, PER-ExternalParty | PH-2 | FR-SIGN-011…019 |
 | CAP-SIGN-02 | Document seals | Cryptographic binding of a signature to the document state and data snapshot | PER-ContractManager | PH-2 | FR-SIGN-021…029 |
-| CAP-SIGN-03 | Signing ceremonies | Multi-party, ordered or parallel signing with reminders | PER-ContractManager | PH-3 | FR-SIGN-031…039 |
+| CAP-SIGN-03 | Signing ceremonies | Multi-party, ordered or parallel signing with reminders | PER-ContractManager | PH-2 | FR-SIGN-031…039 |
 | CAP-SIGN-04 | External signature providers | Integration with advanced and qualified signature providers | PER-ContractManager | PH-4 | FR-SIGN-041…049 |
 
 ## 29. LOC — Localisation, calendars, currencies
