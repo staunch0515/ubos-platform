@@ -19,3 +19,4 @@ ADRs are never deleted. A replaced ADR gets status `superseded by ADR-NNN`.
 | ADR-003 | Client set | accepted | Five clients: web, desktop, mobile, CLI, SDK/agent; IDE integration is tooling | Q-008, VRD-19-04, VRD-14-03 |
 | ADR-004 | Technical state | accepted | Jobs as entities; idempotency keys in the runtime store with TTL | Q-005, VRD-01-06, VRD-04-04, VRD-11-03 |
 | ADR-005 | Tenant-qualified context authority | accepted | URI authority `tenant[.context]` instead of a global context slug | VRD-03-03, SPEC-12 |
+| ADR-006 | Mobile client technology | accepted | Tauri 2 mobile wrapping the React shell; PWA fallback | ADR-003, SPEC-26 |
