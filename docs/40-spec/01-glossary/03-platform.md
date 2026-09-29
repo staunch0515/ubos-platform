@@ -128,7 +128,7 @@ Part of SPEC-01. Entry format and rules: `00-index.md` §0.
 ## 13. UI and client shells
 
 ### TERM-Mode
-- **Definition:** The presentation purpose of a UI element: `view`, `edit`, `create`, `list`, `filter`, `cell`.
+- **Definition:** The presentation purpose of a UI element: `view`, `edit`, `create`, `cell` (list and table cells), `card`, `filter`, `execute` (running logic or scripts). Defined in SPEC-25 REQ-UI-001.
 - **Aliases:** `ui_modes` (US); lens (UC).
 - **Chapter:** SPEC-25
 - **Origin:** CON-US-015, CON-UC-055, VRD-13-01

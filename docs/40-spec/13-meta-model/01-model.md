@@ -105,7 +105,7 @@ ENT-Type:
     - name: ui_modes
       type: map<mode, UiModeSpec>?
       required: false
-      description: Widget per mode (view, edit, create, list, filter, cell) with config (CON-US-015); default for the ui slot.
+      description: Widget per mode (view, edit, create, cell, card, filter, execute; SPEC-25 REQ-UI-001) with config (CON-US-015); default for the ui slot.
     - name: display
       type: DisplaySpec?
       required: false
