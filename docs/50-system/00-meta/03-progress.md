@@ -11,7 +11,7 @@ depends_on: [UBS-META-00, UBS-META-01]
 ## 1. Current state
 
 - **Stage:** Standard volume (Stage D).
-- **Next batch:** B13.
+- **Next batch:** B14.
 - **Stop point:** after B9, wait for product-owner confirmation (DEC-010).
 
 ## 2. Batch plan
@@ -36,7 +36,7 @@ depends_on: [UBS-META-00, UBS-META-01]
 ### Stage D — Standard (`30-standard/`)
 - [x] **B11** DVM semantics: object model, classes, inheritance, polymorphism, kinds
 - [x] **B12** Versioning, bitemporality, content addressing, commit semantics, merge
-- [ ] **B13** BPU model, instruction set (ABI), execution context, determinism, metering
+- [x] **B13** BPU model, instruction set (ABI), execution context, determinism, metering
 - [ ] **B14** LGS language, addressing and URIs, UBTP protocol, sync protocol, error registry, conformance rules
 
 ### Stage E — Systems (`40-systems/`)
@@ -84,3 +84,4 @@ depends_on: [UBS-META-00, UBS-META-01]
 | 2026-09-29 | B10 | Architecture volume: system family, 36 contracts, topologies, data architecture, 11 runtime flows, cross-cutting concerns, codebase and delivery, capability allocation (220); AR-001…034; DEC-018…021. |
 | 2026-09-29 | B11 | Standard: index and profiles, foundations (canonical JSON, hashing, identifiers, value types, encrypted fields), object model, class system (C3, narrowing matrix, polymorphism, extensions, lenses), state kinds. |
 | 2026-09-29 | B12 | Standard: versioning (commits, branch kinds, change sets, diff, three-way merge, strategies, ledger append merge, revert, inheritance), bitemporal timeline algebra, processes and commit semantics (CAS, idempotency, outbox, deferred commits, bulk, sagas), Merkle prolly tree, signatures, proofs, anchors, evidence packs, seals, disposal, portable archive. |
+| 2026-09-29 | B13 | Standard: BPU model (seven elements, descriptor, pin discipline, commit cycle, six hardware-ization properties, class verification), instruction set ABI 1.0 (general rules and 30 instructions), execution (context, gateway, profiles, termination, metering, journal, replay, Rhai and WASM tiers, logic assets, verification, static analysis, pinning, quarantine). |
