@@ -31,20 +31,20 @@ is one implementation among possible others (FR-STD-061).
 | OBJ | Object model: objects, versions, envelopes | `02-object-model.md` |
 | CLS | Class system: declarations, inheritance, polymorphism, extensions, lenses | `03-class-system.md` |
 | KIND | State kinds: Definition, Ledger, System, RawDocument | `04-state-kinds.md` |
-| VER | Versioning: commits, branches, change sets, diff, merge, inheritance, revert | `05-versioning.md` (B12) |
-| TIME | Bitemporal semantics | `06-bitemporal.md` (B12) |
-| TXN | Processes and commit semantics | `07-transactions.md` (B12) |
-| PROOF | Content addressing, Merkle trees, proofs, formats | `08-proofs.md` (B12) |
-| BPU | The BPU model | `09-bpu.md` (B13) |
-| ISA | Instruction set (ABI) | `10-instruction-set/` (B13) |
-| CTX | Execution context, determinism, metering | `11-execution.md` (B13) |
-| EXPR | L1 expression language | `12-expressions.md` (B14) |
-| LGS | Logic Governance Sheets | `13-governance-sheets.md` (B14) |
-| ADDR | Addressing and URIs | `14-addressing.md` (B14) |
-| PROTO | UBTP protocol | `15-ubtp.md` (B14) |
-| SYNC | Sync protocol | `16-sync.md` (B14) |
-| ERR | Error registry | `17-errors.md` (B14) |
-| CONF | Profiles, vectors, certification | `18-conformance.md` (B14) |
+| VER | Versioning: commits, branches, change sets, diff, merge, inheritance, revert | `05-versioning.md` |
+| TIME | Bitemporal semantics | `06-bitemporal.md` |
+| TXN | Processes and commit semantics | `07-transactions.md` |
+| PROOF | Content addressing, Merkle trees, proofs, formats | `08-proofs.md` |
+| BPU | The BPU model | `09-bpu.md` |
+| ISA | Instruction set (ABI) | `10-instruction-set/` |
+| CTX | Execution context, determinism, metering | `11-execution.md` |
+| EXPR | L1 expression language | `12-expressions.md` |
+| LGS | Logic Governance Sheets | `13-governance-sheets.md` |
+| ADDR | Addressing and URIs | `14-addressing.md` |
+| PROTO | UBTP protocol | `15-ubtp.md` |
+| SYNC | Sync protocol | `16-sync.md` |
+| ERR | Error registry | `17-errors.md` |
+| CONF | Profiles, vectors, certification | `18-conformance.md` |
 
 ## 3. Profiles (FR-STD-014)
 
