@@ -10,7 +10,7 @@ depends_on: [META-CHARTER, META-RULES, META-TEMPLATES]
 
 > Every session: read this file first, update it last (WRITING-RULES §9).
 
-## Current phase: P4 (done: SPEC-10…15; next: SPEC-16 context, SPEC-17 logic runtime)
+## Current phase: P4 (done: SPEC-10…19; next: SPEC-21 query, SPEC-22 security, SPEC-23 tenancy, SPEC-24 protocol)
 
 ## P0 — Meta + Inventory
 - [x] `00-meta/DOC-CHARTER.md`
@@ -68,7 +68,7 @@ Priority P0 (minimal viable kernel), in this order:
 - [x] `16-context.md`
 - [x] `17-logic-runtime.md`
 - [x] `18-rules-validation.md`
-- [ ] `19-orchestration.md`
+- [x] `19-orchestration/` (index + 3 parts)
 - [ ] `21-query-search.md`
 - [ ] `22-security.md`
 - [ ] `23-tenancy.md`
@@ -110,3 +110,4 @@ Priority P1:
 | 2026-09-28 | P2 | Topics 17–22 with verdicts; matrix summary; Q-008 raised. P2 complete. |
 | 2026-09-28 | P3 | Q-005…Q-008 answered by the user; outline (SPEC-00), glossary (SPEC-01, 142 terms in 3 parts plus an index, alias map), conventions and ID registry (SPEC-02), ADR-001…004 accepted. P3 complete. |
 | 2026-09-28 | P4 | SPEC-10 architecture, SPEC-11 storage, SPEC-12 identity/URI (+ADR-005), SPEC-13 meta-model, SPEC-14 versioning/branching, SPEC-15 transactions. Conventions aligned (branch segments without dots, tags as slugs, UNSET commit action). |
+| 2026-09-29 | P4 | SPEC-16 context, SPEC-17 logic runtime (syscall ABI v1), SPEC-18 rules and validation, SPEC-19 orchestration (pipelines, actions + lifecycles + dialogues, process instances, emits, intents). Glossary +5 terms; SPEC-13 Type gains schema_extra/write_policy. |

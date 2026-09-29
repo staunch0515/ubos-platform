@@ -159,6 +159,25 @@ Part of SPEC-01. Entry format and rules: `00-index.md` §0.
 
 ---
 
+### TERM-Lifecycle
+- **Definition:** The state machine of an entity type: states (editable or not, terminal) and transitions fired by transition actions. It sets the reserved key `_state`.
+- **Aliases:** entity state machine (UB design); workflow_state (UC genesis).
+- **Not:** a Dialogue (interaction state), a Workflow (durable process).
+- **Chapter:** SPEC-19
+- **Origin:** CON-UB-032, VRD-06-03
+
+### TERM-Dialogue
+- **Definition:** The interaction state machine of an action (e.g. INIT → REVIEW → DONE). It is held by the client with a signed token, and can optionally be made durable.
+- **Aliases:** Action FSM (US); three-stage action protocol (LS, stages).
+- **Chapter:** SPEC-19
+- **Origin:** CON-US-022, CON-US-017, VRD-06-03
+
+### TERM-Workflow
+- **Definition:** The blueprint of a durable process: states with signal handlers, entry logic and timeouts. Its running instances are ProcessInstances.
+- **Aliases:** MetaProcessType (LS); workflow (UC genesis).
+- **Chapter:** SPEC-19
+- **Origin:** CON-LS-017, VRD-06-04
+
 ---
 
 ## 9. Events and asynchronous work

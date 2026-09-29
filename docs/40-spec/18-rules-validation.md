@@ -438,7 +438,7 @@ pub enum Outcome { Allow { warnings: Vec<Decision> }, Deny { causes: Vec<Decisio
 
 - **Reference code:**
   - LC constraint manager and validators [LC:src/main/java/com/logicorum/validation/BusinessConstraintManager.java], levels [LC:src/main/java/com/logicorum/model/ValidationLevel.java].
-  - FU validator [FU:backend/…/JsonSchemaValidator] (CON-FU-020).
+  - FU validator [FU:backend/src/main/java/org/logrum/ubos/kernel/util/JsonSchemaValidator.java] (CON-FU-020).
 - **Design references:**
   - UB BEL [UB:docs/BEL Pro.md].
   - US voting [US:docs/front/FullSlice.md].
