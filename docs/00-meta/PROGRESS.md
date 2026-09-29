@@ -82,7 +82,7 @@ Priority P1:
 - [x] `26-client-shells.md`
 - [x] `27-ai/` (index + 3 parts)
 - [x] `29-base-ontology.md`
-- [ ] `31-deployment-editions.md`
+- [x] `31-deployment-editions.md`
 - [ ] `32-nfr-catalogue.md`
 
 ## P5 — Consolidation
