@@ -73,7 +73,7 @@ Priority P0 (minimal viable kernel), in this order:
 - [x] `22-security/` (index + 3 parts)
 - [x] `23-tenancy.md`
 - [x] `24-protocol/` (index + 3 parts)
-- [ ] `28-packages-boot.md`
+- [x] `28-packages-boot.md`
 - [ ] `30-audit-observability.md`
 
 Priority P1:
