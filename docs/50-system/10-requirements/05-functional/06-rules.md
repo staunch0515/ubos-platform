@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-05-06
 title: Functional Requirements — RULE (Governance Sheets, Validation, Decisions)
-status: draft
+status: review
 phase: PH-1
 depends_on: [UBS-REQ-05, UBS-REQ-05-05]
 ---

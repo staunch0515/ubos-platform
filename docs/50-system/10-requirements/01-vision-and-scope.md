@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-01
 title: Vision, Problem and Scope
-status: draft
+status: review
 phase: ALL
 depends_on: [UBS-META-00, UBS-META-06]
 ---

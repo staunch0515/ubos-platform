@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-00
 title: Requirements Volume — Index
-status: draft
+status: review
 phase: ALL
 depends_on: [UBS-META-00, UBS-META-01]
 ---
@@ -36,3 +36,32 @@ Every FR, NR and CR item follows the block in `UBS-META-01` §5:
 - **Origin** traces the item to its inputs (`UBS-META-06`).
 
 The FR number encodes the capability: `FR-VER-051` refines `CAP-VER-05`.
+
+## Volume statistics (end of batch B9)
+
+| Item kind | Count |
+|---|---|
+| Personas (PER) | 28 |
+| Capabilities (CAP) | 220 in 30 domains |
+| Scenarios (SCN) | 55 |
+| Functional requirements (FR) | 800 |
+| Non-functional requirements (NR) | 106 |
+| Compliance requirements (CR) | 54 |
+| Constraints (CST) and assumptions (ASM) | 18 and 12 |
+| Glossary terms (GL) | 146 |
+| Reference environments (ENV) | 7 |
+
+Requirements by kind, phase and priority:
+
+| Kind | PH-0 | PH-1 | PH-2 | PH-3 | PH-4 | PH-5 | Total | Must | Should | Could |
+|---|---|---|---|---|---|---|---|---|---|---|
+| FR | 8 | 304 | 274 | 152 | 45 | 17 | 800 | 673 | 118 | 9 |
+| NR | 0 | 32 | 51 | 12 | 10 | 1 | 106 | 82 | 24 | 0 |
+| CR | 0 | 5 | 20 | 19 | 10 | 0 | 54 | 37 | 17 | 0 |
+| **All** | 8 | 341 | 345 | 183 | 65 | 18 | 960 | 792 | 159 | 9 |
+
+## Status
+
+All requirement documents are in `review` status and wait for product-owner confirmation
+(DEC-010). After confirmation they move to `complete`, and writing continues with the
+architecture volume.

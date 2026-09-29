@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-04-01
 title: Scenarios — Platform Core
-status: draft
+status: review
 phase: PH-1
 depends_on: [UBS-REQ-04]
 ---

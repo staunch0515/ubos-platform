@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-05-17
 title: Functional Requirements — DEV (Developer Experience) and MIG (Migration and Import)
-status: draft
+status: review
 phase: PH-1
 depends_on: [UBS-REQ-05, UBS-REQ-05-05]
 ---

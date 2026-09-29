@@ -26,7 +26,7 @@ PHASES = {f'PH-{i}' for i in range(6)}
 STATUSES = {'draft', 'review', 'complete', 'stable'}
 
 # Kinds whose defining batch is not written yet: undefined references are warnings.
-PENDING = ('FR-', 'NR-', 'CR-', 'SCN-', 'CST-', 'ASM-', 'GL-', 'UBS-REQ-', 'UBS-ARC-', 'UBS-STD-', 'UBS-SYS-', 'UBS-PH-', 'UBS-VER-', 'UBS-IDX-',
+PENDING = ('UBS-ARC-', 'UBS-STD-', 'UBS-SYS-', 'UBS-PH-', 'UBS-VER-', 'UBS-IDX-',
            'STD-', 'DSN-', 'IF-', 'DAT-', 'VER-', 'SUITE-', 'EXIT-', 'MET-', 'RSK-', 'ENV-')
 
 ID_RE = (r'UBS-[A-Z]+(?:-[A-Z]+)?-\d{1,3}|UBS-README'

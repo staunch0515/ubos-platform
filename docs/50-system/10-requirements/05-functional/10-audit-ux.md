@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-05-10
 title: Functional Requirements — AUD (Audit, Lineage, Retention) and UX (User Experience)
-status: draft
+status: review
 phase: PH-1
 depends_on: [UBS-REQ-05, UBS-REQ-05-04]
 ---

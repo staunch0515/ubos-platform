@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-05-19
 title: Functional Requirements — STD (Governance of the BPA Standard)
-status: draft
+status: review
 phase: PH-0
 depends_on: [UBS-REQ-05]
 ---

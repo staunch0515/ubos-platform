@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-02
 title: Personas
-status: draft
+status: review
 phase: ALL
 depends_on: [UBS-REQ-01]
 ---

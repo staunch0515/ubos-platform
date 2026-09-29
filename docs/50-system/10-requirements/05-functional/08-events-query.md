@@ -1,7 +1,7 @@
 ---
 id: UBS-REQ-05-08
 title: Functional Requirements — EVT (Events, Jobs, Schedules, Workers) and QRY (Query and Search)
-status: draft
+status: review
 phase: PH-1
 depends_on: [UBS-REQ-05, UBS-REQ-05-04]
 ---
