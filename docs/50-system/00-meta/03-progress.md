@@ -11,7 +11,7 @@ depends_on: [UBS-META-00, UBS-META-01]
 ## 1. Current state
 
 - **Stage:** Standard volume (Stage D).
-- **Next batch:** B12.
+- **Next batch:** B13.
 - **Stop point:** after B9, wait for product-owner confirmation (DEC-010).
 
 ## 2. Batch plan
@@ -35,7 +35,7 @@ depends_on: [UBS-META-00, UBS-META-01]
 
 ### Stage D — Standard (`30-standard/`)
 - [x] **B11** DVM semantics: object model, classes, inheritance, polymorphism, kinds
-- [ ] **B12** Versioning, bitemporality, content addressing, commit semantics, merge
+- [x] **B12** Versioning, bitemporality, content addressing, commit semantics, merge
 - [ ] **B13** BPU model, instruction set (ABI), execution context, determinism, metering
 - [ ] **B14** LGS language, addressing and URIs, UBTP protocol, sync protocol, error registry, conformance rules
 
@@ -83,3 +83,4 @@ depends_on: [UBS-META-00, UBS-META-01]
 | 2026-09-29 | STOP | Product owner confirmed the requirements volume and accepted the recommendations: DEC-014 (PH-1a/PH-1b gates), DEC-015 (both verticals in PH-2), DEC-016 (Server first). DEC-017 adds AR and CTR ID kinds. Requirements set to `complete`. |
 | 2026-09-29 | B10 | Architecture volume: system family, 36 contracts, topologies, data architecture, 11 runtime flows, cross-cutting concerns, codebase and delivery, capability allocation (220); AR-001…034; DEC-018…021. |
 | 2026-09-29 | B11 | Standard: index and profiles, foundations (canonical JSON, hashing, identifiers, value types, encrypted fields), object model, class system (C3, narrowing matrix, polymorphism, extensions, lenses), state kinds. |
+| 2026-09-29 | B12 | Standard: versioning (commits, branch kinds, change sets, diff, three-way merge, strategies, ledger append merge, revert, inheritance), bitemporal timeline algebra, processes and commit semantics (CAS, idempotency, outbox, deferred commits, bulk, sagas), Merkle prolly tree, signatures, proofs, anchors, evidence packs, seals, disposal, portable archive. |

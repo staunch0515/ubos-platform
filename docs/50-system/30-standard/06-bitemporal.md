@@ -1,0 +1,142 @@
+---
+id: UBS-STD-06
+title: BPA Standard — Bitemporal Semantics (TIME)
+status: draft
+phase: PH-0
+depends_on: [UBS-STD-05]
+---
+
+# BPA Standard — Bitemporal Semantics (TIME) `[Profile: Bitemporal]`
+
+## 1. Transaction time
+
+### STD-TIME-001 — Transaction time assignment
+- **Clause:** The implementation MUST assign `tx_time` to each commit at flush from a hybrid logical clock (HLC). The value MUST be greater than the `tx_time` of the branch head it extends. When the physical clock is behind the HLC by more than the configured bound (default 1 s), the implementation MUST emit `NOD.CLOCK_SKEW`. Clients and logic MUST NOT supply `tx_time`.
+- **Grammar / Schema:** —
+- **Conformance vectors:** VER-CONF-1700…1714
+- **Satisfies:** FR-TIME-011, FR-TIME-012, FR-TIME-013
+- **Notes:** The HLC is represented as an RFC 3339 instant with microseconds, using the logical counter to break ties in the last microsecond digits.
+
+## 2. Valid time
+
+### STD-TIME-010 — Valid-time periods
+- **Clause:** Each Definition version has a valid period `[from, to)`, with `to = null` meaning open. The granularity is `date` or `instant` per class. Date bounds are interpreted in the VAE business time zone (STD-FND-024).
+- **Grammar / Schema:** —
+- **Conformance vectors:** VER-CONF-1715…1724
+- **Satisfies:** FR-TIME-021, FR-TIME-023
+- **Notes:** —
+
+### STD-TIME-011 — The timeline of an object
+- **Clause:** For object o on branch X, the timeline `TL(o, X, t)` at transaction time t is a list of non-overlapping segments `(period, version)`, sorted by period start. It MUST be computed by applying, in commit order, the timeline operations of all commits on X's history with `tx_time ≤ t`, starting from an empty timeline:
+
+  | Operation (valid part of an update) | Effect on the timeline |
+  |---|---|
+  | `create(v, from)` | insert `[from, ∞)` → v; the timeline must be empty |
+  | `supersede_from(v, d)` | let `e` = the start of the first segment starting after d, or ∞; replace `[d, e)` with v (splitting any segment that contains d) |
+  | `set_period(v, a, b)` | if any existing segment intersects `[a, b)` and is not fully covered by a segment of the same version lineage, reject with `TIME.OVERLAPPING_VALIDITY`; otherwise set `[a, b)` → v |
+  | `replace_future(v, d)` | remove every segment starting at or after d; truncate the segment containing d at d; insert `[d, ∞)` → v |
+  | `end(d)` | truncate the segment containing d at d; remove every later segment; the object is ended from d |
+
+  A plain update without valid-time parameters is `supersede_from(v, today)` for date granularity, or `supersede_from(v, tx_time)` for instant granularity.
+- **Grammar / Schema:** —
+- **Conformance vectors:** VER-CONF-1725…1774
+- **Satisfies:** FR-TIME-022, FR-TIME-025, FR-TIME-051
+- **Notes:** The table is the formal model of the bitemporal update semantics. The implementation's `temporal_index` is a materialisation of it (AR-016).
+
+### STD-TIME-012 — As-of resolution
+- **Clause:** Reading o on X with `asof = a` and `time = t` MUST return the version of the segment of `TL(o, X, t)` that contains a. If no segment contains a, o is not found at those coordinates (`QRY.NOT_FOUND_AT_TIME` when o exists at other coordinates). The defaults are `a = now` (as a date in the business time zone for date granularity) and `t = head`.
+- **Grammar / Schema:** —
+- **Conformance vectors:** VER-CONF-1775…1799
+- **Satisfies:** FR-TIME-031, FR-TIME-051
+- **Notes:** Future-dated versions become effective purely by resolution. No job is needed.
+
+### STD-TIME-013 — Consistent coordinates across references
+- **Clause:** When a read or query follows references, targets MUST be resolved at the same `(asof, time)` as the source object, unless the reference pins a version.
+- **Grammar / Schema:** —
+- **Conformance vectors:** VER-CONF-1800…1809
+- **Satisfies:** FR-TIME-032
+- **Notes:** —
+
+### STD-TIME-014 — Range queries
+- **Clause:** A valid-range query `[a, b)` at time t MUST return the segments of `TL(o, X, t)` that intersect `[a, b)`, clipped to it. A transaction-range query `[c, d)` MUST return the commits on X with `c ≤ tx_time < d` that changed o, with their timeline operations.
+- **Grammar / Schema:** —
+- **Conformance vectors:** VER-CONF-1810…1824
+- **Satisfies:** FR-TIME-033, FR-QRY-051
+- **Notes:** —
+
+### STD-TIME-015 — Evaluation evidence
+- **Clause:** Every bitemporal answer MUST carry `evaluated_at`: the commit ID resolved for each branch consulted. Repeating the request with those commit IDs MUST return identical results.
+- **Grammar / Schema:** —
+- **Conformance vectors:** VER-CONF-1825…1829
+- **Satisfies:** FR-TIME-034
+- **Notes:** —
+
+## 3. Ledger time `[Profile: Ledger]`
+
+### STD-TIME-020 — Bitemporal inclusion of entries
+- **Clause:** An entry e is included in a ledger read at `(asof = a, time = t)` if and only if `e.valid_at ≤ a` (compared at the class granularity) and e's commit has `tx_time ≤ t`. Balance projections MUST produce results equal to aggregating exactly the included entries.
+- **Grammar / Schema:** —
+- **Conformance vectors:** VER-CONF-1830…1849
+- **Satisfies:** FR-TIME-024, FR-LEDG-032
+- **Notes:** —
+
+## 4. Retroactivity
+
+### STD-TIME-030 — Retroactive changes
+- **Clause:** A timeline operation is retroactive when it affects any part of the timeline before the start of the current business day. The commit MUST record, per retroactive change, the affected valid range.
+- **Grammar / Schema:** —
+- **Conformance vectors:** VER-CONF-1850…1859
+- **Satisfies:** FR-TIME-041
+- **Notes:** —
+
+### STD-TIME-031 — Impact set
+- **Clause:** For a retroactive change of object o over the valid range R, the impact set MUST be the transitive closure, over derivation records (STD-TXN-030), of every object version and entry whose derivation used a version of o for an `asof` inside R that is superseded by the change.
+- **Grammar / Schema:** —
+- **Conformance vectors:** VER-CONF-1860…1874
+- **Satisfies:** FR-TIME-042
+- **Notes:** —
+
+## 5. Rule-version binding
+
+### STD-TIME-040 — Rule binding record
+- **Clause:** Each commit MUST reference a `DAT-RuleBinding` that lists the content IDs of:
+  - class versions, extension versions and lifecycle versions;
+  - governance sheets and decision tables;
+  - policies and logic assets.
+
+  These are the items evaluated to validate, decide or compute any change in the commit.
+- **Grammar / Schema:** `DAT-RuleBinding`
+- **Conformance vectors:** VER-CONF-1875…1884
+- **Satisfies:** FR-TIME-061, FR-FLOW-032
+- **Notes:** —
+
+```yaml
+DAT-RuleBinding:
+  classes: { type: list, required: true, description: "content-ids of class and extension versions" }
+  sheets: { type: list, required: false, description: "content-ids of sheet versions" }
+  tables: { type: list, required: false, description: "content-ids of decision table versions" }
+  policies: { type: list, required: false, description: "content-ids of policy set versions" }
+  logic: { type: list, required: false, description: "content-ids of logic asset versions" }
+  guards: { type: list, required: false, description: "guard evaluations {guard, result}" }
+```
+
+### STD-TIME-041 — Re-evaluation modes
+- **Clause:** Re-evaluating logic or rules for valid date d MUST support three modes, and the chosen mode MUST be recorded:
+  - `as_originally`: use the rule binding of the original commit;
+  - `as_effective`: use the versions whose timelines at the current transaction time cover d;
+  - `current`: use head versions.
+
+  `as_effective` MUST be the default for restatements and valid-dated recomputation.
+- **Grammar / Schema:** —
+- **Conformance vectors:** VER-CONF-1885…1899
+- **Satisfies:** FR-TIME-063, FR-TIME-064
+- **Notes:** —
+
+## 6. Became-effective events
+
+### STD-TIME-050 — Emission
+- **Clause:** For classes that declare `emit_became_effective`, the implementation MUST emit, at least once, a `BecameEffective` event for each version segment start in the future at commit time, when wall-clock time reaches it. If the segment is removed before then, no event is emitted.
+- **Grammar / Schema:** —
+- **Conformance vectors:** VER-CONF-1900…1909
+- **Satisfies:** FR-TIME-052
+- **Notes:** —
