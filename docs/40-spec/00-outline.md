@@ -63,7 +63,7 @@ Exact per-chapter dependencies are in §3.
 | SPEC-22 | `22-security/` (index + 3 parts) | Identity, governance entities, RBAC + policies, enforcement, approvals, keys | SEC | 13, 15, 17, 18 | VRD-10-01…07 | P0 |
 | SPEC-23 | `23-tenancy.md` | Tenants, root package tenant, extension and overlay, cross-tenant execution | TEN | 14, 16, 22 | VRD-18-01…05 | P0 |
 | SPEC-24 | `24-protocol/` (index + 3 parts) | UBTP messages, envelope, transports, encoding | PROTO | 15, 19, 20, 21 | VRD-15-01…05 | P0 |
-| SPEC-25 | `25-ui-protocol.md` | Widget resolution, render pipeline, views, projection, pushed UI | UI | 13, 19, 24 | VRD-13-01…07 | P1 |
+| SPEC-25 | `25-ui-protocol/` (index + 3 parts) | Widget resolution, render pipeline, views, projection, pushed UI | UI | 13, 19, 24 | VRD-13-01…07 | P1 |
 | SPEC-26 | `26-client-shells.md` | Cockpit, studio, desktop, mobile, CLI, SDK | SHELL | 24, 25 | VRD-14-01…04, 19-04 | P1 |
 | SPEC-27 | `27-ai.md` | AI builder, AI syscalls, agents, copilot, explanations, i18n | AI | 17, 21, 22, 24 | VRD-16-01…07 | P1 |
 | SPEC-28 | `28-packages-boot.md` | Packages, loader, genesis, boot sequence | PKG | 13, 15, 18 | VRD-17-01…05 | P0 |
