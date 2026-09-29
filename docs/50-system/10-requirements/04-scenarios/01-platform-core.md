@@ -273,7 +273,7 @@ depends_on: [UBS-REQ-04]
   2. Every version of S's personal fields now reads as `erased`, and non-personal fields remain.
   3. Commit signatures and Merkle proofs of the affected commits still verify, because ciphertexts are unchanged.
 - **Alternate and failure flows:**
-  - A1. A legal hold covers S → erasure is refused with `AUD.LEGAL_HOLD_ACTIVE`, and the refusal is recorded.
+  - A1. (Verified from PH-3, when legal holds exist.) A legal hold covers S → erasure is refused with `AUD.LEGAL_HOLD_ACTIVE`, and the refusal is recorded.
 - **Postconditions (observable):** 1. Backups older than the erasure are covered, because the key is absent from all key stores after the key-store retention window.
 - **Business rules exercised:** FR-PROOF-071, FR-AUD-011, FR-IAM-091
 - **Verification:** SCN, INSP, AUDIT
