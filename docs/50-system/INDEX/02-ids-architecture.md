@@ -90,7 +90,7 @@ depends_on: [UBS-IDX-00]
 | CTR-071 | Notification providers (NOD → providers) | `20-architecture/02-contracts.md` |
 | CTR-072 | Telemetry and SIEM export (NOD → collectors) | `20-architecture/02-contracts.md` |
 
-## DEC (26)
+## DEC (27)
 
 | ID | Title | Defined in |
 |---|---|---|
@@ -120,4 +120,5 @@ depends_on: [UBS-IDX-00]
 | DEC-024 | PostgreSQL only until PH-4 | `90-decisions/000-index.md` |
 | DEC-025 | PH-2 user interface is Web only; Smart Grid moves to PH-2 | `90-decisions/000-index.md` |
 | DEC-026 | Implementation-neutral finance requirements shared for comparison | `90-decisions/000-index.md` |
+| DEC-027 | The specification moves to the repository `ubos-unit` | `90-decisions/000-index.md` |
 

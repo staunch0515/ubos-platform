@@ -39,13 +39,14 @@ Decisions are never deleted. A replaced decision is marked
 | DEC-024 | PostgreSQL only until PH-4; SQLite, Box and device sync move to PH-4 | Accepted |
 | DEC-025 | PH-2 user interface is Web only, professional and practical; Smart Grid moves to PH-2 | Accepted |
 | DEC-026 | Implementation-neutral finance requirements shared with a Java reference system for comparison | Accepted |
+| DEC-027 | The specification moves to the repository `ubos-unit` | Accepted |
 
 ---
 
 ### DEC-001 — Location and title of the volume
 - **Status:** Accepted · **Date:** 2026-09-29
 - **Context:** A new, self-contained specification is needed. It must stay separate from the research volume and the earlier specification.
-- **Decision:** The volume lives in `ubos-platform/docs/50-system/` on branch `claude/gifted-edison-cmqbu9`. Its title is *UBOS Business Processing Architecture — System Specification*.
+- **Decision:** The volume lives in `ubos-platform/docs/50-system/` on branch `claude/gifted-edison-cmqbu9` (location revised by DEC-027: `ubos-unit/docs/50-system/`). Its title is *UBOS Business Processing Architecture — System Specification*.
 - **Consequences:** `docs/README.md` points to this volume as the current authority. New ID namespaces avoid collisions with `40-spec`.
 - **Alternatives considered:** Rewriting `40-spec` in place was rejected because it would lose the history. A new repository was rejected because it would split the documentation.
 - **Affects:** UBS-META-00, UBS-META-01
@@ -285,3 +286,10 @@ Decisions are never deleted. A replaced decision is marked
 - **Consequences:** Both implementations are measured against the same acceptance tests. The platform volume refers to the finance document through the scenarios SCN-501…512 and the suite SUITE-PH2-FINANCE.
 - **Affects:** UBS-PH-2, UBS-VER-03, UBS-VER-04
 
+### DEC-027 — The specification moves to the repository `ubos-unit`
+- **Status:** Accepted · **Date:** 2026-09-29
+- **Context:** The owner continues the work from another Claude account with the same GitHub account and wants a clean repository that holds only the documentation work, without the Java code of the research phase.
+- **Decision:** The whole `docs/` folder (system specification, finance requirements, tools, reports and the research volume kept as history) moves with its git history to `staunch0515/ubos-unit`, together with `CLAUDE.md` (working agreement) and `docs/HANDOFF.md` (status and next steps). `ubos-platform` keeps the same state on its `main` branch as an archive. Further work continues in `ubos-unit`. The implementation repository layout of DEC-018 is not changed by this decision; whether `ubos-unit` also becomes the implementation monorepo is decided separately.
+- **Consequences:** DEC-001's location is revised; UBS-ARC-07 names `ubos-unit` as the current home of the specification.
+- **Alternatives considered:** Continuing in `ubos-platform` was rejected (mixed with research code); copying files without history was rejected (loses the change record).
+- **Affects:** DEC-001, DEC-018, UBS-ARC-07

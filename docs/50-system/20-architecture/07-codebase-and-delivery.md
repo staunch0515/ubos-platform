@@ -16,7 +16,7 @@ depends_on: [UBS-ARC-01, DEC-007]
 | `ubos` (monorepo) | kernel crates, node hosts, Forge, SDKs, clients, platform services | kernel, node and Forge: AGPL-3.0 open edition plus commercial licence; SDKs Apache-2.0 |
 | `ubos-verify` | open verifier (CLI, library, static web page) | Apache-2.0 |
 | `ubos-buks` | first-party Buks: `system`, `ontology`, `finance` (`fund-ops` and `contracts` deferred, DEC-022) | commercial (source available to customers) |
-| `ubos-docs` | this specification (currently `ubos-platform/docs/50-system`) | internal |
+| `ubos-docs` | this specification (currently `ubos-unit/docs/50-system`, DEC-027) | internal |
 
 ## 2. Rust crates of the monorepo
 

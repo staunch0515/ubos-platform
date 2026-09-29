@@ -21,7 +21,7 @@ depends_on: [UBS-IDX-00]
 | CST | 18 |
 | CTR | 36 |
 | DAT | 63 |
-| DEC | 26 |
+| DEC | 27 |
 | DSN | 695 |
 | ENV | 7 |
 | EXIT | 85 |
