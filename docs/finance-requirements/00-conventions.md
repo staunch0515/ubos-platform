@@ -99,3 +99,7 @@ date on the source document) may differ from both. Reports are "as of" a posting
 Tax rates, thresholds and form details change. They are configuration data with effective
 dates and are confirmed by the owner against current official sources before each
 acceptance run; they are never hard-coded.
+
+Confirmed values for the sample company (owner, 2026-09-29): Form 1099-NEC and 1099-MISC
+threshold for tax year 2026 = USD 2,000.00; Texas, City of Austin combined sales tax rate
+(TX-AUSTIN) = 8.25%.
