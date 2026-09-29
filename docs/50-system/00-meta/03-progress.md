@@ -10,8 +10,8 @@ depends_on: [UBS-META-00, UBS-META-01]
 
 ## 1. Current state
 
-- **Stage:** Verification volume (Stage G).
-- **Next batch:** B27.
+- **Stage:** Complete (Stage H: indexes and final validation done).
+- **Next batch:** none — all batches B1–B27 complete; awaiting product-owner review.
 - **Stop point:** after B9, wait for product-owner confirmation (DEC-010).
 
 ## 2. Batch plan
@@ -57,7 +57,7 @@ depends_on: [UBS-META-00, UBS-META-01]
 - [x] **B26** Verification items by phase, traceability
 
 ### Stage H — Closing
-- [ ] **B27** Generated indexes, final AI reading guide, README update, full validation
+- [x] **B27** Generated indexes, final AI reading guide, README update, full validation
 
 ## 3. Open questions
 
@@ -97,3 +97,4 @@ depends_on: [UBS-META-00, UBS-META-01]
 | 2026-09-29 | B24 | Plans PH-3 (regulated pilot with explicit pilot success criteria, governed AI, devices; 13 exits), PH-4 (Cells, Control Plane, Exchange, certification, workers, SOC 2 readiness; 11 exits), PH-5 (federation, shared BPUs, browser kernel; 8 exits). VER numbering unified across all phase plans (standard vectors VER-CONF-0001…6299 by clause area; system-level CONF 7000…9999; other methods by system block; SCN, USE, PILOT by phase), to be recorded in UBS-VER-00 §3. |
 | 2026-09-29 | B25 | Verification volume part 1: index with principles, structure, unified VER numbering (standard vectors by clause area, system-level CONF blocks, method blocks by system, SCN/USE/PILOT by phase) and traceability model; twelve methods with procedures, tooling, evidence and default pass rules; environment provisioning rules; workload generation, fixtures and adversarial corpora; suite registry (6 phase suites + regression suite defined, 69 system suites listed, triggers); numbering registry defining all VER ranges. Checker: range definitions and overlap detection for VER numbers; all VER references now resolve. |
 | 2026-09-29 | B26 | Verification items (template T11 extended with **Supports**) for every one of the 74 exit criteria: 85 VER items across PH-0…PH-5. Traceability generator `tools/gen_traceability.py` (requirement → DSN Origin or STD Satisfies → suites → direct VER items) with per-phase files and gap lists. First run found 60 Must gaps; closed by fixing 5 method mismatches, adding ~30 Origin links, and 8 new design items (DSN-DVM-134, -410, -425, -426, -836, -837, DSN-NOD-424, DSN-SDK-018). Result: 0 Must gaps in every phase. DVM time/ledger/transaction file split. Checker: exit criteria must be supported by VER items; VER items must lie in registered ranges; all reference kinds strict except UBS-IDX. |
+| 2026-09-29 | B27 | Generated indexes (`INDEX/`: documents, IDs by group, statistics, design by system and phase) via `tools/gen_indexes.py`; `tools/regen_all.sh`; final AI reading guide (layers, links, task entry points, precedence, change procedure, checker guarantees); README rewritten with folder map, phases at a glance and tools; writing rules state VER range registry. Checker fully strict (no pending kinds): 249 documents, 0 errors, 0 warnings. Open item: DEC-019 (licensing) remains Proposed. |

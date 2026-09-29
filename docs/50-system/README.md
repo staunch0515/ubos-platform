@@ -22,29 +22,46 @@ Processing Unit (BPU)** on a **Data Virtual Machine (DVM)**.
 | You want to … | Open |
 |---|---|
 | know what this volume is and is not | [`00-meta/00-charter.md`](00-meta/00-charter.md) |
+| work as an AI agent or new engineer on this volume | [`00-meta/05-ai-reading-guide.md`](00-meta/05-ai-reading-guide.md) |
 | understand the sources and resolved conflicts | [`00-meta/06-inputs.md`](00-meta/06-inputs.md) |
 | know how IDs and requirement blocks work | [`00-meta/01-writing-rules.md`](00-meta/01-writing-rules.md) |
-| work as an AI agent on this volume | [`00-meta/05-ai-reading-guide.md`](00-meta/05-ai-reading-guide.md) |
-| see progress and the batch plan | [`00-meta/03-progress.md`](00-meta/03-progress.md) |
+| see the six phases and how each is verified | [`50-phases/00-index.md`](50-phases/00-index.md) |
+| see how verification works | [`60-verification/00-index.md`](60-verification/00-index.md) |
+| find any ID | [`INDEX/00-index.md`](INDEX/00-index.md) |
 | see decisions | [`90-decisions/000-index.md`](90-decisions/000-index.md) |
+| see progress and history | [`00-meta/03-progress.md`](00-meta/03-progress.md) |
 
 ## Folder map
 
 | Folder | Content | Status |
 |---|---|---|
-| `00-meta/` | charter, rules, templates, progress, inputs, AI guide | stable / draft |
-| `10-requirements/` | vision, personas, capabilities, scenarios, FR, NR, CR, constraints, glossary | complete (confirmed 2026-09-29) |
-| `20-architecture/` | system family, boundaries, contracts, topologies | planned |
-| `30-standard/` | the BPA standard (normative) | planned |
-| `40-systems/` | one folder per system (13 systems) | complete (13 systems) |
-| `50-phases/` | PH-0 … PH-5 with verification plans and exit criteria | complete (index and PH-0 … PH-5) |
-| `60-verification/` | methods, suites, environments, traceability | complete |
-| `90-decisions/` | DEC-* records | active |
-| `INDEX/` | generated indexes | planned |
+| `00-meta/` | charter, rules, templates, progress, inputs, AI guide | complete |
+| `10-requirements/` | vision, 28 personas, 220 capabilities, 55 scenarios, 800 FR, 106 NR, 54 CR, constraints, assumptions, 146 glossary terms | complete (confirmed 2026-09-29) |
+| `20-architecture/` | 13-system family, 36 contracts, topologies, data architecture, runtime flows, cross-cutting rules (34 AR), codebase, capability allocation | complete |
+| `30-standard/` | the BPA standard: 239 normative clauses, 48 data schemas, instruction set ABI 1.0, UBTP, sync, errors, conformance | complete (normative) |
+| `40-systems/` | 13 system chapters: 690 design items (DSN), 118 interfaces, data, state machines, configuration, operations, verification | complete |
+| `50-phases/` | PH-0 … PH-5: goals, scope, generated feature lists, verification plans, 60 metrics, 74 exit criteria, 32 risks | complete |
+| `60-verification/` | principles, VER numbering, 12 methods, environments, datasets, 76 suites, 85 verification items, generated traceability | complete |
+| `90-decisions/` | DEC-001 … DEC-021 | active |
+| `INDEX/` | generated catalogues of documents and IDs, statistics | generated |
 
-## Validation
+## The six phases at a glance
 
-```
-python3 docs/tools/check_system.py
-```
-The command must exit 0 before every commit.
+| Phase | Purpose | Proves |
+|---|---|---|
+| PH-0 | de-risk storage, core semantics and the testable standard | assumptions ASM-003, ASM-008 |
+| PH-1 | reference kernel and single-node server (gates 1a engine core, 1b governance and services) | G1 mechanism |
+| PH-2 | first sellable product: HA Server, Workspace, Studio, fund-operations and contract Buks | G2 applications without kernel changes |
+| PH-3 | regulated pilot with evidence, devices and offline, governed AI | G3 regulated value, G4 governed AI |
+| PH-4 | multi-tenant Cells, Control Plane, Exchange, certification, workers | G5 platform |
+| PH-5 | federation, shared BPUs, browser kernel | G6 federation |
+
+## Tools
+
+| Command | Purpose |
+|---|---|
+| `docs/tools/regen_all.sh` | regenerate feature lists, traceability and indexes, then validate |
+| `python3 docs/tools/check_system.py` | validate only (must report 0 errors before every commit) |
+| `python3 docs/tools/gen_phase_features.py` | regenerate `50-phases/PH-*/01-features.md` |
+| `python3 docs/tools/gen_traceability.py` | regenerate `60-verification/2*-trace*.md` |
+| `python3 docs/tools/gen_indexes.py` | regenerate `INDEX/` |

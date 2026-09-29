@@ -86,6 +86,11 @@ withdrawn item keeps its ID and is marked `**Status:** Withdrawn` with a reason.
 | Open question | `OQ-<NNN>` | `OQ-004` | `00-meta/03-progress.md` |
 | Input reference | `IN-<NN>` / `IMP-<NN>` | `IMP-02` | `00-meta/06-inputs.md` |
 
+Verification numbers are allocated in blocks (UBS-VER-00 §3). The registry UBS-VER-05 defines
+ranges with rows whose first cell is `VER-<METHOD>-NNNN…MMMM`; every ID inside a registered range
+counts as defined. Individual verification items (template T11) MUST lie inside a registered
+range and MUST name the exit criteria they support in **Supports**.
+
 ### 4.1 Domain codes (`<DOM>`) for capabilities and functional requirements
 
 | Code | Domain | Code | Domain |
