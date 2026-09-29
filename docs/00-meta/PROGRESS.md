@@ -79,7 +79,7 @@ Priority P0 (minimal viable kernel), in this order:
 Priority P1:
 - [x] `20-events-jobs/` (index + 3 parts)
 - [x] `25-ui-protocol/` (index + 3 parts)
-- [ ] `26-client-shells.md`
+- [x] `26-client-shells.md`
 - [ ] `27-ai.md`
 - [ ] `29-base-ontology.md`
 - [ ] `31-deployment-editions.md`
