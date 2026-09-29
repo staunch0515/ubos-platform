@@ -172,6 +172,7 @@ ENT-ValueConstraints:
     - {name: dict, type: uri<Dictionary>?, required: false, description: "Allowed values from a Dictionary entity (UODS dict_code)"}
     - {name: values, type: list<json>?, required: false, description: "Inline allowed values (small enums)"}
     - {name: format, type: string?, required: false, description: "JSON Schema format keyword (email, uri, date, date-time, uuid)"}
+    - {name: shape, type: json_schema?, required: false, description: "MAP value types only - required structure of the composite value (e.g. Money {amount: decimal string, currency: code}); narrowed like other constraints (SPEC-29)"}
   invariants:
     - A descendant or property may only narrow constraints (REQ-META-014).
 ```
