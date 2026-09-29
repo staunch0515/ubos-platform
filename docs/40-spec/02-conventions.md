@@ -67,23 +67,23 @@ Rules:
 |---|---|---|---|
 | CONV | SPEC-02 | `02-conventions.md` | Conventions |
 | ARCH | SPEC-10 | `10-architecture.md` | Architecture |
-| STO | SPEC-11 | `11-storage.md` | Storage |
+| STO | SPEC-11 | `11-storage/` | Storage |
 | URI | SPEC-12 | `12-identity-uri.md` | Identity and addressing |
-| META | SPEC-13 | `13-meta-model.md` | Meta-model |
+| META | SPEC-13 | `13-meta-model/` | Meta-model |
 | VER | SPEC-14 | `14-versioning-branching.md` | Versioning and branching |
 | TX | SPEC-15 | `15-transactions.md` | Transactions and processes |
 | CTX | SPEC-16 | `16-context.md` | Context |
 | RT | SPEC-17 | `17-logic-runtime.md` | Logic runtime |
 | RULE | SPEC-18 | `18-rules-validation.md` | Rules and validation |
-| FLOW | SPEC-19 | `19-orchestration.md` | Orchestration |
-| EVT | SPEC-20 | `20-events-jobs.md` | Events and jobs |
+| FLOW | SPEC-19 | `19-orchestration/` | Orchestration |
+| EVT | SPEC-20 | `20-events-jobs/` | Events and jobs |
 | QRY | SPEC-21 | `21-query-search.md` | Query and search |
-| SEC | SPEC-22 | `22-security.md` | Security |
+| SEC | SPEC-22 | `22-security/` | Security |
 | TEN | SPEC-23 | `23-tenancy.md` | Tenancy |
-| PROTO | SPEC-24 | `24-protocol.md` | Protocol (UBTP) |
-| UI | SPEC-25 | `25-ui-protocol.md` | UI protocol |
+| PROTO | SPEC-24 | `24-protocol/` | Protocol (UBTP) |
+| UI | SPEC-25 | `25-ui-protocol/` | UI protocol |
 | SHELL | SPEC-26 | `26-client-shells.md` | Client shells |
-| AI | SPEC-27 | `27-ai.md` | AI |
+| AI | SPEC-27 | `27-ai/` | AI |
 | PKG | SPEC-28 | `28-packages-boot.md` | Packages and boot |
 | ONT | SPEC-29 | `29-base-ontology.md` | Base ontology |
 | OBS | SPEC-30 | `30-audit-observability.md` | Audit and observability |
