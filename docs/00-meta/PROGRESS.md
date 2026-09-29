@@ -77,7 +77,7 @@ Priority P0 (minimal viable kernel), in this order:
 - [x] `30-audit-observability.md`
 
 Priority P1:
-- [ ] `20-events-jobs.md`
+- [x] `20-events-jobs/` (index + 3 parts)
 - [ ] `25-ui-protocol.md`
 - [ ] `26-client-shells.md`
 - [ ] `27-ai.md`
