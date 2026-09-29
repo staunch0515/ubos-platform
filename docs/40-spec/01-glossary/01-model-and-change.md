@@ -233,6 +233,12 @@ Part of SPEC-01. Entry format and rules: `00-index.md` §0.
 
 ---
 
+### TERM-Point
+- **Definition:** A branch plus a timestamp, naming a consistent view of all entities on that branch at that time. POINT tags and pinned Contexts use points.
+- **Aliases:** pinned commit of an environment (FU, which pinned one commit).
+- **Chapter:** SPEC-14
+- **Origin:** CON-FU-031, VRD-08-06
+
 ---
 
 ## 3. Meta-model
@@ -339,6 +345,13 @@ Part of SPEC-01. Entry format and rules: `00-index.md` §0.
 - **Origin:** CON-UB-019, CON-LC-018
 
 ---
+
+### TERM-TypeExtension
+- **Definition:** An entity that adds namespaced properties, slot bindings, UI modes and rules to a type its author does not own, within the author's tenant (or globally when owned by `logrums`).
+- **Aliases:** tenant extension (UB `acme.type.*`).
+- **Not:** an overlay patch of a root type (REQ-STO-006), or a subtype (`_extends`).
+- **Chapter:** SPEC-13
+- **Origin:** VRD-02-07, VRD-18-02 (Q-006)
 
 ---
 
