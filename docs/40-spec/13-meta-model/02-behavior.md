@@ -59,6 +59,7 @@ Part 2 of SPEC-13 (`13-meta-model/`). Header, concepts and file list: `00-index.
   10) A slot binding names a slot of the right level, and its implementation's declared contract matches (§2.6).
   11) A `dict` constraint references an existing Dictionary.
   12) Reserved keys (REQ-CONV-023) are not used as property names.
+  13) A property with `unique ≠ NONE` or `on_target_delete ≠ IGNORE` is `searchable` (SPEC-18 REQ-RULE-020, REQ-RULE-045).
 - **Origin:** VRD-02-02, CON-UC-017
 - **Acceptance:** One negative test per rule.
 - **Priority:** P0
@@ -94,7 +95,7 @@ Part 2 of SPEC-13 (`13-meta-model/`). Header, concepts and file list: `00-index.
 | `slots` (type and property level) | per slot: REPLACE → nearest binding wins; CHAIN → all bindings in chain order (root first) sorted by `priority`; DISABLE → removes inherited bindings of that slot |
 | `ui_modes`, `display`, `i18n`, `default_views` | deep-merged per key, descendant wins |
 | `constraints` (value types) | intersection (narrowing) |
-| `invariants`, `rule_refs` | concatenated, de-duplicated by name/URI |
+| `invariants`, `rule_refs`, `schema_extra` | concatenated, de-duplicated by name/URI (`schema_extra` combined with allOf) |
 | `primitive`, `kind` | inherited, unchanged |
 | `is_abstract` | not inherited (own value, default false) |
 | `open`, `searchable`, `lifecycle`, `embedding`, `write_policy` | nearest non-absent value wins |

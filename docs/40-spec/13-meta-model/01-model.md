@@ -138,6 +138,10 @@ ENT-Type:
       type: EmbeddingSpec?
       required: false
       description: ENTITY only; which properties feed version embeddings (SPEC-21). Default none.
+    - name: schema_extra
+      type: json_schema?
+      required: false
+      description: ENTITY only; explicit JSON Schema combined with the derived schema by allOf (SPEC-18 REQ-RULE-001, FU schema entities). Additive along the chain.
     - name: write_policy
       type: WritePolicy?
       required: false

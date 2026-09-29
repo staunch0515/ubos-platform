@@ -67,7 +67,7 @@ Priority P0 (minimal viable kernel), in this order:
 - [x] `15-transactions.md`
 - [x] `16-context.md`
 - [x] `17-logic-runtime.md`
-- [ ] `18-rules-validation.md`
+- [x] `18-rules-validation.md`
 - [ ] `19-orchestration.md`
 - [ ] `21-query-search.md`
 - [ ] `22-security.md`
