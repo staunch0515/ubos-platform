@@ -11,7 +11,7 @@ depends_on: [UBS-META-00, UBS-META-01]
 ## 1. Current state
 
 - **Stage:** Requirements volume (Batches B2–B9).
-- **Next batch:** B2.
+- **Next batch:** B3.
 - **Stop point:** after B9, wait for product-owner confirmation (DEC-010).
 
 ## 2. Batch plan
@@ -20,7 +20,7 @@ depends_on: [UBS-META-00, UBS-META-01]
 - [x] **B1** Charter, writing rules, templates, inputs, decision log, progress, AI reading guide, README, `tools/check_system.py`
 
 ### Stage B — Requirements volume (`10-requirements/`)
-- [ ] **B2** `00-index`, `01-vision-and-scope`, `02-personas`, `03-capability-map`
+- [x] **B2** `00-index`, `01-vision-and-scope`, `02-personas`, `03-capability-map`
 - [ ] **B3** `04-scenarios/`: platform core (SCN-0xx), fund operations (SCN-1xx), contracts (SCN-2xx), AI agents (SCN-3xx), operations and federation (SCN-4xx)
 - [ ] **B4** Functional: MODEL, VER, TIME, LEDG, TXN
 - [ ] **B5** Functional: LOGIC, RULE, FLOW, EVT, QRY
@@ -70,3 +70,4 @@ depends_on: [UBS-META-00, UBS-META-01]
 | Date | Batch | Summary |
 |---|---|---|
 | 2026-09-29 | B1 | Meta layer created: charter, writing rules and ID scheme, templates, inputs and reconciliation, DEC-001…013, progress plan, AI reading guide, README, checker. |
+| 2026-09-29 | B2 | Requirements index, vision and scope, 28 personas, capability map (220 capabilities, FR numbering rule). |
