@@ -38,7 +38,7 @@ ID_RE = (r'UBS-[A-Z]+(?:-[A-Z]+)?-\d{1,3}|UBS-README'
          r'|EXT-(?:WP|RFC|TRI|BP|BPU)')
 REF = re.compile(r'(?<![A-Za-z0-9_-])(' + ID_RE + r')(?![A-Za-z0-9_])')
 DEF_PATTERNS = [
-    r'^#{2,4} (' + ID_RE + r')\b',            # heading definitions
+    r'^#{3,4} (' + ID_RE + r')\b',            # heading definitions (### or ####)
     r'^\| (' + ID_RE + r') \|',               # first table cell definitions
 ]
 BUILTIN = PHASES | {'EXT-WP', 'EXT-RFC', 'EXT-TRI', 'EXT-BP', 'EXT-BPU'}
@@ -112,6 +112,9 @@ for rel, s in texts.items():
         for fld in need:
             if f'**{fld}:**' not in blk: errors.append(f'{rel}: {rid} lacks field {fld}')
         if kind == 'FR' and code not in DOMAINS: errors.append(f'{rel}: {rid} unknown domain {code}')
+        if kind == 'FR':
+            cap = f'CAP-{code}-{rid[-3:-1]}'
+            if cap not in defs or rid[-1] == '0': errors.append(f'{rel}: {rid} does not map to an existing capability ({cap}, k=1..9)')
         if kind == 'NR' and code not in NR_AREAS: errors.append(f'{rel}: {rid} unknown NR area {code}')
         if kind == 'CR' and code not in CR_REGS: errors.append(f'{rel}: {rid} unknown regulation {code}')
         if kind == 'DSN' and code not in SYSTEMS: errors.append(f'{rel}: {rid} unknown system {code}')
