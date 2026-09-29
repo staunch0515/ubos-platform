@@ -11,7 +11,7 @@ depends_on: [UBS-META-00, UBS-META-01]
 ## 1. Current state
 
 - **Stage:** Systems volume (Stage E).
-- **Next batch:** B15.
+- **Next batch:** B17.
 - **Stop point:** after B9, wait for product-owner confirmation (DEC-010).
 
 ## 2. Batch plan
@@ -40,7 +40,7 @@ depends_on: [UBS-META-00, UBS-META-01]
 - [x] **B14** LGS language, addressing and URIs, UBTP protocol, sync protocol, error registry, conformance rules
 
 ### Stage E — Systems (`40-systems/`)
-- [ ] **B15–B16** DVM
+- [x] **B15–B16** DVM
 - [ ] **B17** NOD, CTL
 - [ ] **B18** FRG, SDK
 - [ ] **B19** WSP, STU
@@ -86,3 +86,4 @@ depends_on: [UBS-META-00, UBS-META-01]
 | 2026-09-29 | B12 | Standard: versioning (commits, branch kinds, change sets, diff, three-way merge, strategies, ledger append merge, revert, inheritance), bitemporal timeline algebra, processes and commit semantics (CAS, idempotency, outbox, deferred commits, bulk, sagas), Merkle prolly tree, signatures, proofs, anchors, evidence packs, seals, disposal, portable archive. |
 | 2026-09-29 | B13 | Standard: BPU model (seven elements, descriptor, pin discipline, commit cycle, six hardware-ization properties, class verification), instruction set ABI 1.0 (general rules and 30 instructions), execution (context, gateway, profiles, termination, metering, journal, replay, Rhai and WASM tiers, logic assets, verification, static analysis, pinning, quarantine). |
 | 2026-09-29 | B14 | Standard: L1 expressions and query form, governance sheets (grammar, property registry, specificity, cascade, decisions, decision tables), addressing (URI, VFS, did:ubos), UBTP, sync protocol (scoped trees, device integration, federation fallback, shared BPUs), error registry (≈100 codes), conformance and certification. Standard volume complete (239 clauses, 48 DAT schemas). |
+| 2026-09-29 | B15–B16 | Systems volume index; DVM chapter complete: overview, context, 294 design requirements (storage, model, versioning, time, ledger, transactions, runtime, rules and flow, authorization, query, proofs, export and sync), 56 interfaces (host API, host services, storage adapter), physical data design (PostgreSQL DDL, 6 new DAT row structures), 9 state machines, configuration keys and presets, operations (failure modes, recovery, capacity, metrics), verification plan (10 DVM suites, phase exit evidence). |
