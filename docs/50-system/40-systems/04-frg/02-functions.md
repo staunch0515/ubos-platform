@@ -268,14 +268,14 @@ depends_on: [UBS-SYS-FRG-01]
 - **Origin:** FR-STD-021, CTR-014
 
 ### DSN-FRG-402 — Adapter protocol
-- **Statement:** External implementations MUST be driven through a JSON-lines adapter protocol over stdin/stdout or HTTP: `setup(vector)`, `execute(step)`, `observe(query)`, `teardown`. The protocol MUST be versioned within the standard's major version.
+- **Statement:** External implementations MUST be driven through the adapter of STD-CONF-002: UBTP messages (or the same message structures in-process), plus the test-only operations `reset`, `set_now`, `set_entropy_seed`, `load_genesis` and `export_state`. For convenience, Forge MUST also offer the same messages as JSON lines over stdin/stdout. The protocol MUST be versioned within the standard's major version.
 - **Rationale:** Language-neutral conformance.
 - **Priority:** Must · **Phase:** PH-0 · **Systems:** FRG, BPA
 - **Personas:** PER-ThirdPartyImplementer
 - **Acceptance:**
   1. Given a sample adapter in Python wrapping the reference DVM's C ABI, when run, then results equal the in-process run.
 - **Verification:** CONF
-- **Origin:** FR-STD-021, NR-DET-002
+- **Origin:** FR-STD-021, STD-CONF-002, NR-DET-002
 
 ### DSN-FRG-403 — Signed reports
 - **Statement:** Conformance reports MUST be signed by the runner key and include runner version, package version, profiles, per-vector outcomes and environment (FR-STD-023).
