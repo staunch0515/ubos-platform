@@ -87,7 +87,7 @@ Reading order:
 - **Personas:** PER-PlatformOperator
 - **Acceptance:**
   1. Given a new index over 10 M objects with concurrent writes, when backfilled, then the final index equals a rebuild at the final head.
-- **Verification:** PROP
+- **Verification:** SIM
 - **Origin:** FR-EVT-072, FR-ANL-023
 
 ### DSN-NOD-208 — Became-effective scheduler
@@ -210,7 +210,7 @@ Reading order:
 - **Acceptance:**
   1. Given a cancelled running job, when cancelled, then its process is cancelled within NR-PERF-019, and the audit log records the operator.
 - **Verification:** CONF
-- **Origin:** FR-EVT-052, NR-PERF-019
+- **Origin:** FR-EVT-052, NR-PERF-019, CR-SOX-004
 
 ### DSN-NOD-230 — Bulk and saga coordination
 - **Statement:** Bulk processes (DSN-DVM-560) and saga coordinators (DSN-DVM-564) MUST run as jobs, so they resume after node failure through the lease mechanism.
@@ -572,7 +572,7 @@ Reading order:
 - **Acceptance:**
   1. Given 1,000 expired records, 10 under hold, when the job runs, then 990 are disposed with certificates.
 - **Verification:** CONF
-- **Origin:** FR-AUD-071, FR-AUD-072, FR-AUD-062
+- **Origin:** FR-AUD-071, FR-AUD-072, FR-AUD-062, CR-SEC-004
 
 ### DSN-NOD-381 — WORM mode
 - **Statement:** Classes marked WORM MUST have their chunks written to object-lock buckets in compliance mode with the retention period (FR-AUD-073).
@@ -582,7 +582,7 @@ Reading order:
 - **Acceptance:**
   1. Given a WORM record, when deletion is attempted through the storage API, then the object store refuses.
 - **Verification:** SEC
-- **Origin:** FR-AUD-073
+- **Origin:** FR-AUD-073, CR-SEC-006
 
 ### DSN-NOD-382 — Hold lifecycle
 - **Statement:** Hold objects (FR-AUD-061) MUST be applied by query scope and propagate to new matching objects until released (FR-AUD-063).

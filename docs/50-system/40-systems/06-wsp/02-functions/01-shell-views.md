@@ -206,7 +206,7 @@ depends_on: [UBS-SYS-WSP-01]
 - **Acceptance:**
   1. Given a NAV, when its lineage is opened, then the graph shows inputs back to prices and trades.
 - **Verification:** SCN
-- **Origin:** FR-AUD-011, FR-AUD-022, FR-AUD-041
+- **Origin:** FR-AUD-011, FR-AUD-022, FR-AUD-041, FR-AUD-042
 
 ## Clients, offline, portal, theming, localisation, accessibility
 

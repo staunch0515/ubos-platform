@@ -98,7 +98,7 @@ Reading order:
   1. Given the expression vectors, when evaluated, then results equal the vectors, including null semantics.
   2. Given a typical guard expression, when evaluated 1,000,000 times, then the mean cost is below 1 µs.
 - **Verification:** CONF, BENCH
-- **Origin:** FR-LOGIC-031, FR-LOGIC-033, FR-LOGIC-034, STD-EXPR-001, STD-EXPR-002, STD-EXPR-003, STD-EXPR-004
+- **Origin:** FR-LOGIC-031, FR-LOGIC-033, FR-LOGIC-034, STD-EXPR-001, STD-EXPR-002, STD-EXPR-003, STD-EXPR-004, FR-LOGIC-032
 
 ### DSN-DVM-611 — Function library
 - **Statement:** The function library (STD-EXPR-005) MUST be versioned with the ABI and implemented once for both expressions and scripts.
@@ -322,7 +322,7 @@ Reading order:
 - **Acceptance:**
   1. Given an asset without a record, when activation on `main` is attempted, then it fails with `LOGIC.UNVERIFIED_ASSET`.
 - **Verification:** CONF, SEC
-- **Origin:** FR-LOGIC-082, FR-LOGIC-083, STD-CTX-023
+- **Origin:** FR-LOGIC-082, FR-LOGIC-083, STD-CTX-023, CR-SOX-003
 
 ### DSN-DVM-642 — Static analysis
 - **Statement:** The analyser (STD-CTX-024) MUST detect forbidden patterns (FR-LOGIC-091), infer the required capabilities (FR-LOGIC-092) and report complexity findings (FR-LOGIC-093). Findings MUST be stored with the verification record (FR-LOGIC-094). Inferred capabilities MUST be a superset of what the asset uses at run time.

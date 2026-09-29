@@ -16,7 +16,7 @@ depends_on: [UBS-SYS-NTY-01]
 - **Acceptance:**
   1. Given a day of commits, when anchoring runs, then each hour with changes has a receipt verifiable with the TSA certificate chain.
 - **Verification:** CONF
-- **Origin:** FR-PROOF-041, FR-PROOF-042, STD-PROOF-040, CTR-031
+- **Origin:** FR-PROOF-041, FR-PROOF-042, STD-PROOF-040, CTR-031, CR-SEC-002
 
 ### DSN-NTY-002 — Anchoring monitoring
 - **Statement:** NTY MUST alert when a tenant's latest receipt is older than twice the cadence, when a TSA fails repeatedly, or when a TSA certificate nears expiry (FR-PROOF-043).

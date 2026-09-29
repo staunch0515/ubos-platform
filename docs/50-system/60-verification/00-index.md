@@ -36,8 +36,8 @@ The phase plans (UBS-PH-*) say *what* must be evidenced at each exit; this volum
 | `03-datasets.md` | workloads, fixtures and corpora |
 | `04-suites.md` | suite registry: every SUITE-* with owner, method, trigger and phase |
 | `05-numbering-registry.md` | VER number ranges (the defining registry) |
-| `10-items-ph0-ph1.md` … `15-items-ph5.md` | verification items (VER-*) per phase, written to template T11 |
-| `20-traceability.md` | generated traceability: requirement → design → method → phase exit |
+| `10-items-ph0-ph1.md`, `12-items-ph2.md`, `13-items-ph3.md`, `14-items-ph4.md`, `15-items-ph5.md` | verification items (VER-*) per phase, written to template T11 |
+| `20-traceability.md`, `21-trace-ph0.md` … `26-trace-ph5.md` | generated traceability: requirement → design or standard clause → suites → phase exit, with gap lists |
 
 ## 3. VER numbering
 

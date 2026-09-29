@@ -31,7 +31,7 @@ This file designs the crates `ubos-authz`, `ubos-query` and `ubos-proof`. Readin
   1. Given the permission matrix suite, when run against every enforcement point, then 100% of outcomes match the expected matrix.
   2. Given no applicable policy, when any action is attempted, then it is denied.
 - **Verification:** SEC, CONF
-- **Origin:** FR-IAM-041, FR-IAM-042, AR-024, DEC-021
+- **Origin:** FR-IAM-041, FR-IAM-042, AR-024, DEC-021, CR-SOX-001
 
 ### DSN-DVM-802 — Entity model for policies
 - **Statement:** The policy entity model MUST be generated from the business model: principals (users, groups, roles, service principals, agents), resources (VAE, branch, class, object, field), actions (the instruction catalogue plus read, query, export, merge, approve). Object attributes available to policies MUST be limited to fields declared policy-visible, so policy evaluation never reads masked data.
@@ -41,7 +41,7 @@ This file designs the crates `ubos-authz`, `ubos-query` and `ubos-proof`. Readin
 - **Acceptance:**
   1. Given a new class, when committed, then the entity schema includes it, and existing policies still validate.
 - **Verification:** CONF
-- **Origin:** FR-IAM-051, FR-IAM-042
+- **Origin:** FR-IAM-051, FR-IAM-042, FR-IAM-031
 
 ### DSN-DVM-803 — Policies as governed objects
 - **Statement:** Policies MUST be Definition objects, versioned and changed through change sets on protected branches (FR-IAM-044). The compiled policy set MUST be cached by `(policy set hash, entity schema hash)`. Policy validation against the entity schema MUST run at commit time.
@@ -261,6 +261,26 @@ This file designs the crates `ubos-authz`, `ubos-query` and `ubos-proof`. Readin
 - **Verification:** CONF
 - **Origin:** FR-AUD-071, FR-AUD-072, STD-PROOF-060
 
+### DSN-DVM-836 — Rectification of personal data
+- **Statement:** Rectifying personal data MUST create a new version with a reason code `rectification`; earlier versions stay in history encrypted with the subject key, marked "rectified" so that business reads, exports and model calls use the rectified value, while audit reads with the audit right can see the history (CR-GDPR-003).
+- **Rationale:** Rectification without destroying the audit trail.
+- **Priority:** Must · **Phase:** PH-1 · **Systems:** DVM
+- **Personas:** PER-ComplianceOfficer
+- **Acceptance:**
+  1. Given a rectified address, when exported for the subject, then only the rectified value appears; an auditor with the audit right sees both versions.
+- **Verification:** CONF, SEC
+- **Origin:** CR-GDPR-003, FR-PROOF-071
+
+### DSN-DVM-837 — Subject access export
+- **Statement:** The DVM MUST produce a subject export: all objects, versions and ledger entries linked to a subject through declared subject relations, in JSON with a manifest, within NR-PRIV-002 after approval (CR-CCPA-001, CR-GDPR-002). The export MUST exclude other subjects' personal data by masking.
+- **Rationale:** CR-CCPA-001, CR-GDPR-002, NR-PRIV-002.
+- **Priority:** Must · **Phase:** PH-2 · **Systems:** DVM, NOD
+- **Personas:** PER-ComplianceOfficer
+- **Acceptance:**
+  1. Given an investor linked to 3 funds and 200 transactions, when exported, then all linked records are present, and co-investors' personal fields are masked.
+- **Verification:** CONF, SEC
+- **Origin:** CR-CCPA-001, CR-GDPR-002, NR-PRIV-002
+
 ## Access analysis
 
 ### DSN-DVM-840 — Who-can and what-can
@@ -310,7 +330,7 @@ This file designs the crates `ubos-authz`, `ubos-query` and `ubos-proof`. Readin
 - **Acceptance:**
   1. Given the query vectors, when executed, then results equal the vectors.
 - **Verification:** CONF
-- **Origin:** FR-QRY-011, FR-QRY-013, FR-QRY-014, STD-EXPR-010, STD-EXPR-011
+- **Origin:** FR-QRY-011, FR-QRY-013, FR-QRY-014, STD-EXPR-010, STD-EXPR-011, FR-VER-102
 
 ### DSN-DVM-902 — Declared indexes
 - **Statement:** Classes MAY declare field indexes (FR-ANL-014). The DVM MUST maintain them in a generic `field_index` table `(tenant, branch, class_ord, field id, value key, object, cseq_from, cseq_to)` in the flush, with value keys encoded order-preserving per type. Business classes MUST NOT create DDL (AR-018).

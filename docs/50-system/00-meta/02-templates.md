@@ -158,6 +158,7 @@ Each phase document MUST contain these sections, in this order:
 - **Procedure:** 1. … 2. …
 - **Pass criterion:** <binary, measurable>
 - **Evidence:** <artifact produced>
+- **Supports:** <EXIT-N-NN items this verification item evidences>
 ```
 
 ## T12. Decision record (`DEC-*`)

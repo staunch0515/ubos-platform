@@ -76,7 +76,7 @@ depends_on: [UBS-SYS-AGT-01]
 - **Personas:** PER-ComplianceOfficer
 - **Acceptance:**
   1. Given a provider without recorded terms, when an operator enables it for tenant data, then the change is refused.
-- **Verification:** INSP
+- **Verification:** INSP, SEC
 - **Origin:** CR-CCPA-004, CR-SOC2-010
 
 ### DSN-AGT-007 — Structured outputs

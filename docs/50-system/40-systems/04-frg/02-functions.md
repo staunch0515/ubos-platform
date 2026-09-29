@@ -160,7 +160,7 @@ depends_on: [UBS-SYS-FRG-01]
 - **Personas:** PER-BusinessAnalyst
 - **Acceptance:**
   1. Given a changed fee script and one month of history, when simulated, then every changed fee is listed with old and new values.
-- **Verification:** SCN
+- **Verification:** CONF, SCN
 - **Origin:** FR-DEV-041, FR-DEV-042, NR-PERF-017
 
 ### DSN-FRG-206 — Execution traces and replay debugging
@@ -213,7 +213,7 @@ depends_on: [UBS-SYS-FRG-01]
 - **Acceptance:**
   1. Given a signed Buk, when verified offline, then the publisher identity is shown.
 - **Verification:** SEC
-- **Origin:** NR-SEC-007, FR-PKG-061
+- **Origin:** NR-SEC-007, FR-PKG-061, CR-NIST-003
 
 ### DSN-FRG-305 — Buk verification
 - **Statement:** `forge verify` MUST check signatures, manifest schema, namespace ownership, ABI compatibility, full checks, tests, coverage gates, capability requests versus inferred use, and migration presence for breaking changes, and produce a signed Buk verification record (FR-PKG-061), reproducible for the same inputs (FR-PKG-063).

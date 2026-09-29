@@ -39,7 +39,7 @@ Reading order:
 - **Acceptance:**
   1. Given a crash after the VAE step, when creation is retried, then it completes without duplicate VAEs or keys.
 - **Verification:** FAULT
-- **Origin:** FR-TEN-051, FR-PKG-072
+- **Origin:** FR-TEN-051, FR-PKG-072, FR-TEN-012
 
 ### DSN-NOD-403 — Suspension, archive and deletion
 - **Statement:** Suspension MUST block sign-in and API access while keeping data and scheduled compliance jobs (FR-TEN-052). Archive MUST make the tenant read-only for export. Deletion MUST destroy the tenant KEK after the grace period and holds check, which renders all tenant data unreadable, and then physically purge rows and objects (FR-TEN-053).
@@ -58,7 +58,7 @@ Reading order:
 - **Personas:** PER-TenantAdministrator
 - **Acceptance:**
   1. Given a change to a tenant's business calendar, when committed, then it is versioned and reviewable like any business data.
-- **Verification:** INSP
+- **Verification:** SCN, INSP
 - **Origin:** FR-TEN-054, AR-027
 
 ### DSN-NOD-405 — Storage isolation enforcement
@@ -89,7 +89,7 @@ Reading order:
 - **Acceptance:**
   1. Given a customised fund class and a Buk upgrade, when upgraded, then the customisation is kept, and conflicts are shown in a change set.
 - **Verification:** SCN
-- **Origin:** FR-TEN-031, FR-TEN-032, FR-TEN-033
+- **Origin:** FR-TEN-031, FR-TEN-032, FR-TEN-033, FR-PKG-041
 
 ### DSN-NOD-408 — Parent and child VAEs
 - **Statement:** The node MUST support VAE hierarchies (FR-TEN-041) where parents publish policies and templates that cascade (FR-TEN-042) and may run aggregated queries across children within granted scopes (FR-TEN-043), subject to child autonomy settings (FR-TEN-044).
@@ -171,7 +171,7 @@ Reading order:
 - **Acceptance:**
   1. Given a Buk with a modified file, when installed, then installation fails before any commit.
 - **Verification:** SEC
-- **Origin:** NR-SEC-007, CTR-054
+- **Origin:** NR-SEC-007, CTR-054, CR-NIST-003
 
 ### DSN-NOD-423 — Air-gapped package import
 - **Statement:** Air-gapped nodes MUST import Buks, licences and upgrades from signed bundles on removable media (FR-OPS-013, FR-PKG-083).
@@ -182,6 +182,16 @@ Reading order:
   1. Given no network, when a bundle is imported, then its Buks install and its licence activates.
 - **Verification:** SCN
 - **Origin:** FR-OPS-013, FR-PKG-083
+
+### DSN-NOD-424 — Ontology Buk
+- **Statement:** The genesis `ontology` Buk MUST provide the base business ontology (FR-MODEL-091): party, person, organisation, role, account, instrument, location, document, agreement, obligation and event classes, with the party–role model (FR-MODEL-092). Its evolution MUST follow Buk versioning and overlay rules (FR-MODEL-094); tenants extend it and never redefine it (FR-MODEL-093).
+- **Rationale:** A shared vocabulary for all Buks.
+- **Priority:** Must · **Phase:** PH-2 · **Systems:** NOD, DVM
+- **Personas:** PER-BusinessArchitect
+- **Acceptance:**
+  1. Given the fund and contract Buks, when installed, then both extend the same party and role classes without redefining them.
+- **Verification:** CONF, SCN
+- **Origin:** FR-MODEL-091, FR-MODEL-092, FR-MODEL-093, FR-MODEL-094
 
 ## Usage metering and licences on the node
 
@@ -461,7 +471,7 @@ Reading order:
 - **Acceptance:**
   1. Given a restore to 10 minutes ago, when completed, then the DVM verification of the last 1,000 commits passes.
 - **Verification:** FAULT
-- **Origin:** FR-OPS-021, NR-DUR-002, NR-DUR-003
+- **Origin:** FR-OPS-021, NR-DUR-002, NR-DUR-003, CR-SOX-004
 
 ### DSN-NOD-621 — Box backups
 - **Statement:** The Box MUST back up its encrypted database and blobs to a user-chosen target (local disk, cloud folder or Server) with online SQLite backup (FR-OPS-022).

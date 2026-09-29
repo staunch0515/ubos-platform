@@ -26,8 +26,7 @@ PHASES = {f'PH-{i}' for i in range(6)}
 STATUSES = {'draft', 'review', 'complete', 'stable'}
 
 # Kinds whose defining batch is not written yet: undefined references are warnings.
-PENDING = ('UBS-PH-', 'UBS-VER-', 'UBS-IDX-',
-           'VER-', 'SUITE-', 'EXIT-', 'MET-', 'RSK-', 'ENV-')
+PENDING = ('UBS-IDX-',)
 
 ID_RE = (r'UBS-[A-Z]+(?:-[A-Z]+)?-\d{1,3}|UBS-README'
          r'|PER-[A-Z][A-Za-z0-9]+|CAP-[A-Z]+-\d{2}|SCN-\d{3}'
@@ -91,7 +90,14 @@ for f in md_files():
     for m in re.finditer(r'^(DAT-[A-Z][A-Za-z0-9]+):', s, re.M):  # yaml DAT definitions
         if 'templates' not in rel: defs[m.group(1)].append(rel)
     n = s.count('\n')
-    if n > 800: warnings.append(f'{rel}: {n} lines (> 800, consider splitting)')
+    if n > 800 and 'Do not edit by hand' not in s: warnings.append(f'{rel}: {n} lines (> 800, consider splitting)')
+
+# individually defined VER items must lie inside a registered range of their method
+for i, fs in defs.items():
+    if i.startswith('VER-'):
+        pre, num = i.rsplit('-', 1)
+        if not any(a <= int(num) <= b for (a, b, _) in ranges.get(pre, [])):
+            errors.append(f'{fs[0]}: {i} lies outside every registered range of {pre}')
 
 # duplicates (a DAT defined by heading and yaml in the same file counts once)
 for i, fs in defs.items():
@@ -111,6 +117,16 @@ for rel, s in texts.items():
 for i, fs in sorted(undefined.items()):
     msg = f'undefined {i} in {", ".join(sorted(fs)[:3])}{" …" if len(fs) > 3 else ""}'
     (warnings if i.startswith(PENDING) else errors).append(msg)
+
+# every exit criterion is supported by at least one verification item (**Supports:** field)
+supported = set()
+for rel, s in texts.items():
+    if rel.startswith('60-verification'):
+        for line in re.findall(r'\*\*Supports:\*\* (.+)', s):
+            supported.update(re.findall(r'EXIT-\d-\d{2}', line))
+for i in defs:
+    if i.startswith('EXIT-') and i not in supported:
+        errors.append(f'{defs[i][0]}: {i} has no supporting verification item')
 
 # requirement blocks
 BLOCK = re.compile(r'^### ((FR|NR|CR|DSN)-([A-Z0-9]+)-\d{3}) — .+?(?=^#{1,3} |\Z)', re.M | re.S)

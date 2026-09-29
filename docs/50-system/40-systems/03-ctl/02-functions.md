@@ -28,7 +28,7 @@ depends_on: [UBS-SYS-CTL-01]
 - **Acceptance:**
   1. Given an architecture review and a penetration test of CTL, when performed, then no path to business data is found.
 - **Verification:** INSP, SEC
-- **Origin:** AR-006, FR-OPS-081
+- **Origin:** AR-006, FR-OPS-081, CR-CCPA-004
 
 ### DSN-CTL-002 — Operator identity
 - **Statement:** Operators MUST authenticate through the operator IdP with phishing-resistant MFA (WebAuthn) (NR-SEC-011), with roles: viewer, operator, release manager, billing, security.

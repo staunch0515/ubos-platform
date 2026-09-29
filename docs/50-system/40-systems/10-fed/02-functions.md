@@ -25,7 +25,7 @@ depends_on: [UBS-SYS-FED-01]
 - **Personas:** PER-PlatformOperator
 - **Acceptance:**
   1. Given the registry offline for 6 hours, when partners sync, then cached resolutions are used.
-- **Verification:** FAULT
+- **Verification:** SIM, SEC
 - **Origin:** FR-SYNC-052
 
 ### DSN-FED-003 — Trust relationships
