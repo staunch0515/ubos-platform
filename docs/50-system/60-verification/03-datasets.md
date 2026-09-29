@@ -16,7 +16,7 @@ fixtures and corpora used by the suites.
 | Workload | Generator | Seed rule | Size check |
 |---|---|---|---|
 | WL-GENERIC-10M | `ubos-verify gen generic` with 200 classes of 5–40 fields, 3 inheritance levels, 10% monthly change for 24 months | fixed seed per BPA release | object and version counts within 1% |
-| WL-FIN-M | `gen finance` using the `basic-finance` Buk model: Northwind chart of accounts, customers, vendors, invoices, bills, receipts, payments, bank statement lines, fixed assets, foreign-currency documents and journals over 3 years | fixed seed | GL line count within 1%; every period balances; trial balance equals the generator's own totals |
+| WL-FIN-M | `gen finance` using the `finance` Buk model: Northwind chart of accounts, customers, vendors, invoices, bills, receipts, payments, bank statement lines, fixed assets, foreign-currency documents and journals over 3 years | fixed seed | GL line count within 1%; every period balances; trial balance equals the generator's own totals |
 | WL-FUND-M, WL-FUND-L | **Deferred (DEC-022).** `gen fund` using the `fund-ops` Buk model: funds, share classes, investors, orders, prices, NAVs, fees, ledger postings | fixed seed | ledger entry count within 1% |
 | WL-CONTRACT-M | **Deferred (DEC-022).** `gen contracts` using the `contracts` Buk: agreements, clauses, obligations, documents | fixed seed | document version count within 1% |
 | WL-MIXED-OLTP | load profile for the load generator | per run | operation mix within 2% |

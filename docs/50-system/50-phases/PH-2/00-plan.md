@@ -51,7 +51,7 @@ Measurable outcomes:
 | STU | lean: model, sheet, decision-table, lifecycle and view editors; change sets; simulation; releases; import wizard | new (lean) |
 | BRG | spreadsheet and CSV import, bulk loads with history, mappings, reconciliation, bank statement and payment adapters, mail adapter | new |
 | NTY | evidence packs in NOD, verifier CLI | prototype |
-| Buks | `basic-finance` (chart of accounts, journals, periods and close, receivables, payables with 1099, bank reconciliation, fixed assets, multi-currency under ASC 830, basic state sales tax, financial statements, audit trail and controls) | new |
+| Buks | `finance` (chart of accounts, journals, periods and close, receivables, payables with 1099, bank reconciliation, fixed assets, multi-currency under ASC 830, basic state sales tax, financial statements, audit trail and controls) | new |
 
 Not in scope: SQLite, Box, desktop and mobile apps (PH-4, DEC-024, DEC-025); the deferred
 fund-operations and contract packages (DEC-022).
@@ -99,7 +99,7 @@ finance-specific kernel code. The generic scenarios SCN-012…016 use finance ex
 | Workspace and Studio 1.0 | Web clients served by the Server |
 | Forge 1.0 and VS Code extension | signed binaries, marketplace listing |
 | SDKs 1.0 (Rust, TypeScript) | crates.io and npm packages |
-| `basic-finance` Buk 1.0 | signed, verified Buk archive with its chart-of-accounts template and report definitions |
+| `finance` Buk 1.0 | signed, verified Buk archive with its chart-of-accounts template and report definitions |
 | Sample company | Northwind Components, Inc. books: opening balances, one year of transactions, expected statements |
 | Migration toolkit (BRG) | import wizard, mappings, reconciliation reports |
 | Comparison data set | effort, size, defect and change-lead-time records under the DEC-026 protocol |
@@ -224,7 +224,7 @@ pass the finance Buk's scenarios before release (NR-COMPAT-004).
 | EXIT-2-13 | **Withdrawn** (DEC-023): no design partner; replaced by EXIT-2-17 | — |
 | EXIT-2-14 | Installation (≤ 30 min) and rolling upgrade (≤ 60 min operator time) meet NR-OPER-001 and NR-OPER-002; all alerts link to runbooks | operations report |
 | EXIT-2-15 | Traceability report shows every PH-2 Must requirement covered by passing verification items, and all PH-1 suites still pass | traceability and regression reports |
-| EXIT-2-16 | The `basic-finance` Buk is verified by Forge; SCN-501…510 pass on the HA Server; the sample company's statements equal the expected results signed by the accounting reviewer (MET-BIZ-003) | Buk verification record, scenario report, accounting-correctness report |
+| EXIT-2-16 | The `finance` Buk is verified by Forge; SCN-501…510 pass on the HA Server; the sample company's statements equal the expected results signed by the accounting reviewer (MET-BIZ-003) | Buk verification record, scenario report, accounting-correctness report |
 | EXIT-2-17 | The sample company's opening balances and one year of history are migrated from spreadsheet and CSV extracts with 0 unexplained reconciliation differences (MET-BIZ-002) | reconciliation report |
 | EXIT-2-18 | The finance workbench (Smart Grid, registers, report drill-down, close cockpit) is accepted by accountants in the usability study: MET-USE-004 met and no open severity-1 usability finding | study report |
 | EXIT-2-19 | The PH-2 comparison data set is complete under the DEC-026 protocol (MET-BIZ-004) and signed by the owner | comparison data set |

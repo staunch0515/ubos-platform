@@ -41,7 +41,7 @@ Measurable outcomes:
 | FRG | WASM toolchains (Rust, TypeScript, Go), AI machine interface | extended |
 | SDK | Python SDK | extended |
 | BRG | document import (bills, statements), CDC export to Iceberg, DuckDB engine, streaming out | extended |
-| Buks | `basic-finance` 1.1: year-end close, auditor requests, agent tools | extended |
+| Buks | `finance` 1.1: year-end close, auditor requests, agent tools | extended |
 
 ## 3. Feature list
 
@@ -73,7 +73,7 @@ DSN items with **Phase** PH-3.
 | UBOS Server 1.x with AGT and NTY services | signed releases |
 | Open verifier 1.0 | open-source release (Apache-2.0), web page, WASM package |
 | Python SDK 1.0 | PyPI |
-| `basic-finance` Buk 1.1 and reference agents | signed Buk archive, agent definitions and evaluation sets |
+| `finance` Buk 1.1 and reference agents | signed Buk archive, agent definitions and evaluation sets |
 | Audit-drill evidence bundle | year-end close record, auditor requests and packs, CPA drill report, AI governance report |
 | Comparison data set | PH-3 records under the DEC-026 protocol |
 

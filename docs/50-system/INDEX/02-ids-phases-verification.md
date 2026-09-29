@@ -56,7 +56,7 @@ depends_on: [UBS-IDX-00]
 | EXIT-2-13 | **Withdrawn** (DEC-023): no design partner; replaced by EXIT-2-17 | `50-phases/PH-2/00-plan.md` |
 | EXIT-2-14 | Installation (≤ 30 min) and rolling upgrade (≤ 60 min operator time) meet NR-OPER-001 and NR-OPER-00 | `50-phases/PH-2/00-plan.md` |
 | EXIT-2-15 | Traceability report shows every PH-2 Must requirement covered by passing verification items, and all | `50-phases/PH-2/00-plan.md` |
-| EXIT-2-16 | The `basic-finance` Buk is verified by Forge; SCN-501…510 pass on the HA Server; the sample company' | `50-phases/PH-2/00-plan.md` |
+| EXIT-2-16 | The `finance` Buk is verified by Forge; SCN-501…510 pass on the HA Server; the sample company's stat | `50-phases/PH-2/00-plan.md` |
 | EXIT-2-17 | The sample company's opening balances and one year of history are migrated from spreadsheet and CSV  | `50-phases/PH-2/00-plan.md` |
 | EXIT-2-18 | The finance workbench (Smart Grid, registers, report drill-down, close cockpit) is accepted by accou | `50-phases/PH-2/00-plan.md` |
 | EXIT-2-19 | The PH-2 comparison data set is complete under the DEC-026 protocol (MET-BIZ-004) and signed by the  | `50-phases/PH-2/00-plan.md` |

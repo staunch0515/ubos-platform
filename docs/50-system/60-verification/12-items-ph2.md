@@ -46,7 +46,7 @@ depends_on: [UBS-VER-01, UBS-PH-2]
 - **Suite:** SUITE-PH2-FINANCE · **Phase:** PH-2
 - **Environment:** ENV-REF-SERVER (HA) with the Northwind sample company and WL-FIN-M
 - **Procedure:**
-  1. Install the Forge-verified `basic-finance` Buk through a change set.
+  1. Install the Forge-verified `finance` Buk through a change set.
   2. Run each scenario's main and alternate flows via SDK scripts and Playwright through the Web Workspace.
   3. After SCN-506 export the trial balance, balance sheet, income statement, cash-flow statement, statement of equity, AR and AP agings and the 1099 summary, and compare them line by line with the expected results signed by the accounting reviewer.
   4. For SCN-508 and SCN-509 compare the "as known on" and simulated statements with the independently computed values.
