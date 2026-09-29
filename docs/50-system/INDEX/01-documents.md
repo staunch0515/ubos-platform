@@ -58,6 +58,7 @@ depends_on: [UBS-IDX-00]
 | UBS-REQ-09 | Glossary — Index | complete | ALL | `10-requirements/09-glossary/00-index.md` |
 | UBS-REQ-09-01 | Glossary — A to L | complete | ALL | `10-requirements/09-glossary/01-a-l.md` |
 | UBS-REQ-09-02 | Glossary — M to Z | complete | ALL | `10-requirements/09-glossary/02-m-z.md` |
+| UBS-REQ-10 | Annex — Basic Finance Requirements Mapped to the Platform | draft | PH-2 | `10-requirements/10-finance-mapping.md` |
 | UBS-ARC-00 | Architecture Volume — Index | draft | ALL | `20-architecture/00-index.md` |
 | UBS-ARC-01 | The System Family | draft | ALL | `20-architecture/01-system-family.md` |
 | UBS-ARC-02 | Inter-System Contracts | draft | ALL | `20-architecture/02-contracts.md` |

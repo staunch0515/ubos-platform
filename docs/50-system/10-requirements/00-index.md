@@ -25,6 +25,7 @@ system chapters (`20-`, `30-`, `40-`) do that and trace back to these IDs.
 | UBS-REQ-07 | `07-constraints-assumptions.md` | constraints (CST-*) and assumptions (ASM-*) |
 | UBS-REQ-08 | `08-compliance.md` | compliance requirements (CR-*) |
 | UBS-REQ-09 | `09-glossary/` | glossary terms (GL-*) |
+| UBS-REQ-10 | `10-finance-mapping.md` | annex: the implementation-neutral finance requirements (`docs/finance-requirements/`) mapped to platform capabilities (DEC-026) |
 
 ## How to read a requirement
 
