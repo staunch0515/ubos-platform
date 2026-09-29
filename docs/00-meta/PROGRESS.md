@@ -70,7 +70,7 @@ Priority P0 (minimal viable kernel), in this order:
 - [x] `18-rules-validation.md`
 - [x] `19-orchestration/` (index + 3 parts)
 - [x] `21-query-search.md`
-- [ ] `22-security.md`
+- [x] `22-security/` (index + 3 parts)
 - [ ] `23-tenancy.md`
 - [ ] `24-protocol.md`
 - [ ] `28-packages-boot.md`

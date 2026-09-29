@@ -60,7 +60,7 @@ Exact per-chapter dependencies are in §3.
 | SPEC-19 | `19-orchestration/` (index + 3 parts) | Pipelines, action state machines, process instances | FLOW | 17, 18 | VRD-06-01…06 | P0 |
 | SPEC-20 | `20-events-jobs.md` | Outbox events, hooks, cron, jobs, webhooks | EVT | 15, 17, 19 | VRD-11-01…05 | P1 |
 | SPEC-21 | `21-query-search.md` | Derived index, criteria queries, history, vectors | QRY | 11, 13, 14 | VRD-12-01…05 | P0 |
-| SPEC-22 | `22-security.md` | Identity, governance entities, RBAC + policies, enforcement, approvals, keys | SEC | 13, 15, 17, 18 | VRD-10-01…07 | P0 |
+| SPEC-22 | `22-security/` (index + 3 parts) | Identity, governance entities, RBAC + policies, enforcement, approvals, keys | SEC | 13, 15, 17, 18 | VRD-10-01…07 | P0 |
 | SPEC-23 | `23-tenancy.md` | Tenants, root package tenant, extension and overlay, cross-tenant execution | TEN | 14, 16, 22 | VRD-18-01…05 | P0 |
 | SPEC-24 | `24-protocol.md` | UBTP messages, envelope, transports, encoding | PROTO | 15, 19, 20, 21 | VRD-15-01…05 | P0 |
 | SPEC-25 | `25-ui-protocol.md` | Widget resolution, render pipeline, views, projection, pushed UI | UI | 13, 19, 24 | VRD-13-01…07 | P1 |
