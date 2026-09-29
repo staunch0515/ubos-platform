@@ -1,5 +1,10 @@
 # UBOS — Universal Business Platform: Research and Specification
 
+> **Current authority:** the self-contained system specification in
+> [`50-system/`](50-system/README.md) (*UBOS Business Processing Architecture — System
+> Specification*). The research folders and `40-spec/` below are kept as history and input
+> (DEC-001, DEC-008 in `50-system/90-decisions/`).
+
 This folder contains a complete research study of eight peer repositories that each attempt
 the same platform, together with **one unified target specification** synthesised from
 them. It is written primarily for AI implementers (see [`00-meta/AI-GUIDE.md`](00-meta/AI-GUIDE.md)).
