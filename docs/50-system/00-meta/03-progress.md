@@ -11,7 +11,7 @@ depends_on: [UBS-META-00, UBS-META-01]
 ## 1. Current state
 
 - **Stage:** Requirements volume (Batches B2–B9).
-- **Next batch:** B7.
+- **Next batch:** B8.
 - **Stop point:** after B9, wait for product-owner confirmation (DEC-010).
 
 ## 2. Batch plan
@@ -25,7 +25,7 @@ depends_on: [UBS-META-00, UBS-META-01]
 - [x] **B4** Functional: MODEL, VER, TIME, LEDG, TXN
 - [x] **B5** Functional: LOGIC, RULE, FLOW, EVT, QRY
 - [x] **B6** Functional: IAM, TEN, AUD, UX, OFFICE
-- [ ] **B7** Functional: AI, PKG, INT, ANL, PROOF, SYNC
+- [x] **B7** Functional: AI, PKG, INT, ANL, PROOF, SYNC
 - [ ] **B8** Functional: OPS, BILL, DEV, MIG, NTF, FILE, SIGN, LOC, STD
 - [ ] **B9** Non-functional catalogue, compliance catalogue, constraints and assumptions, glossary seed, requirements index
 - [ ] **STOP** Product-owner confirmation of the requirements volume
@@ -75,3 +75,4 @@ depends_on: [UBS-META-00, UBS-META-01]
 | 2026-09-29 | B4 | Functional requirements MODEL (58), VER (50), TIME+LEDG (52), TXN (24): 184 FR in total. Checker now validates FR→capability mapping. |
 | 2026-09-29 | B5 | Functional requirements LOGIC (46), RULE (31), FLOW (34), EVT (32), QRY (17): FR total 344. |
 | 2026-09-29 | B6 | Functional requirements IAM, TEN, AUD, UX, OFFICE: FR total 493. |
+| 2026-09-29 | B7 | Functional requirements AI, PKG, INT, ANL, PROOF, SYNC: FR total 672. FR-PROOF-075 moved to PH-3 (holds arrive in PH-3). |
