@@ -81,7 +81,7 @@ Priority P1:
 - [x] `25-ui-protocol/` (index + 3 parts)
 - [x] `26-client-shells.md`
 - [x] `27-ai/` (index + 3 parts)
-- [ ] `29-base-ontology.md`
+- [x] `29-base-ontology.md`
 - [ ] `31-deployment-editions.md`
 - [ ] `32-nfr-catalogue.md`
 
