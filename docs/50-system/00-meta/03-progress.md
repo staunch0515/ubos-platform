@@ -11,7 +11,7 @@ depends_on: [UBS-META-00, UBS-META-01]
 ## 1. Current state
 
 - **Stage:** Verification volume (Stage G).
-- **Next batch:** B25.
+- **Next batch:** B26.
 - **Stop point:** after B9, wait for product-owner confirmation (DEC-010).
 
 ## 2. Batch plan
@@ -53,7 +53,7 @@ depends_on: [UBS-META-00, UBS-META-01]
 - [x] **B24** PH-3, PH-4, PH-5
 
 ### Stage G — Verification (`60-verification/`)
-- [ ] **B25** Methods, environments, datasets, suites
+- [x] **B25** Methods, environments, datasets, suites
 - [ ] **B26** Verification items by phase, traceability
 
 ### Stage H — Closing
@@ -95,3 +95,4 @@ depends_on: [UBS-META-00, UBS-META-01]
 | 2026-09-29 | B22 | BPA governance chapter: 10 design requirements (repository and signed releases, profiles, MUST-clause vector coverage, formal models with trace-to-vector alignment, change process and errata, compatibility policy, extension and algorithm registries, certification programme, reference licensing, standard-before-code). Systems volume complete: 13 systems, 682 DSN, 118 IF, 69 suites. Checker: DSN, IF, DAT, UBS-SYS and UBS-ARC references now strict. FRG adapter aligned with STD-CONF-002. |
 | 2026-09-29 | B23 | Phase volume: index with common rules (entry, scope control, six verification layers, universal thresholds, acceptance board, regression and carry-over rules, ID conventions) and system × phase matrix; generator `tools/gen_phase_features.py` producing exact feature lists per phase (UBS-PHF-0…5) incl. PH-1 gate tags; plans PH-0 (7 exits), PH-1 with gates 1a/1b (20 exits, 17 metrics), PH-2 (15 exits, 14 metrics). |
 | 2026-09-29 | B24 | Plans PH-3 (regulated pilot with explicit pilot success criteria, governed AI, devices; 13 exits), PH-4 (Cells, Control Plane, Exchange, certification, workers, SOC 2 readiness; 11 exits), PH-5 (federation, shared BPUs, browser kernel; 8 exits). VER numbering unified across all phase plans (standard vectors VER-CONF-0001…6299 by clause area; system-level CONF 7000…9999; other methods by system block; SCN, USE, PILOT by phase), to be recorded in UBS-VER-00 §3. |
+| 2026-09-29 | B25 | Verification volume part 1: index with principles, structure, unified VER numbering (standard vectors by clause area, system-level CONF blocks, method blocks by system, SCN/USE/PILOT by phase) and traceability model; twelve methods with procedures, tooling, evidence and default pass rules; environment provisioning rules; workload generation, fixtures and adversarial corpora; suite registry (6 phase suites + regression suite defined, 69 system suites listed, triggers); numbering registry defining all VER ranges. Checker: range definitions and overlap detection for VER numbers; all VER references now resolve. |

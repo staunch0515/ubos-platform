@@ -58,6 +58,9 @@ def strip_code(text):
 
 errors, warnings = [], []
 defs = collections.defaultdict(list)
+# verification ranges: a first table cell "VER-<M>-NNNN…MMMM" in 60-verification defines every ID in the range
+RANGE_DEF = re.compile(r'^\| (VER-[A-Z]+)-(\d{4})…(\d{4}) \|', re.M)
+ranges = collections.defaultdict(list)   # prefix -> [(lo, hi, file)]
 texts = {}
 for f in md_files():
     rel = os.path.relpath(f, ROOT)
@@ -78,6 +81,13 @@ for f in md_files():
             if m.group(1).startswith('UBS-'): continue
             if 'writing-rules' in rel or 'templates' in rel: continue
             defs[m.group(1)].append(rel)
+    if rel.startswith('60-verification'):
+        for m in RANGE_DEF.finditer(body):
+            lo, hi = int(m.group(2)), int(m.group(3))
+            if lo > hi: errors.append(f'{rel}: empty range {m.group(0).strip()}')
+            for (a, b, g) in ranges[m.group(1)]:
+                if lo <= b and a <= hi: errors.append(f'{rel}: range {m.group(1)}-{lo:04d}…{hi:04d} overlaps {m.group(1)}-{a:04d}…{b:04d} in {g}')
+            ranges[m.group(1)].append((lo, hi, rel))
     for m in re.finditer(r'^(DAT-[A-Z][A-Za-z0-9]+):', s, re.M):  # yaml DAT definitions
         if 'templates' not in rel: defs[m.group(1)].append(rel)
     n = s.count('\n')
@@ -94,6 +104,9 @@ for rel, s in texts.items():
     for m in REF.finditer(s):
         i = m.group(1)
         if i in defs or i in BUILTIN or i in EXAMPLES: continue
+        if i.startswith('VER-'):
+            pre, num = i.rsplit('-', 1)
+            if any(a <= int(num) <= b for (a, b, _) in ranges.get(pre, [])): continue
         undefined[i].add(rel)
 for i, fs in sorted(undefined.items()):
     msg = f'undefined {i} in {", ".join(sorted(fs)[:3])}{" …" if len(fs) > 3 else ""}'
